@@ -1,9 +1,10 @@
-#include "remshader.h"
+#include "remrender.h"
 #include <GLES2/gl2.h>
-REMShaderManager::REMShaderManager(){
-  unsigned int vID;
-  unsigned int fID;
-  unsigned int pID;
+REMShaderManager::REMShaderManager(REMRenderDevice* renderDevice){
+  _renderDevice =  renderDevice;
+  unsigned int vID=1;
+  unsigned int fID=1;
+  unsigned int pID=1;
   createVShader("./shader/vertex.glsl", true,UU_VERTEX, &vID);
   printf( "Created Vertex Shader with ID: %d\n", vID );
   createFShader("./shader/fragment.glsl", true, &fID);
@@ -11,26 +12,10 @@ REMShaderManager::REMShaderManager(){
   createProgram(vID, fID, &pID);
   activateProgram(pID);
 
-///HOW TO UPLOAD ATTRIBUTE DATA - VBOs
-  float points[] = {
-    0.0f,  0.5f,  0.0f,
-    0.5f, -0.5f,  0.0f,
-    -0.5f, -0.5f,  0.0f
-  };
-  GLuint vertexPosObject;
-  glGenBuffers(1, &vertexPosObject);
-  glBindBuffer(GL_ARRAY_BUFFER, vertexPosObject);
-  glVertexAttribPointer(0, 3, GL_FLOAT, 0, 0, 0);
-  glBufferData(GL_ARRAY_BUFFER, 9*4, points, GL_STATIC_DRAW);
-  glEnableVertexAttribArray(0);
 ///////////////////////////
 ///HOW TO UPLOAD UNIFORM DATA
-  glUniform1f(glGetUniformLocation(_pProgram[pID], "f0"),2.0);
+  glUniform1f(glGetUniformLocation(_pProgram[pID], "f0"),1.0);
 /////////////////////////////
-
-//ACTUALLY DRAWING THE VERTEX DATA
-  glDrawArrays (GL_TRIANGLES, 0, 3);
-//////////////////////////////////
 
 }
 
@@ -153,7 +138,7 @@ int REMShaderManager::createFShader(const char *pData, bool bLoadFromFile, unsig
 
 int REMShaderManager::createProgram(unsigned int vID, unsigned int fID, unsigned int* pID){
   GLuint shader_programme = glCreateProgram ();
-  printf("Created Shader programme: %d",shader_programme);
+  printf("Created Shader programme: %d\n",shader_programme);
   glAttachShader (shader_programme, _pFShader[fID]);
   glAttachShader (shader_programme, _pVShader[vID]);
   glLinkProgram (shader_programme);
@@ -161,16 +146,17 @@ int REMShaderManager::createProgram(unsigned int vID, unsigned int fID, unsigned
     _pProgram[_nNumPrograms] = shader_programme;
     (*pID) = _nNumPrograms;
   }
-
+  _pVertexFormatProgram[_nNumPrograms] = _pVertexFormat[vID];
   _nNumPrograms++;
   return REMOK;
 }
 
 int REMShaderManager::activateProgram(unsigned int pID){
   if (pID >= _nNumPrograms) return REMFAIL;
-  //_pVertexMan->forcedFlushAll();
+  _renderDevice->getVertexManager()->forcedFlushAll();
   glUseProgram(_pProgram[pID]);
   _activeProgram = _pProgram[pID];
+  _renderDevice->getVertexManager()->setVertexFormat(_pVertexFormatProgram[pID]);
   return REMOK;
 }
 

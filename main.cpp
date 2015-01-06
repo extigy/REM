@@ -4,9 +4,6 @@
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
-#include "const.h"
-#include "rem3d.h"
-#include "remskin.h"
 #include "remrender.h"
 
 #ifdef __EMSCRIPTEN__

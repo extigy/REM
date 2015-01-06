@@ -5,44 +5,18 @@
 #include <string.h>
 #include "rem3d.h"
 #include "remskin.h"
-#include "remshader.h"
 #include "remgeom.h"
-
-typedef enum REMRENDERSTATE_TYPE{
-  RS_CULL_CW,
-  RS_CULL_CCW,
-  RS_CULL_NONE,
-  RS_DEPTH_READWRITE,
-  RS_DEPTH_READONLY,
-  RS_DEPTH_NONE,
-  RS_SHADE_POINTS,
-  RS_SHADE_TRIWIRE,
-  RS_SHADE_HULLWIRE,
-  RS_SHADE_SOLID
-} REMRenderState;
-
-typedef struct POINT_TYPE{
-  unsigned int x;
-  unsigned int y;
-} POINT;
-
-typedef struct REMVIEWPORT_TYPE{
-unsigned int x;
-unsigned int y;
-unsigned int width;
-unsigned int height;
-} REMViewport;
-
-typedef enum REMENGINEMODE_TYPE{
-  PERSPECTIVE,
-  TWOD,
-  ORTHOGONAL
-} REMEngineMode;
-
+#include "const.h"
+#include "remvertexcache.h"
+class REMShaderManager;
+class REMVertexCacheManager;
 class REMRenderDevice{
 private:
   REMSkinManager* _pSkinMan;
   REMShaderManager* _pShaderMan;
+  REMVertexCacheManager* _pVertexMan;
+  REMColour _clrWire; // colour of wireframe lines
+  REMRenderState _shadeMode;
   float _fNear, _fFar;
   REMEngineMode _mode;
   int _nStage;
@@ -60,6 +34,8 @@ private:
 
 public:
   REMSkinManager* getSkinManager();
+  REMShaderManager* getShaderManager();
+  REMVertexCacheManager* getVertexManager();
   int setView3D(const REMVector&,const REMVector&,const REMVector&,const REMVector&);
   int setViewLookAt(const REMVector&,const REMVector&,const REMVector&);
   void setClippingPlanes(float,float);
@@ -74,6 +50,33 @@ public:
   void calcWorldViewProjMatrix();
   REMRenderDevice();
   void prepare2D();
+
+  void setBackfaceCulling(REMRenderState);
+  void setDepthBufferMode(REMRenderState);
+  void setShadeMode(REMRenderState smd, float f, const REMColour *pClr);
+  REMRenderState getShadeMode();
 };
+
+class REMShaderManager{
+private:
+  REMRenderDevice* _renderDevice;
+  GLuint          _pVShader[MAX_ID];
+  REMVertexFormat _pVertexFormat[MAX_ID];
+  REMVertexFormat _pVertexFormatProgram[MAX_ID];
+  GLuint          _pFShader[MAX_ID];
+  GLuint          _pProgram[MAX_ID];
+  unsigned int _nNumVShaders;
+  unsigned int _nNumFShaders;
+  unsigned int _nNumPrograms;
+  GLuint _activeProgram;
+public:
+  REMShaderManager(REMRenderDevice* renderDevice);
+  int createVShader(const char *pData, bool bLoadFromFile, REMVertexFormat vertexFormat, unsigned int* pID);
+  int createFShader(const char *pData, bool bLoadFromFile, unsigned int* pID);
+  int createProgram(unsigned int vID, unsigned int fID, unsigned int* pID);
+  int activateProgram(unsigned int pID);
+  GLuint getActiveProgram();
+};
+
 
 #endif

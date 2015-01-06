@@ -3,8 +3,20 @@
 #include <GLES2/gl2.h>
 
 REMRenderDevice::REMRenderDevice(){
-  _pShaderMan = new REMShaderManager();
+  _pSkinMan = new REMSkinManager();
+  _pShaderMan = new REMShaderManager(this);
+  _pVertexMan = new REMVertexCacheManager(_pSkinMan);
 };
+REMSkinManager* REMRenderDevice::getSkinManager(){
+  return _pSkinMan;
+}
+REMShaderManager* REMRenderDevice::getShaderManager(){
+  return _pShaderMan;
+}
+REMVertexCacheManager* REMRenderDevice::getVertexManager(){
+  return _pVertexMan;
+}
+
 
 int REMRenderDevice::setView3D(const REMVector& vcRight,const REMVector& vcUp,const REMVector& vcDir,const REMVector& vcPos){
   if (!_bRunning) return REMGLGENTEXTUREERROR;
@@ -234,7 +246,7 @@ int REMRenderDevice::setMode(REMEngineMode mode, int nStage){
     _mode = mode;
   }
 
-  //_pVertexMan->forcedFlushAll();
+  _pVertexMan->forcedFlushAll();
 
   if (mode == TWOD){
     vpX			= 0;
@@ -348,7 +360,7 @@ void REMRenderDevice::transform2DTo3D(const POINT& pt, REMVector* vcOrig, REMVec
 }
 
 void REMRenderDevice::setWorldTransform(const REMMatrix* mWorld){
-  //_pVertexMan->ForcedFlushAll();
+  _pVertexMan->forcedFlushAll();
 
   if (!mWorld){
     _mWorld.identity();
@@ -359,4 +371,85 @@ void REMRenderDevice::setWorldTransform(const REMMatrix* mWorld){
   calcWorldViewProjMatrix();
   GLuint activeProg = _pShaderMan->getActiveProgram();
   glUniformMatrix4fv(glGetUniformLocation(activeProg, "wvpmTranspose"),1,1,(const float *)_mWorldViewProj._data);
+}
+
+void REMRenderDevice::setBackfaceCulling(REMRenderState rs){
+  _pVertexMan->forcedFlushAll();
+  if(rs == RS_CULL_CW) {
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+  } else if(rs == RS_CULL_CCW){
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
+  } else if(rs == RS_CULL_NONE){
+    glDisable(GL_CULL_FACE);
+  }
+}
+
+void REMRenderDevice::setDepthBufferMode(REMRenderState rs){
+  _pVertexMan->forcedFlushAll();
+  if(rs == RS_DEPTH_READWRITE){
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glClear(GL_DEPTH_BUFFER_BIT);
+  } else if(rs == RS_DEPTH_READONLY){
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_DEPTH_BUFFER_BIT);
+    glDepthMask(GL_FALSE);
+  } else if(rs == RS_DEPTH_NONE){
+    glDisable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glClear(GL_DEPTH_BUFFER_BIT);
+  }
+}
+
+void REMRenderDevice::setShadeMode(REMRenderState smd, float f, const REMColour *pClr){
+  _pVertexMan->forcedFlushAll();
+  if(pClr){
+    memcpy(&_clrWire,pClr,sizeof(REMColour));
+    //_pVertexMan->invalidateStates();
+  }
+
+  if(smd == _shadeMode){
+    if(smd==RS_SHADE_POINTS){
+      printf("RS_SHADE_POINTS enabled. Unsupported!\n");
+      //glPointSize(f);
+      //set gl_PointSize=f in shader through uniform global?
+    }
+    return;
+  }
+
+  if(smd == RS_SHADE_TRIWIRE){
+    printf("RS_SHADE_TRIWIRE enabled. Unsupported!\n");
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+    //replace with shader switch?
+    _shadeMode = smd;
+  } else {
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+    //replace with shader switch?
+    _shadeMode = smd;
+  }
+
+  if(smd == RS_SHADE_POINTS){
+    printf("RS_SHADE_POINTS enabled. Unsupported!\n");
+    /*if(f>0.0f){
+      glEnable(GL_POINT_SPRITE);
+      glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_TRUE);
+    } else {
+      glDisable(GL_POINT_SPRITE);
+      glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_FALSE);
+    }
+  } else {
+    glDisable(GL_POINT_SPRITE);
+    glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_FALSE);
+    */
+    //replace with shader switch?
+  }
+
+  //_pVertexMan->invalidateStates();
+
+}
+
+REMRenderState REMRenderDevice::getShadeMode(){
+  return _shadeMode;
 }
