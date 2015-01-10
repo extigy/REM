@@ -1,12 +1,17 @@
 #include "remrender.h"
 #include "const.h"
+#include "remshader.h"
 #include <GLES2/gl2.h>
 
 REMRenderDevice::REMRenderDevice(){
-  _pSkinMan = new REMSkinManager();
-  _pShaderMan = new REMShaderManager(this);
-  _pVertexMan = new REMVertexCacheManager(_pSkinMan);
+  _bRunning = true;
 };
+unsigned int REMRenderDevice::getActiveSkinID(){
+  return _nActiveSkin;
+}
+void REMRenderDevice::setActiveSkinID(unsigned int skinID){
+  _nActiveSkin = skinID;
+}
 REMSkinManager* REMRenderDevice::getSkinManager(){
   return _pSkinMan;
 }
@@ -17,10 +22,41 @@ REMVertexCacheManager* REMRenderDevice::getVertexManager(){
   return _pVertexMan;
 }
 
+int REMRenderDevice::oneTimeInit(){
+  _pSkinMan = new REMSkinManager();
+  _pShaderMan = new REMShaderManager(this);
+  _pVertexMan = new REMVertexCacheManager(this, 300, 450);
+  setBackfaceCulling(RS_CULL_NONE);
+  glEnable(GL_DEPTH_TEST);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  REMViewport vpView = {0,0,REMWIDTH,REMHEIGHT};
+  _mode = PERSPECTIVE;
+  _nStage = -1;
+  setActiveSkinID(MAX_ID);
+  _clrWire.fR = 1.0f;_clrWire.fG = 1.0f;_clrWire.fB = 1.0f;_clrWire.fA = 1.0f;
+  setShadeMode(RS_SHADE_SOLID, NULL, NULL);
+  setDepthBufferMode(RS_DEPTH_READWRITE);
+
+  _mView3D.identity();
+  setClippingPlanes(0.1f,1000.0f);
+  setWorldTransform(NULL);
+
+  _pShaderMan->createVShader("./shader/vertex.glsl", true,UL_VERTEX, NULL);
+  _pShaderMan->createFShader("./shader/fragment.glsl", true, NULL);
+  _pShaderMan->createProgram(0, 0, NULL);
+  _pShaderMan->activateProgram(0);
+
+  initStage(0.8f,&vpView,0);
+  setMode(PERSPECTIVE,0);
+
+  return REMOK;
+}
+
 
 int REMRenderDevice::setView3D(const REMVector& vcRight,const REMVector& vcUp,const REMVector& vcDir,const REMVector& vcPos){
-  if (!_bRunning) return REMGLGENTEXTUREERROR;
-  _mView3D._data[0][3] = _mView3D._data[1][0] = _mView3D._data[2][3] = 0.0f;
+  if (!_bRunning) return REMFAIL;
+  _mView3D._data[0][3] = _mView3D._data[1][3] = _mView3D._data[2][3] = 0.0f;
   _mView3D._data[3][3] = 1.0f;
 
   _mView3D._data[0][0] = vcRight.x;
@@ -201,7 +237,7 @@ void REMRenderDevice::calcViewProjMatrix(){
     pB = &_mView2D;
   } else {
     pB = &_mView3D;
-    if(_mode = PERSPECTIVE){
+    if(_mode == PERSPECTIVE){
       pA = &(_mProjP[_nStage]);
     } else {
       pA = &(_mProjO[_nStage]);
@@ -222,7 +258,7 @@ void REMRenderDevice::calcWorldViewProjMatrix(){
     pView = &_mView2D;
   } else {
     pView = &_mView3D;
-    if(_mode = PERSPECTIVE){
+    if(_mode == PERSPECTIVE){
       pProj = &(_mProjP[_nStage]);
     } else {
       pProj = &(_mProjO[_nStage]);
@@ -230,6 +266,11 @@ void REMRenderDevice::calcWorldViewProjMatrix(){
   }
   REMMatrix* pCombo = &_mWorldViewProj;
   (*pCombo) = ((*pWorld)*(*pView))*(*pProj);
+
+  //_mWorldViewProj.transposeOf(_mWorldViewProj);
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMat"),1,0,&(_mWorldViewProj._data[0][0]));
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMatTrans"),1,1,&(_mWorldViewProj._data[0][0]));
+
 }
 
 
@@ -370,7 +411,6 @@ void REMRenderDevice::setWorldTransform(const REMMatrix* mWorld){
 
   calcWorldViewProjMatrix();
   GLuint activeProg = _pShaderMan->getActiveProgram();
-  glUniformMatrix4fv(glGetUniformLocation(activeProg, "wvpmTranspose"),1,1,(const float *)_mWorldViewProj._data);
 }
 
 void REMRenderDevice::setBackfaceCulling(REMRenderState rs){
@@ -410,44 +450,10 @@ void REMRenderDevice::setShadeMode(REMRenderState smd, float f, const REMColour 
     //_pVertexMan->invalidateStates();
   }
 
-  if(smd == _shadeMode){
-    if(smd==RS_SHADE_POINTS){
-      printf("RS_SHADE_POINTS enabled. Unsupported!\n");
-      //glPointSize(f);
-      //set gl_PointSize=f in shader through uniform global?
-    }
-    return;
-  }
-
-  if(smd == RS_SHADE_TRIWIRE){
-    printf("RS_SHADE_TRIWIRE enabled. Unsupported!\n");
-    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-    //replace with shader switch?
-    _shadeMode = smd;
-  } else {
-    //glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
-    //replace with shader switch?
+  if(smd != _shadeMode){
     _shadeMode = smd;
   }
-
-  if(smd == RS_SHADE_POINTS){
-    printf("RS_SHADE_POINTS enabled. Unsupported!\n");
-    /*if(f>0.0f){
-      glEnable(GL_POINT_SPRITE);
-      glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_TRUE);
-    } else {
-      glDisable(GL_POINT_SPRITE);
-      glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_FALSE);
-    }
-  } else {
-    glDisable(GL_POINT_SPRITE);
-    glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_FALSE);
-    */
-    //replace with shader switch?
-  }
-
   //_pVertexMan->invalidateStates();
-
 }
 
 REMRenderState REMRenderDevice::getShadeMode(){

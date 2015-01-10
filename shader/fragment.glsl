@@ -1,4 +1,8 @@
-precision mediump float;
+precision highp float;
+uniform vec4 matDiffuse;
+uniform vec4 matAmbient;
+uniform vec4 matSpecular;
+uniform float matPower;
 void main(){
-  gl_FragColor = vec4 ( 0.0, 0.0, 1.0, 1.0 );
+  gl_FragColor = matAmbient;
 }

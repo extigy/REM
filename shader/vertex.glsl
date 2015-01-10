@@ -1,7 +1,7 @@
 #version 100
-uniform mat4 wvpmTranspose;
-uniform float f0;
-attribute vec3 vPosition;
+uniform mat4 WVPMat;
+uniform mat4 WVPMatTrans;
+attribute vec4 vPosition;
 void main(){
-   gl_Position = vec4(f0*vPosition,1.0);
+   gl_Position = WVPMat*vPosition;
 }

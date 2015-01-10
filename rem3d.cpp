@@ -108,9 +108,10 @@ void REMVector::cross (const REMVector& u, const REMVector& v){
   w = 1.0f;
 };
 
-REMMatrix::REMMatrix(){};
+REMMatrix::REMMatrix(){
+};
 void REMMatrix::identity(){
-  float* f = (float*)&this->_data[0][0];
+  float* f = &(_data[0][0]);
   memset(f,0,sizeof(float)*16);
   _data[0][0] = _data[1][1] = _data[2][2] = _data[3][3] = 1.0f;
 };
@@ -285,20 +286,28 @@ void REMMatrix::inverseOf(const REMMatrix& m) {
 
 REMMatrix REMMatrix::operator * (const REMMatrix& m) const {
   REMMatrix mResult;
+  mResult.identity();
 
-  float *pA = (float*)this;
-  float *pB = (float*)&m;
-  float *pM = (float*)&mResult;
+  mResult._data[0][0] = _data[0][0]*m._data[0][0] + _data[0][1]*m._data[1][0] + _data[0][2]*m._data[3][0] + _data[0][3]*m._data[3][0];
+  mResult._data[0][1] = _data[0][0]*m._data[0][1] + _data[0][1]*m._data[1][1] + _data[0][2]*m._data[3][1] + _data[0][3]*m._data[3][1];
+  mResult._data[0][2] = _data[0][0]*m._data[0][2] + _data[0][1]*m._data[1][2] + _data[0][2]*m._data[3][2] + _data[0][3]*m._data[3][2];
+  mResult._data[0][3] = _data[0][0]*m._data[0][3] + _data[0][1]*m._data[1][3] + _data[0][2]*m._data[3][3] + _data[0][3]*m._data[3][3];
 
-  memset(pM, 0, sizeof(REMMatrix));
+  mResult._data[1][0] = _data[1][0]*m._data[0][0] + _data[1][1]*m._data[1][0] + _data[1][2]*m._data[3][0] + _data[1][3]*m._data[3][0];
+  mResult._data[1][1] = _data[1][0]*m._data[0][1] + _data[1][1]*m._data[1][1] + _data[1][2]*m._data[3][1] + _data[1][3]*m._data[3][1];
+  mResult._data[1][2] = _data[1][0]*m._data[0][2] + _data[1][1]*m._data[1][2] + _data[1][2]*m._data[3][2] + _data[1][3]*m._data[3][2];
+  mResult._data[1][3] = _data[1][0]*m._data[0][3] + _data[1][1]*m._data[1][3] + _data[1][2]*m._data[3][3] + _data[1][3]*m._data[3][3];
 
-  for (unsigned char i = 0; i<4; i++)
-    for (unsigned char j = 0; j<4; j++) {
-      pM[4 * i + j] += pA[4 * i] * pB[j];
-      pM[4 * i + j] += pA[4 * i + 1] * pB[4 + j];
-      pM[4 * i + j] += pA[4 * i + 2] * pB[8 + j];
-      pM[4 * i + j] += pA[4 * i + 3] * pB[12 + j];
-    }
+  mResult._data[2][0] = _data[2][0]*m._data[0][0] + _data[2][1]*m._data[1][0] + _data[2][2]*m._data[3][0] + _data[2][3]*m._data[3][0];
+  mResult._data[2][1] = _data[2][0]*m._data[0][1] + _data[2][1]*m._data[1][1] + _data[2][2]*m._data[3][1] + _data[2][3]*m._data[3][1];
+  mResult._data[2][2] = _data[2][0]*m._data[0][2] + _data[2][1]*m._data[1][2] + _data[2][2]*m._data[3][2] + _data[2][3]*m._data[3][2];
+  mResult._data[2][3] = _data[2][0]*m._data[0][3] + _data[2][1]*m._data[1][3] + _data[2][2]*m._data[3][3] + _data[2][3]*m._data[3][3];
+
+  mResult._data[3][0] = _data[3][0]*m._data[0][0] + _data[3][1]*m._data[1][0] + _data[3][2]*m._data[3][0] + _data[3][3]*m._data[3][0];
+  mResult._data[3][1] = _data[3][0]*m._data[0][1] + _data[3][1]*m._data[1][1] + _data[3][2]*m._data[3][1] + _data[3][3]*m._data[3][1];
+  mResult._data[3][2] = _data[3][0]*m._data[0][2] + _data[3][1]*m._data[1][2] + _data[3][2]*m._data[3][2] + _data[3][3]*m._data[3][2];
+  mResult._data[3][3] = _data[3][0]*m._data[0][3] + _data[3][1]*m._data[1][3] + _data[3][2]*m._data[3][3] + _data[3][3]*m._data[3][3];
+
   return mResult;
 }
 

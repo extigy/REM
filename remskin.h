@@ -44,13 +44,11 @@ typedef struct REMSKIN_TYPE{
 } REMSkin;
 
 class REMSkinManager{
+  friend class REMVertexCache;
 protected:
   unsigned int _nNumSkins;
   unsigned int _nNumMaterials;
   unsigned int _nNumTextures;
-  REMSkin* _pSkins;
-  REMMaterial* _pMaterials;
-  REMTexture* _pTextures;
   inline bool colourEqual(const REMColour* pCol0,const REMColour* pCol1);
   int createTexture(REMTexture* pTexture, bool bAlpha);
   int convertToNormalMap(REMTexture* pTexture);
@@ -58,6 +56,9 @@ protected:
   int setTransparency(GLuint* pTex,unsigned char A);
   void log(char*,...);
 public:
+  REMSkin* _pSkins;
+  REMMaterial* _pMaterials;
+  REMTexture* _pTextures;
   REMSkinManager();
   ~REMSkinManager();
   int addSkin(const REMColour* pcAmbient,const REMColour* pcDiffuse,const REMColour* pcEmissive,const REMColour* pcSpecular, float fSpecPower, unsigned int* nSkinID);

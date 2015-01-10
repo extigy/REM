@@ -140,6 +140,7 @@ int REMSkinManager::addSkin(const REMColour* pcAmbient, const REMColour* pcDiffu
   _pSkins[_nNumSkins].bAlpha = false;
   for(int i=0;i<8;i++) _pSkins[_nNumSkins].nTexture[i] = MAX_ID;
   (*nSkinID) = _nNumSkins;
+  log("Created new skin with ID: %d.", _nNumSkins);
   _nNumSkins++;
   return REMOK;
 }

@@ -9,6 +9,7 @@
 #define REMVISIBLE 5
 
 #define MAX_ID 65535
+#define NUM_CACHES 50
 #define REMWIDTH 280
 #define REMHEIGHT 200
 
@@ -67,5 +68,18 @@ typedef enum REMENGINEMODE_TYPE{
   TWOD,
   ORTHOGONAL
 } REMEngineMode;
+
+typedef struct REMBUFFER_TYPE {
+  int nStride;
+  unsigned int nSkinID;
+  bool bIndis;
+  int nNumVerts;
+  int nNumIndis;
+  int nNumTris;
+  unsigned int pVB = -1;
+  unsigned int pIB = -1;
+  void* pVD;
+  unsigned short* pID;
+} REMBuffer;
 
 #endif

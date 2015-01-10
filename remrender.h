@@ -15,11 +15,11 @@ private:
   REMSkinManager* _pSkinMan;
   REMShaderManager* _pShaderMan;
   REMVertexCacheManager* _pVertexMan;
-  REMColour _clrWire; // colour of wireframe lines
   REMRenderState _shadeMode;
   float _fNear, _fFar;
   REMEngineMode _mode;
   int _nStage;
+  unsigned int _nActiveSkin;
   bool _bRunning;
   REMViewport _VP[4];
 
@@ -33,6 +33,7 @@ private:
             _mWorldViewProj;  //combined-matrix world with view with projection -> for shaders
 
 public:
+  REMColour _clrWire; // colour of wireframe lines
   REMSkinManager* getSkinManager();
   REMShaderManager* getShaderManager();
   REMVertexCacheManager* getVertexManager();
@@ -50,33 +51,13 @@ public:
   void calcWorldViewProjMatrix();
   REMRenderDevice();
   void prepare2D();
-
+  unsigned int getActiveSkinID();
   void setBackfaceCulling(REMRenderState);
   void setDepthBufferMode(REMRenderState);
   void setShadeMode(REMRenderState smd, float f, const REMColour *pClr);
   REMRenderState getShadeMode();
+  void setActiveSkinID(unsigned int skinID);
+  int oneTimeInit();
 };
-
-class REMShaderManager{
-private:
-  REMRenderDevice* _renderDevice;
-  GLuint          _pVShader[MAX_ID];
-  REMVertexFormat _pVertexFormat[MAX_ID];
-  REMVertexFormat _pVertexFormatProgram[MAX_ID];
-  GLuint          _pFShader[MAX_ID];
-  GLuint          _pProgram[MAX_ID];
-  unsigned int _nNumVShaders;
-  unsigned int _nNumFShaders;
-  unsigned int _nNumPrograms;
-  GLuint _activeProgram;
-public:
-  REMShaderManager(REMRenderDevice* renderDevice);
-  int createVShader(const char *pData, bool bLoadFromFile, REMVertexFormat vertexFormat, unsigned int* pID);
-  int createFShader(const char *pData, bool bLoadFromFile, unsigned int* pID);
-  int createProgram(unsigned int vID, unsigned int fID, unsigned int* pID);
-  int activateProgram(unsigned int pID);
-  GLuint getActiveProgram();
-};
-
 
 #endif
