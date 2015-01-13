@@ -11,11 +11,11 @@ inline void REMRay::deTransform(const REMMatrix& _m){
   REMMatrix mInv;
   REMMatrix m=_m;
 
-  _vcOrig.x -= m._data[3][0];
-  _vcOrig.y -= m._data[3][1];
-  _vcOrig.z -= m._data[3][2];
+  _vcOrig.x -= m._41;
+  _vcOrig.y -= m._42;
+  _vcOrig.z -= m._43;
 
-  m._data[3][0] = 0.0f; m._data[3][1]=0.0f; m._data[3][2]=0.0f;
+  m._41 = 0.0f; m._42=0.0f; m._43=0.0f;
 
   mInv.inverseOf(m);
 
@@ -429,8 +429,8 @@ inline void REMobb::deTransform(const REMobb& obb, const REMMatrix& m){
   REMMatrix mat = m;
   REMVector vcT;
 
-  vcT.set(mat._data[3][0],mat._data[3][1],mat._data[3][2]);
-  mat._data[3][0]=mat._data[3][1]=mat._data[3][2]=0.0f;
+  vcT.set(mat._41,mat._42,mat._43);
+  mat._41=mat._42=mat._43=0.0f;
 
   this->vcCenter = mat*obb.vcCenter;
   this->vcA0 = mat*obb.vcA0;

@@ -24,8 +24,8 @@ Module.expectedDataFileDownloads++;
     var REMOTE_PACKAGE_NAME = typeof Module['locateFile'] === 'function' ?
                               Module['locateFile'](REMOTE_PACKAGE_BASE) :
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
-    var REMOTE_PACKAGE_SIZE = 476776;
-    var PACKAGE_UUID = 'd18a33a4-08aa-44e6-a373-f3283ce6aeef';
+    var REMOTE_PACKAGE_SIZE = 475402;
+    var PACKAGE_UUID = '32f920eb-b9c1-4774-a5a9-40025cb9697d';
   
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
@@ -123,10 +123,12 @@ Module['FS_createPath']('/', 'shader', true, true);
         this.requests[this.name] = null;
       },
     };
-      new DataRequest(0, 24835, 0, 0).open('GET', '/awesome.png');
-    new DataRequest(24835, 476473, 0, 0).open('GET', '/awesome.bmp');
-    new DataRequest(476473, 476640, 0, 0).open('GET', '/shader/fragment.glsl');
-    new DataRequest(476640, 476776, 0, 0).open('GET', '/shader/vertex.glsl');
+      new DataRequest(0, 22610, 0, 0).open('GET', '/awesome.png');
+    new DataRequest(22610, 474248, 0, 0).open('GET', '/awesome.bmp');
+    new DataRequest(474248, 474595, 0, 0).open('GET', '/shader/UL_F0.glsl');
+    new DataRequest(474595, 474925, 0, 0).open('GET', '/shader/UL_V0.glsl');
+    new DataRequest(474925, 475148, 0, 0).open('GET', '/shader/UU_F0.glsl');
+    new DataRequest(475148, 475402, 0, 0).open('GET', '/shader/UU_V0.glsl');
 
     function processPackageData(arrayBuffer) {
       Module.finishedDataFileDownloads++;
@@ -140,8 +142,10 @@ Module['FS_createPath']('/', 'shader', true, true);
       DataRequest.prototype.byteArray = Module['HEAPU8'].subarray(ptr, ptr+byteArray.length);
           DataRequest.prototype.requests["/awesome.png"].onload();
           DataRequest.prototype.requests["/awesome.bmp"].onload();
-          DataRequest.prototype.requests["/shader/fragment.glsl"].onload();
-          DataRequest.prototype.requests["/shader/vertex.glsl"].onload();
+          DataRequest.prototype.requests["/shader/UL_F0.glsl"].onload();
+          DataRequest.prototype.requests["/shader/UL_V0.glsl"].onload();
+          DataRequest.prototype.requests["/shader/UU_F0.glsl"].onload();
+          DataRequest.prototype.requests["/shader/UU_V0.glsl"].onload();
           Module['removeRunDependency']('datafile_index.data');
 
     };
@@ -1515,11 +1519,11 @@ var memoryInitializer = null;
 
 STATIC_BASE = 8;
 
-STATICTOP = STATIC_BASE + Runtime.alignMemory(1723);
+STATICTOP = STATIC_BASE + Runtime.alignMemory(1859);
   /* global initializers */ __ATINIT__.push();
   
 
-/* memory initializer */ allocate([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,3,0,1,0,0,0,0,0,103,108,102,119,73,110,105,116,40,41,32,102,97,105,108,101,100,10,0,0,0,0,0,0,103,108,102,119,79,112,101,110,87,105,110,100,111,119,40,41,32,102,97,105,108,101,100,10,0,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,3,0,1,0,0,0,0,0,32,40,0,0,0,0,0,0,37,102,32,32,32,32,32,0,41,10,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,1,0,0,200,0,0,0,46,47,115,104,97,100,101,114,47,118,101,114,116,101,120,46,103,108,115,108,0,0,0,0,46,47,115,104,97,100,101,114,47,102,114,97,103,109,101,110,116,46,103,108,115,108,0,0,87,86,80,77,97,116,0,0,87,86,80,77,97,116,84,114,97,110,115,0,0,0,0,0,0,0,0,0,0,0,0,0,24,1,0,0,200,0,0,0,114,0,0,0,0,0,0,0,69,114,114,111,114,32,99,111,109,112,105,108,105,110,103,32,115,104,97,100,101,114,58,10,37,115,10,0,0,0,0,0,67,114,101,97,116,101,100,32,86,101,114,116,101,120,32,83,104,97,100,101,114,32,119,105,116,104,32,73,68,58,32,37,100,10,0,0,0,0,0,0,67,114,101,97,116,101,100,32,70,114,97,103,109,101,110,116,32,83,104,97,100,101,114,32,119,105,116,104,32,73,68,58,32,37,100,10,0,0,0,0,67,114,101,97,116,101,100,32,83,104,97,100,101,114,32,112,114,111,103,114,97,109,109,101,58,32,37,100,10,0,0,0,109,97,116,68,105,102,102,117,115,101,0,0,0,0,0,0,109,97,116,65,109,98,105,101,110,116,0,0,0,0,0,0,109,97,116,83,112,101,99,117,108,97,114,0,0,0,0,0,109,97,116,69,109,105,115,115,105,118,101,0,0,0,0,0,109,97,116,80,111,119,101,114,0,0,0,0,0,0,0,0,65,99,116,105,118,97,116,101,100,32,83,104,97,100,101,114,32,80,114,111,103,114,97,109,58,32,37,100,46,10,0,0,73,110,105,116,105,97,108,105,115,105,110,103,46,46,46,0,73,110,105,116,105,97,108,105,115,101,100,46,0,0,0,0,67,114,101,97,116,101,100,32,110,101,119,32,115,107,105,110,32,119,105,116,104,32,73,68,58,32,37,100,46,0,0,0,91,82,69,77,83,107,105,110,77,97,110,97,103,101,114,93,58,32,0,0,0,0,0,0,10,0,0,0,0,0,0,0,109,97,116,68,105,102,102,117,115,101,0,0,0,0,0,0,109,97,116,65,109,98,105,101,110,116,0,0,0,0,0,0,109,97,116,83,112,101,99,117,108,97,114,0,0,0,0,0,109,97,116,69,109,105,115,115,105,118,101,0,0,0,0,0,109,97,116,80,111,119,101,114,0,0,0,0,0,0,0,0,69,114,114,111,114,32,99,114,101,97,116,105,110,103,32,98,117,102,102,101,114,115,32,105,110,32,86,101,114,116,101,120,32,67,97,99,104,101,46,10,0,0,0,0,0,0,0,0,0,0,0,0,32,3,0,0,1,0,0,0,2,0,0,0,3,0,0,0,0,0,0,0,115,116,100,58,58,98,97,100,95,97,108,108,111,99,0,0,83,116,57,98,97,100,95,97,108,108,111,99,0,0,0,0,120,4,0,0,16,3,0,0,72,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,116,57,101,120,99,101,112,116,105,111,110,0,0,0,0,80,4,0,0,56,3,0,0,83,116,57,116,121,112,101,95,105,110,102,111,0,0,0,0,80,4,0,0,80,3,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,49,54,95,95,115,104,105,109,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,0,0,0,120,4,0,0,104,3,0,0,96,3,0,0,0,0,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,49,55,95,95,99,108,97,115,115,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,0,0,120,4,0,0,160,3,0,0,144,3,0,0,0,0,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,49,57,95,95,112,111,105,110,116,101,114,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,49,55,95,95,112,98,97,115,101,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,0,0,120,4,0,0,0,4,0,0,144,3,0,0,0,0,0,0,120,4,0,0,216,3,0,0,40,4,0,0,0,0,0,0,0,0,0,0,200,3,0,0,4,0,0,0,5,0,0,0,6,0,0,0,7,0,0,0,8,0,0,0,9,0,0,0,10,0,0,0,11,0,0,0,0,0,0,0,192,4,0,0,4,0,0,0,12,0,0,0,6,0,0,0,7,0,0,0,8,0,0,0,13,0,0,0,14,0,0,0,15,0,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,50,48,95,95,115,105,95,99,108,97,115,115,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,120,4,0,0,152,4,0,0,200,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "i8", ALLOC_NONE, Runtime.GLOBAL_BASE);
+/* memory initializer */ allocate([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,3,0,1,0,4,0,5,0,6,0,4,0,7,0,5,0,7,0,1,0,5,0,7,0,1,0,3,0,4,0,2,0,6,0,0,0,2,0,4,0,4,0,3,0,0,0,4,0,7,0,3,0,2,0,5,0,6,0,2,0,1,0,5,0,97,119,101,115,111,109,101,46,112,110,103,0,0,0,0,0,103,108,102,119,79,112,101,110,87,105,110,100,111,119,40,41,32,102,97,105,108,101,100,0,103,108,102,119,73,110,105,116,40,41,32,102,97,105,108,101,100,0,0,0,0,0,0,0,114,98,0,0,0,0,0,0,91,73,77,65,71,69,93,58,32,67,111,117,108,100,110,39,116,32,108,111,97,100,32,37,115,0,0,0,0,0,0,0,91,73,77,65,71,69,93,58,32,76,111,97,100,101,100,32,37,115,46,32,37,100,120,37,100,32,119,105,116,104,32,37,100,32,98,98,112,46,10,0,46,47,115,104,97,100,101,114,47,85,76,95,86,48,46,103,108,115,108,0,0,0,0,0,46,47,115,104,97,100,101,114,47,85,76,95,70,48,46,103,108,115,108,0,0,0,0,0,109,97,116,68,105,102,102,117,115,101,0,0,0,0,0,0,109,97,116,65,109,98,105,101,110,116,0,0,0,0,0,0,109,97,116,83,112,101,99,117,108,97,114,0,0,0,0,0,109,97,116,69,109,105,115,115,105,118,101,0,0,0,0,0,109,97,116,80,111,119,101,114,0,0,0,0,0,0,0,0,87,86,80,77,97,116,0,0,87,86,80,77,97,116,84,114,97,110,115,0,0,0,0,0,0,0,0,0,0,0,0,0,128,2,0,0,104,1,0,0,114,0,0,0,0,0,0,0,69,114,114,111,114,32,99,111,109,112,105,108,105,110,103,32,115,104,97,100,101,114,58,10,37,115,46,0,0,0,0,0,67,114,101,97,116,101,100,32,86,101,114,116,101,120,32,83,104,97,100,101,114,32,119,105,116,104,32,73,68,58,32,37,100,46,0,0,0,0,0,0,67,114,101,97,116,101,100,32,70,114,97,103,109,101,110,116,32,83,104,97,100,101,114,32,119,105,116,104,32,73,68,58,32,37,100,46,0,0,0,0,67,114,101,97,116,101,100,32,83,104,97,100,101,114,32,112,114,111,103,114,97,109,109,101,58,32,37,100,46,0,0,0,65,99,116,105,118,97,116,101,100,32,83,104,97,100,101,114,32,80,114,111,103,114,97,109,58,32,37,100,46,0,0,0,91,83,104,97,100,101,114,77,97,110,97,103,101,114,93,58,32,0,0,0,0,0,0,0,73,110,105,116,105,97,108,105,115,105,110,103,46,46,46,0,73,110,105,116,105,97,108,105,115,101,100,46,0,0,0,0,67,114,101,97,116,101,100,32,110,101,119,32,115,107,105,110,32,119,105,116,104,32,73,68,58,32,37,100,46,0,0,0,69,82,82,79,82,58,32,97,100,100,84,101,120,116,117,114,101,40,41,32,102,97,105,108,101,100,58,32,65,108,108,32,56,32,116,101,120,116,117,114,101,115,32,102,105,108,108,101,100,46,0,0,0,0,0,0,91,83,107,105,110,77,97,110,97,103,101,114,93,58,32,0,67,114,101,97,116,105,110,103,32,86,101,114,116,101,120,32,66,117,102,102,101,114,115,46,46,46,0,0,0,0,0,0,68,111,110,101,46,0,0,0,91,86,101,114,116,101,120,67,97,99,104,101,77,97,110,97,103,101,114,93,58,32,0,0,97,80,111,115,105,116,105,111,110,0,0,0,0,0,0,0,97,78,111,114,109,97,108,0,97,84,101,120,67,111,111,114,100,0,0,0,0,0,0,0,97,67,111,108,111,117,114,0,109,97,116,68,105,102,102,117,115,101,0,0,0,0,0,0,109,97,116,65,109,98,105,101,110,116,0,0,0,0,0,0,109,97,116,83,112,101,99,117,108,97,114,0,0,0,0,0,109,97,116,69,109,105,115,115,105,118,101,0,0,0,0,0,109,97,116,80,111,119,101,114,0,0,0,0,0,0,0,0,117,83,97,109,112,108,101,114,48,0,0,0,0,0,0,0,116,101,120,116,117,114,101,32,98,105,110,100,105,110,103,32,45,32,37,100,10,0,0,0,0,0,0,0,24,4,0,0,1,0,0,0,2,0,0,0,3,0,0,0,0,0,0,0,115,116,100,58,58,98,97,100,95,97,108,108,111,99,0,0,83,116,57,98,97,100,95,97,108,108,111,99,0,0,0,0,0,5,0,0,8,4,0,0,64,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,116,57,101,120,99,101,112,116,105,111,110,0,0,0,0,216,4,0,0,48,4,0,0,83,116,57,116,121,112,101,95,105,110,102,111,0,0,0,0,216,4,0,0,72,4,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,49,54,95,95,115,104,105,109,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,0,0,0,0,5,0,0,96,4,0,0,88,4,0,0,0,0,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,49,55,95,95,99,108,97,115,115,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,0,0,0,5,0,0,152,4,0,0,136,4,0,0,0,0,0,0,0,0,0,0,192,4,0,0,4,0,0,0,5,0,0,0,6,0,0,0,7,0,0,0,8,0,0,0,9,0,0,0,10,0,0,0,11,0,0,0,0,0,0,0,72,5,0,0,4,0,0,0,12,0,0,0,6,0,0,0,7,0,0,0,8,0,0,0,13,0,0,0,14,0,0,0,15,0,0,0,78,49,48,95,95,99,120,120,97,98,105,118,49,50,48,95,95,115,105,95,99,108,97,115,115,95,116,121,112,101,95,105,110,102,111,69,0,0,0,0,0,5,0,0,32,5,0,0,192,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "i8", ALLOC_NONE, Runtime.GLOBAL_BASE);
 
 
 
@@ -5872,6 +5876,10 @@ function copyTempDouble(ptr) {
       return fd === -1 ? 0 : FS.getPtrForStream(FS.getStream(fd));
     }
 
+  var _sqrtf=Math_sqrt;
+
+  var _fabsf=Math_abs;
+
   function _sysconf(name) {
       // long sysconf(int name);
       // http://pubs.opengroup.org/onlinepubs/009695399/functions/sysconf.html
@@ -6015,7 +6023,41 @@ function copyTempDouble(ptr) {
       return -1;
     }
 
-  var _emscripten_postinvoke=true;
+  
+  function _fputs(s, stream) {
+      // int fputs(const char *restrict s, FILE *restrict stream);
+      // http://pubs.opengroup.org/onlinepubs/000095399/functions/fputs.html
+      var fd = _fileno(stream);
+      return _write(fd, s, _strlen(s));
+    }
+  
+  function _fputc(c, stream) {
+      // int fputc(int c, FILE *stream);
+      // http://pubs.opengroup.org/onlinepubs/000095399/functions/fputc.html
+      var chr = unSign(c & 0xFF);
+      HEAP8[((_fputc.ret)>>0)]=chr;
+      var fd = _fileno(stream);
+      var ret = _write(fd, _fputc.ret, 1);
+      if (ret == -1) {
+        var streamObj = FS.getStreamFromPtr(stream);
+        if (streamObj) streamObj.error = true;
+        return -1;
+      } else {
+        return chr;
+      }
+    }function _puts(s) {
+      // int puts(const char *s);
+      // http://pubs.opengroup.org/onlinepubs/000095399/functions/puts.html
+      // NOTE: puts() always writes an extra newline.
+      var stdout = HEAP32[((_stdout)>>2)];
+      var ret = _fputs(s, stdout);
+      if (ret < 0) {
+        return ret;
+      } else {
+        var newlineRet = _fputc(10, stdout);
+        return (newlineRet < 0) ? -1 : ret + 1;
+      }
+    }
 
   function _glClear(x0) { GLctx.clear(x0) }
 
@@ -6047,6 +6089,591 @@ function copyTempDouble(ptr) {
   
       GLctx.bindBuffer(target, bufferObj);
     }
+
+  var Browser={mainLoop:{scheduler:null,method:"",shouldPause:false,paused:false,queue:[],pause:function () {
+          Browser.mainLoop.shouldPause = true;
+        },resume:function () {
+          if (Browser.mainLoop.paused) {
+            Browser.mainLoop.paused = false;
+            Browser.mainLoop.scheduler();
+          }
+          Browser.mainLoop.shouldPause = false;
+        },updateStatus:function () {
+          if (Module['setStatus']) {
+            var message = Module['statusMessage'] || 'Please wait...';
+            var remaining = Browser.mainLoop.remainingBlockers;
+            var expected = Browser.mainLoop.expectedBlockers;
+            if (remaining) {
+              if (remaining < expected) {
+                Module['setStatus'](message + ' (' + (expected - remaining) + '/' + expected + ')');
+              } else {
+                Module['setStatus'](message);
+              }
+            } else {
+              Module['setStatus']('');
+            }
+          }
+        },runIter:function (func) {
+          if (ABORT) return;
+          if (Module['preMainLoop']) {
+            var preRet = Module['preMainLoop']();
+            if (preRet === false) {
+              return; // |return false| skips a frame
+            }
+          }
+          try {
+            func();
+          } catch (e) {
+            if (e instanceof ExitStatus) {
+              return;
+            } else {
+              if (e && typeof e === 'object' && e.stack) Module.printErr('exception thrown: ' + [e, e.stack]);
+              throw e;
+            }
+          }
+          if (Module['postMainLoop']) Module['postMainLoop']();
+        }},isFullScreen:false,pointerLock:false,moduleContextCreatedCallbacks:[],workers:[],init:function () {
+        if (!Module["preloadPlugins"]) Module["preloadPlugins"] = []; // needs to exist even in workers
+  
+        if (Browser.initted) return;
+        Browser.initted = true;
+  
+        try {
+          new Blob();
+          Browser.hasBlobConstructor = true;
+        } catch(e) {
+          Browser.hasBlobConstructor = false;
+          console.log("warning: no blob constructor, cannot create blobs with mimetypes");
+        }
+        Browser.BlobBuilder = typeof MozBlobBuilder != "undefined" ? MozBlobBuilder : (typeof WebKitBlobBuilder != "undefined" ? WebKitBlobBuilder : (!Browser.hasBlobConstructor ? console.log("warning: no BlobBuilder") : null));
+        Browser.URLObject = typeof window != "undefined" ? (window.URL ? window.URL : window.webkitURL) : undefined;
+        if (!Module.noImageDecoding && typeof Browser.URLObject === 'undefined') {
+          console.log("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.");
+          Module.noImageDecoding = true;
+        }
+  
+        // Support for plugins that can process preloaded files. You can add more of these to
+        // your app by creating and appending to Module.preloadPlugins.
+        //
+        // Each plugin is asked if it can handle a file based on the file's name. If it can,
+        // it is given the file's raw data. When it is done, it calls a callback with the file's
+        // (possibly modified) data. For example, a plugin might decompress a file, or it
+        // might create some side data structure for use later (like an Image element, etc.).
+  
+        var imagePlugin = {};
+        imagePlugin['canHandle'] = function imagePlugin_canHandle(name) {
+          return !Module.noImageDecoding && /\.(jpg|jpeg|png|bmp)$/i.test(name);
+        };
+        imagePlugin['handle'] = function imagePlugin_handle(byteArray, name, onload, onerror) {
+          var b = null;
+          if (Browser.hasBlobConstructor) {
+            try {
+              b = new Blob([byteArray], { type: Browser.getMimetype(name) });
+              if (b.size !== byteArray.length) { // Safari bug #118630
+                // Safari's Blob can only take an ArrayBuffer
+                b = new Blob([(new Uint8Array(byteArray)).buffer], { type: Browser.getMimetype(name) });
+              }
+            } catch(e) {
+              Runtime.warnOnce('Blob constructor present but fails: ' + e + '; falling back to blob builder');
+            }
+          }
+          if (!b) {
+            var bb = new Browser.BlobBuilder();
+            bb.append((new Uint8Array(byteArray)).buffer); // we need to pass a buffer, and must copy the array to get the right data range
+            b = bb.getBlob();
+          }
+          var url = Browser.URLObject.createObjectURL(b);
+          assert(typeof url == 'string', 'createObjectURL must return a url as a string');
+          var img = new Image();
+          img.onload = function img_onload() {
+            assert(img.complete, 'Image ' + name + ' could not be decoded');
+            var canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            Module["preloadedImages"][name] = canvas;
+            Browser.URLObject.revokeObjectURL(url);
+            if (onload) onload(byteArray);
+          };
+          img.onerror = function img_onerror(event) {
+            console.log('Image ' + url + ' could not be decoded');
+            if (onerror) onerror();
+          };
+          img.src = url;
+        };
+        Module['preloadPlugins'].push(imagePlugin);
+  
+        var audioPlugin = {};
+        audioPlugin['canHandle'] = function audioPlugin_canHandle(name) {
+          return !Module.noAudioDecoding && name.substr(-4) in { '.ogg': 1, '.wav': 1, '.mp3': 1 };
+        };
+        audioPlugin['handle'] = function audioPlugin_handle(byteArray, name, onload, onerror) {
+          var done = false;
+          function finish(audio) {
+            if (done) return;
+            done = true;
+            Module["preloadedAudios"][name] = audio;
+            if (onload) onload(byteArray);
+          }
+          function fail() {
+            if (done) return;
+            done = true;
+            Module["preloadedAudios"][name] = new Audio(); // empty shim
+            if (onerror) onerror();
+          }
+          if (Browser.hasBlobConstructor) {
+            try {
+              var b = new Blob([byteArray], { type: Browser.getMimetype(name) });
+            } catch(e) {
+              return fail();
+            }
+            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this!
+            assert(typeof url == 'string', 'createObjectURL must return a url as a string');
+            var audio = new Audio();
+            audio.addEventListener('canplaythrough', function() { finish(audio) }, false); // use addEventListener due to chromium bug 124926
+            audio.onerror = function audio_onerror(event) {
+              if (done) return;
+              console.log('warning: browser could not fully decode audio ' + name + ', trying slower base64 approach');
+              function encode64(data) {
+                var BASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+                var PAD = '=';
+                var ret = '';
+                var leftchar = 0;
+                var leftbits = 0;
+                for (var i = 0; i < data.length; i++) {
+                  leftchar = (leftchar << 8) | data[i];
+                  leftbits += 8;
+                  while (leftbits >= 6) {
+                    var curr = (leftchar >> (leftbits-6)) & 0x3f;
+                    leftbits -= 6;
+                    ret += BASE[curr];
+                  }
+                }
+                if (leftbits == 2) {
+                  ret += BASE[(leftchar&3) << 4];
+                  ret += PAD + PAD;
+                } else if (leftbits == 4) {
+                  ret += BASE[(leftchar&0xf) << 2];
+                  ret += PAD;
+                }
+                return ret;
+              }
+              audio.src = 'data:audio/x-' + name.substr(-3) + ';base64,' + encode64(byteArray);
+              finish(audio); // we don't wait for confirmation this worked - but it's worth trying
+            };
+            audio.src = url;
+            // workaround for chrome bug 124926 - we do not always get oncanplaythrough or onerror
+            Browser.safeSetTimeout(function() {
+              finish(audio); // try to use it even though it is not necessarily ready to play
+            }, 10000);
+          } else {
+            return fail();
+          }
+        };
+        Module['preloadPlugins'].push(audioPlugin);
+  
+        // Canvas event setup
+  
+        var canvas = Module['canvas'];
+        function pointerLockChange() {
+          Browser.pointerLock = document['pointerLockElement'] === canvas ||
+                                document['mozPointerLockElement'] === canvas ||
+                                document['webkitPointerLockElement'] === canvas ||
+                                document['msPointerLockElement'] === canvas;
+        }
+        if (canvas) {
+          // forced aspect ratio can be enabled by defining 'forcedAspectRatio' on Module
+          // Module['forcedAspectRatio'] = 4 / 3;
+          
+          canvas.requestPointerLock = canvas['requestPointerLock'] ||
+                                      canvas['mozRequestPointerLock'] ||
+                                      canvas['webkitRequestPointerLock'] ||
+                                      canvas['msRequestPointerLock'] ||
+                                      function(){};
+          canvas.exitPointerLock = document['exitPointerLock'] ||
+                                   document['mozExitPointerLock'] ||
+                                   document['webkitExitPointerLock'] ||
+                                   document['msExitPointerLock'] ||
+                                   function(){}; // no-op if function does not exist
+          canvas.exitPointerLock = canvas.exitPointerLock.bind(document);
+  
+  
+          document.addEventListener('pointerlockchange', pointerLockChange, false);
+          document.addEventListener('mozpointerlockchange', pointerLockChange, false);
+          document.addEventListener('webkitpointerlockchange', pointerLockChange, false);
+          document.addEventListener('mspointerlockchange', pointerLockChange, false);
+  
+          if (Module['elementPointerLock']) {
+            canvas.addEventListener("click", function(ev) {
+              if (!Browser.pointerLock && canvas.requestPointerLock) {
+                canvas.requestPointerLock();
+                ev.preventDefault();
+              }
+            }, false);
+          }
+        }
+      },createContext:function (canvas, useWebGL, setInModule, webGLContextAttributes) {
+        if (useWebGL && Module.ctx && canvas == Module.canvas) return Module.ctx; // no need to recreate GL context if it's already been created for this canvas.
+  
+        var ctx;
+        var contextHandle;
+        if (useWebGL) {
+          // For GLES2/desktop GL compatibility, adjust a few defaults to be different to WebGL defaults, so that they align better with the desktop defaults.
+          var contextAttributes = {
+            antialias: false,
+            alpha: false
+          };
+  
+          if (webGLContextAttributes) {
+            for (var attribute in webGLContextAttributes) {
+              contextAttributes[attribute] = webGLContextAttributes[attribute];
+            }
+          }
+  
+          contextHandle = GL.createContext(canvas, contextAttributes);
+          if (contextHandle) {
+            ctx = GL.getContext(contextHandle).GLctx;
+          }
+          // Set the background of the WebGL canvas to black
+          canvas.style.backgroundColor = "black";
+        } else {
+          ctx = canvas.getContext('2d');
+        }
+  
+        if (!ctx) return null;
+  
+        if (setInModule) {
+          if (!useWebGL) assert(typeof GLctx === 'undefined', 'cannot set in module if GLctx is used, but we are a non-GL context that would replace it');
+  
+          Module.ctx = ctx;
+          if (useWebGL) GL.makeContextCurrent(contextHandle);
+          Module.useWebGL = useWebGL;
+          Browser.moduleContextCreatedCallbacks.forEach(function(callback) { callback() });
+          Browser.init();
+        }
+        return ctx;
+      },destroyContext:function (canvas, useWebGL, setInModule) {},fullScreenHandlersInstalled:false,lockPointer:undefined,resizeCanvas:undefined,requestFullScreen:function (lockPointer, resizeCanvas) {
+        Browser.lockPointer = lockPointer;
+        Browser.resizeCanvas = resizeCanvas;
+        if (typeof Browser.lockPointer === 'undefined') Browser.lockPointer = true;
+        if (typeof Browser.resizeCanvas === 'undefined') Browser.resizeCanvas = false;
+  
+        var canvas = Module['canvas'];
+        function fullScreenChange() {
+          Browser.isFullScreen = false;
+          var canvasContainer = canvas.parentNode;
+          if ((document['webkitFullScreenElement'] || document['webkitFullscreenElement'] ||
+               document['mozFullScreenElement'] || document['mozFullscreenElement'] ||
+               document['fullScreenElement'] || document['fullscreenElement'] ||
+               document['msFullScreenElement'] || document['msFullscreenElement'] ||
+               document['webkitCurrentFullScreenElement']) === canvasContainer) {
+            canvas.cancelFullScreen = document['cancelFullScreen'] ||
+                                      document['mozCancelFullScreen'] ||
+                                      document['webkitCancelFullScreen'] ||
+                                      document['msExitFullscreen'] ||
+                                      document['exitFullscreen'] ||
+                                      function() {};
+            canvas.cancelFullScreen = canvas.cancelFullScreen.bind(document);
+            if (Browser.lockPointer) canvas.requestPointerLock();
+            Browser.isFullScreen = true;
+            if (Browser.resizeCanvas) Browser.setFullScreenCanvasSize();
+          } else {
+            
+            // remove the full screen specific parent of the canvas again to restore the HTML structure from before going full screen
+            canvasContainer.parentNode.insertBefore(canvas, canvasContainer);
+            canvasContainer.parentNode.removeChild(canvasContainer);
+            
+            if (Browser.resizeCanvas) Browser.setWindowedCanvasSize();
+          }
+          if (Module['onFullScreen']) Module['onFullScreen'](Browser.isFullScreen);
+          Browser.updateCanvasDimensions(canvas);
+        }
+  
+        if (!Browser.fullScreenHandlersInstalled) {
+          Browser.fullScreenHandlersInstalled = true;
+          document.addEventListener('fullscreenchange', fullScreenChange, false);
+          document.addEventListener('mozfullscreenchange', fullScreenChange, false);
+          document.addEventListener('webkitfullscreenchange', fullScreenChange, false);
+          document.addEventListener('MSFullscreenChange', fullScreenChange, false);
+        }
+  
+        // create a new parent to ensure the canvas has no siblings. this allows browsers to optimize full screen performance when its parent is the full screen root
+        var canvasContainer = document.createElement("div");
+        canvas.parentNode.insertBefore(canvasContainer, canvas);
+        canvasContainer.appendChild(canvas);
+        
+        // use parent of canvas as full screen root to allow aspect ratio correction (Firefox stretches the root to screen size)
+        canvasContainer.requestFullScreen = canvasContainer['requestFullScreen'] ||
+                                            canvasContainer['mozRequestFullScreen'] ||
+                                            canvasContainer['msRequestFullscreen'] ||
+                                           (canvasContainer['webkitRequestFullScreen'] ? function() { canvasContainer['webkitRequestFullScreen'](Element['ALLOW_KEYBOARD_INPUT']) } : null);
+        canvasContainer.requestFullScreen();
+      },nextRAF:0,fakeRequestAnimationFrame:function (func) {
+        // try to keep 60fps between calls to here
+        var now = Date.now();
+        if (Browser.nextRAF === 0) {
+          Browser.nextRAF = now + 1000/60;
+        } else {
+          while (now + 2 >= Browser.nextRAF) { // fudge a little, to avoid timer jitter causing us to do lots of delay:0
+            Browser.nextRAF += 1000/60;
+          }
+        }
+        var delay = Math.max(Browser.nextRAF - now, 0);
+        setTimeout(func, delay);
+      },requestAnimationFrame:function requestAnimationFrame(func) {
+        if (typeof window === 'undefined') { // Provide fallback to setTimeout if window is undefined (e.g. in Node.js)
+          Browser.fakeRequestAnimationFrame(func);
+        } else {
+          if (!window.requestAnimationFrame) {
+            window.requestAnimationFrame = window['requestAnimationFrame'] ||
+                                           window['mozRequestAnimationFrame'] ||
+                                           window['webkitRequestAnimationFrame'] ||
+                                           window['msRequestAnimationFrame'] ||
+                                           window['oRequestAnimationFrame'] ||
+                                           Browser.fakeRequestAnimationFrame;
+          }
+          window.requestAnimationFrame(func);
+        }
+      },safeCallback:function (func) {
+        return function() {
+          if (!ABORT) return func.apply(null, arguments);
+        };
+      },safeRequestAnimationFrame:function (func) {
+        return Browser.requestAnimationFrame(function() {
+          if (!ABORT) func();
+        });
+      },safeSetTimeout:function (func, timeout) {
+        Module['noExitRuntime'] = true;
+        return setTimeout(function() {
+          if (!ABORT) func();
+        }, timeout);
+      },safeSetInterval:function (func, timeout) {
+        Module['noExitRuntime'] = true;
+        return setInterval(function() {
+          if (!ABORT) func();
+        }, timeout);
+      },getMimetype:function (name) {
+        return {
+          'jpg': 'image/jpeg',
+          'jpeg': 'image/jpeg',
+          'png': 'image/png',
+          'bmp': 'image/bmp',
+          'ogg': 'audio/ogg',
+          'wav': 'audio/wav',
+          'mp3': 'audio/mpeg'
+        }[name.substr(name.lastIndexOf('.')+1)];
+      },getUserMedia:function (func) {
+        if(!window.getUserMedia) {
+          window.getUserMedia = navigator['getUserMedia'] ||
+                                navigator['mozGetUserMedia'];
+        }
+        window.getUserMedia(func);
+      },getMovementX:function (event) {
+        return event['movementX'] ||
+               event['mozMovementX'] ||
+               event['webkitMovementX'] ||
+               0;
+      },getMovementY:function (event) {
+        return event['movementY'] ||
+               event['mozMovementY'] ||
+               event['webkitMovementY'] ||
+               0;
+      },getMouseWheelDelta:function (event) {
+        var delta = 0;
+        switch (event.type) {
+          case 'DOMMouseScroll': 
+            delta = event.detail;
+            break;
+          case 'mousewheel': 
+            delta = event.wheelDelta;
+            break;
+          case 'wheel': 
+            delta = event['deltaY'];
+            break;
+          default:
+            throw 'unrecognized mouse wheel event: ' + event.type;
+        }
+        return delta;
+      },mouseX:0,mouseY:0,mouseMovementX:0,mouseMovementY:0,touches:{},lastTouches:{},calculateMouseEvent:function (event) { // event should be mousemove, mousedown or mouseup
+        if (Browser.pointerLock) {
+          // When the pointer is locked, calculate the coordinates
+          // based on the movement of the mouse.
+          // Workaround for Firefox bug 764498
+          if (event.type != 'mousemove' &&
+              ('mozMovementX' in event)) {
+            Browser.mouseMovementX = Browser.mouseMovementY = 0;
+          } else {
+            Browser.mouseMovementX = Browser.getMovementX(event);
+            Browser.mouseMovementY = Browser.getMovementY(event);
+          }
+          
+          // check if SDL is available
+          if (typeof SDL != "undefined") {
+          	Browser.mouseX = SDL.mouseX + Browser.mouseMovementX;
+          	Browser.mouseY = SDL.mouseY + Browser.mouseMovementY;
+          } else {
+          	// just add the mouse delta to the current absolut mouse position
+          	// FIXME: ideally this should be clamped against the canvas size and zero
+          	Browser.mouseX += Browser.mouseMovementX;
+          	Browser.mouseY += Browser.mouseMovementY;
+          }        
+        } else {
+          // Otherwise, calculate the movement based on the changes
+          // in the coordinates.
+          var rect = Module["canvas"].getBoundingClientRect();
+          var cw = Module["canvas"].width;
+          var ch = Module["canvas"].height;
+  
+          // Neither .scrollX or .pageXOffset are defined in a spec, but
+          // we prefer .scrollX because it is currently in a spec draft.
+          // (see: http://www.w3.org/TR/2013/WD-cssom-view-20131217/)
+          var scrollX = ((typeof window.scrollX !== 'undefined') ? window.scrollX : window.pageXOffset);
+          var scrollY = ((typeof window.scrollY !== 'undefined') ? window.scrollY : window.pageYOffset);
+          // If this assert lands, it's likely because the browser doesn't support scrollX or pageXOffset
+          // and we have no viable fallback.
+          assert((typeof scrollX !== 'undefined') && (typeof scrollY !== 'undefined'), 'Unable to retrieve scroll position, mouse positions likely broken.');
+  
+          if (event.type === 'touchstart' || event.type === 'touchend' || event.type === 'touchmove') {
+            var touch = event.touch;
+            if (touch === undefined) {
+              return; // the "touch" property is only defined in SDL
+  
+            }
+            var adjustedX = touch.pageX - (scrollX + rect.left);
+            var adjustedY = touch.pageY - (scrollY + rect.top);
+  
+            adjustedX = adjustedX * (cw / rect.width);
+            adjustedY = adjustedY * (ch / rect.height);
+  
+            var coords = { x: adjustedX, y: adjustedY };
+            
+            if (event.type === 'touchstart') {
+              Browser.lastTouches[touch.identifier] = coords;
+              Browser.touches[touch.identifier] = coords;
+            } else if (event.type === 'touchend' || event.type === 'touchmove') {
+              Browser.lastTouches[touch.identifier] = Browser.touches[touch.identifier];
+              Browser.touches[touch.identifier] = { x: adjustedX, y: adjustedY };
+            } 
+            return;
+          }
+  
+          var x = event.pageX - (scrollX + rect.left);
+          var y = event.pageY - (scrollY + rect.top);
+  
+          // the canvas might be CSS-scaled compared to its backbuffer;
+          // SDL-using content will want mouse coordinates in terms
+          // of backbuffer units.
+          x = x * (cw / rect.width);
+          y = y * (ch / rect.height);
+  
+          Browser.mouseMovementX = x - Browser.mouseX;
+          Browser.mouseMovementY = y - Browser.mouseY;
+          Browser.mouseX = x;
+          Browser.mouseY = y;
+        }
+      },xhrLoad:function (url, onload, onerror) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function xhr_onload() {
+          if (xhr.status == 200 || (xhr.status == 0 && xhr.response)) { // file URLs can return 0
+            onload(xhr.response);
+          } else {
+            onerror();
+          }
+        };
+        xhr.onerror = onerror;
+        xhr.send(null);
+      },asyncLoad:function (url, onload, onerror, noRunDep) {
+        Browser.xhrLoad(url, function(arrayBuffer) {
+          assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
+          onload(new Uint8Array(arrayBuffer));
+          if (!noRunDep) removeRunDependency('al ' + url);
+        }, function(event) {
+          if (onerror) {
+            onerror();
+          } else {
+            throw 'Loading data file "' + url + '" failed.';
+          }
+        });
+        if (!noRunDep) addRunDependency('al ' + url);
+      },resizeListeners:[],updateResizeListeners:function () {
+        var canvas = Module['canvas'];
+        Browser.resizeListeners.forEach(function(listener) {
+          listener(canvas.width, canvas.height);
+        });
+      },setCanvasSize:function (width, height, noUpdates) {
+        var canvas = Module['canvas'];
+        Browser.updateCanvasDimensions(canvas, width, height);
+        if (!noUpdates) Browser.updateResizeListeners();
+      },windowedWidth:0,windowedHeight:0,setFullScreenCanvasSize:function () {
+        // check if SDL is available   
+        if (typeof SDL != "undefined") {
+        	var flags = HEAPU32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)];
+        	flags = flags | 0x00800000; // set SDL_FULLSCREEN flag
+        	HEAP32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)]=flags
+        }
+        Browser.updateResizeListeners();
+      },setWindowedCanvasSize:function () {
+        // check if SDL is available       
+        if (typeof SDL != "undefined") {
+        	var flags = HEAPU32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)];
+        	flags = flags & ~0x00800000; // clear SDL_FULLSCREEN flag
+        	HEAP32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)]=flags
+        }
+        Browser.updateResizeListeners();
+      },updateCanvasDimensions:function (canvas, wNative, hNative) {
+        if (wNative && hNative) {
+          canvas.widthNative = wNative;
+          canvas.heightNative = hNative;
+        } else {
+          wNative = canvas.widthNative;
+          hNative = canvas.heightNative;
+        }
+        var w = wNative;
+        var h = hNative;
+        if (Module['forcedAspectRatio'] && Module['forcedAspectRatio'] > 0) {
+          if (w/h < Module['forcedAspectRatio']) {
+            w = Math.round(h * Module['forcedAspectRatio']);
+          } else {
+            h = Math.round(w / Module['forcedAspectRatio']);
+          }
+        }
+        if (((document['webkitFullScreenElement'] || document['webkitFullscreenElement'] ||
+             document['mozFullScreenElement'] || document['mozFullscreenElement'] ||
+             document['fullScreenElement'] || document['fullscreenElement'] ||
+             document['msFullScreenElement'] || document['msFullscreenElement'] ||
+             document['webkitCurrentFullScreenElement']) === canvas.parentNode) && (typeof screen != 'undefined')) {
+           var factor = Math.min(screen.width / w, screen.height / h);
+           w = Math.round(w * factor);
+           h = Math.round(h * factor);
+        }
+        if (Browser.resizeCanvas) {
+          if (canvas.width  != w) canvas.width  = w;
+          if (canvas.height != h) canvas.height = h;
+          if (typeof canvas.style != 'undefined') {
+            canvas.style.removeProperty( "width");
+            canvas.style.removeProperty("height");
+          }
+        } else {
+          if (canvas.width  != wNative) canvas.width  = wNative;
+          if (canvas.height != hNative) canvas.height = hNative;
+          if (typeof canvas.style != 'undefined') {
+            if (w != wNative || h != hNative) {
+              canvas.style.setProperty( "width", w + "px", "important");
+              canvas.style.setProperty("height", h + "px", "important");
+            } else {
+              canvas.style.removeProperty( "width");
+              canvas.style.removeProperty("height");
+            }
+          }
+        }
+      },wgetRequests:{},nextWgetRequestHandle:0,getNextWgetRequestHandle:function () {
+        var handle = Browser.nextWgetRequestHandle;
+        Browser.nextWgetRequestHandle++;
+        return handle;
+      }};
 
   function _glCompileShader(shader) {
       GLctx.compileShader(GL.shaders[shader]);
@@ -6667,6 +7294,12 @@ function copyTempDouble(ptr) {
 
   var _emscripten_resume=true;
 
+  function _putchar(c) {
+      // int putchar(int c);
+      // http://pubs.opengroup.org/onlinepubs/000095399/functions/putchar.html
+      return _fputc(c, HEAP32[((_stdout)>>2)]);
+    }
+
   
   function _emscripten_memcpy_big(dest, src, num) {
       HEAPU8.set(HEAPU8.subarray(src, src+num), dest);
@@ -6690,6 +7323,16 @@ function copyTempDouble(ptr) {
       var ret = DYNAMICTOP;
       if (bytes != 0) self.alloc(bytes);
       return ret;  // Previous break location.
+    }
+
+  function _glGenTextures(n, textures) {
+      for (var i = 0; i < n; i++) {
+        var id = GL.getNewId(GL.textures);
+        var texture = GLctx.createTexture();
+        texture.name = id;
+        GL.textures[id] = texture;
+        HEAP32[(((textures)+(i*4))>>2)]=id;
+      }
     }
 
   var _emscripten_preinvoke=true;
@@ -6731,9 +7374,1439 @@ function copyTempDouble(ptr) {
       return id;
     }
 
+  
+  
+  
+  function _malloc(bytes) {
+      /* Over-allocate to make sure it is byte-aligned by 8.
+       * This will leak memory, but this is only the dummy
+       * implementation (replaced by dlmalloc normally) so
+       * not an issue.
+       */
+      var ptr = Runtime.dynamicAlloc(bytes + 8);
+      return (ptr+8) & 0xFFFFFFF8;
+    }
+  Module["_malloc"] = _malloc;
+  
+  function _free() {
+  }
+  Module["_free"] = _free;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  var _environ=allocate(1, "i32*", ALLOC_STATIC);var ___environ=_environ;function ___buildEnvironment(env) {
+      // WARNING: Arbitrary limit!
+      var MAX_ENV_VALUES = 64;
+      var TOTAL_ENV_SIZE = 1024;
+  
+      // Statically allocate memory for the environment.
+      var poolPtr;
+      var envPtr;
+      if (!___buildEnvironment.called) {
+        ___buildEnvironment.called = true;
+        // Set default values. Use string keys for Closure Compiler compatibility.
+        ENV['USER'] = 'web_user';
+        ENV['PATH'] = '/';
+        ENV['PWD'] = '/';
+        ENV['HOME'] = '/home/web_user';
+        ENV['LANG'] = 'C';
+        ENV['_'] = Module['thisProgram'];
+        // Allocate memory.
+        poolPtr = allocate(TOTAL_ENV_SIZE, 'i8', ALLOC_STATIC);
+        envPtr = allocate(MAX_ENV_VALUES * 4,
+                          'i8*', ALLOC_STATIC);
+        HEAP32[((envPtr)>>2)]=poolPtr;
+        HEAP32[((_environ)>>2)]=envPtr;
+      } else {
+        envPtr = HEAP32[((_environ)>>2)];
+        poolPtr = HEAP32[((envPtr)>>2)];
+      }
+  
+      // Collect key=value lines.
+      var strings = [];
+      var totalSize = 0;
+      for (var key in env) {
+        if (typeof env[key] === 'string') {
+          var line = key + '=' + env[key];
+          strings.push(line);
+          totalSize += line.length;
+        }
+      }
+      if (totalSize > TOTAL_ENV_SIZE) {
+        throw new Error('Environment size exceeded TOTAL_ENV_SIZE!');
+      }
+  
+      // Make new.
+      var ptrSize = 4;
+      for (var i = 0; i < strings.length; i++) {
+        var line = strings[i];
+        writeAsciiToMemory(line, poolPtr);
+        HEAP32[(((envPtr)+(i * ptrSize))>>2)]=poolPtr;
+        poolPtr += line.length + 1;
+      }
+      HEAP32[(((envPtr)+(strings.length * ptrSize))>>2)]=0;
+    }var ENV={};function _getenv(name) {
+      // char *getenv(const char *name);
+      // http://pubs.opengroup.org/onlinepubs/009695399/functions/getenv.html
+      if (name === 0) return 0;
+      name = Pointer_stringify(name);
+      if (!ENV.hasOwnProperty(name)) return 0;
+  
+      if (_getenv.ret) _free(_getenv.ret);
+      _getenv.ret = allocate(intArrayFromString(ENV[name]), 'i8', ALLOC_NORMAL);
+      return _getenv.ret;
+    }
+  
+  function _putenv(string) {
+      // int putenv(char *string);
+      // http://pubs.opengroup.org/onlinepubs/009695399/functions/putenv.html
+      // WARNING: According to the standard (and the glibc implementation), the
+      //          string is taken by reference so future changes are reflected.
+      //          We copy it instead, possibly breaking some uses.
+      if (string === 0) {
+        ___setErrNo(ERRNO_CODES.EINVAL);
+        return -1;
+      }
+      string = Pointer_stringify(string);
+      var splitPoint = string.indexOf('=')
+      if (string === '' || string.indexOf('=') === -1) {
+        ___setErrNo(ERRNO_CODES.EINVAL);
+        return -1;
+      }
+      var name = string.slice(0, splitPoint);
+      var value = string.slice(splitPoint + 1);
+      if (!(name in ENV) || ENV[name] !== value) {
+        ENV[name] = value;
+        ___buildEnvironment(ENV);
+      }
+      return 0;
+    }
+  
+  function _SDL_RWFromConstMem(mem, size) {
+      var id = SDL.rwops.length; // TODO: recycle ids when they are null
+      SDL.rwops.push({ bytes: mem, count: size });
+      return id;
+    }function _TTF_RenderText_Solid(font, text, color) {
+      // XXX the font and color are ignored
+      text = Pointer_stringify(text) || ' '; // if given an empty string, still return a valid surface
+      var fontData = SDL.fonts[font];
+      var w = SDL.estimateTextWidth(fontData, text);
+      var h = fontData.size;
+      var color = SDL.loadColorToCSSRGB(color); // XXX alpha breaks fonts?
+      var fontString = h + 'px ' + fontData.name;
+      var surf = SDL.makeSurface(w, h, 0, false, 'text:' + text); // bogus numbers..
+      var surfData = SDL.surfaces[surf];
+      surfData.ctx.save();
+      surfData.ctx.fillStyle = color;
+      surfData.ctx.font = fontString;
+      surfData.ctx.textBaseline = 'top';
+      surfData.ctx.fillText(text, 0, 0);
+      surfData.ctx.restore();
+      return surf;
+    }function _Mix_HaltMusic() {
+      var audio = SDL.music.audio;
+      if (audio) {
+        audio.src = audio.src; // rewind <media> element
+        audio.currentPosition = 0; // rewind Web Audio graph playback.
+        audio.pause();
+      }
+      SDL.music.audio = null;
+      if (SDL.hookMusicFinished) {
+        Runtime.dynCall('v', SDL.hookMusicFinished);
+      }
+      return 0;
+    }function _Mix_PlayMusic(id, loops) {
+      // Pause old music if it exists.
+      if (SDL.music.audio) {
+        if (!SDL.music.audio.paused) Module.printErr('Music is already playing. ' + SDL.music.source);
+        SDL.music.audio.pause();
+      }
+      var info = SDL.audios[id];
+      var audio;
+      if (info.webAudio) { // Play via Web Audio API
+        // Create an instance of the WebAudio object.
+        audio = {};
+        audio.resource = info; // This new webAudio object is an instance that refers to this existing resource.
+        audio.paused = false;
+        audio.currentPosition = 0;
+        audio.play = function() { SDL.playWebAudio(this); }
+        audio.pause = function() { SDL.pauseWebAudio(this); }
+      } else if (info.audio) { // Play via the <audio> element
+        audio = info.audio;
+      }
+      audio['onended'] = function() { if (SDL.music.audio == this) _Mix_HaltMusic(); } // will send callback
+      audio.loop = loops != 0; // TODO: handle N loops for finite N
+      audio.volume = SDL.music.volume;
+      SDL.music.audio = audio;
+      audio.play();
+      return 0;
+    }function _Mix_FreeChunk(id) {
+      SDL.audios[id] = null;
+    }function _Mix_LoadWAV_RW(rwopsID, freesrc) {
+      var rwops = SDL.rwops[rwopsID];
+  
+      if (rwops === undefined)
+        return 0;
+  
+      var filename = '';
+      var audio;
+      var webAudio;
+      var bytes;
+  
+      if (rwops.filename !== undefined) {
+        filename = PATH.resolve(rwops.filename);
+        var raw = Module["preloadedAudios"][filename];
+        if (!raw) {
+          if (raw === null) Module.printErr('Trying to reuse preloaded audio, but freePreloadedMediaOnUse is set!');
+          if (!Module.noAudioDecoding) Runtime.warnOnce('Cannot find preloaded audio ' + filename);
+  
+          // see if we can read the file-contents from the in-memory FS
+          try {
+            bytes = FS.readFile(filename);
+          } catch (e) {
+            Module.printErr('Couldn\'t find file for: ' + filename);
+            return 0;
+          }
+        }
+        if (Module['freePreloadedMediaOnUse']) {
+          Module["preloadedAudios"][filename] = null;
+        }
+        audio = raw;
+      }
+      else if (rwops.bytes !== undefined) {
+        // For Web Audio context buffer decoding, we must make a clone of the audio data, but for <media> element,
+        // a view to existing data is sufficient.
+        if (SDL.webAudioAvailable()) bytes = HEAPU8.buffer.slice(rwops.bytes, rwops.bytes + rwops.count);
+        else bytes = HEAPU8.subarray(rwops.bytes, rwops.bytes + rwops.count);
+      }
+      else {
+        return 0;
+      }
+  
+      var arrayBuffer = bytes ? bytes.buffer || bytes : bytes;
+  
+      // To allow user code to work around browser bugs with audio playback on <audio> elements an Web Audio, enable
+      // the user code to hook in a callback to decide on a file basis whether each file should use Web Audio or <audio> for decoding and playback.
+      // In particular, see https://bugzilla.mozilla.org/show_bug.cgi?id=654787 and ?id=1012801 for tradeoffs.
+      var canPlayWithWebAudio = Module['SDL_canPlayWithWebAudio'] === undefined || Module['SDL_canPlayWithWebAudio'](filename, arrayBuffer);
+  
+      if (bytes !== undefined && SDL.webAudioAvailable() && canPlayWithWebAudio) {
+        audio = undefined;
+        webAudio = {};
+        // The audio decoding process is asynchronous, which gives trouble if user code plays the audio data back immediately
+        // after loading. Therefore prepare an array of callback handlers to run when this audio decoding is complete, which
+        // will then start the playback (with some delay).
+        webAudio.onDecodeComplete = []; // While this member array exists, decoding hasn't finished yet.
+        function onDecodeComplete(data) {
+          webAudio.decodedBuffer = data;
+          // Call all handlers that were waiting for this decode to finish, and clear the handler list.
+          webAudio.onDecodeComplete.forEach(function(e) { e(); });
+          webAudio.onDecodeComplete = undefined; // Don't allow more callback handlers since audio has finished decoding.
+        }
+  
+        SDL.audioContext['decodeAudioData'](arrayBuffer, onDecodeComplete);
+      } else if (audio === undefined && bytes) {
+        // Here, we didn't find a preloaded audio but we either were passed a filepath for
+        // which we loaded bytes, or we were passed some bytes
+        var blob = new Blob([bytes], {type: rwops.mimetype});
+        var url = URL.createObjectURL(blob);
+        audio = new Audio();
+        audio.src = url;
+        audio.mozAudioChannelType = 'content'; // bugzilla 910340
+      }
+  
+      var id = SDL.audios.length;
+      // Keep the loaded audio in the audio arrays, ready for playback
+      SDL.audios.push({
+        source: filename,
+        audio: audio, // Points to the <audio> element, if loaded
+        webAudio: webAudio // Points to a Web Audio -specific resource object, if loaded
+      });
+      return id;
+    }function _Mix_PlayChannel(channel, id, loops) {
+      // TODO: handle fixed amount of N loops. Currently loops either 0 or infinite times.
+  
+      // Get the audio element associated with the ID
+      var info = SDL.audios[id];
+      if (!info) return -1;
+      if (!info.audio && !info.webAudio) return -1;
+  
+      // If the user asks us to allocate a channel automatically, get the first
+      // free one.
+      if (channel == -1) {
+        for (var i = SDL.channelMinimumNumber; i < SDL.numChannels; i++) {
+          if (!SDL.channels[i].audio) {
+            channel = i;
+            break;
+          }
+        }
+        if (channel == -1) {
+          Module.printErr('All ' + SDL.numChannels + ' channels in use!');
+          return -1;
+        }
+      }
+      var channelInfo = SDL.channels[channel];
+      var audio;
+      if (info.webAudio) {
+        // Create an instance of the WebAudio object.
+        audio = {};
+        audio.resource = info; // This new object is an instance that refers to this existing resource.
+        audio.paused = false;
+        audio.currentPosition = 0;
+        // Make our instance look similar to the instance of a <media> to make api simple.
+        audio.play = function() { SDL.playWebAudio(this); }
+        audio.pause = function() { SDL.pauseWebAudio(this); }
+      } else {
+        // We clone the audio node to utilize the preloaded audio buffer, since
+        // the browser has already preloaded the audio file.
+        audio = info.audio.cloneNode(true);
+        audio.numChannels = info.audio.numChannels;
+        audio.frequency = info.audio.frequency;
+      }
+      audio['onended'] = function SDL_audio_onended() { // TODO: cache these
+        if (channelInfo.audio == this) { channelInfo.audio.paused = true; channelInfo.audio = null; }
+        if (SDL.channelFinished) Runtime.getFuncWrapper(SDL.channelFinished, 'vi')(channel);
+      }
+      channelInfo.audio = audio;
+      // TODO: handle N loops. Behavior matches Mix_PlayMusic
+      audio.loop = loops != 0;
+      audio.volume = channelInfo.volume;
+      audio.play();
+      return channel;
+    }function _SDL_PauseAudio(pauseOn) {
+      if (!SDL.audio) {
+        return;
+      }
+      if (pauseOn) {
+        if (SDL.audio.timer !== undefined) {
+          clearTimeout(SDL.audio.timer);
+          SDL.audio.numAudioTimersPending = 0;
+          SDL.audio.timer = undefined;
+        }
+      } else if (!SDL.audio.timer) {
+        // Start the audio playback timer callback loop.
+        SDL.audio.numAudioTimersPending = 1;
+        SDL.audio.timer = Browser.safeSetTimeout(SDL.audio.caller, 1);
+      }
+      SDL.audio.paused = pauseOn;
+    }function _SDL_CloseAudio() {
+      if (SDL.audio) {
+        _SDL_PauseAudio(1);
+        _free(SDL.audio.buffer);
+        SDL.audio = null;
+        SDL.allocateChannels(0);
+      }
+    }function _SDL_LockSurface(surf) {
+      var surfData = SDL.surfaces[surf];
+  
+      surfData.locked++;
+      if (surfData.locked > 1) return 0;
+  
+      if (!surfData.buffer) {
+        surfData.buffer = _malloc(surfData.width * surfData.height * 4);
+        HEAP32[(((surf)+(20))>>2)]=surfData.buffer;
+      }
+  
+      // Mark in C/C++-accessible SDL structure
+      // SDL_Surface has the following fields: Uint32 flags, SDL_PixelFormat *format; int w, h; Uint16 pitch; void *pixels; ...
+      // So we have fields all of the same size, and 5 of them before us.
+      // TODO: Use macros like in library.js
+      HEAP32[(((surf)+(20))>>2)]=surfData.buffer;
+  
+      if (surf == SDL.screen && Module.screenIsReadOnly && surfData.image) return 0;
+  
+      surfData.image = surfData.ctx.getImageData(0, 0, surfData.width, surfData.height);
+      if (surf == SDL.screen) {
+        var data = surfData.image.data;
+        var num = data.length;
+        for (var i = 0; i < num/4; i++) {
+          data[i*4+3] = 255; // opacity, as canvases blend alpha
+        }
+      }
+  
+      if (SDL.defaults.copyOnLock) {
+        // Copy pixel data to somewhere accessible to 'C/C++'
+        if (surfData.isFlagSet(0x00200000 /* SDL_HWPALETTE */)) {
+          // If this is neaded then
+          // we should compact the data from 32bpp to 8bpp index.
+          // I think best way to implement this is use
+          // additional colorMap hash (color->index).
+          // Something like this:
+          //
+          // var size = surfData.width * surfData.height;
+          // var data = '';
+          // for (var i = 0; i<size; i++) {
+          //   var color = SDL.translateRGBAToColor(
+          //     surfData.image.data[i*4   ], 
+          //     surfData.image.data[i*4 +1], 
+          //     surfData.image.data[i*4 +2], 
+          //     255);
+          //   var index = surfData.colorMap[color];
+          //   HEAP8[(((surfData.buffer)+(i))>>0)]=index;
+          // }
+          throw 'CopyOnLock is not supported for SDL_LockSurface with SDL_HWPALETTE flag set' + new Error().stack;
+        } else {
+        HEAPU8.set(surfData.image.data, surfData.buffer);
+        }
+      }
+  
+      return 0;
+    }
+  
+  function _SDL_FreeRW(rwopsID) {
+      SDL.rwops[rwopsID] = null;
+      while (SDL.rwops.length > 0 && SDL.rwops[SDL.rwops.length-1] === null) {
+        SDL.rwops.pop();
+      }
+    }function _IMG_Load_RW(rwopsID, freeSrc) {
+      try {
+        // stb_image integration support
+        function cleanup() {
+          if (rwops && freeSrc) _SDL_FreeRW(rwopsID);
+        };
+        function addCleanup(func) {
+          var old = cleanup;
+          cleanup = function added_cleanup() {
+            old();
+            func();
+          }
+        }
+        function callStbImage(func, params) {
+          var x = Module['_malloc'](4);
+          var y = Module['_malloc'](4);
+          var comp = Module['_malloc'](4);
+          addCleanup(function() {
+            Module['_free'](x);
+            Module['_free'](y);
+            Module['_free'](comp);
+            if (data) Module['_stbi_image_free'](data);
+          });
+          var data = Module['_' + func].apply(null, params.concat([x, y, comp, 0]));
+          if (!data) return null;
+          return {
+            rawData: true,
+            data: data,
+            width: HEAP32[((x)>>2)],
+            height: HEAP32[((y)>>2)],
+            size: HEAP32[((x)>>2)] * HEAP32[((y)>>2)] * HEAP32[((comp)>>2)],
+            bpp: HEAP32[((comp)>>2)]
+          };
+        }
+  
+        var rwops = SDL.rwops[rwopsID];
+        if (rwops === undefined) {
+          return 0;
+        }
+  
+        var filename = rwops.filename;
+        if (filename === undefined) {
+          Runtime.warnOnce('Only file names that have been preloaded are supported for IMG_Load_RW. Consider using STB_IMAGE=1 if you want synchronous image decoding (see settings.js)');
+          return 0;
+        }
+  
+        if (!raw) {
+          filename = PATH.resolve(filename);
+          var raw = Module["preloadedImages"][filename];
+          if (!raw) {
+            if (raw === null) Module.printErr('Trying to reuse preloaded image, but freePreloadedMediaOnUse is set!');
+            Runtime.warnOnce('Cannot find preloaded image ' + filename);
+            Runtime.warnOnce('Cannot find preloaded image ' + filename + '. Consider using STB_IMAGE=1 if you want synchronous image decoding (see settings.js)');
+            return 0;
+          } else if (Module['freePreloadedMediaOnUse']) {
+            Module["preloadedImages"][filename] = null;
+          }
+        }
+  
+        var surf = SDL.makeSurface(raw.width, raw.height, 0, false, 'load:' + filename);
+        var surfData = SDL.surfaces[surf];
+        surfData.ctx.globalCompositeOperation = "copy";
+        if (!raw.rawData) {
+          surfData.ctx.drawImage(raw, 0, 0, raw.width, raw.height, 0, 0, raw.width, raw.height);
+        } else {
+          var imageData = surfData.ctx.getImageData(0, 0, surfData.width, surfData.height);
+          if (raw.bpp == 4) {
+            // rgba
+            imageData.data.set(HEAPU8.subarray((raw.data),(raw.data+raw.size)));
+          } else if (raw.bpp == 3) {
+            // rgb
+            var pixels = raw.size/3;
+            var data = imageData.data;
+            var sourcePtr = raw.data;
+            var destPtr = 0;
+            for (var i = 0; i < pixels; i++) {
+              data[destPtr++] = HEAPU8[((sourcePtr++)>>0)];
+              data[destPtr++] = HEAPU8[((sourcePtr++)>>0)];
+              data[destPtr++] = HEAPU8[((sourcePtr++)>>0)];
+              data[destPtr++] = 255;
+            }
+          } else if (raw.bpp == 1) {
+            // grayscale
+            var pixels = raw.size;
+            var data = imageData.data;
+            var sourcePtr = raw.data;
+            var destPtr = 0;
+            for (var i = 0; i < pixels; i++) {
+              var value = HEAPU8[((sourcePtr++)>>0)];
+              data[destPtr++] = value;
+              data[destPtr++] = value;
+              data[destPtr++] = value;
+              data[destPtr++] = 255;
+            }
+          } else {
+            Module.printErr('cannot handle bpp ' + raw.bpp);
+            return 0;
+          }
+          surfData.ctx.putImageData(imageData, 0, 0);
+        }
+        surfData.ctx.globalCompositeOperation = "source-over";
+        // XXX SDL does not specify that loaded images must have available pixel data, in fact
+        //     there are cases where you just want to blit them, so you just need the hardware
+        //     accelerated version. However, code everywhere seems to assume that the pixels
+        //     are in fact available, so we retrieve it here. This does add overhead though.
+        _SDL_LockSurface(surf);
+        surfData.locked--; // The surface is not actually locked in this hack
+        if (SDL.GL) {
+          // After getting the pixel data, we can free the canvas and context if we do not need to do 2D canvas blitting
+          surfData.canvas = surfData.ctx = null;
+        }
+        return surf;
+      } finally {
+        cleanup();
+      }
+    }
+  
+  function _SDL_RWFromFile(_name, mode) {
+      var id = SDL.rwops.length; // TODO: recycle ids when they are null
+      var name = Pointer_stringify(_name)
+      SDL.rwops.push({ filename: name, mimetype: Browser.getMimetype(name) });
+      return id;
+    }function _IMG_Load(filename){
+      var rwops = _SDL_RWFromFile(filename);
+      var result = _IMG_Load_RW(rwops, 1);
+      return result;
+    }function _SDL_UpperBlitScaled(src, srcrect, dst, dstrect) {
+      return SDL.blitSurface(src, srcrect, dst, dstrect, true);
+    }function _SDL_UpperBlit(src, srcrect, dst, dstrect) {
+      return SDL.blitSurface(src, srcrect, dst, dstrect, false);
+    }function _SDL_GetTicks() {
+      return (Date.now() - SDL.startTime)|0;
+    }var SDL={defaults:{width:320,height:200,copyOnLock:true},version:null,surfaces:{},canvasPool:[],events:[],fonts:[null],audios:[null],rwops:[null],music:{audio:null,volume:1},mixerFrequency:22050,mixerFormat:32784,mixerNumChannels:2,mixerChunkSize:1024,channelMinimumNumber:0,GL:false,glAttributes:{0:3,1:3,2:2,3:0,4:0,5:1,6:16,7:0,8:0,9:0,10:0,11:0,12:0,13:0,14:0,15:1,16:0,17:0,18:0},keyboardState:null,keyboardMap:{},canRequestFullscreen:false,isRequestingFullscreen:false,textInput:false,startTime:null,initFlags:0,buttonState:0,modState:0,DOMButtons:[0,0,0],DOMEventToSDLEvent:{},TOUCH_DEFAULT_ID:0,eventHandler:null,eventHandlerContext:null,keyCodes:{16:1249,17:1248,18:1250,20:1081,33:1099,34:1102,35:1101,36:1098,37:1104,38:1106,39:1103,40:1105,44:316,45:1097,46:127,91:1251,93:1125,96:1122,97:1113,98:1114,99:1115,100:1116,101:1117,102:1118,103:1119,104:1120,105:1121,106:1109,107:1111,109:1110,110:1123,111:1108,112:1082,113:1083,114:1084,115:1085,116:1086,117:1087,118:1088,119:1089,120:1090,121:1091,122:1092,123:1093,124:1128,125:1129,126:1130,127:1131,128:1132,129:1133,130:1134,131:1135,132:1136,133:1137,134:1138,135:1139,144:1107,160:94,161:33,162:34,163:35,164:36,165:37,166:38,167:95,168:40,169:41,170:42,171:43,172:124,173:45,174:123,175:125,176:126,181:127,182:129,183:128,188:44,190:46,191:47,192:96,219:91,220:92,221:93,222:39},scanCodes:{8:42,9:43,13:40,27:41,32:44,35:204,39:53,44:54,46:55,47:56,48:39,49:30,50:31,51:32,52:33,53:34,54:35,55:36,56:37,57:38,58:203,59:51,61:46,91:47,92:49,93:48,96:52,97:4,98:5,99:6,100:7,101:8,102:9,103:10,104:11,105:12,106:13,107:14,108:15,109:16,110:17,111:18,112:19,113:20,114:21,115:22,116:23,117:24,118:25,119:26,120:27,121:28,122:29,127:76,305:224,308:226,316:70},loadRect:function (rect) {
+        return {
+          x: HEAP32[((rect + 0)>>2)],
+          y: HEAP32[((rect + 4)>>2)],
+          w: HEAP32[((rect + 8)>>2)],
+          h: HEAP32[((rect + 12)>>2)]
+        };
+      },checkPixelFormat:function (fmt) {
+        // Canvas screens are always RGBA.
+        var format = HEAP32[((fmt)>>2)];
+        if (format != -2042224636) {
+          Runtime.warnOnce('Unsupported pixel format!');
+        }
+      },loadColorToCSSRGB:function (color) {
+        var rgba = HEAP32[((color)>>2)];
+        return 'rgb(' + (rgba&255) + ',' + ((rgba >> 8)&255) + ',' + ((rgba >> 16)&255) + ')';
+      },loadColorToCSSRGBA:function (color) {
+        var rgba = HEAP32[((color)>>2)];
+        return 'rgba(' + (rgba&255) + ',' + ((rgba >> 8)&255) + ',' + ((rgba >> 16)&255) + ',' + (((rgba >> 24)&255)/255) + ')';
+      },translateColorToCSSRGBA:function (rgba) {
+        return 'rgba(' + (rgba&0xff) + ',' + (rgba>>8 & 0xff) + ',' + (rgba>>16 & 0xff) + ',' + (rgba>>>24)/0xff + ')';
+      },translateRGBAToCSSRGBA:function (r, g, b, a) {
+        return 'rgba(' + (r&0xff) + ',' + (g&0xff) + ',' + (b&0xff) + ',' + (a&0xff)/255 + ')';
+      },translateRGBAToColor:function (r, g, b, a) {
+        return r | g << 8 | b << 16 | a << 24;
+      },makeSurface:function (width, height, flags, usePageCanvas, source, rmask, gmask, bmask, amask) {
+        flags = flags || 0;
+        var is_SDL_HWSURFACE = flags & 0x00000001;
+        var is_SDL_HWPALETTE = flags & 0x00200000;
+        var is_SDL_OPENGL = flags & 0x04000000;
+  
+        var surf = _malloc(60);
+        var pixelFormat = _malloc(44);
+        //surface with SDL_HWPALETTE flag is 8bpp surface (1 byte)
+        var bpp = is_SDL_HWPALETTE ? 1 : 4;
+        var buffer = 0;
+  
+        // preemptively initialize this for software surfaces,
+        // otherwise it will be lazily initialized inside of SDL_LockSurface
+        if (!is_SDL_HWSURFACE && !is_SDL_OPENGL) {
+          buffer = _malloc(width * height * 4);
+        }
+  
+        HEAP32[((surf)>>2)]=flags;
+        HEAP32[(((surf)+(4))>>2)]=pixelFormat;
+        HEAP32[(((surf)+(8))>>2)]=width;
+        HEAP32[(((surf)+(12))>>2)]=height;
+        HEAP32[(((surf)+(16))>>2)]=width * bpp;  // assuming RGBA or indexed for now,
+                                                                                          // since that is what ImageData gives us in browsers
+        HEAP32[(((surf)+(20))>>2)]=buffer;
+  
+        HEAP32[(((surf)+(36))>>2)]=0;
+        HEAP32[(((surf)+(40))>>2)]=0;
+        HEAP32[(((surf)+(44))>>2)]=Module["canvas"].width;
+        HEAP32[(((surf)+(48))>>2)]=Module["canvas"].height;
+  
+        HEAP32[(((surf)+(56))>>2)]=1;
+  
+        HEAP32[((pixelFormat)>>2)]=-2042224636;
+        HEAP32[(((pixelFormat)+(4))>>2)]=0;// TODO
+        HEAP8[(((pixelFormat)+(8))>>0)]=bpp * 8;
+        HEAP8[(((pixelFormat)+(9))>>0)]=bpp;
+  
+        HEAP32[(((pixelFormat)+(12))>>2)]=rmask || 0x000000ff;
+        HEAP32[(((pixelFormat)+(16))>>2)]=gmask || 0x0000ff00;
+        HEAP32[(((pixelFormat)+(20))>>2)]=bmask || 0x00ff0000;
+        HEAP32[(((pixelFormat)+(24))>>2)]=amask || 0xff000000;
+  
+        // Decide if we want to use WebGL or not
+        SDL.GL = SDL.GL || is_SDL_OPENGL;
+        var canvas;
+        if (!usePageCanvas) {
+          if (SDL.canvasPool.length > 0) {
+            canvas = SDL.canvasPool.pop();
+          } else {
+            canvas = document.createElement('canvas');
+          }
+          canvas.width = width;
+          canvas.height = height;
+        } else {
+          canvas = Module['canvas'];
+        }
+  
+        var webGLContextAttributes = {
+          antialias: ((SDL.glAttributes[13 /*SDL_GL_MULTISAMPLEBUFFERS*/] != 0) && (SDL.glAttributes[14 /*SDL_GL_MULTISAMPLESAMPLES*/] > 1)),
+          depth: (SDL.glAttributes[6 /*SDL_GL_DEPTH_SIZE*/] > 0),
+          stencil: (SDL.glAttributes[7 /*SDL_GL_STENCIL_SIZE*/] > 0)
+        };
+        
+        var ctx = Browser.createContext(canvas, is_SDL_OPENGL, usePageCanvas, webGLContextAttributes);
+              
+        SDL.surfaces[surf] = {
+          width: width,
+          height: height,
+          canvas: canvas,
+          ctx: ctx,
+          surf: surf,
+          buffer: buffer,
+          pixelFormat: pixelFormat,
+          alpha: 255,
+          flags: flags,
+          locked: 0,
+          usePageCanvas: usePageCanvas,
+          source: source,
+  
+          isFlagSet: function(flag) {
+            return flags & flag;
+          }
+        };
+  
+        return surf;
+      },copyIndexedColorData:function (surfData, rX, rY, rW, rH) {
+        // HWPALETTE works with palette
+        // setted by SDL_SetColors
+        if (!surfData.colors) {
+          return;
+        }
+        
+        var fullWidth  = Module['canvas'].width;
+        var fullHeight = Module['canvas'].height;
+  
+        var startX  = rX || 0;
+        var startY  = rY || 0;
+        var endX    = (rW || (fullWidth - startX)) + startX;
+        var endY    = (rH || (fullHeight - startY)) + startY;
+        
+        var buffer  = surfData.buffer;
+        var data    = surfData.image.data;
+        var colors  = surfData.colors;
+  
+        for (var y = startY; y < endY; ++y) {
+          var indexBase = y * fullWidth;
+          var colorBase = indexBase * 4;
+          for (var x = startX; x < endX; ++x) {
+            // HWPALETTE have only 256 colors (not rgba)
+            var index = HEAPU8[((buffer + indexBase + x)>>0)] * 3;
+            var colorOffset = colorBase + x * 4;
+  
+            data[colorOffset   ] = colors[index   ];
+            data[colorOffset +1] = colors[index +1];
+            data[colorOffset +2] = colors[index +2];
+            //unused: data[colorOffset +3] = color[index +3];
+          }
+        }
+      },freeSurface:function (surf) {
+        var refcountPointer = surf + 56;
+        var refcount = HEAP32[((refcountPointer)>>2)];
+        if (refcount > 1) {
+          HEAP32[((refcountPointer)>>2)]=refcount - 1;
+          return;
+        }
+  
+        var info = SDL.surfaces[surf];
+        if (!info.usePageCanvas && info.canvas) SDL.canvasPool.push(info.canvas);
+        if (info.buffer) _free(info.buffer);
+        _free(info.pixelFormat);
+        _free(surf);
+        SDL.surfaces[surf] = null;
+  
+        if (surf === SDL.screen) {
+          SDL.screen = null;
+        }
+      },blitSurface__deps:["SDL_LockSurface"],blitSurface:function (src, srcrect, dst, dstrect, scale) {
+        var srcData = SDL.surfaces[src];
+        var dstData = SDL.surfaces[dst];
+        var sr, dr;
+        if (srcrect) {
+          sr = SDL.loadRect(srcrect);
+        } else {
+          sr = { x: 0, y: 0, w: srcData.width, h: srcData.height };
+        }
+        if (dstrect) {
+          dr = SDL.loadRect(dstrect);
+        } else {
+          dr = { x: 0, y: 0, w: -1, h: -1 };
+        }
+        var oldAlpha = dstData.ctx.globalAlpha;
+        dstData.ctx.globalAlpha = srcData.alpha/255;
+        var blitw, blitr;
+        if (scale) {
+          blitw = dr.w; blith = dr.h;
+        } else {
+          blitw = sr.w; blith = sr.h;
+        }
+        dstData.ctx.drawImage(srcData.canvas, sr.x, sr.y, sr.w, sr.h, dr.x, dr.y, blitw, blith);
+        dstData.ctx.globalAlpha = oldAlpha;
+        if (dst != SDL.screen) {
+          // XXX As in IMG_Load, for compatibility we write out |pixels|
+          Runtime.warnOnce('WARNING: copying canvas data to memory for compatibility');
+          _SDL_LockSurface(dst);
+          dstData.locked--; // The surface is not actually locked in this hack
+        }
+        return 0;
+      },downFingers:{},savedKeydown:null,receiveEvent:function (event) {
+        function unpressAllPressedKeys() {
+          // Un-press all pressed keys: TODO
+          for (var code in SDL.keyboardMap) {
+            SDL.events.push({
+              type: 'keyup',
+              keyCode: SDL.keyboardMap[code]
+            });
+          }
+        };
+        switch(event.type) {
+          case 'touchstart': case 'touchmove': {
+            event.preventDefault();
+  
+            var touches = [];
+            
+            // Clear out any touchstart events that we've already processed
+            if (event.type === 'touchstart') {
+              for (var i = 0; i < event.touches.length; i++) {
+                var touch = event.touches[i];
+                if (SDL.downFingers[touch.identifier] != true) {
+                  SDL.downFingers[touch.identifier] = true;
+                  touches.push(touch);
+                }
+              }
+            } else {
+              touches = event.touches;
+            }
+            
+            var firstTouch = touches[0];
+            if (event.type == 'touchstart') {
+              SDL.DOMButtons[0] = 1;
+            }
+            var mouseEventType;
+            switch(event.type) {
+              case 'touchstart': mouseEventType = 'mousedown'; break;
+              case 'touchmove': mouseEventType = 'mousemove'; break;
+            }
+            var mouseEvent = {
+              type: mouseEventType,
+              button: 0,
+              pageX: firstTouch.clientX,
+              pageY: firstTouch.clientY
+            };
+            SDL.events.push(mouseEvent);
+  
+            for (var i = 0; i < touches.length; i++) {
+              var touch = touches[i];
+              SDL.events.push({
+                type: event.type,
+                touch: touch
+              });
+            };
+            break;
+          }
+          case 'touchend': {
+            event.preventDefault();
+            
+            // Remove the entry in the SDL.downFingers hash
+            // because the finger is no longer down.
+            for(var i = 0; i < event.changedTouches.length; i++) {
+              var touch = event.changedTouches[i];
+              if (SDL.downFingers[touch.identifier] === true) {
+                delete SDL.downFingers[touch.identifier];
+              }
+            }
+  
+            var mouseEvent = {
+              type: 'mouseup',
+              button: 0,
+              pageX: event.changedTouches[0].clientX,
+              pageY: event.changedTouches[0].clientY
+            };
+            SDL.DOMButtons[0] = 0;
+            SDL.events.push(mouseEvent);
+            
+            for (var i = 0; i < event.changedTouches.length; i++) {
+              var touch = event.changedTouches[i];
+              SDL.events.push({
+                type: 'touchend',
+                touch: touch
+              });
+            };
+            break;
+          }
+          case 'DOMMouseScroll': case 'mousewheel': case 'wheel':
+            var delta = -Browser.getMouseWheelDelta(event); // Flip the wheel direction to translate from browser wheel direction (+:down) to SDL direction (+:up)
+            delta = (delta == 0) ? 0 : (delta > 0 ? Math.max(delta, 1) : Math.min(delta, -1)); // Quantize to integer so that minimum scroll is at least +/- 1.
+  
+            // Simulate old-style SDL events representing mouse wheel input as buttons
+            var button = delta > 0 ? 3 /*SDL_BUTTON_WHEELUP-1*/ : 4 /*SDL_BUTTON_WHEELDOWN-1*/; // Subtract one since JS->C marshalling is defined to add one back.
+            SDL.events.push({ type: 'mousedown', button: button, pageX: event.pageX, pageY: event.pageY });
+            SDL.events.push({ type: 'mouseup', button: button, pageX: event.pageX, pageY: event.pageY });
+  
+            // Pass a delta motion event.
+            SDL.events.push({ type: 'wheel', deltaX: 0, deltaY: delta });
+            event.preventDefault(); // If we don't prevent this, then 'wheel' event will be sent again by the browser as 'DOMMouseScroll' and we will receive this same event the second time.
+            break;
+          case 'mousemove':
+            if (SDL.DOMButtons[0] === 1) {
+              SDL.events.push({
+                type: 'touchmove',
+                touch: {
+                  identifier: 0,
+                  deviceID: -1,
+                  pageX: event.pageX,
+                  pageY: event.pageY
+                }
+              });
+            }
+            if (Browser.pointerLock) {
+              // workaround for firefox bug 750111
+              if ('mozMovementX' in event) {
+                event['movementX'] = event['mozMovementX'];
+                event['movementY'] = event['mozMovementY'];
+              }
+              // workaround for Firefox bug 782777
+              if (event['movementX'] == 0 && event['movementY'] == 0) {
+                // ignore a mousemove event if it doesn't contain any movement info
+                // (without pointer lock, we infer movement from pageX/pageY, so this check is unnecessary)
+                event.preventDefault();
+                return;
+              }
+            }
+            // fall through
+          case 'keydown': case 'keyup': case 'keypress': case 'mousedown': case 'mouseup':
+            // If we preventDefault on keydown events, the subsequent keypress events
+            // won't fire. However, it's fine (and in some cases necessary) to
+            // preventDefault for keys that don't generate a character. Otherwise,
+            // preventDefault is the right thing to do in general.
+            if (event.type !== 'keydown' || (!SDL.unicode && !SDL.textInput) || (event.keyCode === 8 /* backspace */ || event.keyCode === 9 /* tab */)) {
+              event.preventDefault();
+            }
+  
+            if (event.type == 'mousedown') {
+              SDL.DOMButtons[event.button] = 1;
+              SDL.events.push({
+                type: 'touchstart',
+                touch: {
+                  identifier: 0,
+                  deviceID: -1,
+                  pageX: event.pageX,
+                  pageY: event.pageY
+                }
+              });
+            } else if (event.type == 'mouseup') {
+              // ignore extra ups, can happen if we leave the canvas while pressing down, then return,
+              // since we add a mouseup in that case
+              if (!SDL.DOMButtons[event.button]) {
+                return;
+              }
+  
+              SDL.events.push({
+                type: 'touchend',
+                touch: {
+                  identifier: 0,
+                  deviceID: -1,
+                  pageX: event.pageX,
+                  pageY: event.pageY
+                }
+              });
+              SDL.DOMButtons[event.button] = 0;
+            }
+  
+            // We can only request fullscreen as the result of user input.
+            // Due to this limitation, we toggle a boolean on keydown which
+            // SDL_WM_ToggleFullScreen will check and subsequently set another
+            // flag indicating for us to request fullscreen on the following
+            // keyup. This isn't perfect, but it enables SDL_WM_ToggleFullScreen
+            // to work as the result of a keypress (which is an extremely
+            // common use case).
+            if (event.type === 'keydown' || event.type === 'mousedown') {
+              SDL.canRequestFullscreen = true;
+            } else if (event.type === 'keyup' || event.type === 'mouseup') {
+              if (SDL.isRequestingFullscreen) {
+                Module['requestFullScreen'](true, true);
+                SDL.isRequestingFullscreen = false;
+              }
+              SDL.canRequestFullscreen = false;
+            }
+  
+            // SDL expects a unicode character to be passed to its keydown events.
+            // Unfortunately, the browser APIs only provide a charCode property on
+            // keypress events, so we must backfill in keydown events with their
+            // subsequent keypress event's charCode.
+            if (event.type === 'keypress' && SDL.savedKeydown) {
+              // charCode is read-only
+              SDL.savedKeydown.keypressCharCode = event.charCode;
+              SDL.savedKeydown = null;
+            } else if (event.type === 'keydown') {
+              SDL.savedKeydown = event;
+            }
+  
+            // Don't push keypress events unless SDL_StartTextInput has been called.
+            if (event.type !== 'keypress' || SDL.textInput) {
+              SDL.events.push(event);
+            }
+            break;
+          case 'mouseout':
+            // Un-press all pressed mouse buttons, because we might miss the release outside of the canvas
+            for (var i = 0; i < 3; i++) {
+              if (SDL.DOMButtons[i]) {
+                SDL.events.push({
+                  type: 'mouseup',
+                  button: i,
+                  pageX: event.pageX,
+                  pageY: event.pageY
+                });
+                SDL.DOMButtons[i] = 0;
+              }
+            }
+            event.preventDefault();
+            break;
+          case 'focus':
+            SDL.events.push(event);
+            event.preventDefault();
+            break;
+          case 'blur':
+            SDL.events.push(event);
+            unpressAllPressedKeys();
+            event.preventDefault();
+            break;
+          case 'visibilitychange':
+            SDL.events.push({
+              type: 'visibilitychange',
+              visible: !document.hidden
+            });
+            unpressAllPressedKeys();
+            event.preventDefault();
+            break;
+          case 'unload':
+            if (Browser.mainLoop.runner) {
+              SDL.events.push(event);
+              // Force-run a main event loop, since otherwise this event will never be caught!
+              Browser.mainLoop.runner();
+            }
+            return;
+          case 'resize':
+            SDL.events.push(event);
+            // manually triggered resize event doesn't have a preventDefault member
+            if (event.preventDefault) {
+              event.preventDefault();
+            }
+            break;
+        }
+        if (SDL.events.length >= 10000) {
+          Module.printErr('SDL event queue full, dropping events');
+          SDL.events = SDL.events.slice(0, 10000);
+        }
+        // If we have a handler installed, this will push the events to the app
+        // instead of the app polling for them.
+        SDL.flushEventsToHandler();
+        return;
+      },lookupKeyCodeForEvent:function (event) {
+          var code = event.keyCode;
+          if (code >= 65 && code <= 90) {
+            code += 32; // make lowercase for SDL
+          } else {
+            code = SDL.keyCodes[event.keyCode] || event.keyCode;
+            // If this is one of the modifier keys (224 | 1<<10 - 227 | 1<<10), and the event specifies that it is
+            // a right key, add 4 to get the right key SDL key code.
+            if (event.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT && code >= (224 | 1<<10) && code <= (227 | 1<<10)) {
+              code += 4;
+            }
+          }
+          return code;
+      },handleEvent:function (event) {
+        if (event.handled) return;
+        event.handled = true;
+  
+        switch (event.type) {
+          case 'touchstart': case 'touchend': case 'touchmove': {
+            Browser.calculateMouseEvent(event);
+            break;
+          }
+          case 'keydown': case 'keyup': {
+            var down = event.type === 'keydown';
+            var code = SDL.lookupKeyCodeForEvent(event);
+            HEAP8[(((SDL.keyboardState)+(code))>>0)]=down;
+            // TODO: lmeta, rmeta, numlock, capslock, KMOD_MODE, KMOD_RESERVED
+            SDL.modState = (HEAP8[(((SDL.keyboardState)+(1248))>>0)] ? 0x0040 : 0) | // KMOD_LCTRL
+              (HEAP8[(((SDL.keyboardState)+(1249))>>0)] ? 0x0001 : 0) | // KMOD_LSHIFT
+              (HEAP8[(((SDL.keyboardState)+(1250))>>0)] ? 0x0100 : 0) | // KMOD_LALT
+              (HEAP8[(((SDL.keyboardState)+(1252))>>0)] ? 0x0080 : 0) | // KMOD_RCTRL
+              (HEAP8[(((SDL.keyboardState)+(1253))>>0)] ? 0x0002 : 0) | // KMOD_RSHIFT
+              (HEAP8[(((SDL.keyboardState)+(1254))>>0)] ? 0x0200 : 0); //  KMOD_RALT
+            if (down) {
+              SDL.keyboardMap[code] = event.keyCode; // save the DOM input, which we can use to unpress it during blur
+            } else {
+              delete SDL.keyboardMap[code];
+            }
+  
+            break;
+          }
+          case 'mousedown': case 'mouseup':
+            if (event.type == 'mousedown') {
+              // SDL_BUTTON(x) is defined as (1 << ((x)-1)).  SDL buttons are 1-3,
+              // and DOM buttons are 0-2, so this means that the below formula is
+              // correct.
+              SDL.buttonState |= 1 << event.button;
+            } else if (event.type == 'mouseup') {
+              SDL.buttonState &= ~(1 << event.button);
+            }
+            // fall through
+          case 'mousemove': {
+            Browser.calculateMouseEvent(event);
+            break;
+          }
+        }
+      },flushEventsToHandler:function () {
+        if (!SDL.eventHandler) return;
+  
+        // All SDLEvents take the same amount of memory
+        var sdlEventPtr = allocate(28, "i8", ALLOC_STACK);
+  
+        while (SDL.pollEvent(sdlEventPtr)) {
+          Runtime.dynCall('iii', SDL.eventHandler, [SDL.eventHandlerContext, sdlEventPtr]);
+        }
+      },pollEvent:function (ptr) {
+        if (SDL.initFlags & 0x200 && SDL.joystickEventState) {
+          // If SDL_INIT_JOYSTICK was supplied AND the joystick system is configured
+          // to automatically query for events, query for joystick events.
+          SDL.queryJoysticks();
+        }
+        if (ptr) {
+          while (SDL.events.length > 0) {
+            if (SDL.makeCEvent(SDL.events.shift(), ptr) !== false) return 1;
+          }
+          return 0;
+        } else {
+          // XXX: somewhat risky in that we do not check if the event is real or not (makeCEvent returns false) if no pointer supplied
+          return SDL.events.length > 0;
+        }
+      },makeCEvent:function (event, ptr) {
+        if (typeof event === 'number') {
+          // This is a pointer to a copy of a native C event that was SDL_PushEvent'ed
+          _memcpy(ptr, event, 28);
+          _free(event); // the copy is no longer needed
+          return;
+        }
+  
+        SDL.handleEvent(event);
+  
+        switch (event.type) {
+          case 'keydown': case 'keyup': {
+            var down = event.type === 'keydown';
+            //Module.print('Received key event: ' + event.keyCode);
+            var key = SDL.lookupKeyCodeForEvent(event);
+            var scan;
+            if (key >= 1024) {
+              scan = key - 1024;
+            } else {
+              scan = SDL.scanCodes[key] || key;
+            }
+  
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP8[(((ptr)+(8))>>0)]=down ? 1 : 0;
+            HEAP8[(((ptr)+(9))>>0)]=0; // TODO
+            HEAP32[(((ptr)+(12))>>2)]=scan;
+            HEAP32[(((ptr)+(16))>>2)]=key;
+            HEAP16[(((ptr)+(20))>>1)]=SDL.modState;
+            // some non-character keys (e.g. backspace and tab) won't have keypressCharCode set, fill in with the keyCode.
+            HEAP32[(((ptr)+(24))>>2)]=event.keypressCharCode || key;
+  
+            break;
+          }
+          case 'keypress': {
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            // Not filling in windowID for now
+            var cStr = intArrayFromString(String.fromCharCode(event.charCode));
+            for (var i = 0; i < cStr.length; ++i) {
+              HEAP8[(((ptr)+(8 + i))>>0)]=cStr[i];
+            }
+            break;
+          }
+          case 'mousedown': case 'mouseup': case 'mousemove': {
+            if (event.type != 'mousemove') {
+              var down = event.type === 'mousedown';
+              HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+              HEAP32[(((ptr)+(4))>>2)]=0;
+              HEAP32[(((ptr)+(8))>>2)]=0;
+              HEAP32[(((ptr)+(12))>>2)]=0;
+              HEAP8[(((ptr)+(16))>>0)]=event.button+1; // DOM buttons are 0-2, SDL 1-3
+              HEAP8[(((ptr)+(17))>>0)]=down ? 1 : 0;
+              HEAP32[(((ptr)+(20))>>2)]=Browser.mouseX;
+              HEAP32[(((ptr)+(24))>>2)]=Browser.mouseY;
+            } else {
+              HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+              HEAP32[(((ptr)+(4))>>2)]=0;
+              HEAP32[(((ptr)+(8))>>2)]=0;
+              HEAP32[(((ptr)+(12))>>2)]=0;
+              HEAP32[(((ptr)+(16))>>2)]=SDL.buttonState;
+              HEAP32[(((ptr)+(20))>>2)]=Browser.mouseX;
+              HEAP32[(((ptr)+(24))>>2)]=Browser.mouseY;
+              HEAP32[(((ptr)+(28))>>2)]=Browser.mouseMovementX;
+              HEAP32[(((ptr)+(32))>>2)]=Browser.mouseMovementY;
+            }
+            break;
+          }
+          case 'wheel': {
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP32[(((ptr)+(16))>>2)]=event.deltaX;
+            HEAP32[(((ptr)+(20))>>2)]=event.deltaY; 
+            break;       
+          }
+          case 'touchstart': case 'touchend': case 'touchmove': {
+            var touch = event.touch;
+            if (!Browser.touches[touch.identifier]) break;
+            var w = Module['canvas'].width;
+            var h = Module['canvas'].height;
+            var x = Browser.touches[touch.identifier].x / w;
+            var y = Browser.touches[touch.identifier].y / h;
+            var lx = Browser.lastTouches[touch.identifier].x / w;
+            var ly = Browser.lastTouches[touch.identifier].y / h;
+            var dx = x - lx;
+            var dy = y - ly;
+            if (touch['deviceID'] === undefined) touch.deviceID = SDL.TOUCH_DEFAULT_ID;
+            if (dx === 0 && dy === 0 && event.type === 'touchmove') return false; // don't send these if nothing happened
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP32[(((ptr)+(4))>>2)]=_SDL_GetTicks();
+            (tempI64 = [touch.deviceID>>>0,(tempDouble=touch.deviceID,(+(Math_abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math_min((+(Math_floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math_ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((ptr)+(8))>>2)]=tempI64[0],HEAP32[(((ptr)+(12))>>2)]=tempI64[1]);
+            (tempI64 = [touch.identifier>>>0,(tempDouble=touch.identifier,(+(Math_abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math_min((+(Math_floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math_ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[(((ptr)+(16))>>2)]=tempI64[0],HEAP32[(((ptr)+(20))>>2)]=tempI64[1]);
+            HEAPF32[(((ptr)+(24))>>2)]=x;
+            HEAPF32[(((ptr)+(28))>>2)]=y;
+            HEAPF32[(((ptr)+(32))>>2)]=dx;
+            HEAPF32[(((ptr)+(36))>>2)]=dy;
+            if (touch.force !== undefined) {
+              HEAPF32[(((ptr)+(40))>>2)]=touch.force;
+            } else { // No pressure data, send a digital 0/1 pressure.
+              HEAPF32[(((ptr)+(40))>>2)]=event.type == "touchend" ? 0 : 1;
+            }
+            break;
+          }
+          case 'unload': {
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            break;
+          }
+          case 'resize': {
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP32[(((ptr)+(4))>>2)]=event.w;
+            HEAP32[(((ptr)+(8))>>2)]=event.h;
+            break;
+          }
+          case 'joystick_button_up': case 'joystick_button_down': {
+            var state = event.type === 'joystick_button_up' ? 0 : 1;
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP8[(((ptr)+(4))>>0)]=event.index;
+            HEAP8[(((ptr)+(5))>>0)]=event.button;
+            HEAP8[(((ptr)+(6))>>0)]=state;
+            break;
+          }
+          case 'joystick_axis_motion': {
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP8[(((ptr)+(4))>>0)]=event.index;
+            HEAP8[(((ptr)+(5))>>0)]=event.axis;
+            HEAP32[(((ptr)+(8))>>2)]=SDL.joystickAxisValueConversion(event.value);
+            break;
+          }
+          case 'focus': {
+            var SDL_WINDOWEVENT_FOCUS_GAINED = 12 /* SDL_WINDOWEVENT_FOCUS_GAINED */;
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP32[(((ptr)+(4))>>2)]=0;
+            HEAP8[(((ptr)+(8))>>0)]=SDL_WINDOWEVENT_FOCUS_GAINED;
+            break;
+          }
+          case 'blur': {
+            var SDL_WINDOWEVENT_FOCUS_LOST = 13 /* SDL_WINDOWEVENT_FOCUS_LOST */;
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP32[(((ptr)+(4))>>2)]=0;
+            HEAP8[(((ptr)+(8))>>0)]=SDL_WINDOWEVENT_FOCUS_LOST;
+            break;
+          }
+          case 'visibilitychange': {
+            var SDL_WINDOWEVENT_SHOWN  = 1 /* SDL_WINDOWEVENT_SHOWN */;
+            var SDL_WINDOWEVENT_HIDDEN = 2 /* SDL_WINDOWEVENT_HIDDEN */;
+            var visibilityEventID = event.visible ? SDL_WINDOWEVENT_SHOWN : SDL_WINDOWEVENT_HIDDEN;
+            HEAP32[((ptr)>>2)]=SDL.DOMEventToSDLEvent[event.type];
+            HEAP32[(((ptr)+(4))>>2)]=0;
+            HEAP8[(((ptr)+(8))>>0)]=visibilityEventID;
+            break;
+          }
+          default: throw 'Unhandled SDL event: ' + event.type;
+        }
+      },estimateTextWidth:function (fontData, text) {
+        var h = fontData.size;
+        var fontString = h + 'px ' + fontData.name;
+        var tempCtx = SDL.ttfContext;
+        assert(tempCtx, 'TTF_Init must have been called');
+        tempCtx.save();
+        tempCtx.font = fontString;
+        var ret = tempCtx.measureText(text).width | 0;
+        tempCtx.restore();
+        return ret;
+      },allocateChannels:function (num) { // called from Mix_AllocateChannels and init
+        if (SDL.numChannels && SDL.numChannels >= num && num != 0) return;
+        SDL.numChannels = num;
+        SDL.channels = [];
+        for (var i = 0; i < num; i++) {
+          SDL.channels[i] = {
+            audio: null,
+            volume: 1.0
+          };
+        }
+      },setGetVolume:function (info, volume) {
+        if (!info) return 0;
+        var ret = info.volume * 128; // MIX_MAX_VOLUME
+        if (volume != -1) {
+          info.volume = Math.min(Math.max(volume, 0), 128) / 128;
+          if (info.audio) {
+            try {
+              info.audio.volume = info.volume; // For <audio> element
+              if (info.audio.webAudioGainNode) info.audio.webAudioGainNode['gain']['value'] = info.volume; // For WebAudio playback
+            } catch(e) {
+              Module.printErr('setGetVolume failed to set audio volume: ' + e);
+            }
+          }
+        }
+        return ret;
+      },playWebAudio:function (audio) {
+        if (!audio) return;
+        if (audio.webAudioNode) return; // This instance is already playing, don't start again.
+        if (!SDL.webAudioAvailable()) return;
+        try {
+          var webAudio = audio.resource.webAudio;
+          audio.paused = false;
+          if (!webAudio.decodedBuffer) {
+            if (webAudio.onDecodeComplete === undefined) abort("Cannot play back audio object that was not loaded");
+            webAudio.onDecodeComplete.push(function() { if (!audio.paused) SDL.playWebAudio(audio); });
+            return;
+          }
+          audio.webAudioNode = SDL.audioContext['createBufferSource']();
+          audio.webAudioNode['buffer'] = webAudio.decodedBuffer;
+          audio.webAudioNode['loop'] = audio.loop;
+          audio.webAudioNode['onended'] = function() { audio.onended(); } // For <media> element compatibility, route the onended signal to the instance.
+  
+          // Add an intermediate gain node to control volume.
+          audio.webAudioGainNode = SDL.audioContext['createGain']();
+          audio.webAudioGainNode['gain']['value'] = audio.volume;
+          audio.webAudioNode['connect'](audio.webAudioGainNode);
+          audio.webAudioGainNode['connect'](SDL.audioContext['destination']);
+          audio.webAudioNode['start'](0, audio.currentPosition);
+          audio.startTime = SDL.audioContext['currentTime'] - audio.currentPosition;
+        } catch(e) {
+          Module.printErr('playWebAudio failed: ' + e);
+        }
+      },pauseWebAudio:function (audio) {
+        if (!audio) return;
+        if (audio.webAudioNode) {
+          try {
+            // Remember where we left off, so that if/when we resume, we can restart the playback at a proper place.
+            audio.currentPosition = (SDL.audioContext['currentTime'] - audio.startTime) % audio.resource.webAudio.decodedBuffer.duration;
+            // Important: When we reach here, the audio playback is stopped by the user. But when calling .stop() below, the Web Audio
+            // graph will send the onended signal, but we don't want to process that, since pausing should not clear/destroy the audio
+            // channel.
+            audio.webAudioNode['onended'] = undefined;
+            audio.webAudioNode.stop();
+            audio.webAudioNode = undefined;
+          } catch(e) {
+            Module.printErr('pauseWebAudio failed: ' + e);
+          }
+        }
+        audio.paused = true;
+      },openAudioContext:function () {
+        // Initialize Web Audio API if we haven't done so yet. Note: Only initialize Web Audio context ever once on the web page,
+        // since initializing multiple times fails on Chrome saying 'audio resources have been exhausted'.
+        if (!SDL.audioContext) {
+          if (typeof(AudioContext) !== 'undefined') SDL.audioContext = new AudioContext();
+          else if (typeof(webkitAudioContext) !== 'undefined') SDL.audioContext = new webkitAudioContext();
+        }
+      },webAudioAvailable:function () { return !!SDL.audioContext; },fillWebAudioBufferFromHeap:function (heapPtr, sizeSamplesPerChannel, dstAudioBuffer) {
+        // The input audio data is interleaved across the channels, i.e. [L, R, L, R, L, R, ...] and is either 8-bit or 16-bit as
+        // supported by the SDL API. The output audio wave data for Web Audio API must be in planar buffers of [-1,1]-normalized Float32 data,
+        // so perform a buffer conversion for the data.
+        var numChannels = SDL.audio.channels;
+        for(var c = 0; c < numChannels; ++c) {
+          var channelData = dstAudioBuffer['getChannelData'](c);
+          if (channelData.length != sizeSamplesPerChannel) {
+            throw 'Web Audio output buffer length mismatch! Destination size: ' + channelData.length + ' samples vs expected ' + sizeSamplesPerChannel + ' samples!';
+          }
+          if (SDL.audio.format == 0x8010 /*AUDIO_S16LSB*/) {
+            for(var j = 0; j < sizeSamplesPerChannel; ++j) {
+              channelData[j] = (HEAP16[(((heapPtr)+((j*numChannels + c)*2))>>1)]) / 0x8000;
+            }
+          } else if (SDL.audio.format == 0x0008 /*AUDIO_U8*/) {
+            for(var j = 0; j < sizeSamplesPerChannel; ++j) {
+              var v = (HEAP8[(((heapPtr)+(j*numChannels + c))>>0)]);
+              channelData[j] = ((v >= 0) ? v-128 : v+128) /128;
+            }
+          }
+        }
+      },debugSurface:function (surfData) {
+        console.log('dumping surface ' + [surfData.surf, surfData.source, surfData.width, surfData.height]);
+        var image = surfData.ctx.getImageData(0, 0, surfData.width, surfData.height);
+        var data = image.data;
+        var num = Math.min(surfData.width, surfData.height);
+        for (var i = 0; i < num; i++) {
+          console.log('   diagonal ' + i + ':' + [data[i*surfData.width*4 + i*4 + 0], data[i*surfData.width*4 + i*4 + 1], data[i*surfData.width*4 + i*4 + 2], data[i*surfData.width*4 + i*4 + 3]]);
+        }
+      },joystickEventState:1,lastJoystickState:{},joystickNamePool:{},recordJoystickState:function (joystick, state) {
+        // Standardize button state.
+        var buttons = new Array(state.buttons.length);
+        for (var i = 0; i < state.buttons.length; i++) {
+          buttons[i] = SDL.getJoystickButtonState(state.buttons[i]);
+        }
+  
+        SDL.lastJoystickState[joystick] = {
+          buttons: buttons,
+          axes: state.axes.slice(0),
+          timestamp: state.timestamp,
+          index: state.index,
+          id: state.id
+        };
+      },getJoystickButtonState:function (button) {
+        if (typeof button === 'object') {
+          // Current gamepad API editor's draft (Firefox Nightly)
+          // https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html#idl-def-GamepadButton
+          return button.pressed;
+        } else {
+          // Current gamepad API working draft (Firefox / Chrome Stable)
+          // http://www.w3.org/TR/2012/WD-gamepad-20120529/#gamepad-interface
+          return button > 0;
+        }
+      },queryJoysticks:function () {
+        for (var joystick in SDL.lastJoystickState) {
+          var state = SDL.getGamepad(joystick - 1);
+          var prevState = SDL.lastJoystickState[joystick];
+          // Check only if the timestamp has differed.
+          // NOTE: Timestamp is not available in Firefox.
+          if (typeof state.timestamp !== 'number' || state.timestamp !== prevState.timestamp) {
+            var i;
+            for (i = 0; i < state.buttons.length; i++) {
+              var buttonState = SDL.getJoystickButtonState(state.buttons[i]);
+              // NOTE: The previous state already has a boolean representation of
+              //       its button, so no need to standardize its button state here.
+              if (buttonState !== prevState.buttons[i]) {
+                // Insert button-press event.
+                SDL.events.push({
+                  type: buttonState ? 'joystick_button_down' : 'joystick_button_up',
+                  joystick: joystick,
+                  index: joystick - 1,
+                  button: i
+                });
+              }
+            }
+            for (i = 0; i < state.axes.length; i++) {
+              if (state.axes[i] !== prevState.axes[i]) {
+                // Insert axes-change event.
+                SDL.events.push({
+                  type: 'joystick_axis_motion',
+                  joystick: joystick,
+                  index: joystick - 1,
+                  axis: i,
+                  value: state.axes[i]
+                });
+              }
+            }
+  
+            SDL.recordJoystickState(joystick, state);
+          }
+        }
+      },joystickAxisValueConversion:function (value) {
+        // Ensures that 0 is 0, 1 is 32767, and -1 is 32768.
+        return Math.ceil(((value+1) * 32767.5) - 32768);
+      },getGamepads:function () {
+        var fcn = navigator.getGamepads || navigator.webkitGamepads || navigator.mozGamepads || navigator.gamepads || navigator.webkitGetGamepads;
+        if (fcn !== undefined) {
+          // The function must be applied on the navigator object.
+          return fcn.apply(navigator);
+        } else {
+          return [];
+        }
+      },getGamepad:function (deviceIndex) {
+        var gamepads = SDL.getGamepads();
+        if (gamepads.length > deviceIndex && deviceIndex >= 0) {
+          return gamepads[deviceIndex];
+        }
+        return null;
+      }};function _SDL_LoadBMP_RW() {
+  return _IMG_Load_RW.apply(null, arguments)
+  }
+
+  function _glUniform1i(location, v0) {
+      location = GL.uniforms[location];
+      GLctx.uniform1i(location, v0);
+    }
+
   var _cosf=Math_cos;
 
+  function _SDL_SetColorKey(surf, flag, key) {
+      // SetColorKey assigns one color to be rendered as transparent. I don't
+      // think the canvas API allows for anything like this, and iterating through
+      // each pixel to replace that color seems prohibitively expensive.
+      Runtime.warnOnce('SDL_SetColorKey is a no-op for performance reasons');
+      return 0;
+    }
+
+  function _glTexImage2D(target, level, internalFormat, width, height, border, format, type, pixels) {
+      if (pixels) {
+        var data = GL.getTexPixelData(type, format, width, height, pixels, internalFormat);
+        pixels = data.pixels;
+        internalFormat = data.internalFormat;
+      } else {
+        pixels = null;
+      }
+      GLctx.texImage2D(target, level, internalFormat, width, height, border, format, type, pixels);
+    }
+
   function _glDisable(x0) { GLctx.disable(x0) }
+
 
   function ___errno_location() {
       return ___errno_state;
@@ -6792,8 +8865,6 @@ function copyTempDouble(ptr) {
     }
 
 
-  function _glCullFace(x0) { GLctx.cullFace(x0) }
-
   function _glEnable(x0) { GLctx.enable(x0) }
 
   function _glUniform4fv(location, count, value) {
@@ -6811,8 +8882,6 @@ function copyTempDouble(ptr) {
       }
       GLctx.uniform4fv(location, view);
     }
-
-  var _fabs=Math_abs;
 
   
   function _lseek(fildes, offset, whence) {
@@ -6842,8 +8911,6 @@ function copyTempDouble(ptr) {
       return 0;
     }
 
-  var _sqrt=Math_sqrt;
-
   function _glShaderSource(shader, count, string, length) {
       var source = GL.getSource(shader, count, string, length);
       GLctx.shaderSource(GL.shaders[shader], source);
@@ -6859,590 +8926,11 @@ function copyTempDouble(ptr) {
       }
     }
 
-  var Browser={mainLoop:{scheduler:null,method:"",shouldPause:false,paused:false,queue:[],pause:function () {
-          Browser.mainLoop.shouldPause = true;
-        },resume:function () {
-          if (Browser.mainLoop.paused) {
-            Browser.mainLoop.paused = false;
-            Browser.mainLoop.scheduler();
-          }
-          Browser.mainLoop.shouldPause = false;
-        },updateStatus:function () {
-          if (Module['setStatus']) {
-            var message = Module['statusMessage'] || 'Please wait...';
-            var remaining = Browser.mainLoop.remainingBlockers;
-            var expected = Browser.mainLoop.expectedBlockers;
-            if (remaining) {
-              if (remaining < expected) {
-                Module['setStatus'](message + ' (' + (expected - remaining) + '/' + expected + ')');
-              } else {
-                Module['setStatus'](message);
-              }
-            } else {
-              Module['setStatus']('');
-            }
-          }
-        },runIter:function (func) {
-          if (ABORT) return;
-          if (Module['preMainLoop']) {
-            var preRet = Module['preMainLoop']();
-            if (preRet === false) {
-              return; // |return false| skips a frame
-            }
-          }
-          try {
-            func();
-          } catch (e) {
-            if (e instanceof ExitStatus) {
-              return;
-            } else {
-              if (e && typeof e === 'object' && e.stack) Module.printErr('exception thrown: ' + [e, e.stack]);
-              throw e;
-            }
-          }
-          if (Module['postMainLoop']) Module['postMainLoop']();
-        }},isFullScreen:false,pointerLock:false,moduleContextCreatedCallbacks:[],workers:[],init:function () {
-        if (!Module["preloadPlugins"]) Module["preloadPlugins"] = []; // needs to exist even in workers
-  
-        if (Browser.initted) return;
-        Browser.initted = true;
-  
-        try {
-          new Blob();
-          Browser.hasBlobConstructor = true;
-        } catch(e) {
-          Browser.hasBlobConstructor = false;
-          console.log("warning: no blob constructor, cannot create blobs with mimetypes");
-        }
-        Browser.BlobBuilder = typeof MozBlobBuilder != "undefined" ? MozBlobBuilder : (typeof WebKitBlobBuilder != "undefined" ? WebKitBlobBuilder : (!Browser.hasBlobConstructor ? console.log("warning: no BlobBuilder") : null));
-        Browser.URLObject = typeof window != "undefined" ? (window.URL ? window.URL : window.webkitURL) : undefined;
-        if (!Module.noImageDecoding && typeof Browser.URLObject === 'undefined') {
-          console.log("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.");
-          Module.noImageDecoding = true;
-        }
-  
-        // Support for plugins that can process preloaded files. You can add more of these to
-        // your app by creating and appending to Module.preloadPlugins.
-        //
-        // Each plugin is asked if it can handle a file based on the file's name. If it can,
-        // it is given the file's raw data. When it is done, it calls a callback with the file's
-        // (possibly modified) data. For example, a plugin might decompress a file, or it
-        // might create some side data structure for use later (like an Image element, etc.).
-  
-        var imagePlugin = {};
-        imagePlugin['canHandle'] = function imagePlugin_canHandle(name) {
-          return !Module.noImageDecoding && /\.(jpg|jpeg|png|bmp)$/i.test(name);
-        };
-        imagePlugin['handle'] = function imagePlugin_handle(byteArray, name, onload, onerror) {
-          var b = null;
-          if (Browser.hasBlobConstructor) {
-            try {
-              b = new Blob([byteArray], { type: Browser.getMimetype(name) });
-              if (b.size !== byteArray.length) { // Safari bug #118630
-                // Safari's Blob can only take an ArrayBuffer
-                b = new Blob([(new Uint8Array(byteArray)).buffer], { type: Browser.getMimetype(name) });
-              }
-            } catch(e) {
-              Runtime.warnOnce('Blob constructor present but fails: ' + e + '; falling back to blob builder');
-            }
-          }
-          if (!b) {
-            var bb = new Browser.BlobBuilder();
-            bb.append((new Uint8Array(byteArray)).buffer); // we need to pass a buffer, and must copy the array to get the right data range
-            b = bb.getBlob();
-          }
-          var url = Browser.URLObject.createObjectURL(b);
-          assert(typeof url == 'string', 'createObjectURL must return a url as a string');
-          var img = new Image();
-          img.onload = function img_onload() {
-            assert(img.complete, 'Image ' + name + ' could not be decoded');
-            var canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            Module["preloadedImages"][name] = canvas;
-            Browser.URLObject.revokeObjectURL(url);
-            if (onload) onload(byteArray);
-          };
-          img.onerror = function img_onerror(event) {
-            console.log('Image ' + url + ' could not be decoded');
-            if (onerror) onerror();
-          };
-          img.src = url;
-        };
-        Module['preloadPlugins'].push(imagePlugin);
-  
-        var audioPlugin = {};
-        audioPlugin['canHandle'] = function audioPlugin_canHandle(name) {
-          return !Module.noAudioDecoding && name.substr(-4) in { '.ogg': 1, '.wav': 1, '.mp3': 1 };
-        };
-        audioPlugin['handle'] = function audioPlugin_handle(byteArray, name, onload, onerror) {
-          var done = false;
-          function finish(audio) {
-            if (done) return;
-            done = true;
-            Module["preloadedAudios"][name] = audio;
-            if (onload) onload(byteArray);
-          }
-          function fail() {
-            if (done) return;
-            done = true;
-            Module["preloadedAudios"][name] = new Audio(); // empty shim
-            if (onerror) onerror();
-          }
-          if (Browser.hasBlobConstructor) {
-            try {
-              var b = new Blob([byteArray], { type: Browser.getMimetype(name) });
-            } catch(e) {
-              return fail();
-            }
-            var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this!
-            assert(typeof url == 'string', 'createObjectURL must return a url as a string');
-            var audio = new Audio();
-            audio.addEventListener('canplaythrough', function() { finish(audio) }, false); // use addEventListener due to chromium bug 124926
-            audio.onerror = function audio_onerror(event) {
-              if (done) return;
-              console.log('warning: browser could not fully decode audio ' + name + ', trying slower base64 approach');
-              function encode64(data) {
-                var BASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-                var PAD = '=';
-                var ret = '';
-                var leftchar = 0;
-                var leftbits = 0;
-                for (var i = 0; i < data.length; i++) {
-                  leftchar = (leftchar << 8) | data[i];
-                  leftbits += 8;
-                  while (leftbits >= 6) {
-                    var curr = (leftchar >> (leftbits-6)) & 0x3f;
-                    leftbits -= 6;
-                    ret += BASE[curr];
-                  }
-                }
-                if (leftbits == 2) {
-                  ret += BASE[(leftchar&3) << 4];
-                  ret += PAD + PAD;
-                } else if (leftbits == 4) {
-                  ret += BASE[(leftchar&0xf) << 2];
-                  ret += PAD;
-                }
-                return ret;
-              }
-              audio.src = 'data:audio/x-' + name.substr(-3) + ';base64,' + encode64(byteArray);
-              finish(audio); // we don't wait for confirmation this worked - but it's worth trying
-            };
-            audio.src = url;
-            // workaround for chrome bug 124926 - we do not always get oncanplaythrough or onerror
-            Browser.safeSetTimeout(function() {
-              finish(audio); // try to use it even though it is not necessarily ready to play
-            }, 10000);
-          } else {
-            return fail();
-          }
-        };
-        Module['preloadPlugins'].push(audioPlugin);
-  
-        // Canvas event setup
-  
-        var canvas = Module['canvas'];
-        function pointerLockChange() {
-          Browser.pointerLock = document['pointerLockElement'] === canvas ||
-                                document['mozPointerLockElement'] === canvas ||
-                                document['webkitPointerLockElement'] === canvas ||
-                                document['msPointerLockElement'] === canvas;
-        }
-        if (canvas) {
-          // forced aspect ratio can be enabled by defining 'forcedAspectRatio' on Module
-          // Module['forcedAspectRatio'] = 4 / 3;
-          
-          canvas.requestPointerLock = canvas['requestPointerLock'] ||
-                                      canvas['mozRequestPointerLock'] ||
-                                      canvas['webkitRequestPointerLock'] ||
-                                      canvas['msRequestPointerLock'] ||
-                                      function(){};
-          canvas.exitPointerLock = document['exitPointerLock'] ||
-                                   document['mozExitPointerLock'] ||
-                                   document['webkitExitPointerLock'] ||
-                                   document['msExitPointerLock'] ||
-                                   function(){}; // no-op if function does not exist
-          canvas.exitPointerLock = canvas.exitPointerLock.bind(document);
-  
-  
-          document.addEventListener('pointerlockchange', pointerLockChange, false);
-          document.addEventListener('mozpointerlockchange', pointerLockChange, false);
-          document.addEventListener('webkitpointerlockchange', pointerLockChange, false);
-          document.addEventListener('mspointerlockchange', pointerLockChange, false);
-  
-          if (Module['elementPointerLock']) {
-            canvas.addEventListener("click", function(ev) {
-              if (!Browser.pointerLock && canvas.requestPointerLock) {
-                canvas.requestPointerLock();
-                ev.preventDefault();
-              }
-            }, false);
-          }
-        }
-      },createContext:function (canvas, useWebGL, setInModule, webGLContextAttributes) {
-        if (useWebGL && Module.ctx && canvas == Module.canvas) return Module.ctx; // no need to recreate GL context if it's already been created for this canvas.
-  
-        var ctx;
-        var contextHandle;
-        if (useWebGL) {
-          // For GLES2/desktop GL compatibility, adjust a few defaults to be different to WebGL defaults, so that they align better with the desktop defaults.
-          var contextAttributes = {
-            antialias: false,
-            alpha: false
-          };
-  
-          if (webGLContextAttributes) {
-            for (var attribute in webGLContextAttributes) {
-              contextAttributes[attribute] = webGLContextAttributes[attribute];
-            }
-          }
-  
-          contextHandle = GL.createContext(canvas, contextAttributes);
-          if (contextHandle) {
-            ctx = GL.getContext(contextHandle).GLctx;
-          }
-          // Set the background of the WebGL canvas to black
-          canvas.style.backgroundColor = "black";
-        } else {
-          ctx = canvas.getContext('2d');
-        }
-  
-        if (!ctx) return null;
-  
-        if (setInModule) {
-          if (!useWebGL) assert(typeof GLctx === 'undefined', 'cannot set in module if GLctx is used, but we are a non-GL context that would replace it');
-  
-          Module.ctx = ctx;
-          if (useWebGL) GL.makeContextCurrent(contextHandle);
-          Module.useWebGL = useWebGL;
-          Browser.moduleContextCreatedCallbacks.forEach(function(callback) { callback() });
-          Browser.init();
-        }
-        return ctx;
-      },destroyContext:function (canvas, useWebGL, setInModule) {},fullScreenHandlersInstalled:false,lockPointer:undefined,resizeCanvas:undefined,requestFullScreen:function (lockPointer, resizeCanvas) {
-        Browser.lockPointer = lockPointer;
-        Browser.resizeCanvas = resizeCanvas;
-        if (typeof Browser.lockPointer === 'undefined') Browser.lockPointer = true;
-        if (typeof Browser.resizeCanvas === 'undefined') Browser.resizeCanvas = false;
-  
-        var canvas = Module['canvas'];
-        function fullScreenChange() {
-          Browser.isFullScreen = false;
-          var canvasContainer = canvas.parentNode;
-          if ((document['webkitFullScreenElement'] || document['webkitFullscreenElement'] ||
-               document['mozFullScreenElement'] || document['mozFullscreenElement'] ||
-               document['fullScreenElement'] || document['fullscreenElement'] ||
-               document['msFullScreenElement'] || document['msFullscreenElement'] ||
-               document['webkitCurrentFullScreenElement']) === canvasContainer) {
-            canvas.cancelFullScreen = document['cancelFullScreen'] ||
-                                      document['mozCancelFullScreen'] ||
-                                      document['webkitCancelFullScreen'] ||
-                                      document['msExitFullscreen'] ||
-                                      document['exitFullscreen'] ||
-                                      function() {};
-            canvas.cancelFullScreen = canvas.cancelFullScreen.bind(document);
-            if (Browser.lockPointer) canvas.requestPointerLock();
-            Browser.isFullScreen = true;
-            if (Browser.resizeCanvas) Browser.setFullScreenCanvasSize();
-          } else {
-            
-            // remove the full screen specific parent of the canvas again to restore the HTML structure from before going full screen
-            canvasContainer.parentNode.insertBefore(canvas, canvasContainer);
-            canvasContainer.parentNode.removeChild(canvasContainer);
-            
-            if (Browser.resizeCanvas) Browser.setWindowedCanvasSize();
-          }
-          if (Module['onFullScreen']) Module['onFullScreen'](Browser.isFullScreen);
-          Browser.updateCanvasDimensions(canvas);
-        }
-  
-        if (!Browser.fullScreenHandlersInstalled) {
-          Browser.fullScreenHandlersInstalled = true;
-          document.addEventListener('fullscreenchange', fullScreenChange, false);
-          document.addEventListener('mozfullscreenchange', fullScreenChange, false);
-          document.addEventListener('webkitfullscreenchange', fullScreenChange, false);
-          document.addEventListener('MSFullscreenChange', fullScreenChange, false);
-        }
-  
-        // create a new parent to ensure the canvas has no siblings. this allows browsers to optimize full screen performance when its parent is the full screen root
-        var canvasContainer = document.createElement("div");
-        canvas.parentNode.insertBefore(canvasContainer, canvas);
-        canvasContainer.appendChild(canvas);
-        
-        // use parent of canvas as full screen root to allow aspect ratio correction (Firefox stretches the root to screen size)
-        canvasContainer.requestFullScreen = canvasContainer['requestFullScreen'] ||
-                                            canvasContainer['mozRequestFullScreen'] ||
-                                            canvasContainer['msRequestFullscreen'] ||
-                                           (canvasContainer['webkitRequestFullScreen'] ? function() { canvasContainer['webkitRequestFullScreen'](Element['ALLOW_KEYBOARD_INPUT']) } : null);
-        canvasContainer.requestFullScreen();
-      },nextRAF:0,fakeRequestAnimationFrame:function (func) {
-        // try to keep 60fps between calls to here
-        var now = Date.now();
-        if (Browser.nextRAF === 0) {
-          Browser.nextRAF = now + 1000/60;
-        } else {
-          while (now + 2 >= Browser.nextRAF) { // fudge a little, to avoid timer jitter causing us to do lots of delay:0
-            Browser.nextRAF += 1000/60;
-          }
-        }
-        var delay = Math.max(Browser.nextRAF - now, 0);
-        setTimeout(func, delay);
-      },requestAnimationFrame:function requestAnimationFrame(func) {
-        if (typeof window === 'undefined') { // Provide fallback to setTimeout if window is undefined (e.g. in Node.js)
-          Browser.fakeRequestAnimationFrame(func);
-        } else {
-          if (!window.requestAnimationFrame) {
-            window.requestAnimationFrame = window['requestAnimationFrame'] ||
-                                           window['mozRequestAnimationFrame'] ||
-                                           window['webkitRequestAnimationFrame'] ||
-                                           window['msRequestAnimationFrame'] ||
-                                           window['oRequestAnimationFrame'] ||
-                                           Browser.fakeRequestAnimationFrame;
-          }
-          window.requestAnimationFrame(func);
-        }
-      },safeCallback:function (func) {
-        return function() {
-          if (!ABORT) return func.apply(null, arguments);
-        };
-      },safeRequestAnimationFrame:function (func) {
-        return Browser.requestAnimationFrame(function() {
-          if (!ABORT) func();
-        });
-      },safeSetTimeout:function (func, timeout) {
-        Module['noExitRuntime'] = true;
-        return setTimeout(function() {
-          if (!ABORT) func();
-        }, timeout);
-      },safeSetInterval:function (func, timeout) {
-        Module['noExitRuntime'] = true;
-        return setInterval(function() {
-          if (!ABORT) func();
-        }, timeout);
-      },getMimetype:function (name) {
-        return {
-          'jpg': 'image/jpeg',
-          'jpeg': 'image/jpeg',
-          'png': 'image/png',
-          'bmp': 'image/bmp',
-          'ogg': 'audio/ogg',
-          'wav': 'audio/wav',
-          'mp3': 'audio/mpeg'
-        }[name.substr(name.lastIndexOf('.')+1)];
-      },getUserMedia:function (func) {
-        if(!window.getUserMedia) {
-          window.getUserMedia = navigator['getUserMedia'] ||
-                                navigator['mozGetUserMedia'];
-        }
-        window.getUserMedia(func);
-      },getMovementX:function (event) {
-        return event['movementX'] ||
-               event['mozMovementX'] ||
-               event['webkitMovementX'] ||
-               0;
-      },getMovementY:function (event) {
-        return event['movementY'] ||
-               event['mozMovementY'] ||
-               event['webkitMovementY'] ||
-               0;
-      },getMouseWheelDelta:function (event) {
-        var delta = 0;
-        switch (event.type) {
-          case 'DOMMouseScroll': 
-            delta = event.detail;
-            break;
-          case 'mousewheel': 
-            delta = event.wheelDelta;
-            break;
-          case 'wheel': 
-            delta = event['deltaY'];
-            break;
-          default:
-            throw 'unrecognized mouse wheel event: ' + event.type;
-        }
-        return delta;
-      },mouseX:0,mouseY:0,mouseMovementX:0,mouseMovementY:0,touches:{},lastTouches:{},calculateMouseEvent:function (event) { // event should be mousemove, mousedown or mouseup
-        if (Browser.pointerLock) {
-          // When the pointer is locked, calculate the coordinates
-          // based on the movement of the mouse.
-          // Workaround for Firefox bug 764498
-          if (event.type != 'mousemove' &&
-              ('mozMovementX' in event)) {
-            Browser.mouseMovementX = Browser.mouseMovementY = 0;
-          } else {
-            Browser.mouseMovementX = Browser.getMovementX(event);
-            Browser.mouseMovementY = Browser.getMovementY(event);
-          }
-          
-          // check if SDL is available
-          if (typeof SDL != "undefined") {
-          	Browser.mouseX = SDL.mouseX + Browser.mouseMovementX;
-          	Browser.mouseY = SDL.mouseY + Browser.mouseMovementY;
-          } else {
-          	// just add the mouse delta to the current absolut mouse position
-          	// FIXME: ideally this should be clamped against the canvas size and zero
-          	Browser.mouseX += Browser.mouseMovementX;
-          	Browser.mouseY += Browser.mouseMovementY;
-          }        
-        } else {
-          // Otherwise, calculate the movement based on the changes
-          // in the coordinates.
-          var rect = Module["canvas"].getBoundingClientRect();
-          var cw = Module["canvas"].width;
-          var ch = Module["canvas"].height;
-  
-          // Neither .scrollX or .pageXOffset are defined in a spec, but
-          // we prefer .scrollX because it is currently in a spec draft.
-          // (see: http://www.w3.org/TR/2013/WD-cssom-view-20131217/)
-          var scrollX = ((typeof window.scrollX !== 'undefined') ? window.scrollX : window.pageXOffset);
-          var scrollY = ((typeof window.scrollY !== 'undefined') ? window.scrollY : window.pageYOffset);
-          // If this assert lands, it's likely because the browser doesn't support scrollX or pageXOffset
-          // and we have no viable fallback.
-          assert((typeof scrollX !== 'undefined') && (typeof scrollY !== 'undefined'), 'Unable to retrieve scroll position, mouse positions likely broken.');
-  
-          if (event.type === 'touchstart' || event.type === 'touchend' || event.type === 'touchmove') {
-            var touch = event.touch;
-            if (touch === undefined) {
-              return; // the "touch" property is only defined in SDL
-  
-            }
-            var adjustedX = touch.pageX - (scrollX + rect.left);
-            var adjustedY = touch.pageY - (scrollY + rect.top);
-  
-            adjustedX = adjustedX * (cw / rect.width);
-            adjustedY = adjustedY * (ch / rect.height);
-  
-            var coords = { x: adjustedX, y: adjustedY };
-            
-            if (event.type === 'touchstart') {
-              Browser.lastTouches[touch.identifier] = coords;
-              Browser.touches[touch.identifier] = coords;
-            } else if (event.type === 'touchend' || event.type === 'touchmove') {
-              Browser.lastTouches[touch.identifier] = Browser.touches[touch.identifier];
-              Browser.touches[touch.identifier] = { x: adjustedX, y: adjustedY };
-            } 
-            return;
-          }
-  
-          var x = event.pageX - (scrollX + rect.left);
-          var y = event.pageY - (scrollY + rect.top);
-  
-          // the canvas might be CSS-scaled compared to its backbuffer;
-          // SDL-using content will want mouse coordinates in terms
-          // of backbuffer units.
-          x = x * (cw / rect.width);
-          y = y * (ch / rect.height);
-  
-          Browser.mouseMovementX = x - Browser.mouseX;
-          Browser.mouseMovementY = y - Browser.mouseY;
-          Browser.mouseX = x;
-          Browser.mouseY = y;
-        }
-      },xhrLoad:function (url, onload, onerror) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.responseType = 'arraybuffer';
-        xhr.onload = function xhr_onload() {
-          if (xhr.status == 200 || (xhr.status == 0 && xhr.response)) { // file URLs can return 0
-            onload(xhr.response);
-          } else {
-            onerror();
-          }
-        };
-        xhr.onerror = onerror;
-        xhr.send(null);
-      },asyncLoad:function (url, onload, onerror, noRunDep) {
-        Browser.xhrLoad(url, function(arrayBuffer) {
-          assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
-          onload(new Uint8Array(arrayBuffer));
-          if (!noRunDep) removeRunDependency('al ' + url);
-        }, function(event) {
-          if (onerror) {
-            onerror();
-          } else {
-            throw 'Loading data file "' + url + '" failed.';
-          }
-        });
-        if (!noRunDep) addRunDependency('al ' + url);
-      },resizeListeners:[],updateResizeListeners:function () {
-        var canvas = Module['canvas'];
-        Browser.resizeListeners.forEach(function(listener) {
-          listener(canvas.width, canvas.height);
-        });
-      },setCanvasSize:function (width, height, noUpdates) {
-        var canvas = Module['canvas'];
-        Browser.updateCanvasDimensions(canvas, width, height);
-        if (!noUpdates) Browser.updateResizeListeners();
-      },windowedWidth:0,windowedHeight:0,setFullScreenCanvasSize:function () {
-        // check if SDL is available   
-        if (typeof SDL != "undefined") {
-        	var flags = HEAPU32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)];
-        	flags = flags | 0x00800000; // set SDL_FULLSCREEN flag
-        	HEAP32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)]=flags
-        }
-        Browser.updateResizeListeners();
-      },setWindowedCanvasSize:function () {
-        // check if SDL is available       
-        if (typeof SDL != "undefined") {
-        	var flags = HEAPU32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)];
-        	flags = flags & ~0x00800000; // clear SDL_FULLSCREEN flag
-        	HEAP32[((SDL.screen+Runtime.QUANTUM_SIZE*0)>>2)]=flags
-        }
-        Browser.updateResizeListeners();
-      },updateCanvasDimensions:function (canvas, wNative, hNative) {
-        if (wNative && hNative) {
-          canvas.widthNative = wNative;
-          canvas.heightNative = hNative;
-        } else {
-          wNative = canvas.widthNative;
-          hNative = canvas.heightNative;
-        }
-        var w = wNative;
-        var h = hNative;
-        if (Module['forcedAspectRatio'] && Module['forcedAspectRatio'] > 0) {
-          if (w/h < Module['forcedAspectRatio']) {
-            w = Math.round(h * Module['forcedAspectRatio']);
-          } else {
-            h = Math.round(w / Module['forcedAspectRatio']);
-          }
-        }
-        if (((document['webkitFullScreenElement'] || document['webkitFullscreenElement'] ||
-             document['mozFullScreenElement'] || document['mozFullscreenElement'] ||
-             document['fullScreenElement'] || document['fullscreenElement'] ||
-             document['msFullScreenElement'] || document['msFullscreenElement'] ||
-             document['webkitCurrentFullScreenElement']) === canvas.parentNode) && (typeof screen != 'undefined')) {
-           var factor = Math.min(screen.width / w, screen.height / h);
-           w = Math.round(w * factor);
-           h = Math.round(h * factor);
-        }
-        if (Browser.resizeCanvas) {
-          if (canvas.width  != w) canvas.width  = w;
-          if (canvas.height != h) canvas.height = h;
-          if (typeof canvas.style != 'undefined') {
-            canvas.style.removeProperty( "width");
-            canvas.style.removeProperty("height");
-          }
-        } else {
-          if (canvas.width  != wNative) canvas.width  = wNative;
-          if (canvas.height != hNative) canvas.height = hNative;
-          if (typeof canvas.style != 'undefined') {
-            if (w != wNative || h != hNative) {
-              canvas.style.setProperty( "width", w + "px", "important");
-              canvas.style.setProperty("height", h + "px", "important");
-            } else {
-              canvas.style.removeProperty( "width");
-              canvas.style.removeProperty("height");
-            }
-          }
-        }
-      },wgetRequests:{},nextWgetRequestHandle:0,getNextWgetRequestHandle:function () {
-        var handle = Browser.nextWgetRequestHandle;
-        Browser.nextWgetRequestHandle++;
-        return handle;
-      }};
+  function _SDL_MapRGB(fmt, r, g, b) {
+      SDL.checkPixelFormat(fmt);
+      // We assume the machine is little-endian.
+      return r&0xff|(g&0xff)<<8|(b&0xff)<<16|0xff000000;
+    }
 
   function _rewind(stream) {
       // void rewind(FILE *stream);
@@ -7457,19 +8945,11 @@ function copyTempDouble(ptr) {
                               GL.shaders[shader]);
     }
 
-  
-  function _malloc(bytes) {
-      /* Over-allocate to make sure it is byte-aligned by 8.
-       * This will leak memory, but this is only the dummy
-       * implementation (replaced by dlmalloc normally) so
-       * not an issue.
-       */
-      var ptr = Runtime.dynamicAlloc(bytes + 8);
-      return (ptr+8) & 0xFFFFFFF8;
-    }
-  Module["_malloc"] = _malloc;function ___cxa_allocate_exception(size) {
+  function ___cxa_allocate_exception(size) {
       return _malloc(size);
     }
+
+  var _sin=Math_sin;
 
   function _glBlendFunc(x0, x1) { GLctx.blendFunc(x0, x1) }
 
@@ -7567,6 +9047,11 @@ function copyTempDouble(ptr) {
       }
     }
 
+  function _glBindAttribLocation(program, index, name) {
+      name = Pointer_stringify(name);
+      GLctx.bindAttribLocation(GL.programs[program], index, name);
+    }
+
   function _glDrawElements(mode, count, type, indices) {
   
       GLctx.drawElements(mode, count, type, indices);
@@ -7598,6 +9083,12 @@ function copyTempDouble(ptr) {
       GLctx.bufferSubData(target, offset, HEAPU8.subarray(data, data+size));
     }
 
+  var _emscripten_postinvoke=true;
+
+  function _glTexParameteri(x0, x1, x2) { GLctx.texParameteri(x0, x1, x2) }
+
+  function _glGenerateMipmap(x0) { GLctx.generateMipmap(x0) }
+
   function _time(ptr) {
       var ret = (Date.now()/1000)|0;
       if (ptr) {
@@ -7622,12 +9113,14 @@ ___errno_state = Runtime.staticAlloc(4); HEAP32[((___errno_state)>>2)]=0;
 __ATINIT__.unshift({ func: function() { TTY.init() } });__ATEXIT__.push({ func: function() { TTY.shutdown() } });TTY.utf8 = new Runtime.UTF8Processor();
 if (ENVIRONMENT_IS_NODE) { var fs = require("fs"); NODEFS.staticInit(); }
 __ATINIT__.push({ func: function() { SOCKFS.root = FS.mount(SOCKFS, {}, null); } });
+_fputc.ret = allocate([0], "i8", ALLOC_STATIC);
 Module["requestFullScreen"] = function Module_requestFullScreen(lockPointer, resizeCanvas) { Browser.requestFullScreen(lockPointer, resizeCanvas) };
   Module["requestAnimationFrame"] = function Module_requestAnimationFrame(func) { Browser.requestAnimationFrame(func) };
   Module["setCanvasSize"] = function Module_setCanvasSize(width, height, noUpdates) { Browser.setCanvasSize(width, height, noUpdates) };
   Module["pauseMainLoop"] = function Module_pauseMainLoop() { Browser.mainLoop.pause() };
   Module["resumeMainLoop"] = function Module_resumeMainLoop() { Browser.mainLoop.resume() };
   Module["getUserMedia"] = function Module_getUserMedia() { Browser.getUserMedia() }
+___buildEnvironment(ENV);
 STACK_BASE = STACKTOP = Runtime.alignMemory(STATICTOP);
 
 staticSealed = true; // seal the static portion of memory
@@ -7655,8 +9148,6 @@ function nullFunc_ii(x) { Module["printErr"]("Invalid function pointer called wi
 function nullFunc_v(x) { Module["printErr"]("Invalid function pointer called with signature 'v'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info."); abort(x) }
 
 function nullFunc_viiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info."); abort(x) }
-
-function nullFunc_viiiiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiiiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info."); abort(x) }
 
 function nullFunc_viiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info."); abort(x) }
 
@@ -7726,15 +9217,6 @@ function invoke_v(index) {
 function invoke_viiiiii(index,a1,a2,a3,a4,a5,a6) {
   try {
     Module["dynCall_viiiiii"](index,a1,a2,a3,a4,a5,a6);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    asm["setThrew"](1, 0);
-  }
-}
-
-function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
-  try {
-    Module["dynCall_viiiiiiii"](index,a1,a2,a3,a4,a5,a6,a7,a8);
   } catch(e) {
     if (typeof e !== 'number' && e !== 'longjmp') throw e;
     asm["setThrew"](1, 0);
@@ -7812,7 +9294,6 @@ function invoke_viiii(index,a1,a2,a3,a4) {
   var nullFunc_ii=env.nullFunc_ii;
   var nullFunc_v=env.nullFunc_v;
   var nullFunc_viiiiii=env.nullFunc_viiiiii;
-  var nullFunc_viiiiiiii=env.nullFunc_viiiiiiii;
   var nullFunc_viiii=env.nullFunc_viiii;
   var invoke_viddd=env.invoke_viddd;
   var invoke_iiii=env.invoke_iiii;
@@ -7822,86 +9303,118 @@ function invoke_viiii(index,a1,a2,a3,a4) {
   var invoke_ii=env.invoke_ii;
   var invoke_v=env.invoke_v;
   var invoke_viiiiii=env.invoke_viiiiii;
-  var invoke_viiiiiiii=env.invoke_viiiiiiii;
   var invoke_viiii=env.invoke_viiii;
   var _glUseProgram=env._glUseProgram;
-  var _fabs=env._fabs;
-  var _glVertexAttribPointer=env._glVertexAttribPointer;
-  var _glCullFace=env._glCullFace;
-  var _cosf=env._cosf;
-  var _send=env._send;
   var _fread=env._fread;
-  var _glBindBuffer=env._glBindBuffer;
   var _glUniformMatrix4fv=env._glUniformMatrix4fv;
-  var _lseek=env._lseek;
-  var _open=env._open;
-  var ___gxx_personality_v0=env.___gxx_personality_v0;
-  var _glfwOpenWindow=env._glfwOpenWindow;
-  var ___cxa_allocate_exception=env.___cxa_allocate_exception;
-  var ___cxa_find_matching_catch=env.___cxa_find_matching_catch;
-  var _fsync=env._fsync;
-  var _glDisable=env._glDisable;
-  var _fflush=env._fflush;
-  var _glDepthMask=env._glDepthMask;
+  var _SDL_RWFromFile=env._SDL_RWFromFile;
+  var __ZSt18uncaught_exceptionv=env.__ZSt18uncaught_exceptionv;
+  var _glBindBuffer=env._glBindBuffer;
   var _glGetShaderInfoLog=env._glGetShaderInfoLog;
-  var _pwrite=env._pwrite;
-  var ___setErrNo=env.___setErrNo;
-  var _glViewport=env._glViewport;
-  var _glGetUniformLocation=env._glGetUniformLocation;
-  var __reallyNegative=env.__reallyNegative;
-  var _glClearColor=env._glClearColor;
+  var _ftell=env._ftell;
   var _sbrk=env._sbrk;
   var _glBlendFunc=env._glBlendFunc;
-  var _glBindTexture=env._glBindTexture;
-  var _glUniform1f=env._glUniform1f;
-  var _glClear=env._glClear;
-  var _sinf=env._sinf;
-  var _fileno=env._fileno;
-  var ___resumeException=env.___resumeException;
-  var __ZSt18uncaught_exceptionv=env.__ZSt18uncaught_exceptionv;
+  var _Mix_PlayChannel=env._Mix_PlayChannel;
+  var _TTF_RenderText_Solid=env._TTF_RenderText_Solid;
   var _sysconf=env._sysconf;
-  var _glActiveTexture=env._glActiveTexture;
   var _close=env._close;
-  var _vprintf=env._vprintf;
-  var _emscripten_memcpy_big=env._emscripten_memcpy_big;
+  var _Mix_PlayMusic=env._Mix_PlayMusic;
   var _rewind=env._rewind;
-  var _glGetShaderiv=env._glGetShaderiv;
   var _cos=env._cos;
-  var _fseek=env._fseek;
-  var _glUniform4fv=env._glUniform4fv;
-  var _glCompileShader=env._glCompileShader;
-  var _glEnable=env._glEnable;
-  var _pread=env._pread;
-  var _mkport=env._mkport;
-  var _fclose=env._fclose;
-  var _glDrawElements=env._glDrawElements;
+  var _fileno=env._fileno;
+  var _puts=env._puts;
+  var _Mix_LoadWAV_RW=env._Mix_LoadWAV_RW;
   var _glfwInit=env._glfwInit;
-  var _glLinkProgram=env._glLinkProgram;
   var _write=env._write;
-  var _glfwSwapBuffers=env._glfwSwapBuffers;
-  var _ftell=env._ftell;
-  var ___errno_location=env.___errno_location;
+  var _fsync=env._fsync;
   var _glGenBuffers=env._glGenBuffers;
   var _glShaderSource=env._glShaderSource;
-  var _recv=env._recv;
+  var _Mix_HaltMusic=env._Mix_HaltMusic;
+  var _SDL_LoadBMP_RW=env._SDL_LoadBMP_RW;
+  var _glGenerateMipmap=env._glGenerateMipmap;
+  var _glVertexAttribPointer=env._glVertexAttribPointer;
+  var __reallyNegative=env.__reallyNegative;
+  var _send=env._send;
+  var _SDL_GetTicks=env._SDL_GetTicks;
+  var _glfwOpenWindow=env._glfwOpenWindow;
+  var ___cxa_find_matching_catch=env.___cxa_find_matching_catch;
+  var _glDrawElements=env._glDrawElements;
+  var _glDepthMask=env._glDepthMask;
   var _glBufferSubData=env._glBufferSubData;
-  var _glAttachShader=env._glAttachShader;
+  var _SDL_LockSurface=env._SDL_LockSurface;
+  var _glViewport=env._glViewport;
+  var ___setErrNo=env.___setErrNo;
+  var ___resumeException=env.___resumeException;
+  var _putchar=env._putchar;
+  var _glEnable=env._glEnable;
   var _printf=env._printf;
-  var ___cxa_throw=env.___cxa_throw;
-  var _read=env._read;
-  var _glCreateProgram=env._glCreateProgram;
-  var _emscripten_set_main_loop=env._emscripten_set_main_loop;
-  var _abort=env._abort;
-  var _fwrite=env._fwrite;
+  var _glGenTextures=env._glGenTextures;
+  var _glCreateShader=env._glCreateShader;
   var _emscripten_get_now=env._emscripten_get_now;
+  var _SDL_MapRGB=env._SDL_MapRGB;
+  var _glCreateProgram=env._glCreateProgram;
+  var _read=env._read;
+  var _fwrite=env._fwrite;
   var _time=env._time;
   var _fprintf=env._fprintf;
-  var _glBufferData=env._glBufferData;
-  var __formatString=env.__formatString;
-  var _sqrt=env._sqrt;
-  var _fopen=env._fopen;
-  var _glCreateShader=env._glCreateShader;
+  var _SDL_UpperBlitScaled=env._SDL_UpperBlitScaled;
+  var _putenv=env._putenv;
+  var _IMG_Load=env._IMG_Load;
+  var _lseek=env._lseek;
+  var _SDL_SetColorKey=env._SDL_SetColorKey;
+  var _glClearColor=env._glClearColor;
+  var ___cxa_allocate_exception=env.___cxa_allocate_exception;
+  var ___buildEnvironment=env.___buildEnvironment;
+  var _pwrite=env._pwrite;
+  var _open=env._open;
+  var _fabsf=env._fabsf;
+  var _glBindTexture=env._glBindTexture;
+  var _glUniform1f=env._glUniform1f;
+  var _glUniform1i=env._glUniform1i;
+  var _emscripten_memcpy_big=env._emscripten_memcpy_big;
+  var _glAttachShader=env._glAttachShader;
+  var _fseek=env._fseek;
+  var _getenv=env._getenv;
+  var _fclose=env._fclose;
+  var _sqrtf=env._sqrtf;
+  var _glActiveTexture=env._glActiveTexture;
+  var _glfwSwapBuffers=env._glfwSwapBuffers;
+  var _recv=env._recv;
+  var _glCompileShader=env._glCompileShader;
   var _glEnableVertexAttribArray=env._glEnableVertexAttribArray;
+  var _abort=env._abort;
+  var _glBufferData=env._glBufferData;
+  var _glTexImage2D=env._glTexImage2D;
+  var _fopen=env._fopen;
+  var _sin=env._sin;
+  var _cosf=env._cosf;
+  var _SDL_CloseAudio=env._SDL_CloseAudio;
+  var ___gxx_personality_v0=env.___gxx_personality_v0;
+  var _fflush=env._fflush;
+  var _SDL_FreeRW=env._SDL_FreeRW;
+  var _SDL_PauseAudio=env._SDL_PauseAudio;
+  var _glGetUniformLocation=env._glGetUniformLocation;
+  var _glClear=env._glClear;
+  var _glUniform4fv=env._glUniform4fv;
+  var _Mix_FreeChunk=env._Mix_FreeChunk;
+  var _sinf=env._sinf;
+  var _IMG_Load_RW=env._IMG_Load_RW;
+  var _vprintf=env._vprintf;
+  var _glBindAttribLocation=env._glBindAttribLocation;
+  var _glGetShaderiv=env._glGetShaderiv;
+  var _pread=env._pread;
+  var _mkport=env._mkport;
+  var _glLinkProgram=env._glLinkProgram;
+  var _emscripten_set_main_loop=env._emscripten_set_main_loop;
+  var ___errno_location=env.___errno_location;
+  var _fputc=env._fputc;
+  var ___cxa_throw=env.___cxa_throw;
+  var _glDisable=env._glDisable;
+  var _glTexParameteri=env._glTexParameteri;
+  var __formatString=env.__formatString;
+  var _fputs=env._fputs;
+  var _SDL_UpperBlit=env._SDL_UpperBlit;
+  var _SDL_RWFromConstMem=env._SDL_RWFromConstMem;
   var tempFloat = 0.0;
 
   // EMSCRIPTEN_START_FUNCS
@@ -7958,165 +9471,98 @@ if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
   }
   
 function __Z9web_framev() {
- var $0 = 0.0, $1 = 0.0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0;
- var $9 = 0, $add = 0.0, $add2 = 0.0, $call = 0, $call1 = 0.0, $call11 = 0, $call13 = 0, $call4 = 0, $call7 = 0, $conv = 0.0, $conv3 = 0.0, $ehselector$slot = 0, $exn = 0, $exn$slot = 0, $indis = 0, $mul = 0.0, $poi = 0, $pos = 0, $sel = 0, $wup = 0;
- var label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $add = 0.0, $call = 0;
+ var $call1 = 0.0, $call10 = 0, $call14 = 0, $call16 = 0, $call4 = 0.0, $call7 = 0, $conv = 0.0, $conv2 = 0.0, $conv6 = 0.0, $ehselector$slot$0 = 0, $exn$slot$0 = 0, $indis = 0, $mul = 0.0, $mul5 = 0.0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $indis = sp + 20|0;
+ STACKTOP = STACKTOP + 80|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $indis = sp;
  $0 = +HEAPF32[24>>2];
- $add = $0 + 0.100000001490116119385;
+ $add = $0 + 0.0299999993294477462769;
  HEAPF32[24>>2] = $add;
  _glClear(16640);
  $call = (__Znwj(16)|0);
  $1 = +HEAPF32[24>>2];
  $conv = $1;
- $call1 = (+Math_cos((+$conv)));
- $mul = $call1 * 5.0;
- $add2 = -5.0 + $mul;
- $conv3 = $add2;
+ $call1 = (+Math_sin((+$conv)));
+ $mul = $call1 * 10.0;
+ $conv2 = $mul;
+ $call4 = (+Math_cos((+$conv)));
+ $mul5 = $call4 * 10.0;
+ $conv6 = $mul5;
  __THREW__ = 0;
- invoke_viddd(16,($call|0),0.0,0.0,(+$conv3));
+ invoke_viddd(16,($call|0),(+$conv2),(+$conv6),0.0);
  $2 = __THREW__; __THREW__ = 0;
  $3 = $2&1;
  if ($3) {
-  $15 = ___cxa_find_matching_catch()|0;
-  $16 = tempRet0;
-  $exn$slot = $15;
-  $ehselector$slot = $16;
+  $12 = ___cxa_find_matching_catch()|0;
+  $13 = tempRet0;
   __ZdlPv($call);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  $ehselector$slot$0 = $13;$exn$slot$0 = $12;
+  ___resumeException($exn$slot$0|0);
   // unreachable;
  }
- $pos = $call;
- $call4 = (__Znwj(16)|0);
+ $call7 = (__Znwj(16)|0);
  __THREW__ = 0;
- invoke_viddd(16,($call4|0),0.0,0.0,1.0);
+ invoke_viddd(16,($call7|0),0.0,0.0,20.0);
  $4 = __THREW__; __THREW__ = 0;
  $5 = $4&1;
  if ($5) {
-  $17 = ___cxa_find_matching_catch()|0;
-  $18 = tempRet0;
-  $exn$slot = $17;
-  $ehselector$slot = $18;
-  __ZdlPv($call4);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  $14 = ___cxa_find_matching_catch()|0;
+  $15 = tempRet0;
+  __ZdlPv($call7);
+  $ehselector$slot$0 = $15;$exn$slot$0 = $14;
+  ___resumeException($exn$slot$0|0);
   // unreachable;
  }
- $poi = $call4;
- $call7 = (__Znwj(16)|0);
+ $call10 = (__Znwj(16)|0);
  __THREW__ = 0;
- invoke_viddd(16,($call7|0),0.0,1.0,0.0);
+ invoke_viddd(16,($call10|0),0.0,0.0,0.0);
  $6 = __THREW__; __THREW__ = 0;
  $7 = $6&1;
  if (!($7)) {
-  $wup = $call7;
   $8 = HEAP32[8>>2]|0;
-  $9 = $pos;
-  $10 = $poi;
-  $11 = $wup;
-  (__ZN15REMRenderDevice13setViewLookAtERK9REMVectorS2_S2_($8,$9,$10,$11)|0);
-  ;HEAP16[$indis+0>>1]=HEAP16[32+0>>1]|0;HEAP16[$indis+2>>1]=HEAP16[32+2>>1]|0;HEAP16[$indis+4>>1]=HEAP16[32+4>>1]|0;HEAP16[$indis+6>>1]=HEAP16[32+6>>1]|0;HEAP16[$indis+8>>1]=HEAP16[32+8>>1]|0;HEAP16[$indis+10>>1]=HEAP16[32+10>>1]|0;
-  $12 = HEAP32[8>>2]|0;
-  $call11 = (__ZN15REMRenderDevice16getVertexManagerEv($12)|0);
-  $13 = HEAP32[16>>2]|0;
-  (__ZN21REMVertexCacheManager6renderE14REMVERTEX_TYPEjjjPvPKt($call11,1,0,4,6,$13,$indis)|0);
-  $14 = HEAP32[8>>2]|0;
-  $call13 = (__ZN15REMRenderDevice16getVertexManagerEv($14)|0);
-  (__ZN21REMVertexCacheManager14forcedFlushAllEv($call13)|0);
+  (__ZN15REMRenderDevice13setViewLookAtERK9REMVectorS2_S2_($8,$call,$call7,$call10)|0);
+  dest=$indis+0|0; src=32+0|0; stop=dest+72|0; do { HEAP16[dest>>1]=HEAP16[src>>1]|0; dest=dest+2|0; src=src+2|0; } while ((dest|0) < (stop|0));
+  $9 = HEAP32[8>>2]|0;
+  $call14 = (__ZN15REMRenderDevice16getVertexManagerEv($9)|0);
+  $10 = HEAP32[16>>2]|0;
+  (__ZN21REMVertexCacheManager6renderE14REMVERTEX_TYPEjjjPvPKt($call14,1,0,8,36,$10,$indis)|0);
+  $11 = HEAP32[8>>2]|0;
+  $call16 = (__ZN15REMRenderDevice16getVertexManagerEv($11)|0);
+  (__ZN21REMVertexCacheManager14forcedFlushAllEv($call16)|0);
   _glfwSwapBuffers();
   STACKTOP = sp;return;
  }
- $19 = ___cxa_find_matching_catch()|0;
- $20 = tempRet0;
- $exn$slot = $19;
- $ehselector$slot = $20;
- __ZdlPv($call7);
- $exn = $exn$slot;
- $sel = $ehselector$slot;
- ___resumeException($exn|0);
+ $16 = ___cxa_find_matching_catch()|0;
+ $17 = tempRet0;
+ __ZdlPv($call10);
+ $ehselector$slot$0 = $17;$exn$slot$0 = $16;
+ ___resumeException($exn$slot$0|0);
  // unreachable;
-}
-function __Z6initGLv() {
- var $0 = 0, $call = 0, $call2 = 0, $cmp = 0, $cmp3 = 0, $retval = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vararg_buffer1 = sp + 8|0;
- $vararg_buffer = sp;
- $call = (_glfwInit()|0);
- $cmp = ($call|0)!=(1);
- do {
-  if ($cmp) {
-   (_printf((48|0),($vararg_buffer|0))|0);
-   $retval = 0;
-  } else {
-   $call2 = (_glfwOpenWindow(280,200,8,8,8,8,32,0,65537)|0);
-   $cmp3 = ($call2|0)!=(1);
-   if ($cmp3) {
-    (_printf((72|0),($vararg_buffer1|0))|0);
-    $retval = 0;
-    break;
-   } else {
-    $retval = 1;
-    break;
-   }
-  }
- } while(0);
- $0 = $retval;
- STACKTOP = sp;return ($0|0);
 }
 function _main($argc,$argv) {
  $argc = $argc|0;
  $argv = $argv|0;
- var $$compoundliteral = 0, $$compoundliteral15 = 0, $$compoundliteral20 = 0, $$compoundliteral27 = 0, $$compoundliteral34 = 0, $$compoundliteral39 = 0, $$compoundliteral46 = 0, $$compoundliteral53 = 0, $$compoundliteral58 = 0, $$compoundliteral65 = 0, $$compoundliteral72 = 0, $$compoundliteral9 = 0, $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0;
- var $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0.0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0.0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0;
- var $34 = 0, $35 = 0, $36 = 0.0, $37 = 0, $38 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $a = 0, $argc$addr = 0, $argv$addr = 0, $arrayidx102 = 0, $arrayidx103 = 0, $arrayidx122 = 0, $arrayidx123 = 0, $arrayidx18 = 0, $arrayidx25 = 0;
- var $arrayidx32 = 0, $arrayidx37 = 0, $arrayidx44 = 0, $arrayidx51 = 0, $arrayidx56 = 0, $arrayidx63 = 0, $arrayidx70 = 0, $arrayidx76 = 0, $arrayidx78 = 0, $arrayidx86 = 0, $arrayidx87 = 0, $arrayinit$element = 0, $arrayinit$element11 = 0, $arrayinit$element12 = 0, $arrayinit$element13 = 0, $arrayinit$element17 = 0, $arrayinit$element22 = 0, $arrayinit$element23 = 0, $arrayinit$element24 = 0, $arrayinit$element29 = 0;
- var $arrayinit$element30 = 0, $arrayinit$element31 = 0, $arrayinit$element36 = 0, $arrayinit$element41 = 0, $arrayinit$element42 = 0, $arrayinit$element43 = 0, $arrayinit$element48 = 0, $arrayinit$element49 = 0, $arrayinit$element50 = 0, $arrayinit$element55 = 0, $arrayinit$element6 = 0, $arrayinit$element60 = 0, $arrayinit$element61 = 0, $arrayinit$element62 = 0, $arrayinit$element67 = 0, $arrayinit$element68 = 0, $arrayinit$element69 = 0, $arrayinit$element7 = 0, $arrayinit$element74 = 0, $b = 0;
- var $cMat = 0, $call = 0, $call1 = 0, $call3 = 0, $call5 = 0, $cmp = 0, $cmp115 = 0, $cmp119 = 0, $cmp80 = 0, $cmp83 = 0, $cmp95 = 0, $cmp99 = 0, $conv = 0.0, $conv104 = 0.0, $conv124 = 0.0, $ehselector$slot = 0, $exn = 0, $exn$slot = 0, $fA = 0, $fB = 0;
- var $fG = 0, $inc = 0, $inc107 = 0, $inc111 = 0, $inc127 = 0, $inc131 = 0, $inc91 = 0, $indis = 0, $nSkinID = 0, $retval = 0, $sel = 0, $tmp = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, $vararg_buffer12 = 0, $vararg_buffer14 = 0, $vararg_buffer16 = 0, $vararg_buffer18 = 0, $vararg_buffer21 = 0, $vararg_buffer3 = 0;
- var $vararg_buffer5 = 0, $vararg_buffer7 = 0, $vararg_buffer9 = 0, $vcC = 0, $vcC26 = 0, $vcC45 = 0, $vcC64 = 0, $vcT = 0, $vcT33 = 0, $vcT52 = 0, $vcT71 = 0, $x = 0, $y = 0, label = 0, sp = 0;
+ var $$compoundliteral$sroa$1$4$idx54 = 0, $$compoundliteral$sroa$2$8$idx55 = 0, $$compoundliteral$sroa$3$12$idx56 = 0, $$compoundliteral105$sroa$0$0$idx = 0, $$compoundliteral105$sroa$1$4$idx16 = 0, $$compoundliteral105$sroa$2$8$idx17 = 0, $$compoundliteral105$sroa$3$12$idx18 = 0, $$compoundliteral11$sroa$0$0$idx = 0, $$compoundliteral11$sroa$1$4$idx51 = 0, $$compoundliteral11$sroa$2$8$idx52 = 0, $$compoundliteral11$sroa$3$12$idx53 = 0, $$compoundliteral112$sroa$0$0$idx = 0, $$compoundliteral112$sroa$1$2$idx15 = 0, $$compoundliteral117$sroa$0$0$idx = 0, $$compoundliteral117$sroa$1$4$idx12 = 0, $$compoundliteral117$sroa$2$8$idx13 = 0, $$compoundliteral117$sroa$3$12$idx14 = 0, $$compoundliteral124$sroa$0$0$idx = 0, $$compoundliteral124$sroa$1$4$idx9 = 0, $$compoundliteral124$sroa$2$8$idx10 = 0;
+ var $$compoundliteral124$sroa$3$12$idx11 = 0, $$compoundliteral131$sroa$0$0$idx = 0, $$compoundliteral131$sroa$1$2$idx8 = 0, $$compoundliteral136$sroa$0$0$idx = 0, $$compoundliteral136$sroa$1$4$idx5 = 0, $$compoundliteral136$sroa$2$8$idx6 = 0, $$compoundliteral136$sroa$3$12$idx7 = 0, $$compoundliteral143$sroa$0$0$idx = 0, $$compoundliteral143$sroa$1$4$idx2 = 0, $$compoundliteral143$sroa$2$8$idx3 = 0, $$compoundliteral143$sroa$3$12$idx4 = 0, $$compoundliteral150$sroa$0$0$idx = 0, $$compoundliteral150$sroa$1$2$idx1 = 0, $$compoundliteral17$sroa$0$0$idx = 0, $$compoundliteral17$sroa$1$2$idx50 = 0, $$compoundliteral22$sroa$0$0$idx = 0, $$compoundliteral22$sroa$1$4$idx47 = 0, $$compoundliteral22$sroa$2$8$idx48 = 0, $$compoundliteral22$sroa$3$12$idx49 = 0, $$compoundliteral29$sroa$0$0$idx = 0;
+ var $$compoundliteral29$sroa$1$4$idx44 = 0, $$compoundliteral29$sroa$2$8$idx45 = 0, $$compoundliteral29$sroa$3$12$idx46 = 0, $$compoundliteral36$sroa$0$0$idx = 0, $$compoundliteral36$sroa$1$2$idx43 = 0, $$compoundliteral41$sroa$0$0$idx = 0, $$compoundliteral41$sroa$1$4$idx40 = 0, $$compoundliteral41$sroa$2$8$idx41 = 0, $$compoundliteral41$sroa$3$12$idx42 = 0, $$compoundliteral48$sroa$0$0$idx = 0, $$compoundliteral48$sroa$1$4$idx37 = 0, $$compoundliteral48$sroa$2$8$idx38 = 0, $$compoundliteral48$sroa$3$12$idx39 = 0, $$compoundliteral55$sroa$0$0$idx = 0, $$compoundliteral55$sroa$1$2$idx36 = 0, $$compoundliteral60$sroa$0$0$idx = 0, $$compoundliteral60$sroa$1$4$idx33 = 0, $$compoundliteral60$sroa$2$8$idx34 = 0, $$compoundliteral60$sroa$3$12$idx35 = 0, $$compoundliteral67$sroa$0$0$idx = 0;
+ var $$compoundliteral67$sroa$1$4$idx30 = 0, $$compoundliteral67$sroa$2$8$idx31 = 0, $$compoundliteral67$sroa$3$12$idx32 = 0, $$compoundliteral74$sroa$0$0$idx = 0, $$compoundliteral74$sroa$1$2$idx29 = 0, $$compoundliteral79$sroa$0$0$idx = 0, $$compoundliteral79$sroa$1$4$idx26 = 0, $$compoundliteral79$sroa$2$8$idx27 = 0, $$compoundliteral79$sroa$3$12$idx28 = 0, $$compoundliteral86$sroa$0$0$idx = 0, $$compoundliteral86$sroa$1$4$idx23 = 0, $$compoundliteral86$sroa$2$8$idx24 = 0, $$compoundliteral86$sroa$3$12$idx25 = 0, $$compoundliteral93$sroa$0$0$idx = 0, $$compoundliteral93$sroa$1$2$idx22 = 0, $$compoundliteral98$sroa$0$0$idx = 0, $$compoundliteral98$sroa$1$4$idx19 = 0, $$compoundliteral98$sroa$2$8$idx20 = 0, $$compoundliteral98$sroa$3$12$idx21 = 0, $0 = 0;
+ var $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $cMat = 0, $call$i = 0, $call1 = 0, $call2$i = 0;
+ var $call3 = 0, $call5 = 0, $call7 = 0, $cmp$i = 0, $cmp3$i = 0, $fA = 0, $fB = 0, $fG = 0, $nSkinID = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 512|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vararg_buffer21 = sp + 56|0;
- $vararg_buffer18 = sp + 8|0;
- $vararg_buffer16 = sp + 48|0;
- $vararg_buffer14 = sp + 80|0;
- $vararg_buffer12 = sp + 64|0;
- $vararg_buffer9 = sp + 24|0;
- $vararg_buffer7 = sp + 40|0;
- $vararg_buffer5 = sp + 32|0;
- $vararg_buffer3 = sp;
- $vararg_buffer1 = sp + 16|0;
- $vararg_buffer = sp + 72|0;
- $nSkinID = sp + 216|0;
- $cMat = sp + 200|0;
- $$compoundliteral = sp + 184|0;
- $$compoundliteral9 = sp + 168|0;
- $$compoundliteral15 = sp + 472|0;
- $$compoundliteral20 = sp + 288|0;
- $$compoundliteral27 = sp + 304|0;
- $$compoundliteral34 = sp + 476|0;
- $$compoundliteral39 = sp + 328|0;
- $$compoundliteral46 = sp + 344|0;
- $$compoundliteral53 = sp + 480|0;
- $$compoundliteral58 = sp + 368|0;
- $$compoundliteral65 = sp + 384|0;
- $$compoundliteral72 = sp + 484|0;
- $indis = sp + 488|0;
- $a = sp + 224|0;
- $b = sp + 104|0;
- $tmp = sp + 408|0;
- $retval = 0;
- $argc$addr = $argc;
- $argv$addr = $argv;
- $call = (__Z6initGLv()|0);
- $cmp = ($call|0)==(1);
- if (!($cmp)) {
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $nSkinID = sp + 16|0;
+ $cMat = sp;
+ $call$i = (_glfwInit()|0);
+ $cmp$i = ($call$i|0)==(1);
+ if (!($cmp$i)) {
+  (_puts((144|0))|0);
+  STACKTOP = sp;return 0;
+ }
+ $call2$i = (_glfwOpenWindow(640,360,8,8,8,8,32,0,65537)|0);
+ $cmp3$i = ($call2$i|0)==(1);
+ if (!($cmp3$i)) {
+  (_puts((120|0))|0);
   STACKTOP = sp;return 0;
  }
  _glClearColor(1.0,0.5,0.0,1.0);
@@ -8129,19 +9575,14 @@ function _main($argc,$argv) {
  $0 = __THREW__; __THREW__ = 0;
  $1 = $0&1;
  if ($1) {
-  $22 = ___cxa_find_matching_catch()|0;
-  $23 = tempRet0;
-  $exn$slot = $22;
-  $ehselector$slot = $23;
+  $15 = ___cxa_find_matching_catch()|0;
+  $16 = tempRet0;
   __ZdlPv($call1);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  ___resumeException($15|0);
   // unreachable;
  }
  HEAP32[8>>2] = $call1;
- $2 = HEAP32[8>>2]|0;
- (__ZN15REMRenderDevice11oneTimeInitEv($2)|0);
+ (__ZN15REMRenderDevice11oneTimeInitEv($call1)|0);
  HEAPF32[$cMat>>2] = 1.0;
  $fG = (($cMat) + 4|0);
  HEAPF32[$fG>>2] = 1.0;
@@ -8149,245 +9590,198 @@ function _main($argc,$argv) {
  HEAPF32[$fB>>2] = 1.0;
  $fA = (($cMat) + 12|0);
  HEAPF32[$fA>>2] = 1.0;
- $3 = HEAP32[8>>2]|0;
- $call3 = (__ZN15REMRenderDevice14getSkinManagerEv($3)|0);
+ $2 = HEAP32[8>>2]|0;
+ $call3 = (__ZN15REMRenderDevice14getSkinManagerEv($2)|0);
  (__ZN14REMSkinManager7addSkinEPK14REMCOLOUR_TYPES2_S2_S2_fPj($call3,$cMat,$cMat,$cMat,$cMat,1.0,$nSkinID)|0);
- $call5 = (_malloc(144)|0);
- HEAP32[16>>2] = $call5;
- $4 = HEAP32[16>>2]|0;
- HEAPF32[$$compoundliteral>>2] = -5.0;
- $arrayinit$element = (($$compoundliteral) + 4|0);
- HEAPF32[$arrayinit$element>>2] = 5.0;
- $arrayinit$element6 = (($arrayinit$element) + 4|0);
- HEAPF32[$arrayinit$element6>>2] = 15.0;
- $arrayinit$element7 = (($arrayinit$element6) + 4|0);
- HEAPF32[$arrayinit$element7>>2] = 1.0;
- ;HEAP32[$4+0>>2]=HEAP32[$$compoundliteral+0>>2]|0;HEAP32[$4+4>>2]=HEAP32[$$compoundliteral+4>>2]|0;HEAP32[$4+8>>2]=HEAP32[$$compoundliteral+8>>2]|0;HEAP32[$4+12>>2]=HEAP32[$$compoundliteral+12>>2]|0;
+ $3 = HEAP32[8>>2]|0;
+ $call5 = (__ZN15REMRenderDevice14getSkinManagerEv($3)|0);
+ $4 = HEAP32[$nSkinID>>2]|0;
+ (__ZN14REMSkinManager10addTextureEjPKcbfP14REMCOLOUR_TYPEj($call5,$4,104,1,1.0,0,0)|0);
+ $call7 = (_malloc(288)|0);
+ HEAP32[16>>2] = $call7;
+ HEAPF32[$call7>>2] = -5.0;
+ $$compoundliteral$sroa$1$4$idx54 = (($call7) + 4|0);
+ HEAPF32[$$compoundliteral$sroa$1$4$idx54>>2] = 5.0;
+ $$compoundliteral$sroa$2$8$idx55 = (($call7) + 8|0);
+ HEAPF32[$$compoundliteral$sroa$2$8$idx55>>2] = 15.0;
+ $$compoundliteral$sroa$3$12$idx56 = (($call7) + 12|0);
+ HEAPF32[$$compoundliteral$sroa$3$12$idx56>>2] = 1.0;
+ $$compoundliteral11$sroa$0$0$idx = (($call7) + 16|0);
+ HEAPF32[$$compoundliteral11$sroa$0$0$idx>>2] = 1.0;
+ $$compoundliteral11$sroa$1$4$idx51 = (($call7) + 20|0);
+ HEAPF32[$$compoundliteral11$sroa$1$4$idx51>>2] = 1.0;
+ $$compoundliteral11$sroa$2$8$idx52 = (($call7) + 24|0);
+ HEAPF32[$$compoundliteral11$sroa$2$8$idx52>>2] = 1.0;
+ $$compoundliteral11$sroa$3$12$idx53 = (($call7) + 28|0);
+ HEAPF32[$$compoundliteral11$sroa$3$12$idx53>>2] = 1.0;
+ $$compoundliteral17$sroa$0$0$idx = (($call7) + 32|0);
+ HEAP16[$$compoundliteral17$sroa$0$0$idx>>1] = 0;
+ $$compoundliteral17$sroa$1$2$idx50 = (($call7) + 34|0);
+ HEAP16[$$compoundliteral17$sroa$1$2$idx50>>1] = 0;
+ $$compoundliteral22$sroa$0$0$idx = (($call7) + 36|0);
+ HEAPF32[$$compoundliteral22$sroa$0$0$idx>>2] = 5.0;
+ $$compoundliteral22$sroa$1$4$idx47 = (($call7) + 40|0);
+ HEAPF32[$$compoundliteral22$sroa$1$4$idx47>>2] = -5.0;
+ $$compoundliteral22$sroa$2$8$idx48 = (($call7) + 44|0);
+ HEAPF32[$$compoundliteral22$sroa$2$8$idx48>>2] = 15.0;
+ $$compoundliteral22$sroa$3$12$idx49 = (($call7) + 48|0);
+ HEAPF32[$$compoundliteral22$sroa$3$12$idx49>>2] = 1.0;
+ $$compoundliteral29$sroa$0$0$idx = (($call7) + 52|0);
+ HEAPF32[$$compoundliteral29$sroa$0$0$idx>>2] = 1.0;
+ $$compoundliteral29$sroa$1$4$idx44 = (($call7) + 56|0);
+ HEAPF32[$$compoundliteral29$sroa$1$4$idx44>>2] = 1.0;
+ $$compoundliteral29$sroa$2$8$idx45 = (($call7) + 60|0);
+ HEAPF32[$$compoundliteral29$sroa$2$8$idx45>>2] = 1.0;
+ $$compoundliteral29$sroa$3$12$idx46 = (($call7) + 64|0);
+ HEAPF32[$$compoundliteral29$sroa$3$12$idx46>>2] = 1.0;
+ $$compoundliteral36$sroa$0$0$idx = (($call7) + 68|0);
+ HEAP16[$$compoundliteral36$sroa$0$0$idx>>1] = 336;
+ $$compoundliteral36$sroa$1$2$idx43 = (($call7) + 70|0);
+ HEAP16[$$compoundliteral36$sroa$1$2$idx43>>1] = 336;
+ $$compoundliteral41$sroa$0$0$idx = (($call7) + 72|0);
+ HEAPF32[$$compoundliteral41$sroa$0$0$idx>>2] = -5.0;
+ $$compoundliteral41$sroa$1$4$idx40 = (($call7) + 76|0);
+ HEAPF32[$$compoundliteral41$sroa$1$4$idx40>>2] = -5.0;
+ $$compoundliteral41$sroa$2$8$idx41 = (($call7) + 80|0);
+ HEAPF32[$$compoundliteral41$sroa$2$8$idx41>>2] = 15.0;
+ $$compoundliteral41$sroa$3$12$idx42 = (($call7) + 84|0);
+ HEAPF32[$$compoundliteral41$sroa$3$12$idx42>>2] = 1.0;
+ $$compoundliteral48$sroa$0$0$idx = (($call7) + 88|0);
+ HEAPF32[$$compoundliteral48$sroa$0$0$idx>>2] = 1.0;
+ $$compoundliteral48$sroa$1$4$idx37 = (($call7) + 92|0);
+ HEAPF32[$$compoundliteral48$sroa$1$4$idx37>>2] = 1.0;
+ $$compoundliteral48$sroa$2$8$idx38 = (($call7) + 96|0);
+ HEAPF32[$$compoundliteral48$sroa$2$8$idx38>>2] = 1.0;
+ $$compoundliteral48$sroa$3$12$idx39 = (($call7) + 100|0);
+ HEAPF32[$$compoundliteral48$sroa$3$12$idx39>>2] = 1.0;
+ $$compoundliteral55$sroa$0$0$idx = (($call7) + 104|0);
+ HEAP16[$$compoundliteral55$sroa$0$0$idx>>1] = 0;
+ $$compoundliteral55$sroa$1$2$idx36 = (($call7) + 106|0);
+ HEAP16[$$compoundliteral55$sroa$1$2$idx36>>1] = 336;
+ $$compoundliteral60$sroa$0$0$idx = (($call7) + 108|0);
+ HEAPF32[$$compoundliteral60$sroa$0$0$idx>>2] = 5.0;
+ $$compoundliteral60$sroa$1$4$idx33 = (($call7) + 112|0);
+ HEAPF32[$$compoundliteral60$sroa$1$4$idx33>>2] = 5.0;
+ $$compoundliteral60$sroa$2$8$idx34 = (($call7) + 116|0);
+ HEAPF32[$$compoundliteral60$sroa$2$8$idx34>>2] = 15.0;
+ $$compoundliteral60$sroa$3$12$idx35 = (($call7) + 120|0);
+ HEAPF32[$$compoundliteral60$sroa$3$12$idx35>>2] = 1.0;
+ $$compoundliteral67$sroa$0$0$idx = (($call7) + 124|0);
+ HEAPF32[$$compoundliteral67$sroa$0$0$idx>>2] = 1.0;
+ $$compoundliteral67$sroa$1$4$idx30 = (($call7) + 128|0);
+ HEAPF32[$$compoundliteral67$sroa$1$4$idx30>>2] = 1.0;
+ $$compoundliteral67$sroa$2$8$idx31 = (($call7) + 132|0);
+ HEAPF32[$$compoundliteral67$sroa$2$8$idx31>>2] = 1.0;
+ $$compoundliteral67$sroa$3$12$idx32 = (($call7) + 136|0);
+ HEAPF32[$$compoundliteral67$sroa$3$12$idx32>>2] = 1.0;
+ $$compoundliteral74$sroa$0$0$idx = (($call7) + 140|0);
+ HEAP16[$$compoundliteral74$sroa$0$0$idx>>1] = 336;
+ $$compoundliteral74$sroa$1$2$idx29 = (($call7) + 142|0);
+ HEAP16[$$compoundliteral74$sroa$1$2$idx29>>1] = 0;
+ $$compoundliteral79$sroa$0$0$idx = (($call7) + 144|0);
+ HEAPF32[$$compoundliteral79$sroa$0$0$idx>>2] = -5.0;
+ $$compoundliteral79$sroa$1$4$idx26 = (($call7) + 148|0);
+ HEAPF32[$$compoundliteral79$sroa$1$4$idx26>>2] = 5.0;
+ $$compoundliteral79$sroa$2$8$idx27 = (($call7) + 152|0);
+ HEAPF32[$$compoundliteral79$sroa$2$8$idx27>>2] = 25.0;
+ $$compoundliteral79$sroa$3$12$idx28 = (($call7) + 156|0);
+ HEAPF32[$$compoundliteral79$sroa$3$12$idx28>>2] = 1.0;
+ $$compoundliteral86$sroa$0$0$idx = (($call7) + 160|0);
+ HEAPF32[$$compoundliteral86$sroa$0$0$idx>>2] = 0.800000011920928955078;
+ $$compoundliteral86$sroa$1$4$idx23 = (($call7) + 164|0);
+ HEAPF32[$$compoundliteral86$sroa$1$4$idx23>>2] = 0.0;
+ $$compoundliteral86$sroa$2$8$idx24 = (($call7) + 168|0);
+ HEAPF32[$$compoundliteral86$sroa$2$8$idx24>>2] = 0.0;
+ $$compoundliteral86$sroa$3$12$idx25 = (($call7) + 172|0);
+ HEAPF32[$$compoundliteral86$sroa$3$12$idx25>>2] = 1.0;
  $5 = HEAP32[16>>2]|0;
- $vcC = (($5) + 16|0);
- HEAPF32[$$compoundliteral9>>2] = 1.0;
- $arrayinit$element11 = (($$compoundliteral9) + 4|0);
- HEAPF32[$arrayinit$element11>>2] = 1.0;
- $arrayinit$element12 = (($arrayinit$element11) + 4|0);
- HEAPF32[$arrayinit$element12>>2] = 1.0;
- $arrayinit$element13 = (($arrayinit$element12) + 4|0);
- HEAPF32[$arrayinit$element13>>2] = 1.0;
- ;HEAP32[$vcC+0>>2]=HEAP32[$$compoundliteral9+0>>2]|0;HEAP32[$vcC+4>>2]=HEAP32[$$compoundliteral9+4>>2]|0;HEAP32[$vcC+8>>2]=HEAP32[$$compoundliteral9+8>>2]|0;HEAP32[$vcC+12>>2]=HEAP32[$$compoundliteral9+12>>2]|0;
+ $$compoundliteral93$sroa$0$0$idx = (($5) + 176|0);
+ HEAP16[$$compoundliteral93$sroa$0$0$idx>>1] = 0;
+ $$compoundliteral93$sroa$1$2$idx22 = (($5) + 178|0);
+ HEAP16[$$compoundliteral93$sroa$1$2$idx22>>1] = 0;
  $6 = HEAP32[16>>2]|0;
- $vcT = (($6) + 32|0);
- HEAP16[$$compoundliteral15>>1] = 0;
- $arrayinit$element17 = (($$compoundliteral15) + 2|0);
- HEAP16[$arrayinit$element17>>1] = 0;
- ;HEAP16[$vcT+0>>1]=HEAP16[$$compoundliteral15+0>>1]|0;HEAP16[$vcT+2>>1]=HEAP16[$$compoundliteral15+2>>1]|0;
+ $$compoundliteral98$sroa$0$0$idx = (($6) + 180|0);
+ HEAPF32[$$compoundliteral98$sroa$0$0$idx>>2] = 5.0;
+ $$compoundliteral98$sroa$1$4$idx19 = (($6) + 184|0);
+ HEAPF32[$$compoundliteral98$sroa$1$4$idx19>>2] = -5.0;
+ $$compoundliteral98$sroa$2$8$idx20 = (($6) + 188|0);
+ HEAPF32[$$compoundliteral98$sroa$2$8$idx20>>2] = 25.0;
+ $$compoundliteral98$sroa$3$12$idx21 = (($6) + 192|0);
+ HEAPF32[$$compoundliteral98$sroa$3$12$idx21>>2] = 1.0;
  $7 = HEAP32[16>>2]|0;
- $arrayidx18 = (($7) + 36|0);
- HEAPF32[$$compoundliteral20>>2] = 5.0;
- $arrayinit$element22 = (($$compoundliteral20) + 4|0);
- HEAPF32[$arrayinit$element22>>2] = -5.0;
- $arrayinit$element23 = (($arrayinit$element22) + 4|0);
- HEAPF32[$arrayinit$element23>>2] = 15.0;
- $arrayinit$element24 = (($arrayinit$element23) + 4|0);
- HEAPF32[$arrayinit$element24>>2] = 1.0;
- ;HEAP32[$arrayidx18+0>>2]=HEAP32[$$compoundliteral20+0>>2]|0;HEAP32[$arrayidx18+4>>2]=HEAP32[$$compoundliteral20+4>>2]|0;HEAP32[$arrayidx18+8>>2]=HEAP32[$$compoundliteral20+8>>2]|0;HEAP32[$arrayidx18+12>>2]=HEAP32[$$compoundliteral20+12>>2]|0;
+ $$compoundliteral105$sroa$0$0$idx = (($7) + 196|0);
+ HEAPF32[$$compoundliteral105$sroa$0$0$idx>>2] = 0.800000011920928955078;
+ $$compoundliteral105$sroa$1$4$idx16 = (($7) + 200|0);
+ HEAPF32[$$compoundliteral105$sroa$1$4$idx16>>2] = 0.800000011920928955078;
+ $$compoundliteral105$sroa$2$8$idx17 = (($7) + 204|0);
+ HEAPF32[$$compoundliteral105$sroa$2$8$idx17>>2] = 0.0;
+ $$compoundliteral105$sroa$3$12$idx18 = (($7) + 208|0);
+ HEAPF32[$$compoundliteral105$sroa$3$12$idx18>>2] = 1.0;
  $8 = HEAP32[16>>2]|0;
- $arrayidx25 = (($8) + 36|0);
- $vcC26 = (($arrayidx25) + 16|0);
- HEAPF32[$$compoundliteral27>>2] = 1.0;
- $arrayinit$element29 = (($$compoundliteral27) + 4|0);
- HEAPF32[$arrayinit$element29>>2] = 1.0;
- $arrayinit$element30 = (($arrayinit$element29) + 4|0);
- HEAPF32[$arrayinit$element30>>2] = 1.0;
- $arrayinit$element31 = (($arrayinit$element30) + 4|0);
- HEAPF32[$arrayinit$element31>>2] = 1.0;
- ;HEAP32[$vcC26+0>>2]=HEAP32[$$compoundliteral27+0>>2]|0;HEAP32[$vcC26+4>>2]=HEAP32[$$compoundliteral27+4>>2]|0;HEAP32[$vcC26+8>>2]=HEAP32[$$compoundliteral27+8>>2]|0;HEAP32[$vcC26+12>>2]=HEAP32[$$compoundliteral27+12>>2]|0;
+ $$compoundliteral112$sroa$0$0$idx = (($8) + 212|0);
+ HEAP16[$$compoundliteral112$sroa$0$0$idx>>1] = 0;
+ $$compoundliteral112$sroa$1$2$idx15 = (($8) + 214|0);
+ HEAP16[$$compoundliteral112$sroa$1$2$idx15>>1] = 0;
  $9 = HEAP32[16>>2]|0;
- $arrayidx32 = (($9) + 36|0);
- $vcT33 = (($arrayidx32) + 32|0);
- HEAP16[$$compoundliteral34>>1] = 0;
- $arrayinit$element36 = (($$compoundliteral34) + 2|0);
- HEAP16[$arrayinit$element36>>1] = 0;
- ;HEAP16[$vcT33+0>>1]=HEAP16[$$compoundliteral34+0>>1]|0;HEAP16[$vcT33+2>>1]=HEAP16[$$compoundliteral34+2>>1]|0;
+ $$compoundliteral117$sroa$0$0$idx = (($9) + 216|0);
+ HEAPF32[$$compoundliteral117$sroa$0$0$idx>>2] = -5.0;
+ $$compoundliteral117$sroa$1$4$idx12 = (($9) + 220|0);
+ HEAPF32[$$compoundliteral117$sroa$1$4$idx12>>2] = -5.0;
+ $$compoundliteral117$sroa$2$8$idx13 = (($9) + 224|0);
+ HEAPF32[$$compoundliteral117$sroa$2$8$idx13>>2] = 25.0;
+ $$compoundliteral117$sroa$3$12$idx14 = (($9) + 228|0);
+ HEAPF32[$$compoundliteral117$sroa$3$12$idx14>>2] = 1.0;
  $10 = HEAP32[16>>2]|0;
- $arrayidx37 = (($10) + 72|0);
- HEAPF32[$$compoundliteral39>>2] = -5.0;
- $arrayinit$element41 = (($$compoundliteral39) + 4|0);
- HEAPF32[$arrayinit$element41>>2] = -5.0;
- $arrayinit$element42 = (($arrayinit$element41) + 4|0);
- HEAPF32[$arrayinit$element42>>2] = 15.0;
- $arrayinit$element43 = (($arrayinit$element42) + 4|0);
- HEAPF32[$arrayinit$element43>>2] = 1.0;
- ;HEAP32[$arrayidx37+0>>2]=HEAP32[$$compoundliteral39+0>>2]|0;HEAP32[$arrayidx37+4>>2]=HEAP32[$$compoundliteral39+4>>2]|0;HEAP32[$arrayidx37+8>>2]=HEAP32[$$compoundliteral39+8>>2]|0;HEAP32[$arrayidx37+12>>2]=HEAP32[$$compoundliteral39+12>>2]|0;
+ $$compoundliteral124$sroa$0$0$idx = (($10) + 232|0);
+ HEAPF32[$$compoundliteral124$sroa$0$0$idx>>2] = 0.0;
+ $$compoundliteral124$sroa$1$4$idx9 = (($10) + 236|0);
+ HEAPF32[$$compoundliteral124$sroa$1$4$idx9>>2] = 0.800000011920928955078;
+ $$compoundliteral124$sroa$2$8$idx10 = (($10) + 240|0);
+ HEAPF32[$$compoundliteral124$sroa$2$8$idx10>>2] = 0.0;
+ $$compoundliteral124$sroa$3$12$idx11 = (($10) + 244|0);
+ HEAPF32[$$compoundliteral124$sroa$3$12$idx11>>2] = 1.0;
  $11 = HEAP32[16>>2]|0;
- $arrayidx44 = (($11) + 72|0);
- $vcC45 = (($arrayidx44) + 16|0);
- HEAPF32[$$compoundliteral46>>2] = 1.0;
- $arrayinit$element48 = (($$compoundliteral46) + 4|0);
- HEAPF32[$arrayinit$element48>>2] = 1.0;
- $arrayinit$element49 = (($arrayinit$element48) + 4|0);
- HEAPF32[$arrayinit$element49>>2] = 1.0;
- $arrayinit$element50 = (($arrayinit$element49) + 4|0);
- HEAPF32[$arrayinit$element50>>2] = 1.0;
- ;HEAP32[$vcC45+0>>2]=HEAP32[$$compoundliteral46+0>>2]|0;HEAP32[$vcC45+4>>2]=HEAP32[$$compoundliteral46+4>>2]|0;HEAP32[$vcC45+8>>2]=HEAP32[$$compoundliteral46+8>>2]|0;HEAP32[$vcC45+12>>2]=HEAP32[$$compoundliteral46+12>>2]|0;
+ $$compoundliteral131$sroa$0$0$idx = (($11) + 248|0);
+ HEAP16[$$compoundliteral131$sroa$0$0$idx>>1] = 0;
+ $$compoundliteral131$sroa$1$2$idx8 = (($11) + 250|0);
+ HEAP16[$$compoundliteral131$sroa$1$2$idx8>>1] = 0;
  $12 = HEAP32[16>>2]|0;
- $arrayidx51 = (($12) + 72|0);
- $vcT52 = (($arrayidx51) + 32|0);
- HEAP16[$$compoundliteral53>>1] = 0;
- $arrayinit$element55 = (($$compoundliteral53) + 2|0);
- HEAP16[$arrayinit$element55>>1] = 0;
- ;HEAP16[$vcT52+0>>1]=HEAP16[$$compoundliteral53+0>>1]|0;HEAP16[$vcT52+2>>1]=HEAP16[$$compoundliteral53+2>>1]|0;
+ $$compoundliteral136$sroa$0$0$idx = (($12) + 252|0);
+ HEAPF32[$$compoundliteral136$sroa$0$0$idx>>2] = 5.0;
+ $$compoundliteral136$sroa$1$4$idx5 = (($12) + 256|0);
+ HEAPF32[$$compoundliteral136$sroa$1$4$idx5>>2] = 5.0;
+ $$compoundliteral136$sroa$2$8$idx6 = (($12) + 260|0);
+ HEAPF32[$$compoundliteral136$sroa$2$8$idx6>>2] = 25.0;
+ $$compoundliteral136$sroa$3$12$idx7 = (($12) + 264|0);
+ HEAPF32[$$compoundliteral136$sroa$3$12$idx7>>2] = 1.0;
  $13 = HEAP32[16>>2]|0;
- $arrayidx56 = (($13) + 108|0);
- HEAPF32[$$compoundliteral58>>2] = 5.0;
- $arrayinit$element60 = (($$compoundliteral58) + 4|0);
- HEAPF32[$arrayinit$element60>>2] = 5.0;
- $arrayinit$element61 = (($arrayinit$element60) + 4|0);
- HEAPF32[$arrayinit$element61>>2] = 15.0;
- $arrayinit$element62 = (($arrayinit$element61) + 4|0);
- HEAPF32[$arrayinit$element62>>2] = 1.0;
- ;HEAP32[$arrayidx56+0>>2]=HEAP32[$$compoundliteral58+0>>2]|0;HEAP32[$arrayidx56+4>>2]=HEAP32[$$compoundliteral58+4>>2]|0;HEAP32[$arrayidx56+8>>2]=HEAP32[$$compoundliteral58+8>>2]|0;HEAP32[$arrayidx56+12>>2]=HEAP32[$$compoundliteral58+12>>2]|0;
+ $$compoundliteral143$sroa$0$0$idx = (($13) + 268|0);
+ HEAPF32[$$compoundliteral143$sroa$0$0$idx>>2] = 0.0;
+ $$compoundliteral143$sroa$1$4$idx2 = (($13) + 272|0);
+ HEAPF32[$$compoundliteral143$sroa$1$4$idx2>>2] = 0.0;
+ $$compoundliteral143$sroa$2$8$idx3 = (($13) + 276|0);
+ HEAPF32[$$compoundliteral143$sroa$2$8$idx3>>2] = 0.800000011920928955078;
+ $$compoundliteral143$sroa$3$12$idx4 = (($13) + 280|0);
+ HEAPF32[$$compoundliteral143$sroa$3$12$idx4>>2] = 1.0;
  $14 = HEAP32[16>>2]|0;
- $arrayidx63 = (($14) + 108|0);
- $vcC64 = (($arrayidx63) + 16|0);
- HEAPF32[$$compoundliteral65>>2] = 1.0;
- $arrayinit$element67 = (($$compoundliteral65) + 4|0);
- HEAPF32[$arrayinit$element67>>2] = 1.0;
- $arrayinit$element68 = (($arrayinit$element67) + 4|0);
- HEAPF32[$arrayinit$element68>>2] = 1.0;
- $arrayinit$element69 = (($arrayinit$element68) + 4|0);
- HEAPF32[$arrayinit$element69>>2] = 1.0;
- ;HEAP32[$vcC64+0>>2]=HEAP32[$$compoundliteral65+0>>2]|0;HEAP32[$vcC64+4>>2]=HEAP32[$$compoundliteral65+4>>2]|0;HEAP32[$vcC64+8>>2]=HEAP32[$$compoundliteral65+8>>2]|0;HEAP32[$vcC64+12>>2]=HEAP32[$$compoundliteral65+12>>2]|0;
- $15 = HEAP32[16>>2]|0;
- $arrayidx70 = (($15) + 108|0);
- $vcT71 = (($arrayidx70) + 32|0);
- HEAP16[$$compoundliteral72>>1] = 0;
- $arrayinit$element74 = (($$compoundliteral72) + 2|0);
- HEAP16[$arrayinit$element74>>1] = 0;
- ;HEAP16[$vcT71+0>>1]=HEAP16[$$compoundliteral72+0>>1]|0;HEAP16[$vcT71+2>>1]=HEAP16[$$compoundliteral72+2>>1]|0;
- ;HEAP16[$indis+0>>1]=HEAP16[104+0>>1]|0;HEAP16[$indis+2>>1]=HEAP16[104+2>>1]|0;HEAP16[$indis+4>>1]=HEAP16[104+4>>1]|0;HEAP16[$indis+6>>1]=HEAP16[104+6>>1]|0;HEAP16[$indis+8>>1]=HEAP16[104+8>>1]|0;HEAP16[$indis+10>>1]=HEAP16[104+10>>1]|0;
+ $$compoundliteral150$sroa$0$0$idx = (($14) + 284|0);
+ HEAP16[$$compoundliteral150$sroa$0$0$idx>>1] = 0;
+ $$compoundliteral150$sroa$1$2$idx1 = (($14) + 286|0);
+ HEAP16[$$compoundliteral150$sroa$1$2$idx1>>1] = 0;
  _glfwSwapBuffers();
  _emscripten_set_main_loop((18|0),0,1);
- __ZN9REMMatrixC2Ev($a);
- __ZN9REMMatrixC2Ev($b);
- __ZN9REMMatrix8identityEv($a);
- __ZN9REMMatrix8identityEv($b);
- $arrayidx76 = (($b) + 4|0);
- HEAPF32[$arrayidx76>>2] = 1.0;
- $arrayidx78 = (($a) + 16|0);
- HEAPF32[$arrayidx78>>2] = 1.0;
- $x = 0;
- while(1) {
-  $16 = $x;
-  $cmp80 = ($16|0)<(4);
-  if (!($cmp80)) {
-   break;
-  }
-  (_printf((120|0),($vararg_buffer|0))|0);
-  $y = 0;
-  while(1) {
-   $17 = $y;
-   $cmp83 = ($17|0)<(4);
-   if (!($cmp83)) {
-    break;
-   }
-   $18 = $y;
-   $19 = $x;
-   $arrayidx86 = (($a) + ($19<<4)|0);
-   $arrayidx87 = (($arrayidx86) + ($18<<2)|0);
-   $20 = +HEAPF32[$arrayidx87>>2];
-   $conv = $20;
-   HEAPF64[tempDoublePtr>>3]=$conv;HEAP32[$vararg_buffer1>>2]=HEAP32[tempDoublePtr>>2];HEAP32[$vararg_buffer1+4>>2]=HEAP32[tempDoublePtr+4>>2];
-   (_printf((128|0),($vararg_buffer1|0))|0);
-   $21 = $y;
-   $inc = (($21) + 1)|0;
-   $y = $inc;
-  }
-  (_printf((136|0),($vararg_buffer3|0))|0);
-  $24 = $x;
-  $inc91 = (($24) + 1)|0;
-  $x = $inc91;
- }
- (_printf((144|0),($vararg_buffer5|0))|0);
- $x = 0;
- while(1) {
-  $25 = $x;
-  $cmp95 = ($25|0)<(4);
-  if (!($cmp95)) {
-   break;
-  }
-  (_printf((120|0),($vararg_buffer7|0))|0);
-  $y = 0;
-  while(1) {
-   $26 = $y;
-   $cmp99 = ($26|0)<(4);
-   if (!($cmp99)) {
-    break;
-   }
-   $27 = $y;
-   $28 = $x;
-   $arrayidx102 = (($b) + ($28<<4)|0);
-   $arrayidx103 = (($arrayidx102) + ($27<<2)|0);
-   $29 = +HEAPF32[$arrayidx103>>2];
-   $conv104 = $29;
-   HEAPF64[tempDoublePtr>>3]=$conv104;HEAP32[$vararg_buffer9>>2]=HEAP32[tempDoublePtr>>2];HEAP32[$vararg_buffer9+4>>2]=HEAP32[tempDoublePtr+4>>2];
-   (_printf((128|0),($vararg_buffer9|0))|0);
-   $30 = $y;
-   $inc107 = (($30) + 1)|0;
-   $y = $inc107;
-  }
-  (_printf((136|0),($vararg_buffer12|0))|0);
-  $31 = $x;
-  $inc111 = (($31) + 1)|0;
-  $x = $inc111;
- }
- (_printf((144|0),($vararg_buffer14|0))|0);
- $x = 0;
- while(1) {
-  $32 = $x;
-  $cmp115 = ($32|0)<(4);
-  if (!($cmp115)) {
-   break;
-  }
-  (_printf((120|0),($vararg_buffer16|0))|0);
-  $y = 0;
-  while(1) {
-   $33 = $y;
-   $cmp119 = ($33|0)<(4);
-   if (!($cmp119)) {
-    break;
-   }
-   $34 = $y;
-   $35 = $x;
-   __ZNK9REMMatrixmlERKS_($tmp,$a,$b);
-   $arrayidx122 = (($tmp) + ($35<<4)|0);
-   $arrayidx123 = (($arrayidx122) + ($34<<2)|0);
-   $36 = +HEAPF32[$arrayidx123>>2];
-   $conv124 = $36;
-   HEAPF64[tempDoublePtr>>3]=$conv124;HEAP32[$vararg_buffer18>>2]=HEAP32[tempDoublePtr>>2];HEAP32[$vararg_buffer18+4>>2]=HEAP32[tempDoublePtr+4>>2];
-   (_printf((128|0),($vararg_buffer18|0))|0);
-   $37 = $y;
-   $inc127 = (($37) + 1)|0;
-   $y = $inc127;
-  }
-  (_printf((136|0),($vararg_buffer21|0))|0);
-  $38 = $x;
-  $inc131 = (($38) + 1)|0;
-  $x = $inc131;
- }
  STACKTOP = sp;return 0;
 }
 function __ZN9REMVectorC2Ev($this) {
  $this = $this|0;
- var $this$addr = 0, $this1 = 0, $w = 0, $y = 0, $z = 0, label = 0, sp = 0;
+ var $w = 0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- HEAPF32[$this1>>2] = 0.0;
- $y = (($this1) + 4|0);
+ HEAPF32[$this>>2] = 0.0;
+ $y = (($this) + 4|0);
  HEAPF32[$y>>2] = 0.0;
- $z = (($this1) + 8|0);
+ $z = (($this) + 8|0);
  HEAPF32[$z>>2] = 0.0;
- $w = (($this1) + 12|0);
+ $w = (($this) + 12|0);
  HEAPF32[$w>>2] = 1.0;
  STACKTOP = sp;return;
 }
@@ -8396,23 +9790,14 @@ function __ZN9REMVectorC2Efff($this,$_x,$_y,$_z) {
  $_x = +$_x;
  $_y = +$_y;
  $_z = +$_z;
- var $0 = 0.0, $1 = 0.0, $2 = 0.0, $_x$addr = 0.0, $_y$addr = 0.0, $_z$addr = 0.0, $this$addr = 0, $this1 = 0, $w = 0, $y = 0, $z = 0, label = 0, sp = 0;
+ var $w = 0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $_x$addr = $_x;
- $_y$addr = $_y;
- $_z$addr = $_z;
- $this1 = $this$addr;
- $0 = $_x$addr;
- HEAPF32[$this1>>2] = $0;
- $1 = $_y$addr;
- $y = (($this1) + 4|0);
- HEAPF32[$y>>2] = $1;
- $2 = $_z$addr;
- $z = (($this1) + 8|0);
- HEAPF32[$z>>2] = $2;
- $w = (($this1) + 12|0);
+ HEAPF32[$this>>2] = $_x;
+ $y = (($this) + 4|0);
+ HEAPF32[$y>>2] = $_y;
+ $z = (($this) + 8|0);
+ HEAPF32[$z>>2] = $_z;
+ $w = (($this) + 12|0);
  HEAPF32[$w>>2] = 1.0;
  STACKTOP = sp;return;
 }
@@ -8422,156 +9807,98 @@ function __ZN9REMVector3setEffff($this,$_x,$_y,$_z,$_w) {
  $_y = +$_y;
  $_z = +$_z;
  $_w = +$_w;
- var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $_w$addr = 0.0, $_x$addr = 0.0, $_y$addr = 0.0, $_z$addr = 0.0, $this$addr = 0, $this1 = 0, $w = 0, $y = 0, $z = 0, label = 0, sp = 0;
+ var $w = 0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $_x$addr = $_x;
- $_y$addr = $_y;
- $_z$addr = $_z;
- $_w$addr = $_w;
- $this1 = $this$addr;
- $0 = $_x$addr;
- HEAPF32[$this1>>2] = $0;
- $1 = $_y$addr;
- $y = (($this1) + 4|0);
- HEAPF32[$y>>2] = $1;
- $2 = $_z$addr;
- $z = (($this1) + 8|0);
- HEAPF32[$z>>2] = $2;
- $3 = $_w$addr;
- $w = (($this1) + 12|0);
- HEAPF32[$w>>2] = $3;
+ HEAPF32[$this>>2] = $_x;
+ $y = (($this) + 4|0);
+ HEAPF32[$y>>2] = $_y;
+ $z = (($this) + 8|0);
+ HEAPF32[$z>>2] = $_z;
+ $w = (($this) + 12|0);
+ HEAPF32[$w>>2] = $_w;
  STACKTOP = sp;return;
 }
 function __ZN9REMVector9getLengthEv($this) {
  $this = $this|0;
- var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $add = 0.0, $add7 = 0.0, $call = 0.0, $conv = 0.0, $conv8 = 0.0, $mul = 0.0, $mul4 = 0.0, $mul6 = 0.0, $this$addr = 0, $this1 = 0, $y = 0, $y3 = 0, $z = 0, $z5 = 0;
- var label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $add = 0.0, $add7 = 0.0, $conv8 = 0.0, $mul = 0.0, $mul4 = 0.0, $mul6 = 0.0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $0 = +HEAPF32[$this1>>2];
- $1 = +HEAPF32[$this1>>2];
- $mul = $0 * $1;
- $y = (($this1) + 4|0);
- $2 = +HEAPF32[$y>>2];
- $y3 = (($this1) + 4|0);
- $3 = +HEAPF32[$y3>>2];
- $mul4 = $2 * $3;
+ $0 = +HEAPF32[$this>>2];
+ $mul = $0 * $0;
+ $y = (($this) + 4|0);
+ $1 = +HEAPF32[$y>>2];
+ $mul4 = $1 * $1;
  $add = $mul + $mul4;
- $z = (($this1) + 8|0);
- $4 = +HEAPF32[$z>>2];
- $z5 = (($this1) + 8|0);
- $5 = +HEAPF32[$z5>>2];
- $mul6 = $4 * $5;
+ $z = (($this) + 8|0);
+ $2 = +HEAPF32[$z>>2];
+ $mul6 = $2 * $2;
  $add7 = $add + $mul6;
- $conv = $add7;
- $call = (+Math_sqrt((+$conv)));
- $conv8 = $call;
+ $conv8 = (+Math_sqrt((+$add7)));
  STACKTOP = sp;return (+$conv8);
 }
 function __ZN9REMVector9normaliseEv($this) {
  $this = $this|0;
- var $0 = 0.0, $1 = 0.0, $10 = 0.0, $11 = 0.0, $12 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $add = 0.0, $add7 = 0.0, $call = 0.0, $cmp = 0, $conv = 0.0, $conv8 = 0.0, $div = 0.0;
- var $div11 = 0.0, $div13 = 0.0, $f = 0.0, $mul = 0.0, $mul4 = 0.0, $mul6 = 0.0, $this$addr = 0, $this1 = 0, $y = 0, $y10 = 0, $y3 = 0, $z = 0, $z12 = 0, $z5 = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $add = 0.0, $add7 = 0.0, $cmp = 0, $conv8 = 0.0, $div = 0.0, $div11 = 0.0, $div13 = 0.0, $mul = 0.0, $mul4 = 0.0, $mul6 = 0.0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $0 = +HEAPF32[$this1>>2];
- $1 = +HEAPF32[$this1>>2];
- $mul = $0 * $1;
- $y = (($this1) + 4|0);
- $2 = +HEAPF32[$y>>2];
- $y3 = (($this1) + 4|0);
- $3 = +HEAPF32[$y3>>2];
- $mul4 = $2 * $3;
+ $0 = +HEAPF32[$this>>2];
+ $mul = $0 * $0;
+ $y = (($this) + 4|0);
+ $1 = +HEAPF32[$y>>2];
+ $mul4 = $1 * $1;
  $add = $mul + $mul4;
- $z = (($this1) + 8|0);
- $4 = +HEAPF32[$z>>2];
- $z5 = (($this1) + 8|0);
- $5 = +HEAPF32[$z5>>2];
- $mul6 = $4 * $5;
+ $z = (($this) + 8|0);
+ $2 = +HEAPF32[$z>>2];
+ $mul6 = $2 * $2;
  $add7 = $add + $mul6;
- $conv = $add7;
- $call = (+Math_sqrt((+$conv)));
- $conv8 = $call;
- $f = $conv8;
- $6 = $f;
- $cmp = $6 != 0.0;
+ $conv8 = (+Math_sqrt((+$add7)));
+ $cmp = $conv8 != 0.0;
  if (!($cmp)) {
   STACKTOP = sp;return;
  }
- $7 = $f;
- $8 = +HEAPF32[$this1>>2];
- $div = $8 / $7;
- HEAPF32[$this1>>2] = $div;
- $9 = $f;
- $y10 = (($this1) + 4|0);
- $10 = +HEAPF32[$y10>>2];
- $div11 = $10 / $9;
- HEAPF32[$y10>>2] = $div11;
- $11 = $f;
- $z12 = (($this1) + 8|0);
- $12 = +HEAPF32[$z12>>2];
- $div13 = $12 / $11;
- HEAPF32[$z12>>2] = $div13;
+ $div = $0 / $conv8;
+ HEAPF32[$this>>2] = $div;
+ $div11 = $1 / $conv8;
+ HEAPF32[$y>>2] = $div11;
+ $div13 = $2 / $conv8;
+ HEAPF32[$z>>2] = $div13;
  STACKTOP = sp;return;
 }
 function __ZNK9REMVectormlERKS_($this,$v) {
  $this = $this|0;
  $v = $v|0;
- var $0 = 0.0, $1 = 0, $2 = 0.0, $3 = 0.0, $4 = 0, $5 = 0.0, $6 = 0.0, $7 = 0, $8 = 0.0, $add = 0.0, $add7 = 0.0, $mul = 0.0, $mul4 = 0.0, $mul6 = 0.0, $this$addr = 0, $this1 = 0, $v$addr = 0, $y = 0, $y3 = 0, $z = 0;
- var $z5 = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $add = 0.0, $add7 = 0.0, $mul = 0.0, $mul4 = 0.0, $mul6 = 0.0, $y = 0, $y3 = 0, $z = 0, $z5 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $v$addr = $v;
- $this1 = $this$addr;
- $0 = +HEAPF32[$this1>>2];
- $1 = $v$addr;
- $2 = +HEAPF32[$1>>2];
- $mul = $0 * $2;
- $y = (($this1) + 4|0);
- $3 = +HEAPF32[$y>>2];
- $4 = $v$addr;
- $y3 = (($4) + 4|0);
- $5 = +HEAPF32[$y3>>2];
- $mul4 = $3 * $5;
+ $0 = +HEAPF32[$this>>2];
+ $1 = +HEAPF32[$v>>2];
+ $mul = $0 * $1;
+ $y = (($this) + 4|0);
+ $2 = +HEAPF32[$y>>2];
+ $y3 = (($v) + 4|0);
+ $3 = +HEAPF32[$y3>>2];
+ $mul4 = $2 * $3;
  $add = $mul + $mul4;
- $z = (($this1) + 8|0);
- $6 = +HEAPF32[$z>>2];
- $7 = $v$addr;
- $z5 = (($7) + 8|0);
- $8 = +HEAPF32[$z5>>2];
- $mul6 = $6 * $8;
+ $z = (($this) + 8|0);
+ $4 = +HEAPF32[$z>>2];
+ $z5 = (($v) + 8|0);
+ $5 = +HEAPF32[$z5>>2];
+ $mul6 = $4 * $5;
  $add7 = $add + $mul6;
  STACKTOP = sp;return (+$add7);
 }
 function __ZN9REMVectordVEf($this,$f) {
  $this = $this|0;
  $f = +$f;
- var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $div = 0.0, $div2 = 0.0, $div3 = 0.0, $f$addr = 0.0, $this$addr = 0, $this1 = 0, $y = 0, $z = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $div = 0.0, $div2 = 0.0, $div3 = 0.0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $f$addr = $f;
- $this1 = $this$addr;
- $0 = $f$addr;
- $1 = +HEAPF32[$this1>>2];
- $div = $1 / $0;
- HEAPF32[$this1>>2] = $div;
- $2 = $f$addr;
- $y = (($this1) + 4|0);
- $3 = +HEAPF32[$y>>2];
- $div2 = $3 / $2;
+ $0 = +HEAPF32[$this>>2];
+ $div = $0 / $f;
+ HEAPF32[$this>>2] = $div;
+ $y = (($this) + 4|0);
+ $1 = +HEAPF32[$y>>2];
+ $div2 = $1 / $f;
  HEAPF32[$y>>2] = $div2;
- $4 = $f$addr;
- $z = (($this1) + 8|0);
- $5 = +HEAPF32[$z>>2];
- $div3 = $5 / $4;
+ $z = (($this) + 8|0);
+ $2 = +HEAPF32[$z>>2];
+ $div3 = $2 / $f;
  HEAPF32[$z>>2] = $div3;
  STACKTOP = sp;return;
 }
@@ -8579,1233 +9906,608 @@ function __ZNK9REMVectormlEf($agg$result,$this,$f) {
  $agg$result = $agg$result|0;
  $this = $this|0;
  $f = +$f;
- var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $f$addr = 0.0, $mul = 0.0, $mul2 = 0.0, $mul3 = 0.0, $this$addr = 0, $this1 = 0, $y = 0, $z = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $mul = 0.0, $mul2 = 0.0, $mul3 = 0.0, $w$i = 0, $y = 0, $y$i = 0, $z = 0, $z$i = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $f$addr = $f;
- $this1 = $this$addr;
- $0 = +HEAPF32[$this1>>2];
- $1 = $f$addr;
- $mul = $0 * $1;
- $y = (($this1) + 4|0);
- $2 = +HEAPF32[$y>>2];
- $3 = $f$addr;
- $mul2 = $2 * $3;
- $z = (($this1) + 8|0);
- $4 = +HEAPF32[$z>>2];
- $5 = $f$addr;
- $mul3 = $4 * $5;
- __ZN9REMVectorC2Efff($agg$result,$mul,$mul2,$mul3);
+ $0 = +HEAPF32[$this>>2];
+ $mul = $0 * $f;
+ $y = (($this) + 4|0);
+ $1 = +HEAPF32[$y>>2];
+ $mul2 = $1 * $f;
+ $z = (($this) + 8|0);
+ $2 = +HEAPF32[$z>>2];
+ $mul3 = $2 * $f;
+ HEAPF32[$agg$result>>2] = $mul;
+ $y$i = (($agg$result) + 4|0);
+ HEAPF32[$y$i>>2] = $mul2;
+ $z$i = (($agg$result) + 8|0);
+ HEAPF32[$z$i>>2] = $mul3;
+ $w$i = (($agg$result) + 12|0);
+ HEAPF32[$w$i>>2] = 1.0;
  STACKTOP = sp;return;
 }
 function __ZNK9REMVectormiERKS_($agg$result,$this,$v) {
  $agg$result = $agg$result|0;
  $this = $this|0;
  $v = $v|0;
- var $0 = 0.0, $1 = 0, $2 = 0.0, $3 = 0.0, $4 = 0, $5 = 0.0, $6 = 0.0, $7 = 0, $8 = 0.0, $sub = 0.0, $sub4 = 0.0, $sub6 = 0.0, $this$addr = 0, $this1 = 0, $v$addr = 0, $y = 0, $y3 = 0, $z = 0, $z5 = 0, label = 0;
- var sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $sub = 0.0, $sub4 = 0.0, $sub6 = 0.0, $w$i = 0, $y = 0, $y$i = 0, $y3 = 0, $z = 0, $z$i = 0, $z5 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $v$addr = $v;
- $this1 = $this$addr;
- $0 = +HEAPF32[$this1>>2];
- $1 = $v$addr;
- $2 = +HEAPF32[$1>>2];
- $sub = $0 - $2;
- $y = (($this1) + 4|0);
- $3 = +HEAPF32[$y>>2];
- $4 = $v$addr;
- $y3 = (($4) + 4|0);
- $5 = +HEAPF32[$y3>>2];
- $sub4 = $3 - $5;
- $z = (($this1) + 8|0);
- $6 = +HEAPF32[$z>>2];
- $7 = $v$addr;
- $z5 = (($7) + 8|0);
- $8 = +HEAPF32[$z5>>2];
- $sub6 = $6 - $8;
- __ZN9REMVectorC2Efff($agg$result,$sub,$sub4,$sub6);
+ $0 = +HEAPF32[$this>>2];
+ $1 = +HEAPF32[$v>>2];
+ $sub = $0 - $1;
+ $y = (($this) + 4|0);
+ $2 = +HEAPF32[$y>>2];
+ $y3 = (($v) + 4|0);
+ $3 = +HEAPF32[$y3>>2];
+ $sub4 = $2 - $3;
+ $z = (($this) + 8|0);
+ $4 = +HEAPF32[$z>>2];
+ $z5 = (($v) + 8|0);
+ $5 = +HEAPF32[$z5>>2];
+ $sub6 = $4 - $5;
+ HEAPF32[$agg$result>>2] = $sub;
+ $y$i = (($agg$result) + 4|0);
+ HEAPF32[$y$i>>2] = $sub4;
+ $z$i = (($agg$result) + 8|0);
+ HEAPF32[$z$i>>2] = $sub6;
+ $w$i = (($agg$result) + 12|0);
+ HEAPF32[$w$i>>2] = 1.0;
  STACKTOP = sp;return;
 }
 function __ZN9REMVector5crossERKS_S1_($this,$u,$v) {
  $this = $this|0;
  $u = $u|0;
  $v = $v|0;
- var $0 = 0, $1 = 0.0, $10 = 0, $11 = 0.0, $12 = 0, $13 = 0.0, $14 = 0, $15 = 0.0, $16 = 0, $17 = 0.0, $18 = 0, $19 = 0.0, $2 = 0, $20 = 0, $21 = 0.0, $22 = 0, $23 = 0.0, $3 = 0.0, $4 = 0, $5 = 0.0;
- var $6 = 0, $7 = 0.0, $8 = 0, $9 = 0.0, $mul = 0.0, $mul10 = 0.0, $mul15 = 0.0, $mul18 = 0.0, $mul4 = 0.0, $mul7 = 0.0, $sub = 0.0, $sub11 = 0.0, $sub19 = 0.0, $this$addr = 0, $this1 = 0, $u$addr = 0, $v$addr = 0, $w = 0, $y = 0, $y12 = 0;
- var $y14 = 0, $y16 = 0, $y3 = 0, $z = 0, $z2 = 0, $z20 = 0, $z5 = 0, $z9 = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $10 = 0.0, $11 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $mul = 0.0, $mul10 = 0.0, $mul15 = 0.0, $mul18 = 0.0, $mul4 = 0.0, $mul7 = 0.0, $sub = 0.0, $sub11 = 0.0;
+ var $sub19 = 0.0, $w = 0, $y = 0, $y12 = 0, $y3 = 0, $z = 0, $z2 = 0, $z20 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $u$addr = $u;
- $v$addr = $v;
- $this1 = $this$addr;
- $0 = $u$addr;
- $y = (($0) + 4|0);
- $1 = +HEAPF32[$y>>2];
- $2 = $v$addr;
- $z = (($2) + 8|0);
- $3 = +HEAPF32[$z>>2];
- $mul = $1 * $3;
- $4 = $u$addr;
- $z2 = (($4) + 8|0);
- $5 = +HEAPF32[$z2>>2];
- $6 = $v$addr;
- $y3 = (($6) + 4|0);
- $7 = +HEAPF32[$y3>>2];
- $mul4 = $5 * $7;
+ $y = (($u) + 4|0);
+ $0 = +HEAPF32[$y>>2];
+ $z = (($v) + 8|0);
+ $1 = +HEAPF32[$z>>2];
+ $mul = $0 * $1;
+ $z2 = (($u) + 8|0);
+ $2 = +HEAPF32[$z2>>2];
+ $y3 = (($v) + 4|0);
+ $3 = +HEAPF32[$y3>>2];
+ $mul4 = $2 * $3;
  $sub = $mul - $mul4;
- HEAPF32[$this1>>2] = $sub;
- $8 = $u$addr;
- $z5 = (($8) + 8|0);
- $9 = +HEAPF32[$z5>>2];
- $10 = $v$addr;
- $11 = +HEAPF32[$10>>2];
- $mul7 = $9 * $11;
- $12 = $u$addr;
- $13 = +HEAPF32[$12>>2];
- $14 = $v$addr;
- $z9 = (($14) + 8|0);
- $15 = +HEAPF32[$z9>>2];
- $mul10 = $13 * $15;
+ HEAPF32[$this>>2] = $sub;
+ $4 = +HEAPF32[$z2>>2];
+ $5 = +HEAPF32[$v>>2];
+ $mul7 = $4 * $5;
+ $6 = +HEAPF32[$u>>2];
+ $7 = +HEAPF32[$z>>2];
+ $mul10 = $6 * $7;
  $sub11 = $mul7 - $mul10;
- $y12 = (($this1) + 4|0);
+ $y12 = (($this) + 4|0);
  HEAPF32[$y12>>2] = $sub11;
- $16 = $u$addr;
- $17 = +HEAPF32[$16>>2];
- $18 = $v$addr;
- $y14 = (($18) + 4|0);
- $19 = +HEAPF32[$y14>>2];
- $mul15 = $17 * $19;
- $20 = $v$addr;
- $y16 = (($20) + 4|0);
- $21 = +HEAPF32[$y16>>2];
- $22 = $u$addr;
- $23 = +HEAPF32[$22>>2];
- $mul18 = $21 * $23;
+ $8 = +HEAPF32[$u>>2];
+ $9 = +HEAPF32[$y3>>2];
+ $mul15 = $8 * $9;
+ $10 = +HEAPF32[$y>>2];
+ $11 = +HEAPF32[$v>>2];
+ $mul18 = $10 * $11;
  $sub19 = $mul15 - $mul18;
- $z20 = (($this1) + 8|0);
+ $z20 = (($this) + 8|0);
  HEAPF32[$z20>>2] = $sub19;
- $w = (($this1) + 12|0);
+ $w = (($this) + 12|0);
  HEAPF32[$w>>2] = 1.0;
  STACKTOP = sp;return;
 }
 function __ZN9REMMatrixC2Ev($this) {
  $this = $this|0;
- var $this$addr = 0, label = 0, sp = 0;
+ var label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
  STACKTOP = sp;return;
 }
 function __ZN9REMMatrix8identityEv($this) {
  $this = $this|0;
- var $0 = 0, $arrayidx10 = 0, $arrayidx11 = 0, $arrayidx4 = 0, $arrayidx5 = 0, $arrayidx7 = 0, $arrayidx8 = 0, $f = 0, $this$addr = 0, $this1 = 0, dest = 0, label = 0, sp = 0, stop = 0;
+ var $_22 = 0, $_33 = 0, $_44 = 0, dest = 0, label = 0, sp = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $f = $this1;
- $0 = $f;
- dest=$0+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=0|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
- $arrayidx4 = (($this1) + 48|0);
- $arrayidx5 = (($arrayidx4) + 12|0);
- HEAPF32[$arrayidx5>>2] = 1.0;
- $arrayidx7 = (($this1) + 32|0);
- $arrayidx8 = (($arrayidx7) + 8|0);
- HEAPF32[$arrayidx8>>2] = 1.0;
- $arrayidx10 = (($this1) + 16|0);
- $arrayidx11 = (($arrayidx10) + 4|0);
- HEAPF32[$arrayidx11>>2] = 1.0;
- HEAPF32[$this1>>2] = 1.0;
+ dest=$this+0|0; stop=dest+60|0; do { HEAP32[dest>>2]=0|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
+ $_44 = (($this) + 60|0);
+ HEAPF32[$_44>>2] = 1.0;
+ $_33 = (($this) + 40|0);
+ HEAPF32[$_33>>2] = 1.0;
+ $_22 = (($this) + 20|0);
+ HEAPF32[$_22>>2] = 1.0;
+ HEAPF32[$this>>2] = 1.0;
  STACKTOP = sp;return;
 }
 function __ZNK9REMMatrixmlERKS_($agg$result,$this,$m) {
  $agg$result = $agg$result|0;
  $this = $this|0;
  $m = $m|0;
- var $0 = 0.0, $1 = 0, $10 = 0, $100 = 0, $101 = 0.0, $102 = 0.0, $103 = 0, $104 = 0.0, $105 = 0.0, $106 = 0, $107 = 0.0, $108 = 0.0, $109 = 0, $11 = 0.0, $110 = 0.0, $111 = 0.0, $112 = 0, $113 = 0.0, $114 = 0.0, $115 = 0;
- var $116 = 0.0, $117 = 0.0, $118 = 0, $119 = 0.0, $12 = 0.0, $120 = 0.0, $121 = 0, $122 = 0.0, $123 = 0.0, $124 = 0, $125 = 0.0, $126 = 0.0, $127 = 0, $128 = 0.0, $129 = 0.0, $13 = 0, $130 = 0, $131 = 0.0, $132 = 0.0, $133 = 0;
- var $134 = 0.0, $135 = 0.0, $136 = 0, $137 = 0.0, $138 = 0.0, $139 = 0, $14 = 0.0, $140 = 0.0, $141 = 0.0, $142 = 0, $143 = 0.0, $144 = 0.0, $145 = 0, $146 = 0.0, $147 = 0.0, $148 = 0, $149 = 0.0, $15 = 0.0, $150 = 0.0, $151 = 0;
- var $152 = 0.0, $153 = 0.0, $154 = 0, $155 = 0.0, $156 = 0.0, $157 = 0, $158 = 0.0, $159 = 0.0, $16 = 0, $160 = 0, $161 = 0.0, $162 = 0.0, $163 = 0, $164 = 0.0, $165 = 0.0, $166 = 0, $167 = 0.0, $168 = 0.0, $169 = 0, $17 = 0.0;
- var $170 = 0.0, $171 = 0.0, $172 = 0, $173 = 0.0, $174 = 0.0, $175 = 0, $176 = 0.0, $177 = 0.0, $178 = 0, $179 = 0.0, $18 = 0.0, $180 = 0.0, $181 = 0, $182 = 0.0, $183 = 0.0, $184 = 0, $185 = 0.0, $186 = 0.0, $187 = 0, $188 = 0.0;
- var $189 = 0.0, $19 = 0, $190 = 0, $191 = 0.0, $2 = 0.0, $20 = 0.0, $21 = 0.0, $22 = 0, $23 = 0.0, $24 = 0.0, $25 = 0, $26 = 0.0, $27 = 0.0, $28 = 0, $29 = 0.0, $3 = 0.0, $30 = 0.0, $31 = 0, $32 = 0.0, $33 = 0.0;
- var $34 = 0, $35 = 0.0, $36 = 0.0, $37 = 0, $38 = 0.0, $39 = 0.0, $4 = 0, $40 = 0, $41 = 0.0, $42 = 0.0, $43 = 0, $44 = 0.0, $45 = 0.0, $46 = 0, $47 = 0.0, $48 = 0.0, $49 = 0, $5 = 0.0, $50 = 0.0, $51 = 0.0;
- var $52 = 0, $53 = 0.0, $54 = 0.0, $55 = 0, $56 = 0.0, $57 = 0.0, $58 = 0, $59 = 0.0, $6 = 0.0, $60 = 0.0, $61 = 0, $62 = 0.0, $63 = 0.0, $64 = 0, $65 = 0.0, $66 = 0.0, $67 = 0, $68 = 0.0, $69 = 0.0, $7 = 0;
- var $70 = 0, $71 = 0.0, $72 = 0.0, $73 = 0, $74 = 0.0, $75 = 0.0, $76 = 0, $77 = 0.0, $78 = 0.0, $79 = 0, $8 = 0.0, $80 = 0.0, $81 = 0.0, $82 = 0, $83 = 0.0, $84 = 0.0, $85 = 0, $86 = 0.0, $87 = 0.0, $88 = 0;
- var $89 = 0.0, $9 = 0.0, $90 = 0.0, $91 = 0, $92 = 0.0, $93 = 0.0, $94 = 0, $95 = 0.0, $96 = 0.0, $97 = 0, $98 = 0.0, $99 = 0.0, $add = 0.0, $add114 = 0.0, $add122 = 0.0, $add130 = 0.0, $add148 = 0.0, $add156 = 0.0, $add164 = 0.0, $add182 = 0.0;
- var $add190 = 0.0, $add198 = 0.0, $add20 = 0.0, $add216 = 0.0, $add224 = 0.0, $add232 = 0.0, $add250 = 0.0, $add258 = 0.0, $add266 = 0.0, $add28 = 0.0, $add284 = 0.0, $add292 = 0.0, $add300 = 0.0, $add318 = 0.0, $add326 = 0.0, $add334 = 0.0, $add352 = 0.0, $add360 = 0.0, $add368 = 0.0, $add386 = 0.0;
- var $add394 = 0.0, $add402 = 0.0, $add420 = 0.0, $add428 = 0.0, $add436 = 0.0, $add454 = 0.0, $add46 = 0.0, $add462 = 0.0, $add470 = 0.0, $add488 = 0.0, $add496 = 0.0, $add504 = 0.0, $add522 = 0.0, $add530 = 0.0, $add538 = 0.0, $add54 = 0.0, $add62 = 0.0, $add80 = 0.0, $add88 = 0.0, $add96 = 0.0;
- var $arrayidx10 = 0, $arrayidx105 = 0, $arrayidx109 = 0, $arrayidx111 = 0, $arrayidx112 = 0, $arrayidx117 = 0, $arrayidx119 = 0, $arrayidx120 = 0, $arrayidx125 = 0, $arrayidx127 = 0, $arrayidx128 = 0, $arrayidx133 = 0, $arrayidx135 = 0, $arrayidx142 = 0, $arrayidx143 = 0, $arrayidx145 = 0, $arrayidx15 = 0, $arrayidx150 = 0, $arrayidx151 = 0, $arrayidx153 = 0;
- var $arrayidx158 = 0, $arrayidx159 = 0, $arrayidx161 = 0, $arrayidx166 = 0, $arrayidx169 = 0, $arrayidx17 = 0, $arrayidx173 = 0, $arrayidx176 = 0, $arrayidx177 = 0, $arrayidx179 = 0, $arrayidx180 = 0, $arrayidx184 = 0, $arrayidx185 = 0, $arrayidx187 = 0, $arrayidx188 = 0, $arrayidx192 = 0, $arrayidx193 = 0, $arrayidx195 = 0, $arrayidx196 = 0, $arrayidx200 = 0;
- var $arrayidx201 = 0, $arrayidx203 = 0, $arrayidx207 = 0, $arrayidx210 = 0, $arrayidx211 = 0, $arrayidx213 = 0, $arrayidx214 = 0, $arrayidx218 = 0, $arrayidx219 = 0, $arrayidx221 = 0, $arrayidx222 = 0, $arrayidx226 = 0, $arrayidx227 = 0, $arrayidx229 = 0, $arrayidx23 = 0, $arrayidx230 = 0, $arrayidx234 = 0, $arrayidx235 = 0, $arrayidx237 = 0, $arrayidx241 = 0;
- var $arrayidx244 = 0, $arrayidx245 = 0, $arrayidx247 = 0, $arrayidx248 = 0, $arrayidx25 = 0, $arrayidx252 = 0, $arrayidx253 = 0, $arrayidx255 = 0, $arrayidx256 = 0, $arrayidx260 = 0, $arrayidx261 = 0, $arrayidx263 = 0, $arrayidx264 = 0, $arrayidx268 = 0, $arrayidx269 = 0, $arrayidx271 = 0, $arrayidx278 = 0, $arrayidx279 = 0, $arrayidx281 = 0, $arrayidx286 = 0;
- var $arrayidx287 = 0, $arrayidx289 = 0, $arrayidx294 = 0, $arrayidx295 = 0, $arrayidx297 = 0, $arrayidx302 = 0, $arrayidx305 = 0, $arrayidx309 = 0, $arrayidx312 = 0, $arrayidx313 = 0, $arrayidx315 = 0, $arrayidx316 = 0, $arrayidx320 = 0, $arrayidx321 = 0, $arrayidx323 = 0, $arrayidx324 = 0, $arrayidx328 = 0, $arrayidx329 = 0, $arrayidx331 = 0, $arrayidx332 = 0;
- var $arrayidx336 = 0, $arrayidx337 = 0, $arrayidx339 = 0, $arrayidx343 = 0, $arrayidx346 = 0, $arrayidx347 = 0, $arrayidx349 = 0, $arrayidx350 = 0, $arrayidx354 = 0, $arrayidx355 = 0, $arrayidx357 = 0, $arrayidx358 = 0, $arrayidx362 = 0, $arrayidx363 = 0, $arrayidx365 = 0, $arrayidx366 = 0, $arrayidx37 = 0, $arrayidx370 = 0, $arrayidx371 = 0, $arrayidx373 = 0;
- var $arrayidx377 = 0, $arrayidx380 = 0, $arrayidx381 = 0, $arrayidx383 = 0, $arrayidx384 = 0, $arrayidx388 = 0, $arrayidx389 = 0, $arrayidx391 = 0, $arrayidx392 = 0, $arrayidx396 = 0, $arrayidx397 = 0, $arrayidx399 = 0, $arrayidx400 = 0, $arrayidx404 = 0, $arrayidx405 = 0, $arrayidx407 = 0, $arrayidx41 = 0, $arrayidx414 = 0, $arrayidx415 = 0, $arrayidx417 = 0;
- var $arrayidx422 = 0, $arrayidx423 = 0, $arrayidx425 = 0, $arrayidx43 = 0, $arrayidx430 = 0, $arrayidx431 = 0, $arrayidx433 = 0, $arrayidx438 = 0, $arrayidx44 = 0, $arrayidx441 = 0, $arrayidx445 = 0, $arrayidx448 = 0, $arrayidx449 = 0, $arrayidx451 = 0, $arrayidx452 = 0, $arrayidx456 = 0, $arrayidx457 = 0, $arrayidx459 = 0, $arrayidx460 = 0, $arrayidx464 = 0;
- var $arrayidx465 = 0, $arrayidx467 = 0, $arrayidx468 = 0, $arrayidx472 = 0, $arrayidx473 = 0, $arrayidx475 = 0, $arrayidx479 = 0, $arrayidx482 = 0, $arrayidx483 = 0, $arrayidx485 = 0, $arrayidx486 = 0, $arrayidx49 = 0, $arrayidx490 = 0, $arrayidx491 = 0, $arrayidx493 = 0, $arrayidx494 = 0, $arrayidx498 = 0, $arrayidx499 = 0, $arrayidx501 = 0, $arrayidx502 = 0;
- var $arrayidx506 = 0, $arrayidx507 = 0, $arrayidx509 = 0, $arrayidx51 = 0, $arrayidx513 = 0, $arrayidx516 = 0, $arrayidx517 = 0, $arrayidx519 = 0, $arrayidx52 = 0, $arrayidx520 = 0, $arrayidx524 = 0, $arrayidx525 = 0, $arrayidx527 = 0, $arrayidx528 = 0, $arrayidx532 = 0, $arrayidx533 = 0, $arrayidx535 = 0, $arrayidx536 = 0, $arrayidx540 = 0, $arrayidx541 = 0;
- var $arrayidx57 = 0, $arrayidx59 = 0, $arrayidx60 = 0, $arrayidx65 = 0, $arrayidx71 = 0, $arrayidx75 = 0, $arrayidx77 = 0, $arrayidx78 = 0, $arrayidx8 = 0, $arrayidx83 = 0, $arrayidx85 = 0, $arrayidx86 = 0, $arrayidx91 = 0, $arrayidx93 = 0, $arrayidx94 = 0, $arrayidx99 = 0, $m$addr = 0, $mul = 0.0, $mul106 = 0.0, $mul113 = 0.0;
- var $mul12 = 0.0, $mul121 = 0.0, $mul129 = 0.0, $mul140 = 0.0, $mul147 = 0.0, $mul155 = 0.0, $mul163 = 0.0, $mul174 = 0.0, $mul181 = 0.0, $mul189 = 0.0, $mul19 = 0.0, $mul197 = 0.0, $mul208 = 0.0, $mul215 = 0.0, $mul223 = 0.0, $mul231 = 0.0, $mul242 = 0.0, $mul249 = 0.0, $mul257 = 0.0, $mul265 = 0.0;
- var $mul27 = 0.0, $mul276 = 0.0, $mul283 = 0.0, $mul291 = 0.0, $mul299 = 0.0, $mul310 = 0.0, $mul317 = 0.0, $mul325 = 0.0, $mul333 = 0.0, $mul344 = 0.0, $mul351 = 0.0, $mul359 = 0.0, $mul367 = 0.0, $mul378 = 0.0, $mul38 = 0.0, $mul385 = 0.0, $mul393 = 0.0, $mul401 = 0.0, $mul412 = 0.0, $mul419 = 0.0;
- var $mul427 = 0.0, $mul435 = 0.0, $mul446 = 0.0, $mul45 = 0.0, $mul453 = 0.0, $mul461 = 0.0, $mul469 = 0.0, $mul480 = 0.0, $mul487 = 0.0, $mul495 = 0.0, $mul503 = 0.0, $mul514 = 0.0, $mul521 = 0.0, $mul529 = 0.0, $mul53 = 0.0, $mul537 = 0.0, $mul61 = 0.0, $mul72 = 0.0, $mul79 = 0.0, $mul87 = 0.0;
- var $mul95 = 0.0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $$pre = 0.0, $$pre33 = 0.0, $$pre34 = 0.0, $$pre35 = 0.0, $$pre36 = 0.0, $$pre37 = 0.0, $$pre38 = 0.0, $$pre39 = 0.0, $$pre40 = 0.0, $$pre41 = 0.0, $$pre42 = 0.0, $$pre43 = 0.0, $$pre44 = 0.0, $$pre45 = 0.0, $$pre46 = 0.0, $$pre47 = 0.0, $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0;
+ var $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $add$148 = 0, $add$249 = 0, $add$350 = 0, $add1128 = 0, $add19 = 0.0, $add19$1 = 0.0, $add19$2 = 0.0, $add19$3 = 0.0, $add2129 = 0, $add29 = 0.0, $add29$1 = 0.0, $add29$2 = 0.0, $add29$3 = 0.0, $add3130 = 0, $add39 = 0.0, $add39$1 = 0.0;
+ var $add39$2 = 0.0, $add39$3 = 0.0, $add9 = 0.0, $add9$1 = 0.0, $add9$2 = 0.0, $add9$3 = 0.0, $arrayidx = 0, $arrayidx12 = 0, $arrayidx14$1$phi$trans$insert = 0, $arrayidx14$2$phi$trans$insert = 0, $arrayidx14$3$phi$trans$insert = 0, $arrayidx14$phi$trans$insert = 0, $arrayidx22 = 0, $arrayidx24$1$phi$trans$insert = 0, $arrayidx24$2$phi$trans$insert = 0, $arrayidx24$3$phi$trans$insert = 0, $arrayidx24$phi$trans$insert = 0, $arrayidx32 = 0, $arrayidx34$1$phi$trans$insert = 0, $arrayidx34$2$phi$trans$insert = 0;
+ var $arrayidx34$3$phi$trans$insert = 0, $arrayidx34$phi$trans$insert = 0, $arrayidx5$1$phi$trans$insert = 0, $arrayidx5$2$phi$trans$insert = 0, $arrayidx5$3$phi$trans$insert = 0, $arrayidx8 = 0, $arrayidx8$1 = 0, $arrayidx8$2 = 0, $arrayidx8$3 = 0, $exitcond = 0, $i$032 = 0, $inc41 = 0, $mul = 0, $mul15 = 0.0, $mul15$1 = 0.0, $mul15$2 = 0.0, $mul15$3 = 0.0, $mul25 = 0.0, $mul25$1 = 0.0, $mul25$2 = 0.0;
+ var $mul25$3 = 0.0, $mul35 = 0.0, $mul35$1 = 0.0, $mul35$2 = 0.0, $mul35$3 = 0.0, $mul6 = 0.0, $mul6$1 = 0.0, $mul6$2 = 0.0, $mul6$3 = 0.0, dest = 0, label = 0, sp = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $m$addr = $m;
- $this1 = $this$addr;
- __ZN9REMMatrixC2Ev($agg$result);
- __ZN9REMMatrix8identityEv($agg$result);
- $0 = +HEAPF32[$this1>>2];
- $1 = $m$addr;
- $2 = +HEAPF32[$1>>2];
- $mul = $0 * $2;
- $arrayidx8 = (($this1) + 4|0);
- $3 = +HEAPF32[$arrayidx8>>2];
- $4 = $m$addr;
- $arrayidx10 = (($4) + 16|0);
- $5 = +HEAPF32[$arrayidx10>>2];
- $mul12 = $3 * $5;
- $add = $mul + $mul12;
- $arrayidx15 = (($this1) + 8|0);
- $6 = +HEAPF32[$arrayidx15>>2];
- $7 = $m$addr;
- $arrayidx17 = (($7) + 48|0);
- $8 = +HEAPF32[$arrayidx17>>2];
- $mul19 = $6 * $8;
- $add20 = $add + $mul19;
- $arrayidx23 = (($this1) + 12|0);
- $9 = +HEAPF32[$arrayidx23>>2];
- $10 = $m$addr;
- $arrayidx25 = (($10) + 48|0);
- $11 = +HEAPF32[$arrayidx25>>2];
- $mul27 = $9 * $11;
- $add28 = $add20 + $mul27;
- HEAPF32[$agg$result>>2] = $add28;
- $12 = +HEAPF32[$this1>>2];
- $13 = $m$addr;
- $arrayidx37 = (($13) + 4|0);
- $14 = +HEAPF32[$arrayidx37>>2];
- $mul38 = $12 * $14;
- $arrayidx41 = (($this1) + 4|0);
- $15 = +HEAPF32[$arrayidx41>>2];
- $16 = $m$addr;
- $arrayidx43 = (($16) + 16|0);
- $arrayidx44 = (($arrayidx43) + 4|0);
- $17 = +HEAPF32[$arrayidx44>>2];
- $mul45 = $15 * $17;
- $add46 = $mul38 + $mul45;
- $arrayidx49 = (($this1) + 8|0);
- $18 = +HEAPF32[$arrayidx49>>2];
- $19 = $m$addr;
- $arrayidx51 = (($19) + 48|0);
- $arrayidx52 = (($arrayidx51) + 4|0);
- $20 = +HEAPF32[$arrayidx52>>2];
- $mul53 = $18 * $20;
- $add54 = $add46 + $mul53;
- $arrayidx57 = (($this1) + 12|0);
- $21 = +HEAPF32[$arrayidx57>>2];
- $22 = $m$addr;
- $arrayidx59 = (($22) + 48|0);
- $arrayidx60 = (($arrayidx59) + 4|0);
- $23 = +HEAPF32[$arrayidx60>>2];
- $mul61 = $21 * $23;
- $add62 = $add54 + $mul61;
- $arrayidx65 = (($agg$result) + 4|0);
- HEAPF32[$arrayidx65>>2] = $add62;
- $24 = +HEAPF32[$this1>>2];
- $25 = $m$addr;
- $arrayidx71 = (($25) + 8|0);
- $26 = +HEAPF32[$arrayidx71>>2];
- $mul72 = $24 * $26;
- $arrayidx75 = (($this1) + 4|0);
- $27 = +HEAPF32[$arrayidx75>>2];
- $28 = $m$addr;
- $arrayidx77 = (($28) + 16|0);
- $arrayidx78 = (($arrayidx77) + 8|0);
- $29 = +HEAPF32[$arrayidx78>>2];
- $mul79 = $27 * $29;
- $add80 = $mul72 + $mul79;
- $arrayidx83 = (($this1) + 8|0);
- $30 = +HEAPF32[$arrayidx83>>2];
- $31 = $m$addr;
- $arrayidx85 = (($31) + 48|0);
- $arrayidx86 = (($arrayidx85) + 8|0);
- $32 = +HEAPF32[$arrayidx86>>2];
- $mul87 = $30 * $32;
- $add88 = $add80 + $mul87;
- $arrayidx91 = (($this1) + 12|0);
- $33 = +HEAPF32[$arrayidx91>>2];
- $34 = $m$addr;
- $arrayidx93 = (($34) + 48|0);
- $arrayidx94 = (($arrayidx93) + 8|0);
- $35 = +HEAPF32[$arrayidx94>>2];
- $mul95 = $33 * $35;
- $add96 = $add88 + $mul95;
- $arrayidx99 = (($agg$result) + 8|0);
- HEAPF32[$arrayidx99>>2] = $add96;
- $36 = +HEAPF32[$this1>>2];
- $37 = $m$addr;
- $arrayidx105 = (($37) + 12|0);
- $38 = +HEAPF32[$arrayidx105>>2];
- $mul106 = $36 * $38;
- $arrayidx109 = (($this1) + 4|0);
- $39 = +HEAPF32[$arrayidx109>>2];
- $40 = $m$addr;
- $arrayidx111 = (($40) + 16|0);
- $arrayidx112 = (($arrayidx111) + 12|0);
- $41 = +HEAPF32[$arrayidx112>>2];
- $mul113 = $39 * $41;
- $add114 = $mul106 + $mul113;
- $arrayidx117 = (($this1) + 8|0);
- $42 = +HEAPF32[$arrayidx117>>2];
- $43 = $m$addr;
- $arrayidx119 = (($43) + 48|0);
- $arrayidx120 = (($arrayidx119) + 12|0);
- $44 = +HEAPF32[$arrayidx120>>2];
- $mul121 = $42 * $44;
- $add122 = $add114 + $mul121;
- $arrayidx125 = (($this1) + 12|0);
- $45 = +HEAPF32[$arrayidx125>>2];
- $46 = $m$addr;
- $arrayidx127 = (($46) + 48|0);
- $arrayidx128 = (($arrayidx127) + 12|0);
- $47 = +HEAPF32[$arrayidx128>>2];
- $mul129 = $45 * $47;
- $add130 = $add122 + $mul129;
- $arrayidx133 = (($agg$result) + 12|0);
- HEAPF32[$arrayidx133>>2] = $add130;
- $arrayidx135 = (($this1) + 16|0);
- $48 = +HEAPF32[$arrayidx135>>2];
- $49 = $m$addr;
- $50 = +HEAPF32[$49>>2];
- $mul140 = $48 * $50;
- $arrayidx142 = (($this1) + 16|0);
- $arrayidx143 = (($arrayidx142) + 4|0);
- $51 = +HEAPF32[$arrayidx143>>2];
- $52 = $m$addr;
- $arrayidx145 = (($52) + 16|0);
- $53 = +HEAPF32[$arrayidx145>>2];
- $mul147 = $51 * $53;
- $add148 = $mul140 + $mul147;
- $arrayidx150 = (($this1) + 16|0);
- $arrayidx151 = (($arrayidx150) + 8|0);
- $54 = +HEAPF32[$arrayidx151>>2];
- $55 = $m$addr;
- $arrayidx153 = (($55) + 48|0);
- $56 = +HEAPF32[$arrayidx153>>2];
- $mul155 = $54 * $56;
- $add156 = $add148 + $mul155;
- $arrayidx158 = (($this1) + 16|0);
- $arrayidx159 = (($arrayidx158) + 12|0);
- $57 = +HEAPF32[$arrayidx159>>2];
- $58 = $m$addr;
- $arrayidx161 = (($58) + 48|0);
- $59 = +HEAPF32[$arrayidx161>>2];
- $mul163 = $57 * $59;
- $add164 = $add156 + $mul163;
- $arrayidx166 = (($agg$result) + 16|0);
- HEAPF32[$arrayidx166>>2] = $add164;
- $arrayidx169 = (($this1) + 16|0);
- $60 = +HEAPF32[$arrayidx169>>2];
- $61 = $m$addr;
- $arrayidx173 = (($61) + 4|0);
- $62 = +HEAPF32[$arrayidx173>>2];
- $mul174 = $60 * $62;
- $arrayidx176 = (($this1) + 16|0);
- $arrayidx177 = (($arrayidx176) + 4|0);
- $63 = +HEAPF32[$arrayidx177>>2];
- $64 = $m$addr;
- $arrayidx179 = (($64) + 16|0);
- $arrayidx180 = (($arrayidx179) + 4|0);
- $65 = +HEAPF32[$arrayidx180>>2];
- $mul181 = $63 * $65;
- $add182 = $mul174 + $mul181;
- $arrayidx184 = (($this1) + 16|0);
- $arrayidx185 = (($arrayidx184) + 8|0);
- $66 = +HEAPF32[$arrayidx185>>2];
- $67 = $m$addr;
- $arrayidx187 = (($67) + 48|0);
- $arrayidx188 = (($arrayidx187) + 4|0);
- $68 = +HEAPF32[$arrayidx188>>2];
- $mul189 = $66 * $68;
- $add190 = $add182 + $mul189;
- $arrayidx192 = (($this1) + 16|0);
- $arrayidx193 = (($arrayidx192) + 12|0);
- $69 = +HEAPF32[$arrayidx193>>2];
- $70 = $m$addr;
- $arrayidx195 = (($70) + 48|0);
- $arrayidx196 = (($arrayidx195) + 4|0);
- $71 = +HEAPF32[$arrayidx196>>2];
- $mul197 = $69 * $71;
- $add198 = $add190 + $mul197;
- $arrayidx200 = (($agg$result) + 16|0);
- $arrayidx201 = (($arrayidx200) + 4|0);
- HEAPF32[$arrayidx201>>2] = $add198;
- $arrayidx203 = (($this1) + 16|0);
- $72 = +HEAPF32[$arrayidx203>>2];
- $73 = $m$addr;
- $arrayidx207 = (($73) + 8|0);
- $74 = +HEAPF32[$arrayidx207>>2];
- $mul208 = $72 * $74;
- $arrayidx210 = (($this1) + 16|0);
- $arrayidx211 = (($arrayidx210) + 4|0);
- $75 = +HEAPF32[$arrayidx211>>2];
- $76 = $m$addr;
- $arrayidx213 = (($76) + 16|0);
- $arrayidx214 = (($arrayidx213) + 8|0);
- $77 = +HEAPF32[$arrayidx214>>2];
- $mul215 = $75 * $77;
- $add216 = $mul208 + $mul215;
- $arrayidx218 = (($this1) + 16|0);
- $arrayidx219 = (($arrayidx218) + 8|0);
- $78 = +HEAPF32[$arrayidx219>>2];
- $79 = $m$addr;
- $arrayidx221 = (($79) + 48|0);
- $arrayidx222 = (($arrayidx221) + 8|0);
- $80 = +HEAPF32[$arrayidx222>>2];
- $mul223 = $78 * $80;
- $add224 = $add216 + $mul223;
- $arrayidx226 = (($this1) + 16|0);
- $arrayidx227 = (($arrayidx226) + 12|0);
- $81 = +HEAPF32[$arrayidx227>>2];
- $82 = $m$addr;
- $arrayidx229 = (($82) + 48|0);
- $arrayidx230 = (($arrayidx229) + 8|0);
- $83 = +HEAPF32[$arrayidx230>>2];
- $mul231 = $81 * $83;
- $add232 = $add224 + $mul231;
- $arrayidx234 = (($agg$result) + 16|0);
- $arrayidx235 = (($arrayidx234) + 8|0);
- HEAPF32[$arrayidx235>>2] = $add232;
- $arrayidx237 = (($this1) + 16|0);
- $84 = +HEAPF32[$arrayidx237>>2];
- $85 = $m$addr;
- $arrayidx241 = (($85) + 12|0);
- $86 = +HEAPF32[$arrayidx241>>2];
- $mul242 = $84 * $86;
- $arrayidx244 = (($this1) + 16|0);
- $arrayidx245 = (($arrayidx244) + 4|0);
- $87 = +HEAPF32[$arrayidx245>>2];
- $88 = $m$addr;
- $arrayidx247 = (($88) + 16|0);
- $arrayidx248 = (($arrayidx247) + 12|0);
- $89 = +HEAPF32[$arrayidx248>>2];
- $mul249 = $87 * $89;
- $add250 = $mul242 + $mul249;
- $arrayidx252 = (($this1) + 16|0);
- $arrayidx253 = (($arrayidx252) + 8|0);
- $90 = +HEAPF32[$arrayidx253>>2];
- $91 = $m$addr;
- $arrayidx255 = (($91) + 48|0);
- $arrayidx256 = (($arrayidx255) + 12|0);
- $92 = +HEAPF32[$arrayidx256>>2];
- $mul257 = $90 * $92;
- $add258 = $add250 + $mul257;
- $arrayidx260 = (($this1) + 16|0);
- $arrayidx261 = (($arrayidx260) + 12|0);
- $93 = +HEAPF32[$arrayidx261>>2];
- $94 = $m$addr;
- $arrayidx263 = (($94) + 48|0);
- $arrayidx264 = (($arrayidx263) + 12|0);
- $95 = +HEAPF32[$arrayidx264>>2];
- $mul265 = $93 * $95;
- $add266 = $add258 + $mul265;
- $arrayidx268 = (($agg$result) + 16|0);
- $arrayidx269 = (($arrayidx268) + 12|0);
- HEAPF32[$arrayidx269>>2] = $add266;
- $arrayidx271 = (($this1) + 32|0);
- $96 = +HEAPF32[$arrayidx271>>2];
- $97 = $m$addr;
- $98 = +HEAPF32[$97>>2];
- $mul276 = $96 * $98;
- $arrayidx278 = (($this1) + 32|0);
- $arrayidx279 = (($arrayidx278) + 4|0);
- $99 = +HEAPF32[$arrayidx279>>2];
- $100 = $m$addr;
- $arrayidx281 = (($100) + 16|0);
- $101 = +HEAPF32[$arrayidx281>>2];
- $mul283 = $99 * $101;
- $add284 = $mul276 + $mul283;
- $arrayidx286 = (($this1) + 32|0);
- $arrayidx287 = (($arrayidx286) + 8|0);
- $102 = +HEAPF32[$arrayidx287>>2];
- $103 = $m$addr;
- $arrayidx289 = (($103) + 48|0);
- $104 = +HEAPF32[$arrayidx289>>2];
- $mul291 = $102 * $104;
- $add292 = $add284 + $mul291;
- $arrayidx294 = (($this1) + 32|0);
- $arrayidx295 = (($arrayidx294) + 12|0);
- $105 = +HEAPF32[$arrayidx295>>2];
- $106 = $m$addr;
- $arrayidx297 = (($106) + 48|0);
- $107 = +HEAPF32[$arrayidx297>>2];
- $mul299 = $105 * $107;
- $add300 = $add292 + $mul299;
- $arrayidx302 = (($agg$result) + 32|0);
- HEAPF32[$arrayidx302>>2] = $add300;
- $arrayidx305 = (($this1) + 32|0);
- $108 = +HEAPF32[$arrayidx305>>2];
- $109 = $m$addr;
- $arrayidx309 = (($109) + 4|0);
- $110 = +HEAPF32[$arrayidx309>>2];
- $mul310 = $108 * $110;
- $arrayidx312 = (($this1) + 32|0);
- $arrayidx313 = (($arrayidx312) + 4|0);
- $111 = +HEAPF32[$arrayidx313>>2];
- $112 = $m$addr;
- $arrayidx315 = (($112) + 16|0);
- $arrayidx316 = (($arrayidx315) + 4|0);
- $113 = +HEAPF32[$arrayidx316>>2];
- $mul317 = $111 * $113;
- $add318 = $mul310 + $mul317;
- $arrayidx320 = (($this1) + 32|0);
- $arrayidx321 = (($arrayidx320) + 8|0);
- $114 = +HEAPF32[$arrayidx321>>2];
- $115 = $m$addr;
- $arrayidx323 = (($115) + 48|0);
- $arrayidx324 = (($arrayidx323) + 4|0);
- $116 = +HEAPF32[$arrayidx324>>2];
- $mul325 = $114 * $116;
- $add326 = $add318 + $mul325;
- $arrayidx328 = (($this1) + 32|0);
- $arrayidx329 = (($arrayidx328) + 12|0);
- $117 = +HEAPF32[$arrayidx329>>2];
- $118 = $m$addr;
- $arrayidx331 = (($118) + 48|0);
- $arrayidx332 = (($arrayidx331) + 4|0);
- $119 = +HEAPF32[$arrayidx332>>2];
- $mul333 = $117 * $119;
- $add334 = $add326 + $mul333;
- $arrayidx336 = (($agg$result) + 32|0);
- $arrayidx337 = (($arrayidx336) + 4|0);
- HEAPF32[$arrayidx337>>2] = $add334;
- $arrayidx339 = (($this1) + 32|0);
- $120 = +HEAPF32[$arrayidx339>>2];
- $121 = $m$addr;
- $arrayidx343 = (($121) + 8|0);
- $122 = +HEAPF32[$arrayidx343>>2];
- $mul344 = $120 * $122;
- $arrayidx346 = (($this1) + 32|0);
- $arrayidx347 = (($arrayidx346) + 4|0);
- $123 = +HEAPF32[$arrayidx347>>2];
- $124 = $m$addr;
- $arrayidx349 = (($124) + 16|0);
- $arrayidx350 = (($arrayidx349) + 8|0);
- $125 = +HEAPF32[$arrayidx350>>2];
- $mul351 = $123 * $125;
- $add352 = $mul344 + $mul351;
- $arrayidx354 = (($this1) + 32|0);
- $arrayidx355 = (($arrayidx354) + 8|0);
- $126 = +HEAPF32[$arrayidx355>>2];
- $127 = $m$addr;
- $arrayidx357 = (($127) + 48|0);
- $arrayidx358 = (($arrayidx357) + 8|0);
- $128 = +HEAPF32[$arrayidx358>>2];
- $mul359 = $126 * $128;
- $add360 = $add352 + $mul359;
- $arrayidx362 = (($this1) + 32|0);
- $arrayidx363 = (($arrayidx362) + 12|0);
- $129 = +HEAPF32[$arrayidx363>>2];
- $130 = $m$addr;
- $arrayidx365 = (($130) + 48|0);
- $arrayidx366 = (($arrayidx365) + 8|0);
- $131 = +HEAPF32[$arrayidx366>>2];
- $mul367 = $129 * $131;
- $add368 = $add360 + $mul367;
- $arrayidx370 = (($agg$result) + 32|0);
- $arrayidx371 = (($arrayidx370) + 8|0);
- HEAPF32[$arrayidx371>>2] = $add368;
- $arrayidx373 = (($this1) + 32|0);
- $132 = +HEAPF32[$arrayidx373>>2];
- $133 = $m$addr;
- $arrayidx377 = (($133) + 12|0);
- $134 = +HEAPF32[$arrayidx377>>2];
- $mul378 = $132 * $134;
- $arrayidx380 = (($this1) + 32|0);
- $arrayidx381 = (($arrayidx380) + 4|0);
- $135 = +HEAPF32[$arrayidx381>>2];
- $136 = $m$addr;
- $arrayidx383 = (($136) + 16|0);
- $arrayidx384 = (($arrayidx383) + 12|0);
- $137 = +HEAPF32[$arrayidx384>>2];
- $mul385 = $135 * $137;
- $add386 = $mul378 + $mul385;
- $arrayidx388 = (($this1) + 32|0);
- $arrayidx389 = (($arrayidx388) + 8|0);
- $138 = +HEAPF32[$arrayidx389>>2];
- $139 = $m$addr;
- $arrayidx391 = (($139) + 48|0);
- $arrayidx392 = (($arrayidx391) + 12|0);
- $140 = +HEAPF32[$arrayidx392>>2];
- $mul393 = $138 * $140;
- $add394 = $add386 + $mul393;
- $arrayidx396 = (($this1) + 32|0);
- $arrayidx397 = (($arrayidx396) + 12|0);
- $141 = +HEAPF32[$arrayidx397>>2];
- $142 = $m$addr;
- $arrayidx399 = (($142) + 48|0);
- $arrayidx400 = (($arrayidx399) + 12|0);
- $143 = +HEAPF32[$arrayidx400>>2];
- $mul401 = $141 * $143;
- $add402 = $add394 + $mul401;
- $arrayidx404 = (($agg$result) + 32|0);
- $arrayidx405 = (($arrayidx404) + 12|0);
- HEAPF32[$arrayidx405>>2] = $add402;
- $arrayidx407 = (($this1) + 48|0);
- $144 = +HEAPF32[$arrayidx407>>2];
- $145 = $m$addr;
- $146 = +HEAPF32[$145>>2];
- $mul412 = $144 * $146;
- $arrayidx414 = (($this1) + 48|0);
- $arrayidx415 = (($arrayidx414) + 4|0);
- $147 = +HEAPF32[$arrayidx415>>2];
- $148 = $m$addr;
- $arrayidx417 = (($148) + 16|0);
- $149 = +HEAPF32[$arrayidx417>>2];
- $mul419 = $147 * $149;
- $add420 = $mul412 + $mul419;
- $arrayidx422 = (($this1) + 48|0);
- $arrayidx423 = (($arrayidx422) + 8|0);
- $150 = +HEAPF32[$arrayidx423>>2];
- $151 = $m$addr;
- $arrayidx425 = (($151) + 48|0);
- $152 = +HEAPF32[$arrayidx425>>2];
- $mul427 = $150 * $152;
- $add428 = $add420 + $mul427;
- $arrayidx430 = (($this1) + 48|0);
- $arrayidx431 = (($arrayidx430) + 12|0);
- $153 = +HEAPF32[$arrayidx431>>2];
- $154 = $m$addr;
- $arrayidx433 = (($154) + 48|0);
- $155 = +HEAPF32[$arrayidx433>>2];
- $mul435 = $153 * $155;
- $add436 = $add428 + $mul435;
- $arrayidx438 = (($agg$result) + 48|0);
- HEAPF32[$arrayidx438>>2] = $add436;
- $arrayidx441 = (($this1) + 48|0);
- $156 = +HEAPF32[$arrayidx441>>2];
- $157 = $m$addr;
- $arrayidx445 = (($157) + 4|0);
- $158 = +HEAPF32[$arrayidx445>>2];
- $mul446 = $156 * $158;
- $arrayidx448 = (($this1) + 48|0);
- $arrayidx449 = (($arrayidx448) + 4|0);
- $159 = +HEAPF32[$arrayidx449>>2];
- $160 = $m$addr;
- $arrayidx451 = (($160) + 16|0);
- $arrayidx452 = (($arrayidx451) + 4|0);
- $161 = +HEAPF32[$arrayidx452>>2];
- $mul453 = $159 * $161;
- $add454 = $mul446 + $mul453;
- $arrayidx456 = (($this1) + 48|0);
- $arrayidx457 = (($arrayidx456) + 8|0);
- $162 = +HEAPF32[$arrayidx457>>2];
- $163 = $m$addr;
- $arrayidx459 = (($163) + 48|0);
- $arrayidx460 = (($arrayidx459) + 4|0);
- $164 = +HEAPF32[$arrayidx460>>2];
- $mul461 = $162 * $164;
- $add462 = $add454 + $mul461;
- $arrayidx464 = (($this1) + 48|0);
- $arrayidx465 = (($arrayidx464) + 12|0);
- $165 = +HEAPF32[$arrayidx465>>2];
- $166 = $m$addr;
- $arrayidx467 = (($166) + 48|0);
- $arrayidx468 = (($arrayidx467) + 4|0);
- $167 = +HEAPF32[$arrayidx468>>2];
- $mul469 = $165 * $167;
- $add470 = $add462 + $mul469;
- $arrayidx472 = (($agg$result) + 48|0);
- $arrayidx473 = (($arrayidx472) + 4|0);
- HEAPF32[$arrayidx473>>2] = $add470;
- $arrayidx475 = (($this1) + 48|0);
- $168 = +HEAPF32[$arrayidx475>>2];
- $169 = $m$addr;
- $arrayidx479 = (($169) + 8|0);
- $170 = +HEAPF32[$arrayidx479>>2];
- $mul480 = $168 * $170;
- $arrayidx482 = (($this1) + 48|0);
- $arrayidx483 = (($arrayidx482) + 4|0);
- $171 = +HEAPF32[$arrayidx483>>2];
- $172 = $m$addr;
- $arrayidx485 = (($172) + 16|0);
- $arrayidx486 = (($arrayidx485) + 8|0);
- $173 = +HEAPF32[$arrayidx486>>2];
- $mul487 = $171 * $173;
- $add488 = $mul480 + $mul487;
- $arrayidx490 = (($this1) + 48|0);
- $arrayidx491 = (($arrayidx490) + 8|0);
- $174 = +HEAPF32[$arrayidx491>>2];
- $175 = $m$addr;
- $arrayidx493 = (($175) + 48|0);
- $arrayidx494 = (($arrayidx493) + 8|0);
- $176 = +HEAPF32[$arrayidx494>>2];
- $mul495 = $174 * $176;
- $add496 = $add488 + $mul495;
- $arrayidx498 = (($this1) + 48|0);
- $arrayidx499 = (($arrayidx498) + 12|0);
- $177 = +HEAPF32[$arrayidx499>>2];
- $178 = $m$addr;
- $arrayidx501 = (($178) + 48|0);
- $arrayidx502 = (($arrayidx501) + 8|0);
- $179 = +HEAPF32[$arrayidx502>>2];
- $mul503 = $177 * $179;
- $add504 = $add496 + $mul503;
- $arrayidx506 = (($agg$result) + 48|0);
- $arrayidx507 = (($arrayidx506) + 8|0);
- HEAPF32[$arrayidx507>>2] = $add504;
- $arrayidx509 = (($this1) + 48|0);
- $180 = +HEAPF32[$arrayidx509>>2];
- $181 = $m$addr;
- $arrayidx513 = (($181) + 12|0);
- $182 = +HEAPF32[$arrayidx513>>2];
- $mul514 = $180 * $182;
- $arrayidx516 = (($this1) + 48|0);
- $arrayidx517 = (($arrayidx516) + 4|0);
- $183 = +HEAPF32[$arrayidx517>>2];
- $184 = $m$addr;
- $arrayidx519 = (($184) + 16|0);
- $arrayidx520 = (($arrayidx519) + 12|0);
- $185 = +HEAPF32[$arrayidx520>>2];
- $mul521 = $183 * $185;
- $add522 = $mul514 + $mul521;
- $arrayidx524 = (($this1) + 48|0);
- $arrayidx525 = (($arrayidx524) + 8|0);
- $186 = +HEAPF32[$arrayidx525>>2];
- $187 = $m$addr;
- $arrayidx527 = (($187) + 48|0);
- $arrayidx528 = (($arrayidx527) + 12|0);
- $188 = +HEAPF32[$arrayidx528>>2];
- $mul529 = $186 * $188;
- $add530 = $add522 + $mul529;
- $arrayidx532 = (($this1) + 48|0);
- $arrayidx533 = (($arrayidx532) + 12|0);
- $189 = +HEAPF32[$arrayidx533>>2];
- $190 = $m$addr;
- $arrayidx535 = (($190) + 48|0);
- $arrayidx536 = (($arrayidx535) + 12|0);
- $191 = +HEAPF32[$arrayidx536>>2];
- $mul537 = $189 * $191;
- $add538 = $add530 + $mul537;
- $arrayidx540 = (($agg$result) + 48|0);
- $arrayidx541 = (($arrayidx540) + 12|0);
- HEAPF32[$arrayidx541>>2] = $add538;
+ dest=$agg$result+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=0|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
+ $$pre = +HEAPF32[$m>>2];
+ $arrayidx14$phi$trans$insert = (($m) + 16|0);
+ $$pre33 = +HEAPF32[$arrayidx14$phi$trans$insert>>2];
+ $arrayidx24$phi$trans$insert = (($m) + 32|0);
+ $$pre34 = +HEAPF32[$arrayidx24$phi$trans$insert>>2];
+ $arrayidx34$phi$trans$insert = (($m) + 48|0);
+ $$pre35 = +HEAPF32[$arrayidx34$phi$trans$insert>>2];
+ $arrayidx5$1$phi$trans$insert = (($m) + 4|0);
+ $$pre36 = +HEAPF32[$arrayidx5$1$phi$trans$insert>>2];
+ $arrayidx14$1$phi$trans$insert = (($m) + 20|0);
+ $$pre37 = +HEAPF32[$arrayidx14$1$phi$trans$insert>>2];
+ $arrayidx24$1$phi$trans$insert = (($m) + 36|0);
+ $$pre38 = +HEAPF32[$arrayidx24$1$phi$trans$insert>>2];
+ $arrayidx34$1$phi$trans$insert = (($m) + 52|0);
+ $$pre39 = +HEAPF32[$arrayidx34$1$phi$trans$insert>>2];
+ $arrayidx5$2$phi$trans$insert = (($m) + 8|0);
+ $$pre40 = +HEAPF32[$arrayidx5$2$phi$trans$insert>>2];
+ $arrayidx14$2$phi$trans$insert = (($m) + 24|0);
+ $$pre41 = +HEAPF32[$arrayidx14$2$phi$trans$insert>>2];
+ $arrayidx24$2$phi$trans$insert = (($m) + 40|0);
+ $$pre42 = +HEAPF32[$arrayidx24$2$phi$trans$insert>>2];
+ $arrayidx34$2$phi$trans$insert = (($m) + 56|0);
+ $$pre43 = +HEAPF32[$arrayidx34$2$phi$trans$insert>>2];
+ $arrayidx5$3$phi$trans$insert = (($m) + 12|0);
+ $$pre44 = +HEAPF32[$arrayidx5$3$phi$trans$insert>>2];
+ $arrayidx14$3$phi$trans$insert = (($m) + 28|0);
+ $$pre45 = +HEAPF32[$arrayidx14$3$phi$trans$insert>>2];
+ $arrayidx24$3$phi$trans$insert = (($m) + 44|0);
+ $$pre46 = +HEAPF32[$arrayidx24$3$phi$trans$insert>>2];
+ $arrayidx34$3$phi$trans$insert = (($m) + 60|0);
+ $$pre47 = +HEAPF32[$arrayidx34$3$phi$trans$insert>>2];
+ $i$032 = 0;
+ while(1) {
+  $mul = $i$032 << 2;
+  $arrayidx = (($this) + ($mul<<2)|0);
+  $0 = +HEAPF32[$arrayidx>>2];
+  $add1128 = $mul | 1;
+  $arrayidx12 = (($this) + ($add1128<<2)|0);
+  $1 = +HEAPF32[$arrayidx12>>2];
+  $add2129 = $mul | 2;
+  $arrayidx22 = (($this) + ($add2129<<2)|0);
+  $2 = +HEAPF32[$arrayidx22>>2];
+  $add3130 = $mul | 3;
+  $arrayidx32 = (($this) + ($add3130<<2)|0);
+  $3 = +HEAPF32[$arrayidx32>>2];
+  $mul6 = $0 * $$pre;
+  $arrayidx8 = (($agg$result) + ($mul<<2)|0);
+  $4 = +HEAPF32[$arrayidx8>>2];
+  $add9 = $4 + $mul6;
+  $mul15 = $1 * $$pre33;
+  $add19 = $add9 + $mul15;
+  $mul25 = $2 * $$pre34;
+  $add29 = $add19 + $mul25;
+  $mul35 = $3 * $$pre35;
+  $add39 = $add29 + $mul35;
+  HEAPF32[$arrayidx8>>2] = $add39;
+  $mul6$1 = $0 * $$pre36;
+  $add$148 = $mul | 1;
+  $arrayidx8$1 = (($agg$result) + ($add$148<<2)|0);
+  $5 = +HEAPF32[$arrayidx8$1>>2];
+  $add9$1 = $5 + $mul6$1;
+  $mul15$1 = $1 * $$pre37;
+  $add19$1 = $add9$1 + $mul15$1;
+  $mul25$1 = $2 * $$pre38;
+  $add29$1 = $add19$1 + $mul25$1;
+  $mul35$1 = $3 * $$pre39;
+  $add39$1 = $add29$1 + $mul35$1;
+  HEAPF32[$arrayidx8$1>>2] = $add39$1;
+  $mul6$2 = $0 * $$pre40;
+  $add$249 = $mul | 2;
+  $arrayidx8$2 = (($agg$result) + ($add$249<<2)|0);
+  $6 = +HEAPF32[$arrayidx8$2>>2];
+  $add9$2 = $6 + $mul6$2;
+  $mul15$2 = $1 * $$pre41;
+  $add19$2 = $add9$2 + $mul15$2;
+  $mul25$2 = $2 * $$pre42;
+  $add29$2 = $add19$2 + $mul25$2;
+  $mul35$2 = $3 * $$pre43;
+  $add39$2 = $add29$2 + $mul35$2;
+  HEAPF32[$arrayidx8$2>>2] = $add39$2;
+  $mul6$3 = $0 * $$pre44;
+  $add$350 = $mul | 3;
+  $arrayidx8$3 = (($agg$result) + ($add$350<<2)|0);
+  $7 = +HEAPF32[$arrayidx8$3>>2];
+  $add9$3 = $7 + $mul6$3;
+  $mul15$3 = $1 * $$pre45;
+  $add19$3 = $add9$3 + $mul15$3;
+  $mul25$3 = $2 * $$pre46;
+  $add29$3 = $add19$3 + $mul25$3;
+  $mul35$3 = $3 * $$pre47;
+  $add39$3 = $add29$3 + $mul35$3;
+  HEAPF32[$arrayidx8$3>>2] = $add39$3;
+  $inc41 = (($i$032) + 1)|0;
+  $exitcond = ($inc41|0)==(4);
+  if ($exitcond) {
+   break;
+  } else {
+   $i$032 = $inc41;
+  }
+ }
  STACKTOP = sp;return;
+}
+function __Z15rawImageFromBMPPKc($chName) {
+ $chName = $chName|0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $BitsPerPixel = 0, $bmp = 0, $call = 0, $call1 = 0, $call2 = 0, $cmp = 0, $cond = 0, $conv15 = 0, $format = 0, $format8 = 0, $h = 0, $height = 0, $pData = 0, $pixels = 0, $retval$0 = 0;
+ var $type = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, $vararg_ptr4 = 0, $vararg_ptr5 = 0, $vararg_ptr6 = 0, $w = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer1 = sp + 8|0;
+ $vararg_buffer = sp;
+ $call = (__Znwj(24)|0);
+ $call1 = (_SDL_RWFromFile(($chName|0),(168|0))|0);
+ $call2 = (_SDL_LoadBMP_RW(($call1|0),1)|0);
+ $bmp = (($call) + 20|0);
+ HEAP32[$bmp>>2] = $call2;
+ $cmp = ($call2|0)==(0|0);
+ if ($cmp) {
+  HEAP32[$vararg_buffer>>2] = $chName;
+  (_printf((176|0),($vararg_buffer|0))|0);
+  $retval$0 = 0;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $w = (($call2) + 8|0);
+ $0 = HEAP32[$w>>2]|0;
+ HEAP32[$call>>2] = $0;
+ $h = (($call2) + 12|0);
+ $1 = HEAP32[$h>>2]|0;
+ $height = (($call) + 4|0);
+ HEAP32[$height>>2] = $1;
+ $format = (($call2) + 4|0);
+ $2 = HEAP32[$format>>2]|0;
+ $BitsPerPixel = (($2) + 8|0);
+ $3 = HEAP8[$BitsPerPixel>>0]|0;
+ $cond = ($3<<24>>24)==(32);
+ if ($cond) {
+  $format8 = (($call) + 8|0);
+  HEAP32[$format8>>2] = 6408;
+  $type = (($call) + 12|0);
+  HEAP32[$type>>2] = 5121;
+ }
+ $pixels = (($call2) + 20|0);
+ $4 = HEAP32[$pixels>>2]|0;
+ $pData = (($call) + 16|0);
+ HEAP32[$pData>>2] = $4;
+ $conv15 = $3&255;
+ HEAP32[$vararg_buffer1>>2] = $chName;
+ $vararg_ptr4 = (($vararg_buffer1) + 4|0);
+ HEAP32[$vararg_ptr4>>2] = $0;
+ $vararg_ptr5 = (($vararg_buffer1) + 8|0);
+ HEAP32[$vararg_ptr5>>2] = $1;
+ $vararg_ptr6 = (($vararg_buffer1) + 12|0);
+ HEAP32[$vararg_ptr6>>2] = $conv15;
+ (_printf((208|0),($vararg_buffer1|0))|0);
+ $retval$0 = $call;
+ STACKTOP = sp;return ($retval$0|0);
+}
+function __Z14setAlphaKeyRawP16REMRAWIMAGE_TYPEhhhh($rI,$R,$G,$B,$A) {
+ $rI = $rI|0;
+ $R = $R|0;
+ $G = $G|0;
+ $B = $B|0;
+ $A = $A|0;
+ var $0 = 0, $1 = 0, $2 = 0, $bmp = 0, $call = 0, $call2 = 0, $format = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $bmp = (($rI) + 20|0);
+ $0 = HEAP32[$bmp>>2]|0;
+ $format = (($0) + 4|0);
+ $1 = HEAP32[$format>>2]|0;
+ $call = (_SDL_MapRGB(($1|0),($R|0),($G|0),($B|0))|0);
+ $2 = HEAP32[$bmp>>2]|0;
+ $call2 = (_SDL_SetColorKey(($2|0),1,($call|0))|0);
+ STACKTOP = sp;return ($call2|0);
+}
+function __Z11setAlphaRawP16REMRAWIMAGE_TYPEh($rI,$A) {
+ $rI = $rI|0;
+ $A = $A|0;
+ var label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = sp;return 0;
 }
 function __ZN15REMRenderDeviceC2Ev($this) {
  $this = $this|0;
- var $_bRunning = 0, $_mProj2D = 0, $_mProjO = 0, $_mProjP = 0, $_mView2D = 0, $_mView3D = 0, $_mViewProj = 0, $_mWorld = 0, $_mWorldViewProj = 0, $arrayctor$cur = 0, $arrayctor$cur5 = 0, $arrayctor$done = 0, $arrayctor$done7 = 0, $arrayctor$end = 0, $arrayctor$end3 = 0, $arrayctor$next = 0, $arrayctor$next6 = 0, $this$addr = 0, $this1 = 0, label = 0;
- var sp = 0;
+ var $_bRunning = 0, $_mProj2D = 0, $_mView2D = 0, $_mView3D = 0, $_mViewProj = 0, $_mWorld = 0, $_mWorldViewProj = 0, $array$begin = 0, $array$begin2 = 0, $arrayctor$next = 0, $arrayctor$next$1 = 0, $arrayctor$next$2 = 0, $arrayctor$next6 = 0, $arrayctor$next6$1 = 0, $arrayctor$next6$2 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_mView2D = (($this1) + 104|0);
+ $_mView2D = (($this) + 104|0);
  __ZN9REMMatrixC2Ev($_mView2D);
- $_mView3D = (($this1) + 168|0);
+ $_mView3D = (($this) + 168|0);
  __ZN9REMMatrixC2Ev($_mView3D);
- $_mProj2D = (($this1) + 232|0);
+ $_mProj2D = (($this) + 232|0);
  __ZN9REMMatrixC2Ev($_mProj2D);
- $_mProjP = (($this1) + 296|0);
- $arrayctor$end = (($_mProjP) + 256|0);
- $arrayctor$cur = $_mProjP;
- while(1) {
-  __ZN9REMMatrixC2Ev($arrayctor$cur);
-  $arrayctor$next = (($arrayctor$cur) + 64|0);
-  $arrayctor$done = ($arrayctor$next|0)==($arrayctor$end|0);
-  if ($arrayctor$done) {
-   break;
-  } else {
-   $arrayctor$cur = $arrayctor$next;
-  }
- }
- $_mProjO = (($this1) + 552|0);
- $arrayctor$end3 = (($_mProjO) + 256|0);
- $arrayctor$cur5 = $_mProjO;
- while(1) {
-  __ZN9REMMatrixC2Ev($arrayctor$cur5);
-  $arrayctor$next6 = (($arrayctor$cur5) + 64|0);
-  $arrayctor$done7 = ($arrayctor$next6|0)==($arrayctor$end3|0);
-  if ($arrayctor$done7) {
-   break;
-  } else {
-   $arrayctor$cur5 = $arrayctor$next6;
-  }
- }
- $_mWorld = (($this1) + 808|0);
+ $array$begin = (($this) + 296|0);
+ __ZN9REMMatrixC2Ev($array$begin);
+ $arrayctor$next = (($this) + 360|0);
+ __ZN9REMMatrixC2Ev($arrayctor$next);
+ $arrayctor$next$1 = (($this) + 424|0);
+ __ZN9REMMatrixC2Ev($arrayctor$next$1);
+ $arrayctor$next$2 = (($this) + 488|0);
+ __ZN9REMMatrixC2Ev($arrayctor$next$2);
+ $array$begin2 = (($this) + 552|0);
+ __ZN9REMMatrixC2Ev($array$begin2);
+ $arrayctor$next6 = (($this) + 616|0);
+ __ZN9REMMatrixC2Ev($arrayctor$next6);
+ $arrayctor$next6$1 = (($this) + 680|0);
+ __ZN9REMMatrixC2Ev($arrayctor$next6$1);
+ $arrayctor$next6$2 = (($this) + 744|0);
+ __ZN9REMMatrixC2Ev($arrayctor$next6$2);
+ $_mWorld = (($this) + 808|0);
  __ZN9REMMatrixC2Ev($_mWorld);
- $_mViewProj = (($this1) + 872|0);
+ $_mViewProj = (($this) + 872|0);
  __ZN9REMMatrixC2Ev($_mViewProj);
- $_mWorldViewProj = (($this1) + 936|0);
+ $_mWorldViewProj = (($this) + 936|0);
  __ZN9REMMatrixC2Ev($_mWorldViewProj);
- $_bRunning = (($this1) + 36|0);
+ $_bRunning = (($this) + 36|0);
  HEAP8[$_bRunning>>0] = 1;
  STACKTOP = sp;return;
 }
 function __ZN15REMRenderDevice15getActiveSkinIDEv($this) {
  $this = $this|0;
- var $0 = 0, $_nActiveSkin = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, $_nActiveSkin = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_nActiveSkin = (($this1) + 32|0);
+ $_nActiveSkin = (($this) + 32|0);
  $0 = HEAP32[$_nActiveSkin>>2]|0;
  STACKTOP = sp;return ($0|0);
 }
 function __ZN15REMRenderDevice15setActiveSkinIDEj($this,$skinID) {
  $this = $this|0;
  $skinID = $skinID|0;
- var $0 = 0, $_nActiveSkin = 0, $skinID$addr = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $_nActiveSkin = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $skinID$addr = $skinID;
- $this1 = $this$addr;
- $0 = $skinID$addr;
- $_nActiveSkin = (($this1) + 32|0);
- HEAP32[$_nActiveSkin>>2] = $0;
+ $_nActiveSkin = (($this) + 32|0);
+ HEAP32[$_nActiveSkin>>2] = $skinID;
  STACKTOP = sp;return;
 }
 function __ZN15REMRenderDevice14getSkinManagerEv($this) {
  $this = $this|0;
- var $0 = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $0 = HEAP32[$this1>>2]|0;
+ $0 = HEAP32[$this>>2]|0;
  STACKTOP = sp;return ($0|0);
 }
 function __ZN15REMRenderDevice16getShaderManagerEv($this) {
  $this = $this|0;
- var $0 = 0, $_pShaderMan = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, $_pShaderMan = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_pShaderMan = (($this1) + 4|0);
+ $_pShaderMan = (($this) + 4|0);
  $0 = HEAP32[$_pShaderMan>>2]|0;
  STACKTOP = sp;return ($0|0);
 }
 function __ZN15REMRenderDevice16getVertexManagerEv($this) {
  $this = $this|0;
- var $0 = 0, $_pVertexMan = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, $_pVertexMan = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_pVertexMan = (($this1) + 8|0);
+ $_pVertexMan = (($this) + 8|0);
  $0 = HEAP32[$_pVertexMan>>2]|0;
  STACKTOP = sp;return ($0|0);
 }
 function __ZN15REMRenderDevice11oneTimeInitEv($this) {
  $this = $this|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_clrWire = 0, $_clrWire10 = 0, $_clrWire8 = 0, $_clrWire9 = 0;
- var $_mView3D = 0, $_mode = 0, $_nStage = 0, $_pShaderMan = 0, $_pShaderMan11 = 0, $_pShaderMan13 = 0, $_pShaderMan15 = 0, $_pShaderMan17 = 0, $_pVertexMan = 0, $call = 0, $call2 = 0, $call5 = 0, $ehselector$slot = 0, $exn = 0, $exn$slot = 0, $fA = 0, $fB = 0, $fG = 0, $sel = 0, $this$addr = 0;
- var $this1 = 0, $vpView = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $3 = 0, $4 = 0;
+ var $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_mView3D = 0, $_mWorld2$i = 0, $_mode = 0, $_nActiveSkin$i = 0, $_nStage = 0, $_pShaderMan = 0, $_pVertexMan = 0, $_shadeMode$i = 0, $cMat = 0, $call = 0, $call2 = 0, $call24 = 0, $call25 = 0, $call27 = 0, $call28 = 0;
+ var $call32 = 0, $call33 = 0, $call37 = 0, $call38 = 0, $call42 = 0, $call43 = 0, $call5 = 0, $cmp$i = 0, $ehselector$slot$0 = 0, $exn$slot$0 = 0, $fA = 0, $fA22 = 0, $fB = 0, $fB21 = 0, $fG = 0, $fG20 = 0, $fR = 0, $vpView = 0, label = 0, sp = 0;
  sp = STACKTOP;
  STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vpView = sp;
- $this$addr = $this;
- $this1 = $this$addr;
+ $vpView = sp + 16|0;
+ $cMat = sp;
  $call = (__Znwj(24)|0);
  __THREW__ = 0;
  invoke_vi(19,($call|0));
  $0 = __THREW__; __THREW__ = 0;
  $1 = $0&1;
  if ($1) {
-  $10 = ___cxa_find_matching_catch()|0;
-  $11 = tempRet0;
-  $exn$slot = $10;
-  $ehselector$slot = $11;
+  $19 = ___cxa_find_matching_catch()|0;
+  $20 = tempRet0;
   __ZdlPv($call);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  $ehselector$slot$0 = $20;$exn$slot$0 = $19;
+  ___resumeException($exn$slot$0|0);
   // unreachable;
  }
- HEAP32[$this1>>2] = $call;
- $call2 = (__Znwj(1310720)|0);
+ HEAP32[$this>>2] = $call;
+ $call2 = (__Znwj(786440)|0);
  __THREW__ = 0;
- invoke_vii(20,($call2|0),($this1|0));
+ invoke_vii(20,($call2|0),($this|0));
  $2 = __THREW__; __THREW__ = 0;
  $3 = $2&1;
  if ($3) {
-  $12 = ___cxa_find_matching_catch()|0;
-  $13 = tempRet0;
-  $exn$slot = $12;
-  $ehselector$slot = $13;
+  $21 = ___cxa_find_matching_catch()|0;
+  $22 = tempRet0;
   __ZdlPv($call2);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  $ehselector$slot$0 = $22;$exn$slot$0 = $21;
+  ___resumeException($exn$slot$0|0);
   // unreachable;
  }
- $_pShaderMan = (($this1) + 4|0);
+ $_pShaderMan = (($this) + 4|0);
  HEAP32[$_pShaderMan>>2] = $call2;
  $call5 = (__Znwj(420)|0);
  __THREW__ = 0;
- invoke_viiii(21,($call5|0),($this1|0),300,450);
+ invoke_viiii(21,($call5|0),($this|0),300,450);
  $4 = __THREW__; __THREW__ = 0;
  $5 = $4&1;
- if (!($5)) {
-  $_pVertexMan = (($this1) + 8|0);
-  HEAP32[$_pVertexMan>>2] = $call5;
-  __ZN15REMRenderDevice18setBackfaceCullingE19REMRENDERSTATE_TYPE($this1,2);
-  _glEnable(2929);
-  _glClear(16640);
-  ;HEAP32[$vpView+0>>2]=HEAP32[152+0>>2]|0;HEAP32[$vpView+4>>2]=HEAP32[152+4>>2]|0;HEAP32[$vpView+8>>2]=HEAP32[152+8>>2]|0;HEAP32[$vpView+12>>2]=HEAP32[152+12>>2]|0;
-  $_mode = (($this1) + 24|0);
-  HEAP32[$_mode>>2] = 0;
-  $_nStage = (($this1) + 28|0);
-  HEAP32[$_nStage>>2] = -1;
-  __ZN15REMRenderDevice15setActiveSkinIDEj($this1,65535);
-  $_clrWire = (($this1) + 1000|0);
-  HEAPF32[$_clrWire>>2] = 1.0;
-  $_clrWire8 = (($this1) + 1000|0);
-  $fG = (($_clrWire8) + 4|0);
-  HEAPF32[$fG>>2] = 1.0;
-  $_clrWire9 = (($this1) + 1000|0);
-  $fB = (($_clrWire9) + 8|0);
-  HEAPF32[$fB>>2] = 1.0;
-  $_clrWire10 = (($this1) + 1000|0);
-  $fA = (($_clrWire10) + 12|0);
-  HEAPF32[$fA>>2] = 1.0;
-  __ZN15REMRenderDevice12setShadeModeE19REMRENDERSTATE_TYPEfPK14REMCOLOUR_TYPE($this1,9,0.0,0);
-  __ZN15REMRenderDevice18setDepthBufferModeE19REMRENDERSTATE_TYPE($this1,3);
-  $_mView3D = (($this1) + 168|0);
-  __ZN9REMMatrix8identityEv($_mView3D);
-  __ZN15REMRenderDevice17setClippingPlanesEff($this1,0.100000001490116119385,1000.0);
-  __ZN15REMRenderDevice17setWorldTransformEPK9REMMatrix($this1,0);
-  $_pShaderMan11 = (($this1) + 4|0);
-  $6 = HEAP32[$_pShaderMan11>>2]|0;
-  (__ZN16REMShaderManager13createVShaderEPKcb14REMVERTEX_TYPEPj($6,168,1,1,0)|0);
-  $_pShaderMan13 = (($this1) + 4|0);
-  $7 = HEAP32[$_pShaderMan13>>2]|0;
-  (__ZN16REMShaderManager13createFShaderEPKcbPj($7,192,1,0)|0);
-  $_pShaderMan15 = (($this1) + 4|0);
-  $8 = HEAP32[$_pShaderMan15>>2]|0;
-  (__ZN16REMShaderManager13createProgramEjjPj($8,0,0,0)|0);
-  $_pShaderMan17 = (($this1) + 4|0);
-  $9 = HEAP32[$_pShaderMan17>>2]|0;
-  (__ZN16REMShaderManager15activateProgramEj($9,0)|0);
-  (__ZN15REMRenderDevice9initStageEfP16REMVIEWPORT_TYPEi($this1,0.800000011920928955078,$vpView,0)|0);
-  (__ZN15REMRenderDevice7setModeE18REMENGINEMODE_TYPEi($this1,0,0)|0);
-  STACKTOP = sp;return 0;
+ if ($5) {
+  $23 = ___cxa_find_matching_catch()|0;
+  $24 = tempRet0;
+  __ZdlPv($call5);
+  $ehselector$slot$0 = $24;$exn$slot$0 = $23;
+  ___resumeException($exn$slot$0|0);
+  // unreachable;
  }
- $14 = ___cxa_find_matching_catch()|0;
- $15 = tempRet0;
- $exn$slot = $14;
- $ehselector$slot = $15;
- __ZdlPv($call5);
- $exn = $exn$slot;
- $sel = $ehselector$slot;
- ___resumeException($exn|0);
- // unreachable;
- return 0|0;
-}
-function __ZN15REMRenderDevice18setBackfaceCullingE19REMRENDERSTATE_TYPE($this,$rs) {
- $this = $this|0;
- $rs = $rs|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_pVertexMan = 0, $cmp = 0, $cmp2 = 0, $cmp5 = 0, $rs$addr = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $rs$addr = $rs;
- $this1 = $this$addr;
- $_pVertexMan = (($this1) + 8|0);
- $0 = HEAP32[$_pVertexMan>>2]|0;
- (__ZN21REMVertexCacheManager14forcedFlushAllEv($0)|0);
- $1 = $rs$addr;
- $cmp = ($1|0)==(0);
- if ($cmp) {
-  _glEnable(2884);
-  _glCullFace(1029);
-  STACKTOP = sp;return;
+ $_pVertexMan = (($this) + 8|0);
+ HEAP32[$_pVertexMan>>2] = $call5;
+ (__ZN21REMVertexCacheManager14forcedFlushAllEv($call5)|0);
+ _glDisable(2884);
+ _glEnable(2929);
+ _glClear(16640);
+ ;HEAP32[$vpView+0>>2]=HEAP32[400+0>>2]|0;HEAP32[$vpView+4>>2]=HEAP32[400+4>>2]|0;HEAP32[$vpView+8>>2]=HEAP32[400+8>>2]|0;HEAP32[$vpView+12>>2]=HEAP32[400+12>>2]|0;
+ $_mode = (($this) + 24|0);
+ HEAP32[$_mode>>2] = 0;
+ $_nStage = (($this) + 28|0);
+ HEAP32[$_nStage>>2] = -1;
+ $_nActiveSkin$i = (($this) + 32|0);
+ HEAP32[$_nActiveSkin$i>>2] = 65535;
+ $fR = (($this) + 1000|0);
+ HEAPF32[$fR>>2] = 1.0;
+ $fG = (($this) + 1004|0);
+ HEAPF32[$fG>>2] = 1.0;
+ $fB = (($this) + 1008|0);
+ HEAPF32[$fB>>2] = 1.0;
+ $fA = (($this) + 1012|0);
+ HEAPF32[$fA>>2] = 1.0;
+ $6 = HEAP32[$_pVertexMan>>2]|0;
+ (__ZN21REMVertexCacheManager14forcedFlushAllEv($6)|0);
+ $_shadeMode$i = (($this) + 12|0);
+ $7 = HEAP32[$_shadeMode$i>>2]|0;
+ $cmp$i = ($7|0)==(9);
+ if (!($cmp$i)) {
+  HEAP32[$_shadeMode$i>>2] = 9;
  }
- $2 = $rs$addr;
- $cmp2 = ($2|0)==(1);
- if ($cmp2) {
-  _glEnable(2884);
-  _glCullFace(1028);
- } else {
-  $3 = $rs$addr;
-  $cmp5 = ($3|0)==(2);
-  if ($cmp5) {
-   _glDisable(2884);
-  }
- }
- STACKTOP = sp;return;
-}
-function __ZN15REMRenderDevice12setShadeModeE19REMRENDERSTATE_TYPEfPK14REMCOLOUR_TYPE($this,$smd,$f,$pClr) {
- $this = $this|0;
- $smd = $smd|0;
- $f = +$f;
- $pClr = $pClr|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $_clrWire = 0, $_pVertexMan = 0, $_shadeMode = 0, $_shadeMode3 = 0, $cmp = 0, $f$addr = 0.0, $pClr$addr = 0, $smd$addr = 0, $this$addr = 0, $this1 = 0, $tobool = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $smd$addr = $smd;
- $f$addr = $f;
- $pClr$addr = $pClr;
- $this1 = $this$addr;
- $_pVertexMan = (($this1) + 8|0);
- $0 = HEAP32[$_pVertexMan>>2]|0;
- (__ZN21REMVertexCacheManager14forcedFlushAllEv($0)|0);
- $1 = $pClr$addr;
- $tobool = ($1|0)!=(0|0);
- if ($tobool) {
-  $_clrWire = (($this1) + 1000|0);
-  $2 = $pClr$addr;
-  ;HEAP32[$_clrWire+0>>2]=HEAP32[$2+0>>2]|0;HEAP32[$_clrWire+4>>2]=HEAP32[$2+4>>2]|0;HEAP32[$_clrWire+8>>2]=HEAP32[$2+8>>2]|0;HEAP32[$_clrWire+12>>2]=HEAP32[$2+12>>2]|0;
- }
- $3 = $smd$addr;
- $_shadeMode = (($this1) + 12|0);
- $4 = HEAP32[$_shadeMode>>2]|0;
- $cmp = ($3|0)!=($4|0);
- if (!($cmp)) {
-  STACKTOP = sp;return;
- }
- $5 = $smd$addr;
- $_shadeMode3 = (($this1) + 12|0);
- HEAP32[$_shadeMode3>>2] = $5;
- STACKTOP = sp;return;
-}
-function __ZN15REMRenderDevice18setDepthBufferModeE19REMRENDERSTATE_TYPE($this,$rs) {
- $this = $this|0;
- $rs = $rs|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_pVertexMan = 0, $cmp = 0, $cmp2 = 0, $cmp5 = 0, $rs$addr = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $rs$addr = $rs;
- $this1 = $this$addr;
- $_pVertexMan = (($this1) + 8|0);
- $0 = HEAP32[$_pVertexMan>>2]|0;
- (__ZN21REMVertexCacheManager14forcedFlushAllEv($0)|0);
- $1 = $rs$addr;
- $cmp = ($1|0)==(3);
- if ($cmp) {
-  _glEnable(2929);
-  _glDepthMask(1);
-  _glClear(256);
-  STACKTOP = sp;return;
- }
- $2 = $rs$addr;
- $cmp2 = ($2|0)==(4);
- if ($cmp2) {
-  _glEnable(2929);
-  _glClear(256);
-  _glDepthMask(0);
- } else {
-  $3 = $rs$addr;
-  $cmp5 = ($3|0)==(5);
-  if ($cmp5) {
-   _glDisable(2929);
-   _glDepthMask(1);
-   _glClear(256);
-  }
- }
- STACKTOP = sp;return;
+ $8 = HEAP32[$_pVertexMan>>2]|0;
+ (__ZN21REMVertexCacheManager14forcedFlushAllEv($8)|0);
+ _glEnable(2929);
+ _glDepthMask(1);
+ _glClear(256);
+ $_mView3D = (($this) + 168|0);
+ __ZN9REMMatrix8identityEv($_mView3D);
+ __ZN15REMRenderDevice17setClippingPlanesEff($this,0.100000001490116119385,1000.0);
+ $9 = HEAP32[$_pVertexMan>>2]|0;
+ (__ZN21REMVertexCacheManager14forcedFlushAllEv($9)|0);
+ $_mWorld2$i = (($this) + 808|0);
+ __ZN9REMMatrix8identityEv($_mWorld2$i);
+ __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this);
+ $10 = HEAP32[$_pShaderMan>>2]|0;
+ (__ZN16REMShaderManager13createVShaderEPKcbPj($10,248,1,0)|0);
+ $11 = HEAP32[$_pShaderMan>>2]|0;
+ (__ZN16REMShaderManager13createFShaderEPKcbPj($11,272,1,0)|0);
+ $12 = HEAP32[$_pShaderMan>>2]|0;
+ (__ZN16REMShaderManager13createProgramEjjPj($12,0,0,0)|0);
+ $13 = HEAP32[$_pShaderMan>>2]|0;
+ (__ZN16REMShaderManager15activateProgramEj($13,0)|0);
+ HEAPF32[$cMat>>2] = 1.0;
+ $fG20 = (($cMat) + 4|0);
+ HEAPF32[$fG20>>2] = 1.0;
+ $fB21 = (($cMat) + 8|0);
+ HEAPF32[$fB21>>2] = 1.0;
+ $fA22 = (($cMat) + 12|0);
+ HEAPF32[$fA22>>2] = 1.0;
+ $14 = HEAP32[$_pShaderMan>>2]|0;
+ $call24 = (__ZN16REMShaderManager16getActiveProgramEv($14)|0);
+ $call25 = (_glGetUniformLocation(($call24|0),(296|0))|0);
+ _glUniform4fv(($call25|0),1,($cMat|0));
+ $15 = HEAP32[$_pShaderMan>>2]|0;
+ $call27 = (__ZN16REMShaderManager16getActiveProgramEv($15)|0);
+ $call28 = (_glGetUniformLocation(($call27|0),(312|0))|0);
+ _glUniform4fv(($call28|0),1,($cMat|0));
+ $16 = HEAP32[$_pShaderMan>>2]|0;
+ $call32 = (__ZN16REMShaderManager16getActiveProgramEv($16)|0);
+ $call33 = (_glGetUniformLocation(($call32|0),(328|0))|0);
+ _glUniform4fv(($call33|0),1,($cMat|0));
+ $17 = HEAP32[$_pShaderMan>>2]|0;
+ $call37 = (__ZN16REMShaderManager16getActiveProgramEv($17)|0);
+ $call38 = (_glGetUniformLocation(($call37|0),(344|0))|0);
+ _glUniform4fv(($call38|0),1,($cMat|0));
+ $18 = HEAP32[$_pShaderMan>>2]|0;
+ $call42 = (__ZN16REMShaderManager16getActiveProgramEv($18)|0);
+ $call43 = (_glGetUniformLocation(($call42|0),(360|0))|0);
+ _glUniform1f(($call43|0),1.0);
+ (__ZN15REMRenderDevice9initStageEfP16REMVIEWPORT_TYPEi($this,0.899999976158142089843,$vpView,0)|0);
+ (__ZN15REMRenderDevice7setModeE18REMENGINEMODE_TYPEi($this,0,0)|0);
+ STACKTOP = sp;return 0;
 }
 function __ZN15REMRenderDevice17setClippingPlanesEff($this,$fNear,$fFar) {
  $this = $this|0;
  $fNear = +$fNear;
  $fFar = +$fFar;
- var $0 = 0.0, $1 = 0.0, $10 = 0.0, $11 = 0.0, $12 = 0.0, $13 = 0.0, $14 = 0.0, $15 = 0.0, $16 = 0.0, $17 = 0.0, $18 = 0.0, $19 = 0.0, $2 = 0.0, $20 = 0.0, $21 = 0.0, $22 = 0.0, $23 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0;
- var $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $Q = 0.0, $X = 0.0, $_fFar = 0, $_fFar10 = 0, $_fFar13 = 0, $_fFar16 = 0, $_fFar18 = 0, $_fFar4 = 0, $_fFar59 = 0, $_fFar7 = 0, $_fNear = 0, $_fNear14 = 0, $_fNear15 = 0, $_fNear19 = 0, $_fNear2 = 0, $_fNear21 = 0;
- var $_fNear3 = 0, $_fNear62 = 0, $_fNear9 = 0, $_mProjO = 0, $_mProjO24 = 0, $_mProjO29 = 0, $_mProjO34 = 0, $_mProjO39 = 0, $_mProjO44 = 0, $_mProjO49 = 0, $_mProjO54 = 0, $_mProjP = 0, $_mProjP68 = 0, $_mProjP73 = 0, $_mProjP78 = 0, $_mProjP83 = 0, $_mProjP88 = 0, $_mProjP93 = 0, $_mProjP98 = 0, $add = 0.0;
- var $arrayidx = 0, $arrayidx101 = 0, $arrayidx102 = 0, $arrayidx22 = 0, $arrayidx23 = 0, $arrayidx27 = 0, $arrayidx28 = 0, $arrayidx30 = 0, $arrayidx32 = 0, $arrayidx33 = 0, $arrayidx35 = 0, $arrayidx37 = 0, $arrayidx38 = 0, $arrayidx40 = 0, $arrayidx42 = 0, $arrayidx43 = 0, $arrayidx47 = 0, $arrayidx48 = 0, $arrayidx50 = 0, $arrayidx52 = 0;
- var $arrayidx53 = 0, $arrayidx55 = 0, $arrayidx57 = 0, $arrayidx58 = 0, $arrayidx64 = 0, $arrayidx66 = 0, $arrayidx67 = 0, $arrayidx71 = 0, $arrayidx72 = 0, $arrayidx74 = 0, $arrayidx76 = 0, $arrayidx77 = 0, $arrayidx79 = 0, $arrayidx81 = 0, $arrayidx82 = 0, $arrayidx84 = 0, $arrayidx86 = 0, $arrayidx87 = 0, $arrayidx91 = 0, $arrayidx92 = 0;
- var $arrayidx94 = 0, $arrayidx96 = 0, $arrayidx97 = 0, $arrayidx99 = 0, $cmp = 0, $cmp11 = 0, $cmp5 = 0, $div = 0.0, $fFar$addr = 0.0, $fNear$addr = 0.0, $mul = 0.0, $mul60 = 0.0, $mul63 = 0.0, $sub = 0.0, $sub20 = 0.0, $sub61 = 0.0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $_22$i = 0, $_2215$i = 0, $_33 = 0, $_33$i = 0, $_3324 = 0, $_3327 = 0, $_3330 = 0, $_3348 = 0, $_3351 = 0, $_3354 = 0, $_3357 = 0, $_41$i = 0, $_42$i = 0, $_43 = 0;
+ var $_43$i = 0, $_4319$i = 0, $_4335 = 0, $_4338 = 0, $_4341 = 0, $_4360 = 0, $_4363 = 0, $_4366 = 0, $_4369 = 0, $_44$i = 0, $_fFar = 0, $_fNear = 0, $_mProj2D$i = 0, $_mView2D$i = 0, $add = 0.0, $add$i = 0.0, $cmp = 0, $cmp11 = 0, $cmp5 = 0, $div$i = 0.0;
+ var $mul$i = 0.0, $mul43 = 0.0, $mul46 = 0.0, $sub$i = 0.0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $fNear$addr = $fNear;
- $fFar$addr = $fFar;
- $this1 = $this$addr;
- $0 = $fNear$addr;
- $_fNear = (($this1) + 16|0);
- HEAPF32[$_fNear>>2] = $0;
- $1 = $fFar$addr;
- $_fFar = (($this1) + 20|0);
- HEAPF32[$_fFar>>2] = $1;
- $_fNear2 = (($this1) + 16|0);
- $2 = +HEAPF32[$_fNear2>>2];
- $cmp = $2 <= 0.0;
+ $_fNear = (($this) + 16|0);
+ HEAPF32[$_fNear>>2] = $fNear;
+ $_fFar = (($this) + 20|0);
+ HEAPF32[$_fFar>>2] = $fFar;
+ $cmp = !($fNear <= 0.0);
  if ($cmp) {
-  $_fNear3 = (($this1) + 16|0);
-  HEAPF32[$_fNear3>>2] = 0.00999999977648258209228;
- }
- $_fFar4 = (($this1) + 20|0);
- $3 = +HEAPF32[$_fFar4>>2];
- $cmp5 = $3 <= 1.0;
- if ($cmp5) {
-  $_fFar7 = (($this1) + 20|0);
-  HEAPF32[$_fFar7>>2] = 1.0;
- }
- $_fNear9 = (($this1) + 16|0);
- $4 = +HEAPF32[$_fNear9>>2];
- $_fFar10 = (($this1) + 20|0);
- $5 = +HEAPF32[$_fFar10>>2];
- $cmp11 = $4 >= $5;
- if ($cmp11) {
-  $_fFar13 = (($this1) + 20|0);
-  $6 = +HEAPF32[$_fFar13>>2];
-  $_fNear14 = (($this1) + 16|0);
-  HEAPF32[$_fNear14>>2] = $6;
-  $_fNear15 = (($this1) + 16|0);
-  $7 = +HEAPF32[$_fNear15>>2];
-  $add = $7 + 1.0;
-  $_fFar16 = (($this1) + 20|0);
-  HEAPF32[$_fFar16>>2] = $add;
- }
- __ZN15REMRenderDevice9prepare2DEv($this1);
- $_fFar18 = (($this1) + 20|0);
- $8 = +HEAPF32[$_fFar18>>2];
- $_fNear19 = (($this1) + 16|0);
- $9 = +HEAPF32[$_fNear19>>2];
- $sub = $8 - $9;
- $div = 1.0 / $sub;
- $Q = $div;
- $10 = $Q;
- $sub20 = -$10;
- $_fNear21 = (($this1) + 16|0);
- $11 = +HEAPF32[$_fNear21>>2];
- $mul = $sub20 * $11;
- $X = $mul;
- $12 = $Q;
- $_mProjO = (($this1) + 552|0);
- $arrayidx = (($_mProjO) + 64|0);
- $arrayidx22 = (($arrayidx) + 32|0);
- $arrayidx23 = (($arrayidx22) + 8|0);
- HEAPF32[$arrayidx23>>2] = $12;
- $_mProjO24 = (($this1) + 552|0);
- $arrayidx27 = (($_mProjO24) + 32|0);
- $arrayidx28 = (($arrayidx27) + 8|0);
- HEAPF32[$arrayidx28>>2] = $12;
- $13 = $Q;
- $_mProjO29 = (($this1) + 552|0);
- $arrayidx30 = (($_mProjO29) + 192|0);
- $arrayidx32 = (($arrayidx30) + 32|0);
- $arrayidx33 = (($arrayidx32) + 8|0);
- HEAPF32[$arrayidx33>>2] = $13;
- $_mProjO34 = (($this1) + 552|0);
- $arrayidx35 = (($_mProjO34) + 128|0);
- $arrayidx37 = (($arrayidx35) + 32|0);
- $arrayidx38 = (($arrayidx37) + 8|0);
- HEAPF32[$arrayidx38>>2] = $13;
- $14 = $X;
- $_mProjO39 = (($this1) + 552|0);
- $arrayidx40 = (($_mProjO39) + 64|0);
- $arrayidx42 = (($arrayidx40) + 48|0);
- $arrayidx43 = (($arrayidx42) + 8|0);
- HEAPF32[$arrayidx43>>2] = $14;
- $_mProjO44 = (($this1) + 552|0);
- $arrayidx47 = (($_mProjO44) + 48|0);
- $arrayidx48 = (($arrayidx47) + 8|0);
- HEAPF32[$arrayidx48>>2] = $14;
- $15 = $X;
- $_mProjO49 = (($this1) + 552|0);
- $arrayidx50 = (($_mProjO49) + 192|0);
- $arrayidx52 = (($arrayidx50) + 48|0);
- $arrayidx53 = (($arrayidx52) + 8|0);
- HEAPF32[$arrayidx53>>2] = $15;
- $_mProjO54 = (($this1) + 552|0);
- $arrayidx55 = (($_mProjO54) + 128|0);
- $arrayidx57 = (($arrayidx55) + 48|0);
- $arrayidx58 = (($arrayidx57) + 8|0);
- HEAPF32[$arrayidx58>>2] = $15;
- $_fFar59 = (($this1) + 20|0);
- $16 = +HEAPF32[$_fFar59>>2];
- $17 = $Q;
- $mul60 = $17 * $16;
- $Q = $mul60;
- $18 = $Q;
- $sub61 = -$18;
- $_fNear62 = (($this1) + 16|0);
- $19 = +HEAPF32[$_fNear62>>2];
- $mul63 = $sub61 * $19;
- $X = $mul63;
- $20 = $Q;
- $_mProjP = (($this1) + 296|0);
- $arrayidx64 = (($_mProjP) + 64|0);
- $arrayidx66 = (($arrayidx64) + 32|0);
- $arrayidx67 = (($arrayidx66) + 8|0);
- HEAPF32[$arrayidx67>>2] = $20;
- $_mProjP68 = (($this1) + 296|0);
- $arrayidx71 = (($_mProjP68) + 32|0);
- $arrayidx72 = (($arrayidx71) + 8|0);
- HEAPF32[$arrayidx72>>2] = $20;
- $21 = $Q;
- $_mProjP73 = (($this1) + 296|0);
- $arrayidx74 = (($_mProjP73) + 192|0);
- $arrayidx76 = (($arrayidx74) + 32|0);
- $arrayidx77 = (($arrayidx76) + 8|0);
- HEAPF32[$arrayidx77>>2] = $21;
- $_mProjP78 = (($this1) + 296|0);
- $arrayidx79 = (($_mProjP78) + 128|0);
- $arrayidx81 = (($arrayidx79) + 32|0);
- $arrayidx82 = (($arrayidx81) + 8|0);
- HEAPF32[$arrayidx82>>2] = $21;
- $22 = $X;
- $_mProjP83 = (($this1) + 296|0);
- $arrayidx84 = (($_mProjP83) + 64|0);
- $arrayidx86 = (($arrayidx84) + 48|0);
- $arrayidx87 = (($arrayidx86) + 8|0);
- HEAPF32[$arrayidx87>>2] = $22;
- $_mProjP88 = (($this1) + 296|0);
- $arrayidx91 = (($_mProjP88) + 48|0);
- $arrayidx92 = (($arrayidx91) + 8|0);
- HEAPF32[$arrayidx92>>2] = $22;
- $23 = $X;
- $_mProjP93 = (($this1) + 296|0);
- $arrayidx94 = (($_mProjP93) + 192|0);
- $arrayidx96 = (($arrayidx94) + 48|0);
- $arrayidx97 = (($arrayidx96) + 8|0);
- HEAPF32[$arrayidx97>>2] = $23;
- $_mProjP98 = (($this1) + 296|0);
- $arrayidx99 = (($_mProjP98) + 128|0);
- $arrayidx101 = (($arrayidx99) + 48|0);
- $arrayidx102 = (($arrayidx101) + 8|0);
- HEAPF32[$arrayidx102>>2] = $23;
- STACKTOP = sp;return;
-}
-function __ZN15REMRenderDevice17setWorldTransformEPK9REMMatrix($this,$mWorld) {
- $this = $this|0;
- $mWorld = $mWorld|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_mWorld = 0, $_mWorld2 = 0, $_pShaderMan = 0, $_pVertexMan = 0, $activeProg = 0, $call3 = 0, $mWorld$addr = 0, $this$addr = 0, $this1 = 0, $tobool = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $mWorld$addr = $mWorld;
- $this1 = $this$addr;
- $_pVertexMan = (($this1) + 8|0);
- $0 = HEAP32[$_pVertexMan>>2]|0;
- (__ZN21REMVertexCacheManager14forcedFlushAllEv($0)|0);
- $1 = $mWorld$addr;
- $tobool = ($1|0)!=(0|0);
- if ($tobool) {
-  $_mWorld2 = (($this1) + 808|0);
-  $2 = $mWorld$addr;
-  dest=$_mWorld2+0|0; src=$2+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+  $0 = $fNear;
  } else {
-  $_mWorld = (($this1) + 808|0);
-  __ZN9REMMatrix8identityEv($_mWorld);
+  HEAPF32[$_fNear>>2] = 0.00999999977648258209228;
+  $0 = 0.00999999977648258209228;
  }
- __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this1);
- $_pShaderMan = (($this1) + 4|0);
- $3 = HEAP32[$_pShaderMan>>2]|0;
- $call3 = (__ZN16REMShaderManager16getActiveProgramEv($3)|0);
- $activeProg = $call3;
+ $cmp5 = !($fFar <= 1.0);
+ if ($cmp5) {
+  $1 = $fFar;
+ } else {
+  HEAPF32[$_fFar>>2] = 1.0;
+  $1 = 1.0;
+ }
+ $cmp11 = !($0 >= $1);
+ if (!($cmp11)) {
+  HEAPF32[$_fNear>>2] = $1;
+  $add = $1 + 1.0;
+  HEAPF32[$_fFar>>2] = $add;
+ }
+ $_mProj2D$i = (($this) + 232|0);
+ __ZN9REMMatrix8identityEv($_mProj2D$i);
+ $_mView2D$i = (($this) + 104|0);
+ __ZN9REMMatrix8identityEv($_mView2D$i);
+ HEAPF32[$_mProj2D$i>>2] = 0.00312500004656612873077;
+ $_22$i = (($this) + 252|0);
+ HEAPF32[$_22$i>>2] = 0.00555555569007992744446;
+ $2 = +HEAPF32[$_fFar>>2];
+ $3 = +HEAPF32[$_fNear>>2];
+ $sub$i = $2 - $3;
+ $div$i = 1.0 / $sub$i;
+ $_33$i = (($this) + 272|0);
+ HEAPF32[$_33$i>>2] = $div$i;
+ $4 = $3 * $div$i;
+ $mul$i = -$4;
+ $_43$i = (($this) + 288|0);
+ HEAPF32[$_43$i>>2] = $mul$i;
+ $_44$i = (($this) + 292|0);
+ HEAPF32[$_44$i>>2] = 1.0;
+ $add$i = $3 + 0.100000001490116119385;
+ $_2215$i = (($this) + 124|0);
+ HEAPF32[$_2215$i>>2] = -1.0;
+ $_41$i = (($this) + 152|0);
+ HEAPF32[$_41$i>>2] = -320.0;
+ $_42$i = (($this) + 156|0);
+ HEAPF32[$_42$i>>2] = 180.0;
+ $_4319$i = (($this) + 160|0);
+ HEAPF32[$_4319$i>>2] = $add$i;
+ $_33 = (($this) + 656|0);
+ HEAPF32[$_33>>2] = $div$i;
+ $_3324 = (($this) + 592|0);
+ HEAPF32[$_3324>>2] = $div$i;
+ $_3327 = (($this) + 784|0);
+ HEAPF32[$_3327>>2] = $div$i;
+ $_3330 = (($this) + 720|0);
+ HEAPF32[$_3330>>2] = $div$i;
+ $_43 = (($this) + 672|0);
+ HEAPF32[$_43>>2] = $mul$i;
+ $_4335 = (($this) + 608|0);
+ HEAPF32[$_4335>>2] = $mul$i;
+ $_4338 = (($this) + 800|0);
+ HEAPF32[$_4338>>2] = $mul$i;
+ $_4341 = (($this) + 736|0);
+ HEAPF32[$_4341>>2] = $mul$i;
+ $mul43 = $div$i * $2;
+ $5 = $mul43 * $3;
+ $mul46 = -$5;
+ $_3348 = (($this) + 400|0);
+ HEAPF32[$_3348>>2] = $mul43;
+ $_3351 = (($this) + 336|0);
+ HEAPF32[$_3351>>2] = $mul43;
+ $_3354 = (($this) + 528|0);
+ HEAPF32[$_3354>>2] = $mul43;
+ $_3357 = (($this) + 464|0);
+ HEAPF32[$_3357>>2] = $mul43;
+ $_4360 = (($this) + 416|0);
+ HEAPF32[$_4360>>2] = $mul46;
+ $_4363 = (($this) + 352|0);
+ HEAPF32[$_4363>>2] = $mul46;
+ $_4366 = (($this) + 544|0);
+ HEAPF32[$_4366>>2] = $mul46;
+ $_4369 = (($this) + 480|0);
+ HEAPF32[$_4369>>2] = $mul46;
  STACKTOP = sp;return;
 }
 function __ZN15REMRenderDevice9initStageEfP16REMVIEWPORT_TYPEi($this,$fFOV,$pView,$nStage) {
@@ -9813,241 +10515,159 @@ function __ZN15REMRenderDevice9initStageEfP16REMVIEWPORT_TYPEi($this,$fFOV,$pVie
  $fFOV = +$fFOV;
  $pView = $pView|0;
  $nStage = $nStage|0;
- var $0 = 0, $1 = 0, $10 = 0.0, $11 = 0.0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0.0, $21 = 0.0, $22 = 0, $23 = 0.0, $24 = 0, $25 = 0.0, $26 = 0;
- var $27 = 0, $28 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_VP = 0, $_VP17 = 0, $_VP2 = 0, $_VP26 = 0, $_VP7 = 0, $_VP9 = 0, $_fFar = 0, $_fNear = 0, $_fNear42 = 0, $_mProjO = 0, $_mProjO22 = 0;
- var $_mProjO31 = 0, $_mProjO37 = 0, $_mProjO43 = 0, $_mProjO49 = 0, $_mProjO54 = 0, $_mProjP = 0, $arrayidx = 0, $arrayidx10 = 0, $arrayidx12 = 0, $arrayidx16 = 0, $arrayidx18 = 0, $arrayidx23 = 0, $arrayidx27 = 0, $arrayidx3 = 0, $arrayidx32 = 0, $arrayidx34 = 0, $arrayidx35 = 0, $arrayidx38 = 0, $arrayidx40 = 0, $arrayidx41 = 0;
- var $arrayidx44 = 0, $arrayidx46 = 0, $arrayidx47 = 0, $arrayidx50 = 0, $arrayidx52 = 0, $arrayidx53 = 0, $arrayidx55 = 0, $arrayidx57 = 0, $arrayidx58 = 0, $arrayidx8 = 0, $bOwnRect = 0, $call = 0, $cmp = 0, $cmp13 = 0, $cmp4 = 0, $conv = 0.0, $conv11 = 0.0, $conv20 = 0.0, $conv29 = 0.0, $div = 0.0;
- var $div21 = 0.0, $div30 = 0.0, $div36 = 0.0, $fAspect = 0.0, $fFOV$addr = 0.0, $height = 0, $height28 = 0, $mul = 0.0, $nStage$addr = 0, $pView$addr = 0, $retval = 0, $sub = 0.0, $sub48 = 0.0, $this$addr = 0, $this1 = 0, $tobool = 0, $vpOwn = 0, $width = 0, $width19 = 0, label = 0;
- var sp = 0;
+ var $$nStage = 0, $0 = 0, $1 = 0, $10 = 0.0, $11 = 0.0, $2 = 0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0, $8 = 0, $9 = 0.0, $_22 = 0, $_22$i = 0, $_33 = 0, $_33$i = 0, $_34$i = 0, $_43 = 0, $_43$i = 0;
+ var $_44 = 0, $_44$i = 0, $_fFar$i = 0, $_fNear$i = 0, $arrayidx = 0, $arrayidx12 = 0, $arrayidx13 = 0, $call2$i = 0.0, $call9$i = 0.0, $cmp$i = 0, $cmp5$i = 0, $conv = 0.0, $conv11 = 0.0, $conv17 = 0.0, $conv24 = 0.0, $div = 0.0, $div$i = 0.0, $div10$i = 0.0, $div17$i = 0.0, $div18 = 0.0;
+ var $div25 = 0.0, $div28 = 0.0, $fabsf$i = 0.0, $fabsf12$i = 0.0, $height = 0, $mul = 0.0, $mul$i = 0.0, $mul20$i = 0.0, $sub = 0.0, $sub$i = 0.0, $sub35 = 0.0, $tobool = 0, $width = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vpOwn = sp + 24|0;
- $this$addr = $this;
- $fFOV$addr = $fFOV;
- $pView$addr = $pView;
- $nStage$addr = $nStage;
- $this1 = $this$addr;
- $bOwnRect = 0;
- $0 = $pView$addr;
- $tobool = ($0|0)!=(0|0);
+ $tobool = ($pView|0)==(0|0);
+ $arrayidx = ((($this) + ($nStage<<4)|0) + 40|0);
  if ($tobool) {
-  $2 = $nStage$addr;
-  $_VP2 = (($this1) + 40|0);
-  $arrayidx3 = (($_VP2) + ($2<<4)|0);
-  $3 = $pView$addr;
-  ;HEAP32[$arrayidx3+0>>2]=HEAP32[$3+0>>2]|0;HEAP32[$arrayidx3+4>>2]=HEAP32[$3+4>>2]|0;HEAP32[$arrayidx3+8>>2]=HEAP32[$3+8>>2]|0;HEAP32[$arrayidx3+12>>2]=HEAP32[$3+12>>2]|0;
+  ;HEAP32[$arrayidx+0>>2]=HEAP32[400+0>>2]|0;HEAP32[$arrayidx+4>>2]=HEAP32[400+4>>2]|0;HEAP32[$arrayidx+8>>2]=HEAP32[400+8>>2]|0;HEAP32[$arrayidx+12>>2]=HEAP32[400+12>>2]|0;
  } else {
-  ;HEAP32[$vpOwn+0>>2]=HEAP32[240+0>>2]|0;HEAP32[$vpOwn+4>>2]=HEAP32[240+4>>2]|0;HEAP32[$vpOwn+8>>2]=HEAP32[240+8>>2]|0;HEAP32[$vpOwn+12>>2]=HEAP32[240+12>>2]|0;
-  $1 = $nStage$addr;
-  $_VP = (($this1) + 40|0);
-  $arrayidx = (($_VP) + ($1<<4)|0);
-  ;HEAP32[$arrayidx+0>>2]=HEAP32[$vpOwn+0>>2]|0;HEAP32[$arrayidx+4>>2]=HEAP32[$vpOwn+4>>2]|0;HEAP32[$arrayidx+8>>2]=HEAP32[$vpOwn+8>>2]|0;HEAP32[$arrayidx+12>>2]=HEAP32[$vpOwn+12>>2]|0;
+  ;HEAP32[$arrayidx+0>>2]=HEAP32[$pView+0>>2]|0;HEAP32[$arrayidx+4>>2]=HEAP32[$pView+4>>2]|0;HEAP32[$arrayidx+8>>2]=HEAP32[$pView+8>>2]|0;HEAP32[$arrayidx+12>>2]=HEAP32[$pView+12>>2]|0;
  }
- $4 = $nStage$addr;
- $cmp = ($4|0)>(3);
- if ($cmp) {
-  label = 6;
- } else {
-  $5 = $nStage$addr;
-  $cmp4 = ($5|0)<(0);
-  if ($cmp4) {
-   label = 6;
+ $0 = ($nStage>>>0)>(3);
+ $$nStage = $0 ? 0 : $nStage;
+ $height = ((($this) + ($$nStage<<4)|0) + 52|0);
+ $1 = HEAP32[$height>>2]|0;
+ $conv = (+($1>>>0));
+ $width = ((($this) + ($$nStage<<4)|0) + 48|0);
+ $2 = HEAP32[$width>>2]|0;
+ $conv11 = (+($2>>>0));
+ $div = $conv / $conv11;
+ $arrayidx12 = ((($this) + ($$nStage<<6)|0) + 296|0);
+ $_fFar$i = (($this) + 20|0);
+ $3 = +HEAPF32[$_fFar$i>>2];
+ $_fNear$i = (($this) + 16|0);
+ $4 = +HEAPF32[$_fNear$i>>2];
+ $sub$i = $3 - $4;
+ $fabsf$i = (+Math_abs((+$sub$i)));
+ $cmp$i = $fabsf$i < 0.00999999977648258209228;
+ if (!($cmp$i)) {
+  $div$i = $fFOV * 0.5;
+  $call2$i = (+Math_sin((+$div$i)));
+  $fabsf12$i = (+Math_abs((+$call2$i)));
+  $cmp5$i = $fabsf12$i < 0.00999999977648258209228;
+  if (!($cmp5$i)) {
+   $call9$i = (+Math_cos((+$div$i)));
+   $div10$i = $call9$i / $call2$i;
+   $mul$i = $div * $div10$i;
+   $div17$i = $3 / $sub$i;
+   __ZN9REMMatrix8identityEv($arrayidx12);
+   HEAPF32[$arrayidx12>>2] = $mul$i;
+   $_22$i = ((($this) + ($$nStage<<6)|0) + 316|0);
+   HEAPF32[$_22$i>>2] = $div10$i;
+   $_33$i = ((($this) + ($$nStage<<6)|0) + 336|0);
+   HEAPF32[$_33$i>>2] = $div17$i;
+   $_34$i = ((($this) + ($$nStage<<6)|0) + 340|0);
+   HEAPF32[$_34$i>>2] = 1.0;
+   $5 = +HEAPF32[$_fNear$i>>2];
+   $6 = $div17$i * $5;
+   $mul20$i = -$6;
+   $_43$i = ((($this) + ($$nStage<<6)|0) + 352|0);
+   HEAPF32[$_43$i>>2] = $mul20$i;
+   $_44$i = ((($this) + ($$nStage<<6)|0) + 356|0);
+   HEAPF32[$_44$i>>2] = 0.0;
   }
  }
- if ((label|0) == 6) {
-  $nStage$addr = 0;
- }
- $6 = $nStage$addr;
- $_VP7 = (($this1) + 40|0);
- $arrayidx8 = (($_VP7) + ($6<<4)|0);
- $height = (($arrayidx8) + 12|0);
- $7 = HEAP32[$height>>2]|0;
- $conv = (+($7>>>0));
- $8 = $nStage$addr;
- $_VP9 = (($this1) + 40|0);
- $arrayidx10 = (($_VP9) + ($8<<4)|0);
- $width = (($arrayidx10) + 8|0);
- $9 = HEAP32[$width>>2]|0;
- $conv11 = (+($9>>>0));
- $div = $conv / $conv11;
- $fAspect = $div;
- $10 = $fFOV$addr;
- $11 = $fAspect;
- $12 = $nStage$addr;
- $_mProjP = (($this1) + 296|0);
- $arrayidx12 = (($_mProjP) + ($12<<6)|0);
- $call = (__ZN15REMRenderDevice19calcPerspProjMatrixEffP9REMMatrix($this1,$10,$11,$arrayidx12)|0);
- $cmp13 = ($call|0)<(0);
- if ($cmp13) {
-  $retval = -1;
-  $28 = $retval;
-  STACKTOP = sp;return ($28|0);
- } else {
-  $13 = $nStage$addr;
-  $_mProjO = (($this1) + 552|0);
-  $arrayidx16 = (($_mProjO) + ($13<<6)|0);
-  __ZN9REMMatrix8identityEv($arrayidx16);
-  $14 = $nStage$addr;
-  $_VP17 = (($this1) + 40|0);
-  $arrayidx18 = (($_VP17) + ($14<<4)|0);
-  $width19 = (($arrayidx18) + 8|0);
-  $15 = HEAP32[$width19>>2]|0;
-  $conv20 = (+($15>>>0));
-  $div21 = 2.0 / $conv20;
-  $16 = $nStage$addr;
-  $_mProjO22 = (($this1) + 552|0);
-  $arrayidx23 = (($_mProjO22) + ($16<<6)|0);
-  HEAPF32[$arrayidx23>>2] = $div21;
-  $17 = $nStage$addr;
-  $_VP26 = (($this1) + 40|0);
-  $arrayidx27 = (($_VP26) + ($17<<4)|0);
-  $height28 = (($arrayidx27) + 12|0);
-  $18 = HEAP32[$height28>>2]|0;
-  $conv29 = (+($18>>>0));
-  $div30 = 2.0 / $conv29;
-  $19 = $nStage$addr;
-  $_mProjO31 = (($this1) + 552|0);
-  $arrayidx32 = (($_mProjO31) + ($19<<6)|0);
-  $arrayidx34 = (($arrayidx32) + 16|0);
-  $arrayidx35 = (($arrayidx34) + 4|0);
-  HEAPF32[$arrayidx35>>2] = $div30;
-  $_fFar = (($this1) + 20|0);
-  $20 = +HEAPF32[$_fFar>>2];
-  $_fNear = (($this1) + 16|0);
-  $21 = +HEAPF32[$_fNear>>2];
-  $sub = $20 - $21;
-  $div36 = 1.0 / $sub;
-  $22 = $nStage$addr;
-  $_mProjO37 = (($this1) + 552|0);
-  $arrayidx38 = (($_mProjO37) + ($22<<6)|0);
-  $arrayidx40 = (($arrayidx38) + 32|0);
-  $arrayidx41 = (($arrayidx40) + 8|0);
-  HEAPF32[$arrayidx41>>2] = $div36;
-  $_fNear42 = (($this1) + 16|0);
-  $23 = +HEAPF32[$_fNear42>>2];
-  $24 = $nStage$addr;
-  $_mProjO43 = (($this1) + 552|0);
-  $arrayidx44 = (($_mProjO43) + ($24<<6)|0);
-  $arrayidx46 = (($arrayidx44) + 32|0);
-  $arrayidx47 = (($arrayidx46) + 8|0);
-  $25 = +HEAPF32[$arrayidx47>>2];
-  $mul = $23 * $25;
-  $sub48 = -$mul;
-  $26 = $nStage$addr;
-  $_mProjO49 = (($this1) + 552|0);
-  $arrayidx50 = (($_mProjO49) + ($26<<6)|0);
-  $arrayidx52 = (($arrayidx50) + 48|0);
-  $arrayidx53 = (($arrayidx52) + 8|0);
-  HEAPF32[$arrayidx53>>2] = $sub48;
-  $27 = $nStage$addr;
-  $_mProjO54 = (($this1) + 552|0);
-  $arrayidx55 = (($_mProjO54) + ($27<<6)|0);
-  $arrayidx57 = (($arrayidx55) + 48|0);
-  $arrayidx58 = (($arrayidx57) + 12|0);
-  HEAPF32[$arrayidx58>>2] = 1.0;
-  $retval = 0;
-  $28 = $retval;
-  STACKTOP = sp;return ($28|0);
- }
- return 0|0;
+ $arrayidx13 = ((($this) + ($$nStage<<6)|0) + 552|0);
+ __ZN9REMMatrix8identityEv($arrayidx13);
+ $7 = HEAP32[$width>>2]|0;
+ $conv17 = (+($7>>>0));
+ $div18 = 2.0 / $conv17;
+ HEAPF32[$arrayidx13>>2] = $div18;
+ $8 = HEAP32[$height>>2]|0;
+ $conv24 = (+($8>>>0));
+ $div25 = 2.0 / $conv24;
+ $_22 = ((($this) + ($$nStage<<6)|0) + 572|0);
+ HEAPF32[$_22>>2] = $div25;
+ $9 = +HEAPF32[$_fFar$i>>2];
+ $10 = +HEAPF32[$_fNear$i>>2];
+ $sub = $9 - $10;
+ $div28 = 1.0 / $sub;
+ $_33 = ((($this) + ($$nStage<<6)|0) + 592|0);
+ HEAPF32[$_33>>2] = $div28;
+ $11 = +HEAPF32[$_fNear$i>>2];
+ $mul = $div28 * $11;
+ $sub35 = -$mul;
+ $_43 = ((($this) + ($$nStage<<6)|0) + 608|0);
+ HEAPF32[$_43>>2] = $sub35;
+ $_44 = ((($this) + ($$nStage<<6)|0) + 612|0);
+ HEAPF32[$_44>>2] = 1.0;
+ STACKTOP = sp;return 0;
 }
 function __ZN15REMRenderDevice7setModeE18REMENGINEMODE_TYPEi($this,$mode,$nStage) {
  $this = $this|0;
  $mode = $mode|0;
  $nStage = $nStage|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $3 = 0;
- var $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_VP = 0, $_VP11 = 0, $_VP13 = 0, $_VP15 = 0, $_bRunning = 0, $_mode = 0, $_mode7 = 0, $_nStage = 0, $_pVertexMan = 0, $arrayidx = 0, $arrayidx12 = 0, $arrayidx14 = 0, $arrayidx16 = 0, $cmp = 0;
- var $cmp2 = 0, $cmp5 = 0, $cmp9 = 0, $height = 0, $mode$addr = 0, $nStage$addr = 0, $retval = 0, $this$addr = 0, $this1 = 0, $tobool = 0, $vpH = 0, $vpW = 0, $vpX = 0, $vpY = 0, $width = 0, $y = 0, label = 0, sp = 0;
+ var $$nStage = 0, $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_bRunning = 0, $_mProj2D$i = 0, $_mView2D$i = 0, $_mView3D$i = 0, $_mViewProj$i = 0, $_mode = 0, $_nStage = 0, $_pVertexMan = 0, $arrayidx$i = 0;
+ var $arrayidx7$i = 0, $cmp$i = 0, $cmp3$i = 0, $cmp5 = 0, $cmp9 = 0, $height = 0, $pA$0$i = 0, $pB$0$i = 0, $ref$tmp$i = 0, $retval$0 = 0, $tobool = 0, $width = 0, $x = 0, $y = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $mode$addr = $mode;
- $nStage$addr = $nStage;
- $this1 = $this$addr;
- $_bRunning = (($this1) + 36|0);
+ STACKTOP = STACKTOP + 64|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $ref$tmp$i = sp;
+ $_bRunning = (($this) + 36|0);
  $0 = HEAP8[$_bRunning>>0]|0;
- $tobool = $0&1;
- if (!($tobool)) {
-  $retval = -1;
-  $25 = $retval;
-  STACKTOP = sp;return ($25|0);
+ $tobool = ($0<<24>>24)==(0);
+ if ($tobool) {
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
  }
- $1 = $nStage$addr;
- $cmp = ($1|0)>(3);
- if ($cmp) {
-  label = 5;
- } else {
-  $2 = $nStage$addr;
-  $cmp2 = ($2|0)<(0);
-  if ($cmp2) {
-   label = 5;
-  }
+ $1 = ($nStage>>>0)>(3);
+ $$nStage = $1 ? 0 : $nStage;
+ $_mode = (($this) + 24|0);
+ $2 = HEAP32[$_mode>>2]|0;
+ $cmp5 = ($2|0)==($mode|0);
+ if (!($cmp5)) {
+  HEAP32[$_mode>>2] = $mode;
  }
- if ((label|0) == 5) {
-  $nStage$addr = 0;
- }
- $_mode = (($this1) + 24|0);
- $3 = HEAP32[$_mode>>2]|0;
- $4 = $mode$addr;
- $cmp5 = ($3|0)!=($4|0);
- if ($cmp5) {
-  $5 = $mode$addr;
-  $_mode7 = (($this1) + 24|0);
-  HEAP32[$_mode7>>2] = $5;
- }
- $_pVertexMan = (($this1) + 8|0);
- $6 = HEAP32[$_pVertexMan>>2]|0;
- (__ZN21REMVertexCacheManager14forcedFlushAllEv($6)|0);
- $7 = $mode$addr;
- $cmp9 = ($7|0)==(1);
+ $_pVertexMan = (($this) + 8|0);
+ $3 = HEAP32[$_pVertexMan>>2]|0;
+ (__ZN21REMVertexCacheManager14forcedFlushAllEv($3)|0);
+ $cmp9 = ($mode|0)==(1);
  if ($cmp9) {
-  $vpX = 0;
-  $vpY = 0;
-  $vpW = 280;
-  $vpH = 200;
-  $8 = $vpY;
-  $9 = $vpX;
-  $10 = $vpW;
-  $11 = $vpH;
-  _glViewport(($8|0),($9|0),($10|0),($11|0));
- } else {
-  $12 = $nStage$addr;
-  $_nStage = (($this1) + 28|0);
-  HEAP32[$_nStage>>2] = $12;
-  $13 = $nStage$addr;
-  $_VP = (($this1) + 40|0);
-  $arrayidx = (($_VP) + ($13<<4)|0);
-  $14 = HEAP32[$arrayidx>>2]|0;
-  $vpX = $14;
-  $15 = $nStage$addr;
-  $_VP11 = (($this1) + 40|0);
-  $arrayidx12 = (($_VP11) + ($15<<4)|0);
-  $y = (($arrayidx12) + 4|0);
-  $16 = HEAP32[$y>>2]|0;
-  $vpY = $16;
-  $17 = $nStage$addr;
-  $_VP13 = (($this1) + 40|0);
-  $arrayidx14 = (($_VP13) + ($17<<4)|0);
-  $width = (($arrayidx14) + 8|0);
-  $18 = HEAP32[$width>>2]|0;
-  $vpW = $18;
-  $19 = $nStage$addr;
-  $_VP15 = (($this1) + 40|0);
-  $arrayidx16 = (($_VP15) + ($19<<4)|0);
-  $height = (($arrayidx16) + 12|0);
-  $20 = HEAP32[$height>>2]|0;
-  $vpH = $20;
-  $21 = $vpY;
-  $22 = $vpX;
-  $23 = $vpW;
-  $24 = $vpH;
-  _glViewport(($21|0),($22|0),($23|0),($24|0));
-  __ZN15REMRenderDevice18calcViewProjMatrixEv($this1);
-  __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this1);
+  _glViewport(0,0,640,360);
+  $retval$0 = 0;
+  STACKTOP = sp;return ($retval$0|0);
  }
- $retval = 0;
- $25 = $retval;
- STACKTOP = sp;return ($25|0);
+ $_nStage = (($this) + 28|0);
+ HEAP32[$_nStage>>2] = $$nStage;
+ $x = ((($this) + ($$nStage<<4)|0) + 40|0);
+ $4 = HEAP32[$x>>2]|0;
+ $y = ((($this) + ($$nStage<<4)|0) + 44|0);
+ $5 = HEAP32[$y>>2]|0;
+ $width = ((($this) + ($$nStage<<4)|0) + 48|0);
+ $6 = HEAP32[$width>>2]|0;
+ $height = ((($this) + ($$nStage<<4)|0) + 52|0);
+ $7 = HEAP32[$height>>2]|0;
+ _glViewport(($5|0),($4|0),($6|0),($7|0));
+ $8 = HEAP32[$_mode>>2]|0;
+ $cmp$i = ($8|0)==(1);
+ do {
+  if ($cmp$i) {
+   $_mProj2D$i = (($this) + 232|0);
+   $_mView2D$i = (($this) + 104|0);
+   $pA$0$i = $_mProj2D$i;$pB$0$i = $_mView2D$i;
+  } else {
+   $_mView3D$i = (($this) + 168|0);
+   $cmp3$i = ($8|0)==(0);
+   $9 = HEAP32[$_nStage>>2]|0;
+   if ($cmp3$i) {
+    $arrayidx$i = ((($this) + ($9<<6)|0) + 296|0);
+    $pA$0$i = $arrayidx$i;$pB$0$i = $_mView3D$i;
+    break;
+   } else {
+    $arrayidx7$i = ((($this) + ($9<<6)|0) + 552|0);
+    $pA$0$i = $arrayidx7$i;$pB$0$i = $_mView3D$i;
+    break;
+   }
+  }
+ } while(0);
+ $_mViewProj$i = (($this) + 872|0);
+ __ZNK9REMMatrixmlERKS_($ref$tmp$i,$pA$0$i,$pB$0$i);
+ dest=$_mViewProj$i+0|0; src=$ref$tmp$i+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+ __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this);
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN15REMRenderDevice9setView3DERK9REMVectorS2_S2_S2_($this,$vcRight,$vcUp,$vcDir,$vcPos) {
  $this = $this|0;
@@ -10055,235 +10675,150 @@ function __ZN15REMRenderDevice9setView3DERK9REMVectorS2_S2_S2_($this,$vcRight,$v
  $vcUp = $vcUp|0;
  $vcDir = $vcDir|0;
  $vcPos = $vcPos|0;
- var $0 = 0, $1 = 0, $10 = 0.0, $11 = 0, $12 = 0.0, $13 = 0, $14 = 0.0, $15 = 0, $16 = 0, $17 = 0, $18 = 0.0, $19 = 0, $2 = 0.0, $20 = 0.0, $21 = 0, $22 = 0.0, $23 = 0, $24 = 0, $25 = 0, $3 = 0;
- var $4 = 0.0, $5 = 0, $6 = 0.0, $7 = 0, $8 = 0, $9 = 0, $_bRunning = 0, $_mView3D = 0, $_mView3D11 = 0, $_mView3D15 = 0, $_mView3D19 = 0, $_mView3D23 = 0, $_mView3D27 = 0, $_mView3D3 = 0, $_mView3D32 = 0, $_mView3D37 = 0, $_mView3D42 = 0, $_mView3D48 = 0, $_mView3D53 = 0, $_mView3D58 = 0;
- var $_mView3D63 = 0, $_mView3D69 = 0, $_mView3D7 = 0, $arrayidx = 0, $arrayidx10 = 0, $arrayidx13 = 0, $arrayidx14 = 0, $arrayidx2 = 0, $arrayidx21 = 0, $arrayidx25 = 0, $arrayidx29 = 0, $arrayidx35 = 0, $arrayidx39 = 0, $arrayidx40 = 0, $arrayidx44 = 0, $arrayidx45 = 0, $arrayidx5 = 0, $arrayidx50 = 0, $arrayidx51 = 0, $arrayidx56 = 0;
- var $arrayidx6 = 0, $arrayidx60 = 0, $arrayidx61 = 0, $arrayidx65 = 0, $arrayidx66 = 0, $arrayidx71 = 0, $arrayidx72 = 0, $call = 0.0, $call46 = 0.0, $call67 = 0.0, $retval = 0, $sub = 0.0, $sub47 = 0.0, $sub68 = 0.0, $this$addr = 0, $this1 = 0, $tobool = 0, $vcDir$addr = 0, $vcPos$addr = 0, $vcRight$addr = 0;
- var $vcUp$addr = 0, $y = 0, $y36 = 0, $y57 = 0, $z = 0, $z41 = 0, $z62 = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0.0, $10 = 0, $11 = 0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $_11 = 0, $_12 = 0, $_13 = 0, $_14 = 0, $_21 = 0, $_22 = 0, $_23 = 0, $_24 = 0;
+ var $_31 = 0, $_32 = 0, $_33 = 0, $_34 = 0, $_41 = 0, $_42 = 0, $_43 = 0, $_44 = 0, $_bRunning = 0, $_mProj2D$i = 0, $_mView2D$i = 0, $_mView3D$i = 0, $_mViewProj$i = 0, $_mode$i = 0, $_nStage$i = 0, $arrayidx$i = 0, $arrayidx7$i = 0, $call = 0.0, $call15 = 0.0, $call24 = 0.0;
+ var $cmp$i = 0, $cmp3$i = 0, $pA$0$i = 0, $pB$0$i = 0, $ref$tmp$i = 0, $retval$0 = 0, $sub = 0.0, $sub16 = 0.0, $sub25 = 0.0, $tobool = 0, $y = 0, $y11 = 0, $y20 = 0, $z = 0, $z13 = 0, $z22 = 0, dest = 0, label = 0, sp = 0, src = 0;
+ var stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $vcRight$addr = $vcRight;
- $vcUp$addr = $vcUp;
- $vcDir$addr = $vcDir;
- $vcPos$addr = $vcPos;
- $this1 = $this$addr;
- $_bRunning = (($this1) + 36|0);
+ STACKTOP = STACKTOP + 64|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $ref$tmp$i = sp;
+ $_bRunning = (($this) + 36|0);
  $0 = HEAP8[$_bRunning>>0]|0;
- $tobool = $0&1;
+ $tobool = ($0<<24>>24)==(0);
  if ($tobool) {
-  $_mView3D = (($this1) + 168|0);
-  $arrayidx = (($_mView3D) + 32|0);
-  $arrayidx2 = (($arrayidx) + 12|0);
-  HEAPF32[$arrayidx2>>2] = 0.0;
-  $_mView3D3 = (($this1) + 168|0);
-  $arrayidx5 = (($_mView3D3) + 16|0);
-  $arrayidx6 = (($arrayidx5) + 12|0);
-  HEAPF32[$arrayidx6>>2] = 0.0;
-  $_mView3D7 = (($this1) + 168|0);
-  $arrayidx10 = (($_mView3D7) + 12|0);
-  HEAPF32[$arrayidx10>>2] = 0.0;
-  $_mView3D11 = (($this1) + 168|0);
-  $arrayidx13 = (($_mView3D11) + 48|0);
-  $arrayidx14 = (($arrayidx13) + 12|0);
-  HEAPF32[$arrayidx14>>2] = 1.0;
-  $1 = $vcRight$addr;
-  $2 = +HEAPF32[$1>>2];
-  $_mView3D15 = (($this1) + 168|0);
-  HEAPF32[$_mView3D15>>2] = $2;
-  $3 = $vcRight$addr;
-  $y = (($3) + 4|0);
-  $4 = +HEAPF32[$y>>2];
-  $_mView3D19 = (($this1) + 168|0);
-  $arrayidx21 = (($_mView3D19) + 16|0);
-  HEAPF32[$arrayidx21>>2] = $4;
-  $5 = $vcRight$addr;
-  $z = (($5) + 8|0);
-  $6 = +HEAPF32[$z>>2];
-  $_mView3D23 = (($this1) + 168|0);
-  $arrayidx25 = (($_mView3D23) + 32|0);
-  HEAPF32[$arrayidx25>>2] = $6;
-  $7 = $vcRight$addr;
-  $8 = $vcPos$addr;
-  $call = (+__ZNK9REMVectormlERKS_($7,$8));
-  $sub = -$call;
-  $_mView3D27 = (($this1) + 168|0);
-  $arrayidx29 = (($_mView3D27) + 48|0);
-  HEAPF32[$arrayidx29>>2] = $sub;
-  $9 = $vcUp$addr;
-  $10 = +HEAPF32[$9>>2];
-  $_mView3D32 = (($this1) + 168|0);
-  $arrayidx35 = (($_mView3D32) + 4|0);
-  HEAPF32[$arrayidx35>>2] = $10;
-  $11 = $vcUp$addr;
-  $y36 = (($11) + 4|0);
-  $12 = +HEAPF32[$y36>>2];
-  $_mView3D37 = (($this1) + 168|0);
-  $arrayidx39 = (($_mView3D37) + 16|0);
-  $arrayidx40 = (($arrayidx39) + 4|0);
-  HEAPF32[$arrayidx40>>2] = $12;
-  $13 = $vcUp$addr;
-  $z41 = (($13) + 8|0);
-  $14 = +HEAPF32[$z41>>2];
-  $_mView3D42 = (($this1) + 168|0);
-  $arrayidx44 = (($_mView3D42) + 32|0);
-  $arrayidx45 = (($arrayidx44) + 4|0);
-  HEAPF32[$arrayidx45>>2] = $14;
-  $15 = $vcUp$addr;
-  $16 = $vcPos$addr;
-  $call46 = (+__ZNK9REMVectormlERKS_($15,$16));
-  $sub47 = -$call46;
-  $_mView3D48 = (($this1) + 168|0);
-  $arrayidx50 = (($_mView3D48) + 48|0);
-  $arrayidx51 = (($arrayidx50) + 4|0);
-  HEAPF32[$arrayidx51>>2] = $sub47;
-  $17 = $vcDir$addr;
-  $18 = +HEAPF32[$17>>2];
-  $_mView3D53 = (($this1) + 168|0);
-  $arrayidx56 = (($_mView3D53) + 8|0);
-  HEAPF32[$arrayidx56>>2] = $18;
-  $19 = $vcDir$addr;
-  $y57 = (($19) + 4|0);
-  $20 = +HEAPF32[$y57>>2];
-  $_mView3D58 = (($this1) + 168|0);
-  $arrayidx60 = (($_mView3D58) + 16|0);
-  $arrayidx61 = (($arrayidx60) + 8|0);
-  HEAPF32[$arrayidx61>>2] = $20;
-  $21 = $vcDir$addr;
-  $z62 = (($21) + 8|0);
-  $22 = +HEAPF32[$z62>>2];
-  $_mView3D63 = (($this1) + 168|0);
-  $arrayidx65 = (($_mView3D63) + 32|0);
-  $arrayidx66 = (($arrayidx65) + 8|0);
-  HEAPF32[$arrayidx66>>2] = $22;
-  $23 = $vcDir$addr;
-  $24 = $vcPos$addr;
-  $call67 = (+__ZNK9REMVectormlERKS_($23,$24));
-  $sub68 = -$call67;
-  $_mView3D69 = (($this1) + 168|0);
-  $arrayidx71 = (($_mView3D69) + 48|0);
-  $arrayidx72 = (($arrayidx71) + 8|0);
-  HEAPF32[$arrayidx72>>2] = $sub68;
-  __ZN15REMRenderDevice18calcViewProjMatrixEv($this1);
-  __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this1);
-  $retval = 0;
-  $25 = $retval;
-  STACKTOP = sp;return ($25|0);
- } else {
-  $retval = -1;
-  $25 = $retval;
-  STACKTOP = sp;return ($25|0);
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
  }
- return 0|0;
-}
-function __ZN15REMRenderDevice18calcViewProjMatrixEv($this) {
- $this = $this|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $_mProj2D = 0, $_mProjO = 0, $_mProjP = 0, $_mView2D = 0, $_mView3D = 0, $_mViewProj = 0, $_mode = 0, $_mode2 = 0, $_nStage = 0, $_nStage6 = 0, $arrayidx = 0, $arrayidx7 = 0, $cmp = 0;
- var $cmp3 = 0, $pA = 0, $pB = 0, $pM = 0, $ref$tmp = 0, $this$addr = 0, $this1 = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 80|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $ref$tmp = sp;
- $this$addr = $this;
- $this1 = $this$addr;
- $_mode = (($this1) + 24|0);
- $0 = HEAP32[$_mode>>2]|0;
- $cmp = ($0|0)==(1);
- if ($cmp) {
-  $_mProj2D = (($this1) + 232|0);
-  $pA = $_mProj2D;
-  $_mView2D = (($this1) + 104|0);
-  $pB = $_mView2D;
- } else {
-  $_mView3D = (($this1) + 168|0);
-  $pB = $_mView3D;
-  $_mode2 = (($this1) + 24|0);
-  $1 = HEAP32[$_mode2>>2]|0;
-  $cmp3 = ($1|0)==(0);
-  if ($cmp3) {
-   $_nStage = (($this1) + 28|0);
-   $2 = HEAP32[$_nStage>>2]|0;
-   $_mProjP = (($this1) + 296|0);
-   $arrayidx = (($_mProjP) + ($2<<6)|0);
-   $pA = $arrayidx;
+ $_34 = (($this) + 212|0);
+ HEAPF32[$_34>>2] = 0.0;
+ $_24 = (($this) + 196|0);
+ HEAPF32[$_24>>2] = 0.0;
+ $_14 = (($this) + 180|0);
+ HEAPF32[$_14>>2] = 0.0;
+ $_44 = (($this) + 228|0);
+ HEAPF32[$_44>>2] = 1.0;
+ $1 = +HEAPF32[$vcRight>>2];
+ $_11 = (($this) + 168|0);
+ HEAPF32[$_11>>2] = $1;
+ $y = (($vcRight) + 4|0);
+ $2 = +HEAPF32[$y>>2];
+ $_21 = (($this) + 184|0);
+ HEAPF32[$_21>>2] = $2;
+ $z = (($vcRight) + 8|0);
+ $3 = +HEAPF32[$z>>2];
+ $_31 = (($this) + 200|0);
+ HEAPF32[$_31>>2] = $3;
+ $call = (+__ZNK9REMVectormlERKS_($vcRight,$vcPos));
+ $sub = -$call;
+ $_41 = (($this) + 216|0);
+ HEAPF32[$_41>>2] = $sub;
+ $4 = +HEAPF32[$vcUp>>2];
+ $_12 = (($this) + 172|0);
+ HEAPF32[$_12>>2] = $4;
+ $y11 = (($vcUp) + 4|0);
+ $5 = +HEAPF32[$y11>>2];
+ $_22 = (($this) + 188|0);
+ HEAPF32[$_22>>2] = $5;
+ $z13 = (($vcUp) + 8|0);
+ $6 = +HEAPF32[$z13>>2];
+ $_32 = (($this) + 204|0);
+ HEAPF32[$_32>>2] = $6;
+ $call15 = (+__ZNK9REMVectormlERKS_($vcUp,$vcPos));
+ $sub16 = -$call15;
+ $_42 = (($this) + 220|0);
+ HEAPF32[$_42>>2] = $sub16;
+ $7 = +HEAPF32[$vcDir>>2];
+ $_13 = (($this) + 176|0);
+ HEAPF32[$_13>>2] = $7;
+ $y20 = (($vcDir) + 4|0);
+ $8 = +HEAPF32[$y20>>2];
+ $_23 = (($this) + 192|0);
+ HEAPF32[$_23>>2] = $8;
+ $z22 = (($vcDir) + 8|0);
+ $9 = +HEAPF32[$z22>>2];
+ $_33 = (($this) + 208|0);
+ HEAPF32[$_33>>2] = $9;
+ $call24 = (+__ZNK9REMVectormlERKS_($vcDir,$vcPos));
+ $sub25 = -$call24;
+ $_43 = (($this) + 224|0);
+ HEAPF32[$_43>>2] = $sub25;
+ $_mode$i = (($this) + 24|0);
+ $10 = HEAP32[$_mode$i>>2]|0;
+ $cmp$i = ($10|0)==(1);
+ do {
+  if ($cmp$i) {
+   $_mProj2D$i = (($this) + 232|0);
+   $_mView2D$i = (($this) + 104|0);
+   $pA$0$i = $_mProj2D$i;$pB$0$i = $_mView2D$i;
   } else {
-   $_nStage6 = (($this1) + 28|0);
-   $3 = HEAP32[$_nStage6>>2]|0;
-   $_mProjO = (($this1) + 552|0);
-   $arrayidx7 = (($_mProjO) + ($3<<6)|0);
-   $pA = $arrayidx7;
+   $_mView3D$i = (($this) + 168|0);
+   $cmp3$i = ($10|0)==(0);
+   $_nStage$i = (($this) + 28|0);
+   $11 = HEAP32[$_nStage$i>>2]|0;
+   if ($cmp3$i) {
+    $arrayidx$i = ((($this) + ($11<<6)|0) + 296|0);
+    $pA$0$i = $arrayidx$i;$pB$0$i = $_mView3D$i;
+    break;
+   } else {
+    $arrayidx7$i = ((($this) + ($11<<6)|0) + 552|0);
+    $pA$0$i = $arrayidx7$i;$pB$0$i = $_mView3D$i;
+    break;
+   }
   }
- }
- $_mViewProj = (($this1) + 872|0);
- $pM = $_mViewProj;
- $4 = $pM;
- $5 = $pA;
- $6 = $pB;
- __ZNK9REMMatrixmlERKS_($ref$tmp,$5,$6);
- dest=$4+0|0; src=$ref$tmp+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
- STACKTOP = sp;return;
+ } while(0);
+ $_mViewProj$i = (($this) + 872|0);
+ __ZNK9REMMatrixmlERKS_($ref$tmp$i,$pA$0$i,$pB$0$i);
+ dest=$_mViewProj$i+0|0; src=$ref$tmp$i+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+ __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this);
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN15REMRenderDevice23calcWorldViewProjMatrixEv($this) {
  $this = $this|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_mProj2D = 0, $_mProjO = 0, $_mProjP = 0, $_mView2D = 0, $_mView3D = 0, $_mWorld = 0, $_mWorldViewProj = 0, $_mWorldViewProj10 = 0, $_mWorldViewProj16 = 0, $_mode = 0;
- var $_mode2 = 0, $_nStage = 0, $_nStage6 = 0, $_pShaderMan = 0, $_pShaderMan13 = 0, $arrayidx = 0, $arrayidx7 = 0, $call = 0, $call14 = 0, $call15 = 0, $call9 = 0, $cmp = 0, $cmp3 = 0, $pCombo = 0, $pProj = 0, $pView = 0, $pWorld = 0, $ref$tmp = 0, $this$addr = 0, $this1 = 0;
- var $tmp = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_mProj2D = 0, $_mView2D = 0, $_mView3D = 0, $_mWorld = 0, $_mWorldViewProj = 0, $_mode = 0, $_nStage = 0, $_pShaderMan = 0, $arrayidx = 0, $arrayidx7 = 0, $call = 0, $call12 = 0, $call13 = 0, $call9 = 0, $cmp = 0, $cmp3 = 0;
+ var $pProj$0 = 0, $pView$0 = 0, $ref$tmp = 0, $tmp = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 160|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $ref$tmp = sp;
- $tmp = sp + 72|0;
- $this$addr = $this;
- $this1 = $this$addr;
- $_mWorld = (($this1) + 808|0);
- $pWorld = $_mWorld;
- $_mode = (($this1) + 24|0);
+ STACKTOP = STACKTOP + 128|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $ref$tmp = sp + 64|0;
+ $tmp = sp;
+ $_mWorld = (($this) + 808|0);
+ $_mode = (($this) + 24|0);
  $0 = HEAP32[$_mode>>2]|0;
  $cmp = ($0|0)==(1);
- if ($cmp) {
-  $_mProj2D = (($this1) + 232|0);
-  $pProj = $_mProj2D;
-  $_mView2D = (($this1) + 104|0);
-  $pView = $_mView2D;
- } else {
-  $_mView3D = (($this1) + 168|0);
-  $pView = $_mView3D;
-  $_mode2 = (($this1) + 24|0);
-  $1 = HEAP32[$_mode2>>2]|0;
-  $cmp3 = ($1|0)==(0);
-  if ($cmp3) {
-   $_nStage = (($this1) + 28|0);
-   $2 = HEAP32[$_nStage>>2]|0;
-   $_mProjP = (($this1) + 296|0);
-   $arrayidx = (($_mProjP) + ($2<<6)|0);
-   $pProj = $arrayidx;
+ do {
+  if ($cmp) {
+   $_mProj2D = (($this) + 232|0);
+   $_mView2D = (($this) + 104|0);
+   $pProj$0 = $_mProj2D;$pView$0 = $_mView2D;
   } else {
-   $_nStage6 = (($this1) + 28|0);
-   $3 = HEAP32[$_nStage6>>2]|0;
-   $_mProjO = (($this1) + 552|0);
-   $arrayidx7 = (($_mProjO) + ($3<<6)|0);
-   $pProj = $arrayidx7;
+   $_mView3D = (($this) + 168|0);
+   $cmp3 = ($0|0)==(0);
+   $_nStage = (($this) + 28|0);
+   $1 = HEAP32[$_nStage>>2]|0;
+   if ($cmp3) {
+    $arrayidx = ((($this) + ($1<<6)|0) + 296|0);
+    $pProj$0 = $arrayidx;$pView$0 = $_mView3D;
+    break;
+   } else {
+    $arrayidx7 = ((($this) + ($1<<6)|0) + 552|0);
+    $pProj$0 = $arrayidx7;$pView$0 = $_mView3D;
+    break;
+   }
   }
- }
- $_mWorldViewProj = (($this1) + 936|0);
- $pCombo = $_mWorldViewProj;
- $4 = $pCombo;
- $5 = $pWorld;
- $6 = $pView;
- __ZNK9REMMatrixmlERKS_($tmp,$5,$6);
- $7 = $pProj;
- __ZNK9REMMatrixmlERKS_($ref$tmp,$tmp,$7);
- dest=$4+0|0; src=$ref$tmp+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
- $_pShaderMan = (($this1) + 4|0);
- $8 = HEAP32[$_pShaderMan>>2]|0;
- $call = (__ZN16REMShaderManager16getActiveProgramEv($8)|0);
- $call9 = (_glGetUniformLocation(($call|0),(216|0))|0);
- $_mWorldViewProj10 = (($this1) + 936|0);
- _glUniformMatrix4fv(($call9|0),1,0,($_mWorldViewProj10|0));
- $_pShaderMan13 = (($this1) + 4|0);
- $9 = HEAP32[$_pShaderMan13>>2]|0;
- $call14 = (__ZN16REMShaderManager16getActiveProgramEv($9)|0);
- $call15 = (_glGetUniformLocation(($call14|0),(224|0))|0);
- $_mWorldViewProj16 = (($this1) + 936|0);
- _glUniformMatrix4fv(($call15|0),1,1,($_mWorldViewProj16|0));
+ } while(0);
+ $_mWorldViewProj = (($this) + 936|0);
+ __ZNK9REMMatrixmlERKS_($tmp,$_mWorld,$pView$0);
+ __ZNK9REMMatrixmlERKS_($ref$tmp,$tmp,$pProj$0);
+ dest=$_mWorldViewProj+0|0; src=$ref$tmp+0|0; stop=dest+64|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+ $_pShaderMan = (($this) + 4|0);
+ $2 = HEAP32[$_pShaderMan>>2]|0;
+ $call = (__ZN16REMShaderManager16getActiveProgramEv($2)|0);
+ $call9 = (_glGetUniformLocation(($call|0),(376|0))|0);
+ _glUniformMatrix4fv(($call9|0),1,0,($_mWorldViewProj|0));
+ $3 = HEAP32[$_pShaderMan>>2]|0;
+ $call12 = (__ZN16REMShaderManager16getActiveProgramEv($3)|0);
+ $call13 = (_glGetUniformLocation(($call12|0),(384|0))|0);
+ _glUniformMatrix4fv(($call13|0),1,1,($_mWorldViewProj|0));
  STACKTOP = sp;return;
 }
 function __ZN15REMRenderDevice13setViewLookAtERK9REMVectorS2_S2_($this,$vcPos,$vcPoint,$vcWorldUp) {
@@ -10291,935 +10826,411 @@ function __ZN15REMRenderDevice13setViewLookAtERK9REMVectorS2_S2_($this,$vcPos,$v
  $vcPos = $vcPos|0;
  $vcPoint = $vcPoint|0;
  $vcWorldUp = $vcWorldUp|0;
- var $0 = 0, $1 = 0, $10 = 0.0, $11 = 0, $12 = 0, $2 = 0, $3 = 0.0, $4 = 0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $call = 0.0, $call12 = 0.0, $call17 = 0, $call4 = 0.0, $call7 = 0.0, $cmp = 0, $cmp13 = 0;
- var $cmp8 = 0, $conv = 0.0, $fDot = 0.0, $fL = 0.0, $ref$tmp = 0, $ref$tmp10 = 0, $ref$tmp11 = 0, $ref$tmp2 = 0, $ref$tmp3 = 0, $ref$tmp5 = 0, $ref$tmp6 = 0, $retval = 0, $this$addr = 0, $this1 = 0, $vcDir = 0, $vcPoint$addr = 0, $vcPos$addr = 0, $vcRight = 0, $vcTemp = 0, $vcUp = 0;
- var $vcWorldUp$addr = 0, $vcY = 0, $y = 0, $z = 0, label = 0, sp = 0;
+ var $0 = 0.0, $1 = 0.0, $call = 0.0, $call12 = 0.0, $call17 = 0, $call4 = 0.0, $call7 = 0.0, $cmp = 0, $cmp13 = 0, $cmp8 = 0, $conv = 0.0, $fL$0 = 0.0, $ref$tmp = 0, $ref$tmp10 = 0, $ref$tmp11 = 0, $ref$tmp2 = 0, $ref$tmp3 = 0, $ref$tmp5 = 0, $ref$tmp6 = 0, $retval$0 = 0;
+ var $vcDir = 0, $vcRight = 0, $vcTemp = 0, $vcUp = 0, $vcY = 0, $y = 0, $z = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 240|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vcDir = sp + 48|0;
- $vcTemp = sp + 152|0;
- $vcUp = sp + 184|0;
- $ref$tmp = sp + 216|0;
- $ref$tmp2 = sp + 112|0;
- $ref$tmp3 = sp + 24|0;
- $vcY = sp + 8|0;
- $ref$tmp5 = sp + 128|0;
- $ref$tmp6 = sp + 64|0;
- $ref$tmp10 = sp + 168|0;
- $ref$tmp11 = sp + 88|0;
- $vcRight = sp + 200|0;
- $this$addr = $this;
- $vcPos$addr = $vcPos;
- $vcPoint$addr = $vcPoint;
- $vcWorldUp$addr = $vcWorldUp;
- $this1 = $this$addr;
+ STACKTOP = STACKTOP + 192|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vcDir = sp + 16|0;
+ $vcTemp = sp + 64|0;
+ $vcUp = sp + 144|0;
+ $ref$tmp = sp;
+ $ref$tmp2 = sp + 128|0;
+ $ref$tmp3 = sp + 160|0;
+ $vcY = sp + 176|0;
+ $ref$tmp5 = sp + 96|0;
+ $ref$tmp6 = sp + 80|0;
+ $ref$tmp10 = sp + 32|0;
+ $ref$tmp11 = sp + 48|0;
+ $vcRight = sp + 112|0;
  __ZN9REMVectorC2Ev($vcDir);
  __ZN9REMVectorC2Ev($vcTemp);
  __ZN9REMVectorC2Ev($vcUp);
- $0 = $vcPoint$addr;
- $1 = $vcPos$addr;
- __ZNK9REMVectormiERKS_($ref$tmp,$0,$1);
+ __ZNK9REMVectormiERKS_($ref$tmp,$vcPoint,$vcPos);
  ;HEAP32[$vcDir+0>>2]=HEAP32[$ref$tmp+0>>2]|0;HEAP32[$vcDir+4>>2]=HEAP32[$ref$tmp+4>>2]|0;HEAP32[$vcDir+8>>2]=HEAP32[$ref$tmp+8>>2]|0;HEAP32[$vcDir+12>>2]=HEAP32[$ref$tmp+12>>2]|0;
  __ZN9REMVector9normaliseEv($vcDir);
- $2 = $vcWorldUp$addr;
- $call = (+__ZNK9REMVectormlERKS_($2,$vcDir));
- $fDot = $call;
- $3 = $fDot;
- __ZNK9REMVectormlEf($ref$tmp2,$vcDir,$3);
+ $call = (+__ZNK9REMVectormlERKS_($vcWorldUp,$vcDir));
+ __ZNK9REMVectormlEf($ref$tmp2,$vcDir,$call);
  ;HEAP32[$vcTemp+0>>2]=HEAP32[$ref$tmp2+0>>2]|0;HEAP32[$vcTemp+4>>2]=HEAP32[$ref$tmp2+4>>2]|0;HEAP32[$vcTemp+8>>2]=HEAP32[$ref$tmp2+8>>2]|0;HEAP32[$vcTemp+12>>2]=HEAP32[$ref$tmp2+12>>2]|0;
- $4 = $vcWorldUp$addr;
- __ZNK9REMVectormiERKS_($ref$tmp3,$4,$vcTemp);
+ __ZNK9REMVectormiERKS_($ref$tmp3,$vcWorldUp,$vcTemp);
  ;HEAP32[$vcUp+0>>2]=HEAP32[$ref$tmp3+0>>2]|0;HEAP32[$vcUp+4>>2]=HEAP32[$ref$tmp3+4>>2]|0;HEAP32[$vcUp+8>>2]=HEAP32[$ref$tmp3+8>>2]|0;HEAP32[$vcUp+12>>2]=HEAP32[$ref$tmp3+12>>2]|0;
  $call4 = (+__ZN9REMVector9getLengthEv($vcUp));
- $fL = $call4;
- $5 = $fL;
- $cmp = $5 < 9.99999997475242707878E-7;
+ $cmp = $call4 < 9.99999997475242707878E-7;
  if ($cmp) {
   __ZN9REMVectorC2Ev($vcY);
   __ZN9REMVector3setEffff($vcY,0.0,1.0,0.0,1.0);
   $y = (($vcDir) + 4|0);
-  $6 = +HEAPF32[$y>>2];
-  __ZNK9REMVectormlEf($ref$tmp5,$vcDir,$6);
+  $0 = +HEAPF32[$y>>2];
+  __ZNK9REMVectormlEf($ref$tmp5,$vcDir,$0);
   ;HEAP32[$vcTemp+0>>2]=HEAP32[$ref$tmp5+0>>2]|0;HEAP32[$vcTemp+4>>2]=HEAP32[$ref$tmp5+4>>2]|0;HEAP32[$vcTemp+8>>2]=HEAP32[$ref$tmp5+8>>2]|0;HEAP32[$vcTemp+12>>2]=HEAP32[$ref$tmp5+12>>2]|0;
   __ZNK9REMVectormiERKS_($ref$tmp6,$vcY,$vcTemp);
   ;HEAP32[$vcUp+0>>2]=HEAP32[$ref$tmp6+0>>2]|0;HEAP32[$vcUp+4>>2]=HEAP32[$ref$tmp6+4>>2]|0;HEAP32[$vcUp+8>>2]=HEAP32[$ref$tmp6+8>>2]|0;HEAP32[$vcUp+12>>2]=HEAP32[$ref$tmp6+12>>2]|0;
   $call7 = (+__ZN9REMVector9getLengthEv($vcUp));
-  $fL = $call7;
-  $7 = $fL;
-  $cmp8 = $7 < 9.99999997475242707878E-7;
-  do {
-   if ($cmp8) {
-    __ZN9REMVector3setEffff($vcY,0.0,0.0,1.0,1.0);
-    $z = (($vcDir) + 8|0);
-    $8 = +HEAPF32[$z>>2];
-    __ZNK9REMVectormlEf($ref$tmp10,$vcDir,$8);
-    ;HEAP32[$vcTemp+0>>2]=HEAP32[$ref$tmp10+0>>2]|0;HEAP32[$vcTemp+4>>2]=HEAP32[$ref$tmp10+4>>2]|0;HEAP32[$vcTemp+8>>2]=HEAP32[$ref$tmp10+8>>2]|0;HEAP32[$vcTemp+12>>2]=HEAP32[$ref$tmp10+12>>2]|0;
-    __ZNK9REMVectormiERKS_($ref$tmp11,$vcY,$vcTemp);
-    ;HEAP32[$vcUp+0>>2]=HEAP32[$ref$tmp11+0>>2]|0;HEAP32[$vcUp+4>>2]=HEAP32[$ref$tmp11+4>>2]|0;HEAP32[$vcUp+8>>2]=HEAP32[$ref$tmp11+8>>2]|0;HEAP32[$vcUp+12>>2]=HEAP32[$ref$tmp11+12>>2]|0;
-    $call12 = (+__ZN9REMVector9getLengthEv($vcUp));
-    $fL = $call12;
-    $9 = $fL;
-    $conv = $9;
-    $cmp13 = $conv < 9.99999999999999954748E-7;
-    if (!($cmp13)) {
-     break;
-    }
-    $retval = -1;
-    $12 = $retval;
-    STACKTOP = sp;return ($12|0);
+  $cmp8 = $call7 < 9.99999997475242707878E-7;
+  if ($cmp8) {
+   __ZN9REMVector3setEffff($vcY,0.0,0.0,1.0,1.0);
+   $z = (($vcDir) + 8|0);
+   $1 = +HEAPF32[$z>>2];
+   __ZNK9REMVectormlEf($ref$tmp10,$vcDir,$1);
+   ;HEAP32[$vcTemp+0>>2]=HEAP32[$ref$tmp10+0>>2]|0;HEAP32[$vcTemp+4>>2]=HEAP32[$ref$tmp10+4>>2]|0;HEAP32[$vcTemp+8>>2]=HEAP32[$ref$tmp10+8>>2]|0;HEAP32[$vcTemp+12>>2]=HEAP32[$ref$tmp10+12>>2]|0;
+   __ZNK9REMVectormiERKS_($ref$tmp11,$vcY,$vcTemp);
+   ;HEAP32[$vcUp+0>>2]=HEAP32[$ref$tmp11+0>>2]|0;HEAP32[$vcUp+4>>2]=HEAP32[$ref$tmp11+4>>2]|0;HEAP32[$vcUp+8>>2]=HEAP32[$ref$tmp11+8>>2]|0;HEAP32[$vcUp+12>>2]=HEAP32[$ref$tmp11+12>>2]|0;
+   $call12 = (+__ZN9REMVector9getLengthEv($vcUp));
+   $conv = $call12;
+   $cmp13 = $conv < 9.99999999999999954748E-7;
+   if ($cmp13) {
+    $retval$0 = -1;
+    STACKTOP = sp;return ($retval$0|0);
+   } else {
+    $fL$0 = $call12;
    }
-  } while(0);
+  } else {
+   $fL$0 = $call7;
+  }
+ } else {
+  $fL$0 = $call4;
  }
- $10 = $fL;
- __ZN9REMVectordVEf($vcUp,$10);
+ __ZN9REMVectordVEf($vcUp,$fL$0);
  __ZN9REMVectorC2Ev($vcRight);
  __ZN9REMVector5crossERKS_S1_($vcRight,$vcUp,$vcDir);
- $11 = $vcPos$addr;
- $call17 = (__ZN15REMRenderDevice9setView3DERK9REMVectorS2_S2_S2_($this1,$vcRight,$vcUp,$vcDir,$11)|0);
- $retval = $call17;
- $12 = $retval;
- STACKTOP = sp;return ($12|0);
-}
-function __ZN15REMRenderDevice9prepare2DEv($this) {
- $this = $this|0;
- var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $_fFar = 0, $_fFar14 = 0, $_fNear = 0, $_fNear12 = 0, $_fNear15 = 0, $_fNear26 = 0, $_mProj2D = 0, $_mProj2D18 = 0, $_mProj2D2 = 0, $_mProj2D22 = 0, $_mProj2D4 = 0;
- var $_mProj2D8 = 0, $_mView2D = 0, $_mView2D27 = 0, $_mView2D31 = 0, $_mView2D35 = 0, $_mView2D39 = 0, $add = 0.0, $arrayidx10 = 0, $arrayidx11 = 0, $arrayidx20 = 0, $arrayidx21 = 0, $arrayidx24 = 0, $arrayidx25 = 0, $arrayidx29 = 0, $arrayidx30 = 0, $arrayidx33 = 0, $arrayidx37 = 0, $arrayidx38 = 0, $arrayidx41 = 0, $arrayidx42 = 0;
- var $arrayidx6 = 0, $arrayidx7 = 0, $div = 0.0, $div17 = 0.0, $mul = 0.0, $sub = 0.0, $sub13 = 0.0, $sub16 = 0.0, $this$addr = 0, $this1 = 0, $tx = 0.0, $ty = 0.0, $tz = 0.0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_mProj2D = (($this1) + 232|0);
- __ZN9REMMatrix8identityEv($_mProj2D);
- $_mView2D = (($this1) + 104|0);
- __ZN9REMMatrix8identityEv($_mView2D);
- $_mProj2D2 = (($this1) + 232|0);
- HEAPF32[$_mProj2D2>>2] = 0.00714285718277096748352;
- $_mProj2D4 = (($this1) + 232|0);
- $arrayidx6 = (($_mProj2D4) + 16|0);
- $arrayidx7 = (($arrayidx6) + 4|0);
- HEAPF32[$arrayidx7>>2] = 0.00999999977648258209228;
- $_fFar = (($this1) + 20|0);
- $0 = +HEAPF32[$_fFar>>2];
- $_fNear = (($this1) + 16|0);
- $1 = +HEAPF32[$_fNear>>2];
- $sub = $0 - $1;
- $div = 1.0 / $sub;
- $_mProj2D8 = (($this1) + 232|0);
- $arrayidx10 = (($_mProj2D8) + 32|0);
- $arrayidx11 = (($arrayidx10) + 8|0);
- HEAPF32[$arrayidx11>>2] = $div;
- $_fNear12 = (($this1) + 16|0);
- $2 = +HEAPF32[$_fNear12>>2];
- $sub13 = -$2;
- $_fFar14 = (($this1) + 20|0);
- $3 = +HEAPF32[$_fFar14>>2];
- $_fNear15 = (($this1) + 16|0);
- $4 = +HEAPF32[$_fNear15>>2];
- $sub16 = $3 - $4;
- $div17 = 1.0 / $sub16;
- $mul = $sub13 * $div17;
- $_mProj2D18 = (($this1) + 232|0);
- $arrayidx20 = (($_mProj2D18) + 48|0);
- $arrayidx21 = (($arrayidx20) + 8|0);
- HEAPF32[$arrayidx21>>2] = $mul;
- $_mProj2D22 = (($this1) + 232|0);
- $arrayidx24 = (($_mProj2D22) + 48|0);
- $arrayidx25 = (($arrayidx24) + 12|0);
- HEAPF32[$arrayidx25>>2] = 1.0;
- $tx = -140.0;
- $ty = 100.0;
- $_fNear26 = (($this1) + 16|0);
- $5 = +HEAPF32[$_fNear26>>2];
- $add = $5 + 0.100000001490116119385;
- $tz = $add;
- $_mView2D27 = (($this1) + 104|0);
- $arrayidx29 = (($_mView2D27) + 16|0);
- $arrayidx30 = (($arrayidx29) + 4|0);
- HEAPF32[$arrayidx30>>2] = -1.0;
- $6 = $tx;
- $_mView2D31 = (($this1) + 104|0);
- $arrayidx33 = (($_mView2D31) + 48|0);
- HEAPF32[$arrayidx33>>2] = $6;
- $7 = $ty;
- $_mView2D35 = (($this1) + 104|0);
- $arrayidx37 = (($_mView2D35) + 48|0);
- $arrayidx38 = (($arrayidx37) + 4|0);
- HEAPF32[$arrayidx38>>2] = $7;
- $8 = $tz;
- $_mView2D39 = (($this1) + 104|0);
- $arrayidx41 = (($_mView2D39) + 48|0);
- $arrayidx42 = (($arrayidx41) + 8|0);
- HEAPF32[$arrayidx42>>2] = $8;
- STACKTOP = sp;return;
-}
-function __ZN15REMRenderDevice19calcPerspProjMatrixEffP9REMMatrix($this,$fFOV,$fAspect,$m) {
- $this = $this|0;
- $fFOV = +$fFOV;
- $fAspect = +$fAspect;
- $m = $m|0;
- var $0 = 0.0, $1 = 0.0, $10 = 0.0, $11 = 0.0, $12 = 0.0, $13 = 0, $14 = 0.0, $15 = 0, $16 = 0.0, $17 = 0, $18 = 0.0, $19 = 0, $2 = 0.0, $20 = 0, $21 = 0.0, $22 = 0.0, $23 = 0, $24 = 0, $3 = 0.0, $4 = 0.0;
- var $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $Q = 0.0, $_fFar = 0, $_fFar13 = 0, $_fFar14 = 0, $_fNear = 0, $_fNear15 = 0, $_fNear29 = 0, $arrayidx20 = 0, $arrayidx21 = 0, $arrayidx23 = 0, $arrayidx24 = 0, $arrayidx26 = 0, $arrayidx27 = 0, $arrayidx32 = 0, $arrayidx33 = 0;
- var $call = 0.0, $call2 = 0.0, $call4 = 0.0, $call9 = 0.0, $cmp = 0, $cmp5 = 0, $conv = 0.0, $conv3 = 0.0, $cosFOV2 = 0.0, $div = 0.0, $div10 = 0.0, $div11 = 0.0, $div17 = 0.0, $div8 = 0.0, $fAspect$addr = 0.0, $fFOV$addr = 0.0, $h = 0.0, $m$addr = 0, $mul = 0.0, $mul12 = 0.0;
- var $mul30 = 0.0, $retval = 0, $sinFOV2 = 0.0, $sub = 0.0, $sub16 = 0.0, $sub28 = 0.0, $this$addr = 0, $this1 = 0, $w = 0.0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $fFOV$addr = $fFOV;
- $fAspect$addr = $fAspect;
- $m$addr = $m;
- $this1 = $this$addr;
- $_fFar = (($this1) + 20|0);
- $0 = +HEAPF32[$_fFar>>2];
- $_fNear = (($this1) + 16|0);
- $1 = +HEAPF32[$_fNear>>2];
- $sub = $0 - $1;
- $conv = $sub;
- $call = (+Math_abs((+$conv)));
- $cmp = $call < 0.00999999977648258209228;
- if ($cmp) {
-  $retval = -1;
-  $24 = $retval;
-  STACKTOP = sp;return ($24|0);
- }
- $2 = $fFOV$addr;
- $div = $2 / 2.0;
- $call2 = (+Math_sin((+$div)));
- $sinFOV2 = $call2;
- $3 = $sinFOV2;
- $conv3 = $3;
- $call4 = (+Math_abs((+$conv3)));
- $cmp5 = $call4 < 0.00999999977648258209228;
- if ($cmp5) {
-  $retval = -1;
-  $24 = $retval;
-  STACKTOP = sp;return ($24|0);
- } else {
-  $4 = $fFOV$addr;
-  $div8 = $4 / 2.0;
-  $call9 = (+Math_cos((+$div8)));
-  $cosFOV2 = $call9;
-  $5 = $fAspect$addr;
-  $6 = $cosFOV2;
-  $7 = $sinFOV2;
-  $div10 = $6 / $7;
-  $mul = $5 * $div10;
-  $w = $mul;
-  $8 = $cosFOV2;
-  $9 = $sinFOV2;
-  $div11 = $8 / $9;
-  $mul12 = 1.0 * $div11;
-  $h = $mul12;
-  $_fFar13 = (($this1) + 20|0);
-  $10 = +HEAPF32[$_fFar13>>2];
-  $_fFar14 = (($this1) + 20|0);
-  $11 = +HEAPF32[$_fFar14>>2];
-  $_fNear15 = (($this1) + 16|0);
-  $12 = +HEAPF32[$_fNear15>>2];
-  $sub16 = $11 - $12;
-  $div17 = $10 / $sub16;
-  $Q = $div17;
-  $13 = $m$addr;
-  __ZN9REMMatrix8identityEv($13);
-  $14 = $w;
-  $15 = $m$addr;
-  HEAPF32[$15>>2] = $14;
-  $16 = $h;
-  $17 = $m$addr;
-  $arrayidx20 = (($17) + 16|0);
-  $arrayidx21 = (($arrayidx20) + 4|0);
-  HEAPF32[$arrayidx21>>2] = $16;
-  $18 = $Q;
-  $19 = $m$addr;
-  $arrayidx23 = (($19) + 32|0);
-  $arrayidx24 = (($arrayidx23) + 8|0);
-  HEAPF32[$arrayidx24>>2] = $18;
-  $20 = $m$addr;
-  $arrayidx26 = (($20) + 32|0);
-  $arrayidx27 = (($arrayidx26) + 12|0);
-  HEAPF32[$arrayidx27>>2] = 1.0;
-  $21 = $Q;
-  $sub28 = -$21;
-  $_fNear29 = (($this1) + 16|0);
-  $22 = +HEAPF32[$_fNear29>>2];
-  $mul30 = $sub28 * $22;
-  $23 = $m$addr;
-  $arrayidx32 = (($23) + 48|0);
-  $arrayidx33 = (($arrayidx32) + 8|0);
-  HEAPF32[$arrayidx33>>2] = $mul30;
-  $retval = 0;
-  $24 = $retval;
-  STACKTOP = sp;return ($24|0);
- }
- return 0|0;
+ $call17 = (__ZN15REMRenderDevice9setView3DERK9REMVectorS2_S2_S2_($this,$vcRight,$vcUp,$vcDir,$vcPos)|0);
+ $retval$0 = $call17;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN15REMRenderDevice12getShadeModeEv($this) {
  $this = $this|0;
- var $0 = 0, $_shadeMode = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, $_shadeMode = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_shadeMode = (($this1) + 12|0);
+ $_shadeMode = (($this) + 12|0);
  $0 = HEAP32[$_shadeMode>>2]|0;
  STACKTOP = sp;return ($0|0);
 }
 function __ZN16REMShaderManagerC2EP15REMRenderDevice($this,$renderDevice) {
  $this = $this|0;
  $renderDevice = $renderDevice|0;
- var $0 = 0, $renderDevice$addr = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $renderDevice$addr = $renderDevice;
- $this1 = $this$addr;
- $0 = $renderDevice$addr;
- HEAP32[$this1>>2] = $0;
+ HEAP32[$this>>2] = $renderDevice;
  STACKTOP = sp;return;
 }
-function __ZN16REMShaderManager13createVShaderEPKcb14REMVERTEX_TYPEPj($this,$pData,$bLoadFromFile,$vertexFormat,$pID) {
+function __ZN16REMShaderManager13createVShaderEPKcbPj($this,$pData,$bLoadFromFile,$pID) {
  $this = $this|0;
  $pData = $pData|0;
  $bLoadFromFile = $bLoadFromFile|0;
- $vertexFormat = $vertexFormat|0;
  $pID = $pID|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
- var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0;
- var $VSFile = 0, $_nNumVShaders = 0, $_nNumVShaders31 = 0, $_nNumVShaders32 = 0, $_nNumVShaders36 = 0, $_nNumVShaders38 = 0, $_nNumVShaders40 = 0, $_pVShader = 0, $_pVertexFormat = 0, $add = 0, $arrayidx = 0, $arrayidx33 = 0, $bLoadFromFile$addr = 0, $call = 0, $call13 = 0, $call19 = 0, $call24 = 0, $call7 = 0, $call8 = 0, $cmp = 0;
- var $cmp14 = 0, $cmp22 = 0, $compile_ok = 0, $fSize = 0, $frombool = 0, $inc = 0, $infoLen = 0, $infoLog = 0, $mul = 0, $pData$addr = 0, $pID$addr = 0, $retval = 0, $this$addr = 0, $this1 = 0, $tobool = 0, $tobool20 = 0, $tobool28 = 0, $tobool3 = 0, $tobool34 = 0, $tobool9 = 0;
- var $vararg_buffer = 0, $vararg_buffer1 = 0, $vertexFormat$addr = 0, $vs = 0, $vs_source = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $_nNumVShaders = 0, $add = 0, $arrayidx = 0, $call = 0, $call13 = 0, $call19 = 0, $call24 = 0, $call7 = 0, $call8 = 0, $cmp = 0, $cmp14 = 0;
+ var $cmp22 = 0, $compile_ok = 0, $inc = 0, $infoLen = 0, $retval$0 = 0, $tobool20 = 0, $tobool3 = 0, $tobool31 = 0, $tobool9 = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, $vs_source = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 64|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vararg_buffer1 = sp;
- $vararg_buffer = sp + 8|0;
- $vs_source = sp + 32|0;
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer1 = sp + 8|0;
+ $vararg_buffer = sp;
+ $vs_source = sp + 20|0;
  $compile_ok = sp + 16|0;
- $infoLen = sp + 48|0;
- $this$addr = $this;
- $pData$addr = $pData;
- $frombool = $bLoadFromFile&1;
- $bLoadFromFile$addr = $frombool;
- $vertexFormat$addr = $vertexFormat;
- $pID$addr = $pID;
- $this1 = $this$addr;
+ $infoLen = sp + 12|0;
  HEAP32[$compile_ok>>2] = 0;
  HEAP32[$infoLen>>2] = 0;
- $_nNumVShaders = (($this1) + 1310704|0);
+ $_nNumVShaders = (($this) + 786424|0);
  $0 = HEAP32[$_nNumVShaders>>2]|0;
- $cmp = ($0>>>0)>=(65534);
+ $cmp = ($0>>>0)>(65533);
  if ($cmp) {
-  $retval = -1;
-  $39 = $retval;
-  STACKTOP = sp;return ($39|0);
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
  }
- $1 = $bLoadFromFile$addr;
- $tobool = $1&1;
  do {
-  if ($tobool) {
-   $2 = $pData$addr;
-   $call = (_fopen(($2|0),(256|0))|0);
-   $VSFile = $call;
-   $3 = $VSFile;
-   $tobool3 = ($3|0)!=(0|0);
-   if (!($tobool3)) {
-    $retval = -1;
-    $39 = $retval;
-    STACKTOP = sp;return ($39|0);
+  if ($bLoadFromFile) {
+   $call = (_fopen(($pData|0),(416|0))|0);
+   $tobool3 = ($call|0)==(0|0);
+   if ($tobool3) {
+    $retval$0 = -1;
+    STACKTOP = sp;return ($retval$0|0);
    }
-   $4 = $VSFile;
-   (_fseek(($4|0),0,2)|0);
-   $5 = $VSFile;
-   $call7 = (_ftell(($5|0))|0);
-   $fSize = $call7;
-   $6 = $VSFile;
-   _rewind(($6|0));
-   $7 = $fSize;
-   $add = (($7) + 1)|0;
+   (_fseek(($call|0),0,2)|0);
+   $call7 = (_ftell(($call|0))|0);
+   _rewind(($call|0));
+   $add = (($call7) + 1)|0;
    $call8 = (_calloc(1,$add)|0);
    HEAP32[$vs_source>>2] = $call8;
-   $8 = HEAP32[$vs_source>>2]|0;
-   $tobool9 = ($8|0)!=(0|0);
-   if (!($tobool9)) {
-    $9 = $VSFile;
-    (_fclose(($9|0))|0);
-    $retval = -1;
-    $39 = $retval;
-    STACKTOP = sp;return ($39|0);
+   $tobool9 = ($call8|0)==(0|0);
+   if ($tobool9) {
+    (_fclose(($call|0))|0);
+    $retval$0 = -1;
+    STACKTOP = sp;return ($retval$0|0);
    }
-   $10 = HEAP32[$vs_source>>2]|0;
-   $11 = $fSize;
-   $12 = $VSFile;
-   $call13 = (_fread(($10|0),($11|0),1,($12|0))|0);
-   $cmp14 = ($call13|0)!=(1);
-   if (!($cmp14)) {
-    $14 = $VSFile;
-    (_fclose(($14|0))|0);
+   $call13 = (_fread(($call8|0),($call7|0),1,($call|0))|0);
+   $cmp14 = ($call13|0)==(1);
+   if ($cmp14) {
+    (_fclose(($call|0))|0);
     break;
    }
-   $13 = HEAP32[$vs_source>>2]|0;
-   _free($13);
-   $retval = -1;
-   $39 = $retval;
-   STACKTOP = sp;return ($39|0);
+   $1 = HEAP32[$vs_source>>2]|0;
+   _free($1);
+   $retval$0 = -1;
+   STACKTOP = sp;return ($retval$0|0);
   } else {
-   $15 = $pData$addr;
-   HEAP32[$vs_source>>2] = $15;
+   HEAP32[$vs_source>>2] = $pData;
   }
  } while(0);
  $call19 = (_glCreateShader(35633)|0);
- $vs = $call19;
- $16 = $vs;
- _glShaderSource(($16|0),1,($vs_source|0),(0|0));
- $17 = $vs;
- _glCompileShader(($17|0));
- $18 = $vs;
- _glGetShaderiv(($18|0),35713,($compile_ok|0));
- $19 = HEAP32[$compile_ok>>2]|0;
- $tobool20 = ($19|0)!=(0);
- if (!($tobool20)) {
-  $20 = $vs;
-  _glGetShaderiv(($20|0),35716,($infoLen|0));
-  $21 = HEAP32[$infoLen>>2]|0;
-  $cmp22 = ($21|0)>(1);
+ _glShaderSource(($call19|0),1,($vs_source|0),(0|0));
+ _glCompileShader(($call19|0));
+ _glGetShaderiv(($call19|0),35713,($compile_ok|0));
+ $2 = HEAP32[$compile_ok>>2]|0;
+ $tobool20 = ($2|0)==(0);
+ if ($tobool20) {
+  _glGetShaderiv(($call19|0),35716,($infoLen|0));
+  $3 = HEAP32[$infoLen>>2]|0;
+  $cmp22 = ($3|0)>(1);
   if ($cmp22) {
-   $22 = HEAP32[$infoLen>>2]|0;
-   $mul = $22;
-   $call24 = (_malloc($mul)|0);
-   $infoLog = $call24;
-   $23 = $vs;
-   $24 = HEAP32[$infoLen>>2]|0;
-   $25 = $infoLog;
-   _glGetShaderInfoLog(($23|0),($24|0),(0|0),($25|0));
-   $26 = $infoLog;
-   HEAP32[$vararg_buffer>>2] = $26;
-   (_printf((264|0),($vararg_buffer|0))|0);
-   $27 = $infoLog;
-   _free($27);
+   $call24 = (_malloc($3)|0);
+   _glGetShaderInfoLog(($call19|0),($3|0),(0|0),($call24|0));
+   HEAP32[$vararg_buffer>>2] = $call24;
+   __ZN16REMShaderManager3logEPcz(0,424,$vararg_buffer);
+   _free($call24);
   }
  }
- $28 = $bLoadFromFile$addr;
- $tobool28 = $28&1;
- if ($tobool28) {
-  $29 = HEAP32[$vs_source>>2]|0;
-  _free($29);
+ if ($bLoadFromFile) {
+  $4 = HEAP32[$vs_source>>2]|0;
+  _free($4);
  }
- $30 = $vertexFormat$addr;
- $_nNumVShaders31 = (($this1) + 1310704|0);
- $31 = HEAP32[$_nNumVShaders31>>2]|0;
- $_pVertexFormat = (($this1) + 262144|0);
- $arrayidx = (($_pVertexFormat) + ($31<<2)|0);
- HEAP32[$arrayidx>>2] = $30;
- $32 = $vs;
- $_nNumVShaders32 = (($this1) + 1310704|0);
- $33 = HEAP32[$_nNumVShaders32>>2]|0;
- $_pVShader = (($this1) + 4|0);
- $arrayidx33 = (($_pVShader) + ($33<<2)|0);
- HEAP32[$arrayidx33>>2] = $32;
- $34 = $pID$addr;
- $tobool34 = ($34|0)!=(0|0);
- if ($tobool34) {
-  $_nNumVShaders36 = (($this1) + 1310704|0);
-  $35 = HEAP32[$_nNumVShaders36>>2]|0;
-  $36 = $pID$addr;
-  HEAP32[$36>>2] = $35;
+ $5 = HEAP32[$_nNumVShaders>>2]|0;
+ $arrayidx = ((($this) + ($5<<2)|0) + 4|0);
+ HEAP32[$arrayidx>>2] = $call19;
+ $tobool31 = ($pID|0)==(0|0);
+ if (!($tobool31)) {
+  $6 = HEAP32[$_nNumVShaders>>2]|0;
+  HEAP32[$pID>>2] = $6;
  }
- $_nNumVShaders38 = (($this1) + 1310704|0);
- $37 = HEAP32[$_nNumVShaders38>>2]|0;
- HEAP32[$vararg_buffer1>>2] = $37;
- (_printf((296|0),($vararg_buffer1|0))|0);
- $_nNumVShaders40 = (($this1) + 1310704|0);
- $38 = HEAP32[$_nNumVShaders40>>2]|0;
- $inc = (($38) + 1)|0;
- HEAP32[$_nNumVShaders40>>2] = $inc;
- $retval = 0;
- $39 = $retval;
- STACKTOP = sp;return ($39|0);
+ $7 = HEAP32[$_nNumVShaders>>2]|0;
+ HEAP32[$vararg_buffer1>>2] = $7;
+ __ZN16REMShaderManager3logEPcz(0,456,$vararg_buffer1);
+ $8 = HEAP32[$_nNumVShaders>>2]|0;
+ $inc = (($8) + 1)|0;
+ HEAP32[$_nNumVShaders>>2] = $inc;
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
+}
+function __ZN16REMShaderManager3logEPcz($this,$chString,$varargs) {
+ $this = $this|0;
+ $chString = $chString|0;
+ $varargs = $varargs|0;
+ var $args = 0, $vararg_buffer = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer = sp;
+ $args = sp + 8|0;
+ HEAP32[$args>>2] = $varargs;
+ (_printf((600|0),($vararg_buffer|0))|0);
+ (_vprintf(($chString|0),($args|0))|0);
+ (_putchar(10)|0);
+ STACKTOP = sp;return;
 }
 function __ZN16REMShaderManager13createFShaderEPKcbPj($this,$pData,$bLoadFromFile,$pID) {
  $this = $this|0;
  $pData = $pData|0;
  $bLoadFromFile = $bLoadFromFile|0;
  $pID = $pID|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
- var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $FSFile = 0, $_nNumFShaders = 0;
- var $_nNumFShaders31 = 0, $_nNumFShaders34 = 0, $_nNumFShaders36 = 0, $_nNumFShaders38 = 0, $_pFShader = 0, $add = 0, $arrayidx = 0, $bLoadFromFile$addr = 0, $call = 0, $call13 = 0, $call19 = 0, $call24 = 0, $call7 = 0, $call8 = 0, $cmp = 0, $cmp14 = 0, $cmp22 = 0, $compile_ok = 0, $fSize = 0, $frombool = 0;
- var $fs = 0, $fs_source = 0, $inc = 0, $infoLen = 0, $infoLog = 0, $mul = 0, $pData$addr = 0, $pID$addr = 0, $retval = 0, $this$addr = 0, $this1 = 0, $tobool = 0, $tobool20 = 0, $tobool28 = 0, $tobool3 = 0, $tobool32 = 0, $tobool9 = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, label = 0;
- var sp = 0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $_nNumFShaders = 0, $add = 0, $arrayidx = 0, $call = 0, $call13 = 0, $call19 = 0, $call24 = 0, $call7 = 0, $call8 = 0, $cmp = 0, $cmp14 = 0;
+ var $cmp22 = 0, $compile_ok = 0, $fs_source = 0, $inc = 0, $infoLen = 0, $retval$0 = 0, $tobool20 = 0, $tobool3 = 0, $tobool31 = 0, $tobool9 = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 64|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vararg_buffer1 = sp;
- $vararg_buffer = sp + 8|0;
- $fs_source = sp + 28|0;
- $compile_ok = sp + 36|0;
- $infoLen = sp + 32|0;
- $this$addr = $this;
- $pData$addr = $pData;
- $frombool = $bLoadFromFile&1;
- $bLoadFromFile$addr = $frombool;
- $pID$addr = $pID;
- $this1 = $this$addr;
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer1 = sp + 8|0;
+ $vararg_buffer = sp;
+ $fs_source = sp + 20|0;
+ $compile_ok = sp + 16|0;
+ $infoLen = sp + 12|0;
  HEAP32[$compile_ok>>2] = 0;
  HEAP32[$infoLen>>2] = 0;
- $_nNumFShaders = (($this1) + 1310708|0);
+ $_nNumFShaders = (($this) + 786428|0);
  $0 = HEAP32[$_nNumFShaders>>2]|0;
- $cmp = ($0>>>0)>=(65534);
+ $cmp = ($0>>>0)>(65533);
  if ($cmp) {
-  $retval = -1;
-  $37 = $retval;
-  STACKTOP = sp;return ($37|0);
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
  }
- $1 = $bLoadFromFile$addr;
- $tobool = $1&1;
  do {
-  if ($tobool) {
-   $2 = $pData$addr;
-   $call = (_fopen(($2|0),(256|0))|0);
-   $FSFile = $call;
-   $3 = $FSFile;
-   $tobool3 = ($3|0)!=(0|0);
-   if (!($tobool3)) {
-    $retval = -1;
-    $37 = $retval;
-    STACKTOP = sp;return ($37|0);
+  if ($bLoadFromFile) {
+   $call = (_fopen(($pData|0),(416|0))|0);
+   $tobool3 = ($call|0)==(0|0);
+   if ($tobool3) {
+    $retval$0 = -1;
+    STACKTOP = sp;return ($retval$0|0);
    }
-   $4 = $FSFile;
-   (_fseek(($4|0),0,2)|0);
-   $5 = $FSFile;
-   $call7 = (_ftell(($5|0))|0);
-   $fSize = $call7;
-   $6 = $FSFile;
-   _rewind(($6|0));
-   $7 = $fSize;
-   $add = (($7) + 1)|0;
+   (_fseek(($call|0),0,2)|0);
+   $call7 = (_ftell(($call|0))|0);
+   _rewind(($call|0));
+   $add = (($call7) + 1)|0;
    $call8 = (_calloc(1,$add)|0);
    HEAP32[$fs_source>>2] = $call8;
-   $8 = HEAP32[$fs_source>>2]|0;
-   $tobool9 = ($8|0)!=(0|0);
-   if (!($tobool9)) {
-    $9 = $FSFile;
-    (_fclose(($9|0))|0);
-    $retval = -1;
-    $37 = $retval;
-    STACKTOP = sp;return ($37|0);
+   $tobool9 = ($call8|0)==(0|0);
+   if ($tobool9) {
+    (_fclose(($call|0))|0);
+    $retval$0 = -1;
+    STACKTOP = sp;return ($retval$0|0);
    }
-   $10 = HEAP32[$fs_source>>2]|0;
-   $11 = $fSize;
-   $12 = $FSFile;
-   $call13 = (_fread(($10|0),($11|0),1,($12|0))|0);
-   $cmp14 = ($call13|0)!=(1);
-   if (!($cmp14)) {
-    $14 = $FSFile;
-    (_fclose(($14|0))|0);
+   $call13 = (_fread(($call8|0),($call7|0),1,($call|0))|0);
+   $cmp14 = ($call13|0)==(1);
+   if ($cmp14) {
+    (_fclose(($call|0))|0);
     break;
    }
-   $13 = HEAP32[$fs_source>>2]|0;
-   _free($13);
-   $retval = -1;
-   $37 = $retval;
-   STACKTOP = sp;return ($37|0);
+   $1 = HEAP32[$fs_source>>2]|0;
+   _free($1);
+   $retval$0 = -1;
+   STACKTOP = sp;return ($retval$0|0);
   } else {
-   $15 = $pData$addr;
-   HEAP32[$fs_source>>2] = $15;
+   HEAP32[$fs_source>>2] = $pData;
   }
  } while(0);
  $call19 = (_glCreateShader(35632)|0);
- $fs = $call19;
- $16 = $fs;
- _glShaderSource(($16|0),1,($fs_source|0),(0|0));
- $17 = $fs;
- _glCompileShader(($17|0));
- $18 = $fs;
- _glGetShaderiv(($18|0),35713,($compile_ok|0));
- $19 = HEAP32[$compile_ok>>2]|0;
- $tobool20 = ($19|0)!=(0);
- if (!($tobool20)) {
-  $20 = $fs;
-  _glGetShaderiv(($20|0),35716,($infoLen|0));
-  $21 = HEAP32[$infoLen>>2]|0;
-  $cmp22 = ($21|0)>(1);
+ _glShaderSource(($call19|0),1,($fs_source|0),(0|0));
+ _glCompileShader(($call19|0));
+ _glGetShaderiv(($call19|0),35713,($compile_ok|0));
+ $2 = HEAP32[$compile_ok>>2]|0;
+ $tobool20 = ($2|0)==(0);
+ if ($tobool20) {
+  _glGetShaderiv(($call19|0),35716,($infoLen|0));
+  $3 = HEAP32[$infoLen>>2]|0;
+  $cmp22 = ($3|0)>(1);
   if ($cmp22) {
-   $22 = HEAP32[$infoLen>>2]|0;
-   $mul = $22;
-   $call24 = (_malloc($mul)|0);
-   $infoLog = $call24;
-   $23 = $fs;
-   $24 = HEAP32[$infoLen>>2]|0;
-   $25 = $infoLog;
-   _glGetShaderInfoLog(($23|0),($24|0),(0|0),($25|0));
-   $26 = $infoLog;
-   HEAP32[$vararg_buffer>>2] = $26;
-   (_printf((264|0),($vararg_buffer|0))|0);
-   $27 = $infoLog;
-   _free($27);
+   $call24 = (_malloc($3)|0);
+   _glGetShaderInfoLog(($call19|0),($3|0),(0|0),($call24|0));
+   HEAP32[$vararg_buffer>>2] = $call24;
+   __ZN16REMShaderManager3logEPcz(0,424,$vararg_buffer);
+   _free($call24);
   }
  }
- $28 = $bLoadFromFile$addr;
- $tobool28 = $28&1;
- if ($tobool28) {
-  $29 = HEAP32[$fs_source>>2]|0;
-  _free($29);
+ if ($bLoadFromFile) {
+  $4 = HEAP32[$fs_source>>2]|0;
+  _free($4);
  }
- $30 = $fs;
- $_nNumFShaders31 = (($this1) + 1310708|0);
- $31 = HEAP32[$_nNumFShaders31>>2]|0;
- $_pFShader = (($this1) + 786424|0);
- $arrayidx = (($_pFShader) + ($31<<2)|0);
- HEAP32[$arrayidx>>2] = $30;
- $32 = $pID$addr;
- $tobool32 = ($32|0)!=(0|0);
- if ($tobool32) {
-  $_nNumFShaders34 = (($this1) + 1310708|0);
-  $33 = HEAP32[$_nNumFShaders34>>2]|0;
-  $34 = $pID$addr;
-  HEAP32[$34>>2] = $33;
+ $5 = HEAP32[$_nNumFShaders>>2]|0;
+ $arrayidx = ((($this) + ($5<<2)|0) + 262144|0);
+ HEAP32[$arrayidx>>2] = $call19;
+ $tobool31 = ($pID|0)==(0|0);
+ if (!($tobool31)) {
+  $6 = HEAP32[$_nNumFShaders>>2]|0;
+  HEAP32[$pID>>2] = $6;
  }
- $_nNumFShaders36 = (($this1) + 1310708|0);
- $35 = HEAP32[$_nNumFShaders36>>2]|0;
- HEAP32[$vararg_buffer1>>2] = $35;
- (_printf((336|0),($vararg_buffer1|0))|0);
- $_nNumFShaders38 = (($this1) + 1310708|0);
- $36 = HEAP32[$_nNumFShaders38>>2]|0;
- $inc = (($36) + 1)|0;
- HEAP32[$_nNumFShaders38>>2] = $inc;
- $retval = 0;
- $37 = $retval;
- STACKTOP = sp;return ($37|0);
+ $7 = HEAP32[$_nNumFShaders>>2]|0;
+ HEAP32[$vararg_buffer1>>2] = $7;
+ __ZN16REMShaderManager3logEPcz(0,496,$vararg_buffer1);
+ $8 = HEAP32[$_nNumFShaders>>2]|0;
+ $inc = (($8) + 1)|0;
+ HEAP32[$_nNumFShaders>>2] = $inc;
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN16REMShaderManager13createProgramEjjPj($this,$vID,$fID,$pID) {
  $this = $this|0;
  $vID = $vID|0;
  $fID = $fID|0;
  $pID = $pID|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_nNumPrograms = 0, $_nNumPrograms10 = 0, $_nNumPrograms4 = 0;
- var $_nNumPrograms5 = 0, $_nNumPrograms8 = 0, $_pFShader = 0, $_pProgram = 0, $_pVShader = 0, $_pVertexFormat = 0, $_pVertexFormatProgram = 0, $arrayidx = 0, $arrayidx2 = 0, $arrayidx3 = 0, $arrayidx7 = 0, $arrayidx9 = 0, $call = 0, $fID$addr = 0, $inc = 0, $pID$addr = 0, $shader_programme = 0, $this$addr = 0, $this1 = 0, $tobool = 0;
- var $vID$addr = 0, $vararg_buffer = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $_nNumPrograms = 0, $arrayidx = 0, $arrayidx2 = 0, $arrayidx3 = 0, $call = 0, $inc = 0, $tobool = 0, $vararg_buffer = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $vararg_buffer = sp;
- $this$addr = $this;
- $vID$addr = $vID;
- $fID$addr = $fID;
- $pID$addr = $pID;
- $this1 = $this$addr;
  $call = (_glCreateProgram()|0);
- $shader_programme = $call;
- $0 = $shader_programme;
- $1 = $fID$addr;
- $_pFShader = (($this1) + 786424|0);
- $arrayidx = (($_pFShader) + ($1<<2)|0);
- $2 = HEAP32[$arrayidx>>2]|0;
- _glAttachShader(($0|0),($2|0));
- $3 = $shader_programme;
- $4 = $vID$addr;
- $_pVShader = (($this1) + 4|0);
- $arrayidx2 = (($_pVShader) + ($4<<2)|0);
- $5 = HEAP32[$arrayidx2>>2]|0;
- _glAttachShader(($3|0),($5|0));
- $6 = $shader_programme;
- _glLinkProgram(($6|0));
- $7 = $shader_programme;
- $_nNumPrograms = (($this1) + 1310712|0);
- $8 = HEAP32[$_nNumPrograms>>2]|0;
- $_pProgram = (($this1) + 1048564|0);
- $arrayidx3 = (($_pProgram) + ($8<<2)|0);
- HEAP32[$arrayidx3>>2] = $7;
- $9 = $pID$addr;
- $tobool = ($9|0)!=(0|0);
- if ($tobool) {
-  $_nNumPrograms4 = (($this1) + 1310712|0);
-  $10 = HEAP32[$_nNumPrograms4>>2]|0;
-  $11 = $pID$addr;
-  HEAP32[$11>>2] = $10;
+ $arrayidx = ((($this) + ($fID<<2)|0) + 262144|0);
+ $0 = HEAP32[$arrayidx>>2]|0;
+ _glAttachShader(($call|0),($0|0));
+ $arrayidx2 = ((($this) + ($vID<<2)|0) + 4|0);
+ $1 = HEAP32[$arrayidx2>>2]|0;
+ _glAttachShader(($call|0),($1|0));
+ _glLinkProgram(($call|0));
+ $_nNumPrograms = (($this) + 786432|0);
+ $2 = HEAP32[$_nNumPrograms>>2]|0;
+ $arrayidx3 = ((($this) + ($2<<2)|0) + 524284|0);
+ HEAP32[$arrayidx3>>2] = $call;
+ $tobool = ($pID|0)==(0|0);
+ if (!($tobool)) {
+  $3 = HEAP32[$_nNumPrograms>>2]|0;
+  HEAP32[$pID>>2] = $3;
  }
- $_nNumPrograms5 = (($this1) + 1310712|0);
- $12 = HEAP32[$_nNumPrograms5>>2]|0;
- HEAP32[$vararg_buffer>>2] = $12;
- (_printf((376|0),($vararg_buffer|0))|0);
- $13 = $vID$addr;
- $_pVertexFormat = (($this1) + 262144|0);
- $arrayidx7 = (($_pVertexFormat) + ($13<<2)|0);
- $14 = HEAP32[$arrayidx7>>2]|0;
- $_nNumPrograms8 = (($this1) + 1310712|0);
- $15 = HEAP32[$_nNumPrograms8>>2]|0;
- $_pVertexFormatProgram = (($this1) + 524284|0);
- $arrayidx9 = (($_pVertexFormatProgram) + ($15<<2)|0);
- HEAP32[$arrayidx9>>2] = $14;
- $_nNumPrograms10 = (($this1) + 1310712|0);
- $16 = HEAP32[$_nNumPrograms10>>2]|0;
- $inc = (($16) + 1)|0;
- HEAP32[$_nNumPrograms10>>2] = $inc;
+ $4 = HEAP32[$_nNumPrograms>>2]|0;
+ HEAP32[$vararg_buffer>>2] = $4;
+ __ZN16REMShaderManager3logEPcz(0,536,$vararg_buffer);
+ $5 = HEAP32[$_nNumPrograms>>2]|0;
+ $inc = (($5) + 1)|0;
+ HEAP32[$_nNumPrograms>>2] = $inc;
  STACKTOP = sp;return 0;
 }
 function __ZN16REMShaderManager15activateProgramEj($this,$pID) {
  $this = $this|0;
  $pID = $pID|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_activeProgram = 0;
- var $_nNumPrograms = 0, $_pProgram = 0, $_pProgram13 = 0, $_pProgram18 = 0, $_pProgram23 = 0, $_pProgram3 = 0, $_pProgram5 = 0, $_pProgram8 = 0, $arrayidx = 0, $arrayidx14 = 0, $arrayidx19 = 0, $arrayidx24 = 0, $arrayidx4 = 0, $arrayidx6 = 0, $arrayidx9 = 0, $cMat = 0, $call = 0, $call10 = 0, $call15 = 0, $call20 = 0;
- var $call25 = 0, $call7 = 0, $cmp = 0, $fA = 0, $fB = 0, $fG = 0, $pID$addr = 0, $retval = 0, $this$addr = 0, $this1 = 0, $vararg_buffer = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_activeProgram = 0, $_nNumPrograms = 0, $arrayidx = 0, $call = 0, $cmp = 0, $retval$0 = 0, $vararg_buffer = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $vararg_buffer = sp;
- $cMat = sp + 8|0;
- $this$addr = $this;
- $pID$addr = $pID;
- $this1 = $this$addr;
- $0 = $pID$addr;
- $_nNumPrograms = (($this1) + 1310712|0);
- $1 = HEAP32[$_nNumPrograms>>2]|0;
- $cmp = ($0>>>0)>=($1>>>0);
- if ($cmp) {
-  $retval = -1;
-  $18 = $retval;
-  STACKTOP = sp;return ($18|0);
- } else {
-  $2 = HEAP32[$this1>>2]|0;
-  $call = (__ZN15REMRenderDevice16getVertexManagerEv($2)|0);
-  (__ZN21REMVertexCacheManager14forcedFlushAllEv($call)|0);
-  $3 = $pID$addr;
-  $_pProgram = (($this1) + 1048564|0);
-  $arrayidx = (($_pProgram) + ($3<<2)|0);
-  $4 = HEAP32[$arrayidx>>2]|0;
-  _glUseProgram(($4|0));
-  $5 = $pID$addr;
-  $_pProgram3 = (($this1) + 1048564|0);
-  $arrayidx4 = (($_pProgram3) + ($5<<2)|0);
-  $6 = HEAP32[$arrayidx4>>2]|0;
-  $_activeProgram = (($this1) + 1310716|0);
-  HEAP32[$_activeProgram>>2] = $6;
-  HEAPF32[$cMat>>2] = 1.0;
-  $fG = (($cMat) + 4|0);
-  HEAPF32[$fG>>2] = 1.0;
-  $fB = (($cMat) + 8|0);
-  HEAPF32[$fB>>2] = 1.0;
-  $fA = (($cMat) + 12|0);
-  HEAPF32[$fA>>2] = 1.0;
-  $7 = $pID$addr;
-  $_pProgram5 = (($this1) + 1048564|0);
-  $arrayidx6 = (($_pProgram5) + ($7<<2)|0);
-  $8 = HEAP32[$arrayidx6>>2]|0;
-  $call7 = (_glGetUniformLocation(($8|0),(408|0))|0);
-  _glUniform4fv(($call7|0),1,($cMat|0));
-  $9 = $pID$addr;
-  $_pProgram8 = (($this1) + 1048564|0);
-  $arrayidx9 = (($_pProgram8) + ($9<<2)|0);
-  $10 = HEAP32[$arrayidx9>>2]|0;
-  $call10 = (_glGetUniformLocation(($10|0),(424|0))|0);
-  _glUniform4fv(($call10|0),1,($cMat|0));
-  $11 = $pID$addr;
-  $_pProgram13 = (($this1) + 1048564|0);
-  $arrayidx14 = (($_pProgram13) + ($11<<2)|0);
-  $12 = HEAP32[$arrayidx14>>2]|0;
-  $call15 = (_glGetUniformLocation(($12|0),(440|0))|0);
-  _glUniform4fv(($call15|0),1,($cMat|0));
-  $13 = $pID$addr;
-  $_pProgram18 = (($this1) + 1048564|0);
-  $arrayidx19 = (($_pProgram18) + ($13<<2)|0);
-  $14 = HEAP32[$arrayidx19>>2]|0;
-  $call20 = (_glGetUniformLocation(($14|0),(456|0))|0);
-  _glUniform4fv(($call20|0),1,($cMat|0));
-  $15 = $pID$addr;
-  $_pProgram23 = (($this1) + 1048564|0);
-  $arrayidx24 = (($_pProgram23) + ($15<<2)|0);
-  $16 = HEAP32[$arrayidx24>>2]|0;
-  $call25 = (_glGetUniformLocation(($16|0),(472|0))|0);
-  _glUniform1f(($call25|0),1.0);
-  $17 = $pID$addr;
-  HEAP32[$vararg_buffer>>2] = $17;
-  (_printf((488|0),($vararg_buffer|0))|0);
-  $retval = 0;
-  $18 = $retval;
-  STACKTOP = sp;return ($18|0);
+ $_nNumPrograms = (($this) + 786432|0);
+ $0 = HEAP32[$_nNumPrograms>>2]|0;
+ $cmp = ($0>>>0)>($pID>>>0);
+ if (!($cmp)) {
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
  }
- return 0|0;
+ $1 = HEAP32[$this>>2]|0;
+ $call = (__ZN15REMRenderDevice16getVertexManagerEv($1)|0);
+ (__ZN21REMVertexCacheManager14forcedFlushAllEv($call)|0);
+ $arrayidx = ((($this) + ($pID<<2)|0) + 524284|0);
+ $2 = HEAP32[$arrayidx>>2]|0;
+ _glUseProgram(($2|0));
+ $3 = HEAP32[$arrayidx>>2]|0;
+ $_activeProgram = (($this) + 786436|0);
+ HEAP32[$_activeProgram>>2] = $3;
+ HEAP32[$vararg_buffer>>2] = $pID;
+ __ZN16REMShaderManager3logEPcz(0,568,$vararg_buffer);
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN16REMShaderManager16getActiveProgramEv($this) {
  $this = $this|0;
- var $0 = 0, $_activeProgram = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, $_activeProgram = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_activeProgram = (($this1) + 1310716|0);
+ $_activeProgram = (($this) + 786436|0);
  $0 = HEAP32[$_activeProgram>>2]|0;
  STACKTOP = sp;return ($0|0);
 }
 function __ZN14REMSkinManagerC2Ev($this) {
  $this = $this|0;
- var $_nNumMaterials = 0, $_nNumTextures = 0, $_pMaterials = 0, $_pSkins = 0, $_pTextures = 0, $this$addr = 0, $this1 = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, label = 0, sp = 0;
+ var $vararg_buffer = 0, $vararg_buffer1 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $vararg_buffer1 = sp + 8|0;
  $vararg_buffer = sp;
- $this$addr = $this;
- $this1 = $this$addr;
- __ZN14REMSkinManager3logEPcz($this1,520,$vararg_buffer);
- $_nNumMaterials = (($this1) + 4|0);
- HEAP32[$_nNumMaterials>>2] = 0;
- $_nNumTextures = (($this1) + 8|0);
- HEAP32[$_nNumTextures>>2] = 0;
- HEAP32[$this1>>2] = 0;
- $_pMaterials = (($this1) + 16|0);
- HEAP32[$_pMaterials>>2] = 0;
- $_pTextures = (($this1) + 20|0);
- HEAP32[$_pTextures>>2] = 0;
- $_pSkins = (($this1) + 12|0);
- HEAP32[$_pSkins>>2] = 0;
- __ZN14REMSkinManager3logEPcz($this1,536,$vararg_buffer1);
+ __ZN14REMSkinManager3logEPcz(0,624,$vararg_buffer);
+ ;HEAP32[$this+0>>2]=0|0;HEAP32[$this+4>>2]=0|0;HEAP32[$this+8>>2]=0|0;HEAP32[$this+12>>2]=0|0;HEAP32[$this+16>>2]=0|0;HEAP32[$this+20>>2]=0|0;
+ __ZN14REMSkinManager3logEPcz(0,640,$vararg_buffer1);
  STACKTOP = sp;return;
 }
 function __ZN14REMSkinManager3logEPcz($this,$chString,$varargs) {
  $this = $this|0;
  $chString = $chString|0;
  $varargs = $varargs|0;
- var $0 = 0, $args = 0, $chString$addr = 0, $this$addr = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, label = 0, sp = 0;
+ var $args = 0, $vararg_buffer = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $vararg_buffer1 = sp + 8|0;
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $vararg_buffer = sp;
- $args = sp + 16|0;
- $this$addr = $this;
- $chString$addr = $chString;
+ $args = sp + 8|0;
  HEAP32[$args>>2] = $varargs;
- (_printf((584|0),($vararg_buffer|0))|0);
- $0 = $chString$addr;
- (_vprintf(($0|0),($args|0))|0);
- (_printf((608|0),($vararg_buffer1|0))|0);
+ (_printf((744|0),($vararg_buffer|0))|0);
+ (_vprintf(($chString|0),($args|0))|0);
+ (_putchar(10)|0);
  STACKTOP = sp;return;
-}
-function __ZN14REMSkinManager13materialEqualEPK16REMMATERIAL_TYPES2_($this,$pMat0,$pMat1) {
- $this = $this|0;
- $pMat0 = $pMat0|0;
- $pMat1 = $pMat1|0;
- var $$expand_i1_val = 0, $$expand_i1_val2 = 0, $$pre_trunc = 0, $0 = 0, $1 = 0, $10 = 0, $11 = 0.0, $12 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0.0, $cAmbient = 0, $cAmbient2 = 0, $cEmissive = 0, $cEmissive6 = 0;
- var $cSpecular = 0, $cSpecular9 = 0, $call = 0, $call10 = 0, $call4 = 0, $call7 = 0, $cmp = 0, $fPower = 0, $fPower12 = 0, $pMat0$addr = 0, $pMat1$addr = 0, $retval = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $pMat0$addr = $pMat0;
- $pMat1$addr = $pMat1;
- $this1 = $this$addr;
- $0 = $pMat0$addr;
- $cAmbient = (($0) + 16|0);
- $1 = $pMat1$addr;
- $cAmbient2 = (($1) + 16|0);
- $call = (__ZN14REMSkinManager11colourEqualEPK14REMCOLOUR_TYPES2_($this1,$cAmbient,$cAmbient2)|0);
- if ($call) {
-  $2 = $pMat0$addr;
-  $3 = $pMat1$addr;
-  $call4 = (__ZN14REMSkinManager11colourEqualEPK14REMCOLOUR_TYPES2_($this1,$2,$3)|0);
-  if ($call4) {
-   $4 = $pMat0$addr;
-   $cEmissive = (($4) + 48|0);
-   $5 = $pMat1$addr;
-   $cEmissive6 = (($5) + 48|0);
-   $call7 = (__ZN14REMSkinManager11colourEqualEPK14REMCOLOUR_TYPES2_($this1,$cEmissive,$cEmissive6)|0);
-   if ($call7) {
-    $6 = $pMat0$addr;
-    $cSpecular = (($6) + 32|0);
-    $7 = $pMat1$addr;
-    $cSpecular9 = (($7) + 32|0);
-    $call10 = (__ZN14REMSkinManager11colourEqualEPK14REMCOLOUR_TYPES2_($this1,$cSpecular,$cSpecular9)|0);
-    if ($call10) {
-     $8 = $pMat0$addr;
-     $fPower = (($8) + 64|0);
-     $9 = +HEAPF32[$fPower>>2];
-     $10 = $pMat1$addr;
-     $fPower12 = (($10) + 64|0);
-     $11 = +HEAPF32[$fPower12>>2];
-     $cmp = $9 != $11;
-     if (!($cmp)) {
-      $$expand_i1_val2 = 1;
-      $retval = $$expand_i1_val2;
-      $$pre_trunc = $retval;
-      $12 = $$pre_trunc&1;
-      STACKTOP = sp;return ($12|0);
-     }
-    }
-   }
-  }
- }
- $$expand_i1_val = 0;
- $retval = $$expand_i1_val;
- $$pre_trunc = $retval;
- $12 = $$pre_trunc&1;
- STACKTOP = sp;return ($12|0);
-}
-function __ZN14REMSkinManager11colourEqualEPK14REMCOLOUR_TYPES2_($this,$pCol0,$pCol1) {
- $this = $this|0;
- $pCol0 = $pCol0|0;
- $pCol1 = $pCol1|0;
- var $$expand_i1_val = 0, $$expand_i1_val2 = 0, $$pre_trunc = 0, $0 = 0, $1 = 0.0, $10 = 0, $11 = 0.0, $12 = 0, $13 = 0.0, $14 = 0, $15 = 0.0, $16 = 0, $2 = 0, $3 = 0.0, $4 = 0, $5 = 0.0, $6 = 0, $7 = 0.0, $8 = 0, $9 = 0.0;
- var $cmp = 0, $cmp10 = 0, $cmp4 = 0, $cmp7 = 0, $fA = 0, $fA2 = 0, $fB = 0, $fB9 = 0, $fG = 0, $fG6 = 0, $pCol0$addr = 0, $pCol1$addr = 0, $retval = 0, $this$addr = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $pCol0$addr = $pCol0;
- $pCol1$addr = $pCol1;
- $0 = $pCol0$addr;
- $fA = (($0) + 12|0);
- $1 = +HEAPF32[$fA>>2];
- $2 = $pCol1$addr;
- $fA2 = (($2) + 12|0);
- $3 = +HEAPF32[$fA2>>2];
- $cmp = $1 != $3;
- if (!($cmp)) {
-  $4 = $pCol0$addr;
-  $5 = +HEAPF32[$4>>2];
-  $6 = $pCol1$addr;
-  $7 = +HEAPF32[$6>>2];
-  $cmp4 = $5 != $7;
-  if (!($cmp4)) {
-   $8 = $pCol0$addr;
-   $fG = (($8) + 4|0);
-   $9 = +HEAPF32[$fG>>2];
-   $10 = $pCol1$addr;
-   $fG6 = (($10) + 4|0);
-   $11 = +HEAPF32[$fG6>>2];
-   $cmp7 = $9 != $11;
-   if (!($cmp7)) {
-    $12 = $pCol0$addr;
-    $fB = (($12) + 8|0);
-    $13 = +HEAPF32[$fB>>2];
-    $14 = $pCol1$addr;
-    $fB9 = (($14) + 8|0);
-    $15 = +HEAPF32[$fB9>>2];
-    $cmp10 = $13 != $15;
-    if (!($cmp10)) {
-     $$expand_i1_val2 = 1;
-     $retval = $$expand_i1_val2;
-     $$pre_trunc = $retval;
-     $16 = $$pre_trunc&1;
-     STACKTOP = sp;return ($16|0);
-    }
-   }
-  }
- }
- $$expand_i1_val = 0;
- $retval = $$expand_i1_val;
- $$pre_trunc = $retval;
- $16 = $$pre_trunc&1;
- STACKTOP = sp;return ($16|0);
 }
 function __ZN14REMSkinManager7getSkinEj($agg$result,$this,$nSkinID) {
  $agg$result = $agg$result|0;
  $this = $this|0;
  $nSkinID = $nSkinID|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_pSkins = 0, $arrayidx = 0, $cmp = 0, $emptySkin = 0, $nSkinID$addr = 0, $this$addr = 0, $this1 = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
+ var $0 = 0, $1 = 0, $2 = 0, $_pSkins = 0, $cmp = 0, $emptySkin = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
  sp = STACKTOP;
  STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $emptySkin = sp;
- $this$addr = $this;
- $nSkinID$addr = $nSkinID;
- $this1 = $this$addr;
- $0 = $nSkinID$addr;
- $1 = HEAP32[$this1>>2]|0;
- $cmp = ($0>>>0)<($1>>>0);
+ $0 = HEAP32[$this>>2]|0;
+ $cmp = ($0>>>0)>($nSkinID>>>0);
  if ($cmp) {
-  $2 = $nSkinID$addr;
-  $_pSkins = (($this1) + 12|0);
-  $3 = HEAP32[$_pSkins>>2]|0;
-  $arrayidx = (($3) + (($2*40)|0)|0);
-  dest=$agg$result+0|0; src=$arrayidx+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+  $_pSkins = (($this) + 12|0);
+  $1 = HEAP32[$_pSkins>>2]|0;
+  $2 = (($1) + (($nSkinID*40)|0)|0);
+  dest=$agg$result+0|0; src=$2+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
   STACKTOP = sp;return;
  } else {
   dest=$agg$result+0|0; src=$emptySkin+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
@@ -11234,306 +11245,804 @@ function __ZN14REMSkinManager7addSkinEPK14REMCOLOUR_TYPES2_S2_S2_fPj($this,$pcAm
  $pcSpecular = $pcSpecular|0;
  $fSpecPower = +$fSpecPower;
  $nSkinID = $nSkinID|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
- var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $5 = 0, $6 = 0, $7 = 0;
- var $8 = 0, $9 = 0.0, $_nNumMaterials = 0, $_nNumMaterials16 = 0, $_nNumMaterials21 = 0, $_nNumMaterials25 = 0, $_nNumMaterials36 = 0, $_nNumMaterials39 = 0, $_pMaterials = 0, $_pMaterials28 = 0, $_pMaterials30 = 0, $_pMaterials31 = 0, $_pMaterials37 = 0, $_pSkins = 0, $_pSkins14 = 0, $_pSkins18 = 0, $_pSkins3 = 0, $_pSkins4 = 0, $_pSkins43 = 0, $_pSkins49 = 0;
- var $add = 0, $add26 = 0, $arrayidx = 0, $arrayidx15 = 0, $arrayidx19 = 0, $arrayidx38 = 0, $arrayidx44 = 0, $arrayidx50 = 0, $arrayidx51 = 0, $bMat = 0, $cAmbient = 0, $cEmissive = 0, $cSpecular = 0, $call = 0, $call29 = 0, $call8 = 0, $cmp = 0, $cmp23 = 0, $cmp46 = 0, $cmp7 = 0;
- var $fPower = 0, $fSpecPower$addr = 0.0, $i = 0, $inc = 0, $inc40 = 0, $inc53 = 0, $inc58 = 0, $mat = 0, $mul = 0, $mul27 = 0, $n = 0, $nMat = 0, $nMaterial = 0, $nMaterial20 = 0, $nSkinID$addr = 0, $nTexture = 0, $pcAmbient$addr = 0, $pcDiffuse$addr = 0, $pcEmissive$addr = 0, $pcSpecular$addr = 0;
- var $rem = 0, $rem22 = 0, $retval = 0, $this$addr = 0, $this1 = 0, $tobool = 0, $tobool11 = 0, $tobool32 = 0, $vararg_buffer = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
+ var $$lcssa55 = 0, $$pre = 0, $$pre63 = 0, $$pre64 = 0, $0 = 0, $1 = 0, $10 = 0.0, $11 = 0.0, $12 = 0.0, $13 = 0.0, $14 = 0.0, $15 = 0.0, $16 = 0.0, $17 = 0.0, $18 = 0.0, $19 = 0.0, $2 = 0, $20 = 0.0, $21 = 0.0, $22 = 0;
+ var $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0;
+ var $41 = 0, $42 = 0, $43 = 0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $_nNumMaterials = 0, $_pMaterials = 0, $_pMaterials28 = 0, $_pMaterials37$phi$trans$insert = 0, $_pSkins = 0, $_pSkins14 = 0, $_pSkins18 = 0, $arrayidx51 = 0, $arrayidx51$1 = 0, $arrayidx51$2 = 0, $arrayidx51$3 = 0, $arrayidx51$4 = 0;
+ var $arrayidx51$5 = 0, $arrayidx51$6 = 0, $arrayidx51$7 = 0, $bAlpha = 0, $call = 0, $call29 = 0, $cmp = 0, $cmp$i = 0, $cmp$i$i = 0, $cmp$i11$i = 0, $cmp$i29$i = 0, $cmp$i47$i = 0, $cmp10$i$i = 0, $cmp10$i22$i = 0, $cmp10$i40$i = 0, $cmp10$i58$i = 0, $cmp23 = 0, $cmp4$i$i = 0, $cmp4$i14$i = 0, $cmp4$i32$i = 0;
+ var $cmp4$i50$i = 0, $cmp7 = 0, $cmp7$i$i = 0, $cmp7$i18$i = 0, $cmp7$i36$i = 0, $cmp7$i54$i = 0, $cmp757 = 0, $fA2$i$i = 0, $fA2$i10$i = 0, $fA2$i28$i = 0, $fA2$i46$i = 0, $fB9$i$i = 0, $fB9$i21$i = 0, $fB9$i39$i = 0, $fB9$i57$i = 0, $fG6$i$i = 0, $fG6$i17$i = 0, $fG6$i35$i = 0, $fG6$i53$i = 0, $fPower12$i = 0;
+ var $fR3$i$i = 0, $fR3$i13$i = 0, $fR3$i31$i = 0, $fR3$i49$i = 0, $inc = 0, $inc40 = 0, $inc58 = 0, $mat$sroa$0$0$copyload8 = 0.0, $mat$sroa$0$0$idx = 0, $mat$sroa$1$4$copyload11 = 0.0, $mat$sroa$1$4$idx10 = 0, $mat$sroa$1$4$idx9 = 0, $mat$sroa$10$40$copyload36 = 0.0, $mat$sroa$10$40$idx34 = 0, $mat$sroa$10$40$idx35 = 0, $mat$sroa$11$44$copyload39 = 0.0, $mat$sroa$11$44$idx37 = 0, $mat$sroa$11$44$idx38 = 0, $mat$sroa$12$48$copyload41 = 0.0, $mat$sroa$12$48$idx40 = 0;
+ var $mat$sroa$13$52$copyload44 = 0.0, $mat$sroa$13$52$idx42 = 0, $mat$sroa$13$52$idx43 = 0, $mat$sroa$14$56$copyload47 = 0.0, $mat$sroa$14$56$idx45 = 0, $mat$sroa$14$56$idx46 = 0, $mat$sroa$15$60$copyload50 = 0.0, $mat$sroa$15$60$idx48 = 0, $mat$sroa$15$60$idx49 = 0, $mat$sroa$16$64$idx51 = 0, $mat$sroa$2$8$copyload14 = 0.0, $mat$sroa$2$8$idx12 = 0, $mat$sroa$2$8$idx13 = 0, $mat$sroa$3$12$copyload17 = 0.0, $mat$sroa$3$12$idx15 = 0, $mat$sroa$3$12$idx16 = 0, $mat$sroa$4$16$copyload19 = 0.0, $mat$sroa$4$16$idx18 = 0, $mat$sroa$5$20$copyload22 = 0.0, $mat$sroa$5$20$idx20 = 0;
+ var $mat$sroa$5$20$idx21 = 0, $mat$sroa$6$24$copyload25 = 0.0, $mat$sroa$6$24$idx23 = 0, $mat$sroa$6$24$idx24 = 0, $mat$sroa$7$28$copyload28 = 0.0, $mat$sroa$7$28$idx26 = 0, $mat$sroa$7$28$idx27 = 0, $mat$sroa$8$32$copyload30 = 0.0, $mat$sroa$8$32$idx29 = 0, $mat$sroa$9$36$copyload33 = 0.0, $mat$sroa$9$36$idx31 = 0, $mat$sroa$9$36$idx32 = 0, $mul = 0, $mul27 = 0, $nMat$058 = 0, $nMaterial = 0, $nMaterial20 = 0, $rem = 0, $rem22 = 0, $retval$1 = 0;
+ var $tobool = 0, $tobool32 = 0, $vararg_buffer = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 128|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $vararg_buffer = sp;
- $mat = sp + 20|0;
- $this$addr = $this;
- $pcAmbient$addr = $pcAmbient;
- $pcDiffuse$addr = $pcDiffuse;
- $pcEmissive$addr = $pcEmissive;
- $pcSpecular$addr = $pcSpecular;
- $fSpecPower$addr = $fSpecPower;
- $nSkinID$addr = $nSkinID;
- $this1 = $this$addr;
- $bMat = 0;
- $0 = HEAP32[$this1>>2]|0;
+ $0 = HEAP32[$this>>2]|0;
  $rem = (($0>>>0) % 50)&-1;
  $cmp = ($rem|0)==(0);
- do {
-  if ($cmp) {
-   $1 = HEAP32[$this1>>2]|0;
-   $add = (($1) + 50)|0;
-   $mul = ($add*40)|0;
-   $n = $mul;
-   $_pSkins = (($this1) + 12|0);
-   $2 = HEAP32[$_pSkins>>2]|0;
-   $3 = $n;
-   $call = (_realloc($2,$3)|0);
-   $_pSkins3 = (($this1) + 12|0);
-   HEAP32[$_pSkins3>>2] = $call;
-   $_pSkins4 = (($this1) + 12|0);
-   $4 = HEAP32[$_pSkins4>>2]|0;
-   $tobool = ($4|0)!=(0|0);
-   if ($tobool) {
-    break;
+ if ($cmp) {
+  $1 = ($0*40)|0;
+  $mul = (($1) + 2000)|0;
+  $_pSkins = (($this) + 12|0);
+  $2 = HEAP32[$_pSkins>>2]|0;
+  $call = (_realloc($2,$mul)|0);
+  HEAP32[$_pSkins>>2] = $call;
+  $tobool = ($call|0)==(0|0);
+  if ($tobool) {
+   $retval$1 = -1;
+   STACKTOP = sp;return ($retval$1|0);
+  }
+ }
+ $mat$sroa$4$16$copyload19 = +HEAPF32[$pcAmbient>>2];
+ $mat$sroa$5$20$idx21 = (($pcAmbient) + 4|0);
+ $mat$sroa$5$20$copyload22 = +HEAPF32[$mat$sroa$5$20$idx21>>2];
+ $mat$sroa$6$24$idx24 = (($pcAmbient) + 8|0);
+ $mat$sroa$6$24$copyload25 = +HEAPF32[$mat$sroa$6$24$idx24>>2];
+ $mat$sroa$7$28$idx27 = (($pcAmbient) + 12|0);
+ $mat$sroa$7$28$copyload28 = +HEAPF32[$mat$sroa$7$28$idx27>>2];
+ $mat$sroa$0$0$copyload8 = +HEAPF32[$pcDiffuse>>2];
+ $mat$sroa$1$4$idx10 = (($pcDiffuse) + 4|0);
+ $mat$sroa$1$4$copyload11 = +HEAPF32[$mat$sroa$1$4$idx10>>2];
+ $mat$sroa$2$8$idx13 = (($pcDiffuse) + 8|0);
+ $mat$sroa$2$8$copyload14 = +HEAPF32[$mat$sroa$2$8$idx13>>2];
+ $mat$sroa$3$12$idx16 = (($pcDiffuse) + 12|0);
+ $mat$sroa$3$12$copyload17 = +HEAPF32[$mat$sroa$3$12$idx16>>2];
+ $mat$sroa$12$48$copyload41 = +HEAPF32[$pcEmissive>>2];
+ $mat$sroa$13$52$idx43 = (($pcEmissive) + 4|0);
+ $mat$sroa$13$52$copyload44 = +HEAPF32[$mat$sroa$13$52$idx43>>2];
+ $mat$sroa$14$56$idx46 = (($pcEmissive) + 8|0);
+ $mat$sroa$14$56$copyload47 = +HEAPF32[$mat$sroa$14$56$idx46>>2];
+ $mat$sroa$15$60$idx49 = (($pcEmissive) + 12|0);
+ $mat$sroa$15$60$copyload50 = +HEAPF32[$mat$sroa$15$60$idx49>>2];
+ $mat$sroa$8$32$copyload30 = +HEAPF32[$pcSpecular>>2];
+ $mat$sroa$9$36$idx32 = (($pcSpecular) + 4|0);
+ $mat$sroa$9$36$copyload33 = +HEAPF32[$mat$sroa$9$36$idx32>>2];
+ $mat$sroa$10$40$idx35 = (($pcSpecular) + 8|0);
+ $mat$sroa$10$40$copyload36 = +HEAPF32[$mat$sroa$10$40$idx35>>2];
+ $mat$sroa$11$44$idx38 = (($pcSpecular) + 12|0);
+ $mat$sroa$11$44$copyload39 = +HEAPF32[$mat$sroa$11$44$idx38>>2];
+ $_nNumMaterials = (($this) + 4|0);
+ $3 = HEAP32[$_nNumMaterials>>2]|0;
+ $cmp757 = ($3|0)==(0);
+ L5: do {
+  if ($cmp757) {
+   $$lcssa55 = 0;
+   label = 24;
+  } else {
+   $_pMaterials = (($this) + 16|0);
+   $4 = HEAP32[$_pMaterials>>2]|0;
+   $nMat$058 = 0;
+   L7: while(1) {
+    $fA2$i$i = ((($4) + (($nMat$058*68)|0)|0) + 28|0);
+    $5 = +HEAPF32[$fA2$i$i>>2];
+    $cmp$i$i = $mat$sroa$7$28$copyload28 != $5;
+    do {
+     if (!($cmp$i$i)) {
+      $fR3$i$i = ((($4) + (($nMat$058*68)|0)|0) + 16|0);
+      $6 = +HEAPF32[$fR3$i$i>>2];
+      $cmp4$i$i = $mat$sroa$4$16$copyload19 != $6;
+      if (!($cmp4$i$i)) {
+       $fG6$i$i = ((($4) + (($nMat$058*68)|0)|0) + 20|0);
+       $7 = +HEAPF32[$fG6$i$i>>2];
+       $cmp7$i$i = $mat$sroa$5$20$copyload22 != $7;
+       if (!($cmp7$i$i)) {
+        $fB9$i$i = ((($4) + (($nMat$058*68)|0)|0) + 24|0);
+        $8 = +HEAPF32[$fB9$i$i>>2];
+        $cmp10$i$i = $mat$sroa$6$24$copyload25 != $8;
+        if (!($cmp10$i$i)) {
+         $fA2$i46$i = ((($4) + (($nMat$058*68)|0)|0) + 12|0);
+         $9 = +HEAPF32[$fA2$i46$i>>2];
+         $cmp$i47$i = $mat$sroa$3$12$copyload17 != $9;
+         if (!($cmp$i47$i)) {
+          $fR3$i49$i = (($4) + (($nMat$058*68)|0)|0);
+          $10 = +HEAPF32[$fR3$i49$i>>2];
+          $cmp4$i50$i = $mat$sroa$0$0$copyload8 != $10;
+          if (!($cmp4$i50$i)) {
+           $fG6$i53$i = ((($4) + (($nMat$058*68)|0)|0) + 4|0);
+           $11 = +HEAPF32[$fG6$i53$i>>2];
+           $cmp7$i54$i = $mat$sroa$1$4$copyload11 != $11;
+           if (!($cmp7$i54$i)) {
+            $fB9$i57$i = ((($4) + (($nMat$058*68)|0)|0) + 8|0);
+            $12 = +HEAPF32[$fB9$i57$i>>2];
+            $cmp10$i58$i = $mat$sroa$2$8$copyload14 != $12;
+            if (!($cmp10$i58$i)) {
+             $fA2$i28$i = ((($4) + (($nMat$058*68)|0)|0) + 60|0);
+             $13 = +HEAPF32[$fA2$i28$i>>2];
+             $cmp$i29$i = $mat$sroa$15$60$copyload50 != $13;
+             if (!($cmp$i29$i)) {
+              $fR3$i31$i = ((($4) + (($nMat$058*68)|0)|0) + 48|0);
+              $14 = +HEAPF32[$fR3$i31$i>>2];
+              $cmp4$i32$i = $mat$sroa$12$48$copyload41 != $14;
+              if (!($cmp4$i32$i)) {
+               $fG6$i35$i = ((($4) + (($nMat$058*68)|0)|0) + 52|0);
+               $15 = +HEAPF32[$fG6$i35$i>>2];
+               $cmp7$i36$i = $mat$sroa$13$52$copyload44 != $15;
+               if (!($cmp7$i36$i)) {
+                $fB9$i39$i = ((($4) + (($nMat$058*68)|0)|0) + 56|0);
+                $16 = +HEAPF32[$fB9$i39$i>>2];
+                $cmp10$i40$i = $mat$sroa$14$56$copyload47 != $16;
+                if (!($cmp10$i40$i)) {
+                 $fA2$i10$i = ((($4) + (($nMat$058*68)|0)|0) + 44|0);
+                 $17 = +HEAPF32[$fA2$i10$i>>2];
+                 $cmp$i11$i = $mat$sroa$11$44$copyload39 != $17;
+                 if (!($cmp$i11$i)) {
+                  $fR3$i13$i = ((($4) + (($nMat$058*68)|0)|0) + 32|0);
+                  $18 = +HEAPF32[$fR3$i13$i>>2];
+                  $cmp4$i14$i = $mat$sroa$8$32$copyload30 != $18;
+                  if (!($cmp4$i14$i)) {
+                   $fG6$i17$i = ((($4) + (($nMat$058*68)|0)|0) + 36|0);
+                   $19 = +HEAPF32[$fG6$i17$i>>2];
+                   $cmp7$i18$i = $mat$sroa$9$36$copyload33 != $19;
+                   if (!($cmp7$i18$i)) {
+                    $fB9$i21$i = ((($4) + (($nMat$058*68)|0)|0) + 40|0);
+                    $20 = +HEAPF32[$fB9$i21$i>>2];
+                    $cmp10$i22$i = $mat$sroa$10$40$copyload36 != $20;
+                    if ($cmp10$i22$i) {
+                     break;
+                    }
+                    $fPower12$i = ((($4) + (($nMat$058*68)|0)|0) + 64|0);
+                    $21 = +HEAPF32[$fPower12$i>>2];
+                    $cmp$i = $21 != $fSpecPower;
+                    if (!($cmp$i)) {
+                     break L7;
+                    }
+                   }
+                  }
+                 }
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    } while(0);
+    $inc = (($nMat$058) + 1)|0;
+    $cmp7 = ($inc>>>0)<($3>>>0);
+    if ($cmp7) {
+     $nMat$058 = $inc;
+    } else {
+     $$lcssa55 = $3;
+     label = 24;
+     break L5;
+    }
    }
-   $retval = -1;
-   $41 = $retval;
-   STACKTOP = sp;return ($41|0);
+   $22 = HEAP32[$this>>2]|0;
+   $_pSkins14 = (($this) + 12|0);
+   $23 = HEAP32[$_pSkins14>>2]|0;
+   $nMaterial = ((($23) + (($22*40)|0)|0) + 4|0);
+   HEAP32[$nMaterial>>2] = $nMat$058;
+   $33 = $23;
   }
  } while(0);
- $cAmbient = (($mat) + 16|0);
- $5 = $pcAmbient$addr;
- ;HEAP32[$cAmbient+0>>2]=HEAP32[$5+0>>2]|0;HEAP32[$cAmbient+4>>2]=HEAP32[$5+4>>2]|0;HEAP32[$cAmbient+8>>2]=HEAP32[$5+8>>2]|0;HEAP32[$cAmbient+12>>2]=HEAP32[$5+12>>2]|0;
- $6 = $pcDiffuse$addr;
- ;HEAP32[$mat+0>>2]=HEAP32[$6+0>>2]|0;HEAP32[$mat+4>>2]=HEAP32[$6+4>>2]|0;HEAP32[$mat+8>>2]=HEAP32[$6+8>>2]|0;HEAP32[$mat+12>>2]=HEAP32[$6+12>>2]|0;
- $cEmissive = (($mat) + 48|0);
- $7 = $pcEmissive$addr;
- ;HEAP32[$cEmissive+0>>2]=HEAP32[$7+0>>2]|0;HEAP32[$cEmissive+4>>2]=HEAP32[$7+4>>2]|0;HEAP32[$cEmissive+8>>2]=HEAP32[$7+8>>2]|0;HEAP32[$cEmissive+12>>2]=HEAP32[$7+12>>2]|0;
- $cSpecular = (($mat) + 32|0);
- $8 = $pcSpecular$addr;
- ;HEAP32[$cSpecular+0>>2]=HEAP32[$8+0>>2]|0;HEAP32[$cSpecular+4>>2]=HEAP32[$8+4>>2]|0;HEAP32[$cSpecular+8>>2]=HEAP32[$8+8>>2]|0;HEAP32[$cSpecular+12>>2]=HEAP32[$8+12>>2]|0;
- $9 = $fSpecPower$addr;
- $fPower = (($mat) + 64|0);
- HEAPF32[$fPower>>2] = $9;
- $nMat = 0;
- while(1) {
-  $10 = $nMat;
-  $_nNumMaterials = (($this1) + 4|0);
-  $11 = HEAP32[$_nNumMaterials>>2]|0;
-  $cmp7 = ($10>>>0)<($11>>>0);
-  if (!($cmp7)) {
-   break;
-  }
-  $12 = $nMat;
-  $_pMaterials = (($this1) + 16|0);
-  $13 = HEAP32[$_pMaterials>>2]|0;
-  $arrayidx = (($13) + (($12*68)|0)|0);
-  $call8 = (__ZN14REMSkinManager13materialEqualEPK16REMMATERIAL_TYPES2_($this1,$mat,$arrayidx)|0);
-  if ($call8) {
-   label = 8;
-   break;
-  }
-  $14 = $nMat;
-  $inc = (($14) + 1)|0;
-  $nMat = $inc;
- }
- if ((label|0) == 8) {
-  $bMat = 1;
- }
- $15 = $bMat;
- $tobool11 = $15&1;
- if ($tobool11) {
-  $16 = $nMat;
-  $17 = HEAP32[$this1>>2]|0;
-  $_pSkins14 = (($this1) + 12|0);
-  $18 = HEAP32[$_pSkins14>>2]|0;
-  $arrayidx15 = (($18) + (($17*40)|0)|0);
-  $nMaterial = (($arrayidx15) + 4|0);
-  HEAP32[$nMaterial>>2] = $16;
- } else {
-  $_nNumMaterials16 = (($this1) + 4|0);
-  $19 = HEAP32[$_nNumMaterials16>>2]|0;
-  $20 = HEAP32[$this1>>2]|0;
-  $_pSkins18 = (($this1) + 12|0);
-  $21 = HEAP32[$_pSkins18>>2]|0;
-  $arrayidx19 = (($21) + (($20*40)|0)|0);
-  $nMaterial20 = (($arrayidx19) + 4|0);
-  HEAP32[$nMaterial20>>2] = $19;
-  $_nNumMaterials21 = (($this1) + 4|0);
-  $22 = HEAP32[$_nNumMaterials21>>2]|0;
-  $rem22 = (($22>>>0) % 50)&-1;
+ if ((label|0) == 24) {
+  $24 = HEAP32[$this>>2]|0;
+  $_pSkins18 = (($this) + 12|0);
+  $25 = HEAP32[$_pSkins18>>2]|0;
+  $nMaterial20 = ((($25) + (($24*40)|0)|0) + 4|0);
+  HEAP32[$nMaterial20>>2] = $$lcssa55;
+  $26 = HEAP32[$_nNumMaterials>>2]|0;
+  $rem22 = (($26>>>0) % 50)&-1;
   $cmp23 = ($rem22|0)==(0);
   do {
    if ($cmp23) {
-    $_nNumMaterials25 = (($this1) + 4|0);
-    $23 = HEAP32[$_nNumMaterials25>>2]|0;
-    $add26 = (($23) + 50)|0;
-    $mul27 = ($add26*68)|0;
-    $n = $mul27;
-    $_pMaterials28 = (($this1) + 16|0);
-    $24 = HEAP32[$_pMaterials28>>2]|0;
-    $25 = $n;
-    $call29 = (_realloc($24,$25)|0);
-    $_pMaterials30 = (($this1) + 16|0);
-    HEAP32[$_pMaterials30>>2] = $call29;
-    $_pMaterials31 = (($this1) + 16|0);
-    $26 = HEAP32[$_pMaterials31>>2]|0;
-    $tobool32 = ($26|0)!=(0|0);
+    $27 = ($26*68)|0;
+    $mul27 = (($27) + 3400)|0;
+    $_pMaterials28 = (($this) + 16|0);
+    $28 = HEAP32[$_pMaterials28>>2]|0;
+    $call29 = (_realloc($28,$mul27)|0);
+    HEAP32[$_pMaterials28>>2] = $call29;
+    $tobool32 = ($call29|0)==(0|0);
     if ($tobool32) {
+     $retval$1 = -1;
+     STACKTOP = sp;return ($retval$1|0);
+    } else {
+     $$pre63 = HEAP32[$_nNumMaterials>>2]|0;
+     $29 = $call29;$30 = $$pre63;
      break;
     }
-    $retval = -1;
-    $41 = $retval;
-    STACKTOP = sp;return ($41|0);
+   } else {
+    $_pMaterials37$phi$trans$insert = (($this) + 16|0);
+    $$pre64 = HEAP32[$_pMaterials37$phi$trans$insert>>2]|0;
+    $29 = $$pre64;$30 = $26;
    }
   } while(0);
-  $_nNumMaterials36 = (($this1) + 4|0);
-  $27 = HEAP32[$_nNumMaterials36>>2]|0;
-  $_pMaterials37 = (($this1) + 16|0);
-  $28 = HEAP32[$_pMaterials37>>2]|0;
-  $arrayidx38 = (($28) + (($27*68)|0)|0);
-  dest=$arrayidx38+0|0; src=$mat+0|0; stop=dest+68|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
-  $_nNumMaterials39 = (($this1) + 4|0);
-  $29 = HEAP32[$_nNumMaterials39>>2]|0;
-  $inc40 = (($29) + 1)|0;
-  HEAP32[$_nNumMaterials39>>2] = $inc40;
+  $mat$sroa$0$0$idx = (($29) + (($30*68)|0)|0);
+  HEAPF32[$mat$sroa$0$0$idx>>2] = $mat$sroa$0$0$copyload8;
+  $mat$sroa$1$4$idx9 = ((($29) + (($30*68)|0)|0) + 4|0);
+  HEAPF32[$mat$sroa$1$4$idx9>>2] = $mat$sroa$1$4$copyload11;
+  $mat$sroa$2$8$idx12 = ((($29) + (($30*68)|0)|0) + 8|0);
+  HEAPF32[$mat$sroa$2$8$idx12>>2] = $mat$sroa$2$8$copyload14;
+  $mat$sroa$3$12$idx15 = ((($29) + (($30*68)|0)|0) + 12|0);
+  HEAPF32[$mat$sroa$3$12$idx15>>2] = $mat$sroa$3$12$copyload17;
+  $mat$sroa$4$16$idx18 = ((($29) + (($30*68)|0)|0) + 16|0);
+  HEAPF32[$mat$sroa$4$16$idx18>>2] = $mat$sroa$4$16$copyload19;
+  $mat$sroa$5$20$idx20 = ((($29) + (($30*68)|0)|0) + 20|0);
+  HEAPF32[$mat$sroa$5$20$idx20>>2] = $mat$sroa$5$20$copyload22;
+  $mat$sroa$6$24$idx23 = ((($29) + (($30*68)|0)|0) + 24|0);
+  HEAPF32[$mat$sroa$6$24$idx23>>2] = $mat$sroa$6$24$copyload25;
+  $mat$sroa$7$28$idx26 = ((($29) + (($30*68)|0)|0) + 28|0);
+  HEAPF32[$mat$sroa$7$28$idx26>>2] = $mat$sroa$7$28$copyload28;
+  $mat$sroa$8$32$idx29 = ((($29) + (($30*68)|0)|0) + 32|0);
+  HEAPF32[$mat$sroa$8$32$idx29>>2] = $mat$sroa$8$32$copyload30;
+  $mat$sroa$9$36$idx31 = ((($29) + (($30*68)|0)|0) + 36|0);
+  HEAPF32[$mat$sroa$9$36$idx31>>2] = $mat$sroa$9$36$copyload33;
+  $mat$sroa$10$40$idx34 = ((($29) + (($30*68)|0)|0) + 40|0);
+  HEAPF32[$mat$sroa$10$40$idx34>>2] = $mat$sroa$10$40$copyload36;
+  $mat$sroa$11$44$idx37 = ((($29) + (($30*68)|0)|0) + 44|0);
+  HEAPF32[$mat$sroa$11$44$idx37>>2] = $mat$sroa$11$44$copyload39;
+  $mat$sroa$12$48$idx40 = ((($29) + (($30*68)|0)|0) + 48|0);
+  HEAPF32[$mat$sroa$12$48$idx40>>2] = $mat$sroa$12$48$copyload41;
+  $mat$sroa$13$52$idx42 = ((($29) + (($30*68)|0)|0) + 52|0);
+  HEAPF32[$mat$sroa$13$52$idx42>>2] = $mat$sroa$13$52$copyload44;
+  $mat$sroa$14$56$idx45 = ((($29) + (($30*68)|0)|0) + 56|0);
+  HEAPF32[$mat$sroa$14$56$idx45>>2] = $mat$sroa$14$56$copyload47;
+  $mat$sroa$15$60$idx48 = ((($29) + (($30*68)|0)|0) + 60|0);
+  HEAPF32[$mat$sroa$15$60$idx48>>2] = $mat$sroa$15$60$copyload50;
+  $mat$sroa$16$64$idx51 = ((($29) + (($30*68)|0)|0) + 64|0);
+  HEAPF32[$mat$sroa$16$64$idx51>>2] = $fSpecPower;
+  $31 = HEAP32[$_nNumMaterials>>2]|0;
+  $inc40 = (($31) + 1)|0;
+  HEAP32[$_nNumMaterials>>2] = $inc40;
+  $$pre = HEAP32[$_pSkins18>>2]|0;
+  $33 = $$pre;
  }
- $30 = HEAP32[$this1>>2]|0;
- $_pSkins43 = (($this1) + 12|0);
- $31 = HEAP32[$_pSkins43>>2]|0;
- $arrayidx44 = (($31) + (($30*40)|0)|0);
- HEAP8[$arrayidx44>>0] = 0;
- $i = 0;
+ $32 = HEAP32[$this>>2]|0;
+ $bAlpha = (($33) + (($32*40)|0)|0);
+ HEAP8[$bAlpha>>0] = 0;
+ $arrayidx51 = ((($33) + (($32*40)|0)|0) + 8|0);
+ HEAP32[$arrayidx51>>2] = 65535;
+ $34 = HEAP32[$this>>2]|0;
+ $arrayidx51$1 = ((($33) + (($34*40)|0)|0) + 12|0);
+ HEAP32[$arrayidx51$1>>2] = 65535;
+ $35 = HEAP32[$this>>2]|0;
+ $arrayidx51$2 = ((($33) + (($35*40)|0)|0) + 16|0);
+ HEAP32[$arrayidx51$2>>2] = 65535;
+ $36 = HEAP32[$this>>2]|0;
+ $arrayidx51$3 = ((($33) + (($36*40)|0)|0) + 20|0);
+ HEAP32[$arrayidx51$3>>2] = 65535;
+ $37 = HEAP32[$this>>2]|0;
+ $arrayidx51$4 = ((($33) + (($37*40)|0)|0) + 24|0);
+ HEAP32[$arrayidx51$4>>2] = 65535;
+ $38 = HEAP32[$this>>2]|0;
+ $arrayidx51$5 = ((($33) + (($38*40)|0)|0) + 28|0);
+ HEAP32[$arrayidx51$5>>2] = 65535;
+ $39 = HEAP32[$this>>2]|0;
+ $arrayidx51$6 = ((($33) + (($39*40)|0)|0) + 32|0);
+ HEAP32[$arrayidx51$6>>2] = 65535;
+ $40 = HEAP32[$this>>2]|0;
+ $arrayidx51$7 = ((($33) + (($40*40)|0)|0) + 36|0);
+ HEAP32[$arrayidx51$7>>2] = 65535;
+ $41 = HEAP32[$this>>2]|0;
+ HEAP32[$nSkinID>>2] = $41;
+ $42 = HEAP32[$this>>2]|0;
+ HEAP32[$vararg_buffer>>2] = $42;
+ __ZN14REMSkinManager3logEPcz(0,656,$vararg_buffer);
+ $43 = HEAP32[$this>>2]|0;
+ $inc58 = (($43) + 1)|0;
+ HEAP32[$this>>2] = $inc58;
+ $retval$1 = 0;
+ STACKTOP = sp;return ($retval$1|0);
+}
+function __ZN14REMSkinManager10addTextureEjPKcbfP14REMCOLOUR_TYPEj($this,$nSkinID,$chName,$bAlpha,$fAlpha,$cColourKeys,$dwNumColourKeys) {
+ $this = $this|0;
+ $nSkinID = $nSkinID|0;
+ $chName = $chName|0;
+ $bAlpha = $bAlpha|0;
+ $fAlpha = +$fAlpha;
+ $cColourKeys = $cColourKeys|0;
+ $dwNumColourKeys = $dwNumColourKeys|0;
+ var $$arith = 0, $$overflow = 0, $$pre = 0, $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0;
+ var $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_nNumTextures = 0, $_pSkins = 0, $_pTextures = 0, $_pTextures17 = 0, $_pTextures31 = 0, $_pTextures35 = 0, $_pTextures40 = 0;
+ var $add43 = 0, $add54 = 0, $arrayidx2 = 0, $arrayidx73 = 0, $arrayidx87 = 0, $bAlpha29 = 0, $call = 0, $call18 = 0, $call42 = 0, $call44 = 0, $call53 = 0, $call60 = 0, $call74 = 0, $chName48 = 0, $chName52 = 0, $chName8 = 0, $cmp = 0, $cmp14 = 0, $cmp3 = 0, $cmp58 = 0;
+ var $cmp6 = 0, $cmp619 = 0, $cmp75 = 0, $cmp82 = 0, $cmp88 = 0, $cmp9 = 0, $dwNum = 0, $fAlpha33 = 0, $fAlpha37 = 0, $i$018 = 0, $inc = 0, $inc80 = 0, $inc96 = 0, $mul = 0, $mul69 = 0, $nTex$020 = 0, $or$cond = 0, $pClrKeys = 0, $pClrKeys64 = 0, $pClrKeys68 = 0;
+ var $rem = 0, $retval$0 = 0, $tobool21 = 0, $vararg_buffer = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer = sp;
+ $0 = HEAP32[$this>>2]|0;
+ $cmp = ($0>>>0)>($nSkinID>>>0);
+ if (!($cmp)) {
+  $retval$0 = -2;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $_pSkins = (($this) + 12|0);
+ $1 = HEAP32[$_pSkins>>2]|0;
+ $arrayidx2 = ((($1) + (($nSkinID*40)|0)|0) + 36|0);
+ $2 = HEAP32[$arrayidx2>>2]|0;
+ $cmp3 = ($2|0)==(65535);
+ if (!($cmp3)) {
+  __ZN14REMSkinManager3logEPcz(0,688,$vararg_buffer);
+  $retval$0 = -3;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $_nNumTextures = (($this) + 8|0);
+ $3 = HEAP32[$_nNumTextures>>2]|0;
+ $cmp619 = ($3|0)==(0);
+ if ($cmp619) {
+  $7 = 0;
+  label = 8;
+ } else {
+  $_pTextures = (($this) + 20|0);
+  $4 = HEAP32[$_pTextures>>2]|0;
+  $nTex$020 = 0;
+  while(1) {
+   $chName8 = ((($4) + (($nTex$020*20)|0)|0) + 4|0);
+   $5 = HEAP32[$chName8>>2]|0;
+   $call = (_strcmp($chName,$5)|0);
+   $cmp9 = ($call|0)!=(0);
+   $inc = (($nTex$020) + 1)|0;
+   $cmp6 = ($inc>>>0)<($3>>>0);
+   $or$cond = $cmp9 & $cmp6;
+   if ($or$cond) {
+    $nTex$020 = $inc;
+   } else {
+    break;
+   }
+  }
+  $rem = (($3>>>0) % 50)&-1;
+  $cmp14 = ($rem|0)==(0);
+  if ($cmp14) {
+   $7 = $3;
+   label = 8;
+  }
+ }
+ if ((label|0) == 8) {
+  $6 = ($7*20)|0;
+  $mul = (($6) + 1000)|0;
+  $_pTextures17 = (($this) + 20|0);
+  $8 = HEAP32[$_pTextures17>>2]|0;
+  $call18 = (_realloc($8,$mul)|0);
+  HEAP32[$_pTextures17>>2] = $call18;
+  $tobool21 = ($call18|0)==(0|0);
+  if ($tobool21) {
+   $retval$0 = -1;
+   STACKTOP = sp;return ($retval$0|0);
+  }
+ }
+ if ($bAlpha) {
+  $9 = HEAP32[$_pSkins>>2]|0;
+  $bAlpha29 = (($9) + (($nSkinID*40)|0)|0);
+  HEAP8[$bAlpha29>>0] = 1;
+  $10 = HEAP32[$_nNumTextures>>2]|0;
+  $_pTextures31 = (($this) + 20|0);
+  $11 = HEAP32[$_pTextures31>>2]|0;
+  $fAlpha33 = (($11) + (($10*20)|0)|0);
+  HEAPF32[$fAlpha33>>2] = $fAlpha;
+  $14 = $11;$15 = $10;
+ } else {
+  $12 = HEAP32[$_nNumTextures>>2]|0;
+  $_pTextures35 = (($this) + 20|0);
+  $13 = HEAP32[$_pTextures35>>2]|0;
+  $fAlpha37 = (($13) + (($12*20)|0)|0);
+  HEAPF32[$fAlpha37>>2] = 1.0;
+  $14 = $13;$15 = $12;
+ }
+ $_pTextures40 = (($this) + 20|0);
+ $pClrKeys = ((($14) + (($15*20)|0)|0) + 12|0);
+ HEAP32[$pClrKeys>>2] = 0;
+ $call42 = (_strlen(($chName|0))|0);
+ $add43 = (($call42) + 1)|0;
+ $call44 = (__Znaj($add43)|0);
+ $16 = HEAP32[$_pTextures40>>2]|0;
+ $chName48 = ((($16) + (($15*20)|0)|0) + 4|0);
+ HEAP32[$chName48>>2] = $call44;
+ $17 = HEAP32[$_pTextures40>>2]|0;
+ $chName52 = ((($17) + (($15*20)|0)|0) + 4|0);
+ $18 = HEAP32[$chName52>>2]|0;
+ $call53 = (_strlen(($chName|0))|0);
+ $add54 = (($call53) + 1)|0;
+ _memcpy(($18|0),($chName|0),($add54|0))|0;
+ $19 = HEAP32[$_nNumTextures>>2]|0;
+ $20 = HEAP32[$_pTextures40>>2]|0;
+ $dwNum = ((($20) + (($19*20)|0)|0) + 16|0);
+ HEAP32[$dwNum>>2] = $dwNumColourKeys;
+ $cmp58 = ($dwNumColourKeys|0)==(0);
+ if ($cmp58) {
+  $26 = $20;
+ } else {
+  $$arith = $dwNumColourKeys<<4;
+  $$overflow = ($dwNumColourKeys>>>0)>(268435455);
+  $21 = $$overflow ? -1 : $$arith;
+  $call60 = (__Znaj($21)|0);
+  $22 = HEAP32[$_nNumTextures>>2]|0;
+  $pClrKeys64 = ((($20) + (($22*20)|0)|0) + 12|0);
+  HEAP32[$pClrKeys64>>2] = $call60;
+  $23 = HEAP32[$_pTextures40>>2]|0;
+  $pClrKeys68 = ((($23) + (($22*20)|0)|0) + 12|0);
+  $24 = HEAP32[$pClrKeys68>>2]|0;
+  $mul69 = $dwNumColourKeys << 4;
+  _memcpy(($24|0),($cColourKeys|0),($mul69|0))|0;
+  $$pre = HEAP32[$_pTextures40>>2]|0;
+  $26 = $$pre;
+ }
+ $25 = HEAP32[$_nNumTextures>>2]|0;
+ $arrayidx73 = (($26) + (($25*20)|0)|0);
+ $call74 = (__ZN14REMSkinManager13createTextureEP15REMTEXTURE_TYPEb(0,$arrayidx73,0)|0);
+ $cmp75 = ($call74|0)<(0);
+ if ($cmp75) {
+  $retval$0 = $call74;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $27 = HEAP32[$_nNumTextures>>2]|0;
+ $inc80 = (($27) + 1)|0;
+ HEAP32[$_nNumTextures>>2] = $inc80;
+ $28 = HEAP32[$_pSkins>>2]|0;
+ $i$018 = 0;
  while(1) {
-  $32 = $i;
-  $cmp46 = ($32|0)<(8);
-  if (!($cmp46)) {
+  $arrayidx87 = (((($28) + (($nSkinID*40)|0)|0) + ($i$018<<2)|0) + 8|0);
+  $29 = HEAP32[$arrayidx87>>2]|0;
+  $cmp88 = ($29|0)==(65535);
+  $inc96 = (($i$018) + 1)|0;
+  if ($cmp88) {
    break;
   }
-  $33 = $i;
-  $34 = HEAP32[$this1>>2]|0;
-  $_pSkins49 = (($this1) + 12|0);
-  $35 = HEAP32[$_pSkins49>>2]|0;
-  $arrayidx50 = (($35) + (($34*40)|0)|0);
-  $nTexture = (($arrayidx50) + 8|0);
-  $arrayidx51 = (($nTexture) + ($33<<2)|0);
-  HEAP32[$arrayidx51>>2] = 65535;
-  $36 = $i;
-  $inc53 = (($36) + 1)|0;
-  $i = $inc53;
+  $cmp82 = ($inc96|0)<(8);
+  if ($cmp82) {
+   $i$018 = $inc96;
+  } else {
+   $retval$0 = 0;
+   label = 19;
+   break;
+  }
  }
- $37 = HEAP32[$this1>>2]|0;
- $38 = $nSkinID$addr;
- HEAP32[$38>>2] = $37;
- $39 = HEAP32[$this1>>2]|0;
- HEAP32[$vararg_buffer>>2] = $39;
- __ZN14REMSkinManager3logEPcz($this1,552,$vararg_buffer);
- $40 = HEAP32[$this1>>2]|0;
- $inc58 = (($40) + 1)|0;
- HEAP32[$this1>>2] = $inc58;
- $retval = 0;
- $41 = $retval;
- STACKTOP = sp;return ($41|0);
+ if ((label|0) == 19) {
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ HEAP32[$arrayidx87>>2] = $27;
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
+}
+function __ZN14REMSkinManager13createTextureEP15REMTEXTURE_TYPEb($this,$pTexture,$bAlpha) {
+ $this = $this|0;
+ $pTexture = $pTexture|0;
+ $bAlpha = $bAlpha|0;
+ var $$ = 0, $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $2 = 0, $3 = 0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0, $call = 0, $call14 = 0, $call31 = 0;
+ var $chName = 0, $cmp = 0, $cmp15 = 0, $cmp17 = 0, $cmp23 = 0, $cmp26 = 0, $cmp28 = 0, $cmp35 = 0, $conv = 0, $conv13 = 0, $conv5 = 0, $conv9 = 0, $dw$027 = 0, $dwNum = 0, $fA = 0, $fB = 0, $fG = 0, $fR = 0, $format = 0, $height = 0;
+ var $hr$0$lcssa = 0, $inc = 0, $mul = 0.0, $mul12 = 0.0, $mul4 = 0.0, $mul8 = 0.0, $pClrKeys = 0, $pData = 0, $pData32 = 0, $retval$0 = 0, $texID = 0, $type = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $texID = sp;
+ $chName = (($pTexture) + 4|0);
+ $0 = HEAP32[$chName>>2]|0;
+ $call = (__Z15rawImageFromBMPPKc($0)|0);
+ if ($bAlpha) {
+  $dwNum = (($pTexture) + 16|0);
+  $1 = HEAP32[$dwNum>>2]|0;
+  $cmp26 = ($1|0)==(0);
+  L3: do {
+   if ($cmp26) {
+    $hr$0$lcssa = 0;
+   } else {
+    $pClrKeys = (($pTexture) + 12|0);
+    $dw$027 = 0;
+    while(1) {
+     $3 = HEAP32[$pClrKeys>>2]|0;
+     $fR = (($3) + ($dw$027<<4)|0);
+     $4 = +HEAPF32[$fR>>2];
+     $mul = $4 * 255.0;
+     $conv = (~~(($mul))&255);
+     $fG = ((($3) + ($dw$027<<4)|0) + 4|0);
+     $5 = +HEAPF32[$fG>>2];
+     $mul4 = $5 * 255.0;
+     $conv5 = (~~(($mul4))&255);
+     $fB = ((($3) + ($dw$027<<4)|0) + 8|0);
+     $6 = +HEAPF32[$fB>>2];
+     $mul8 = $6 * 255.0;
+     $conv9 = (~~(($mul8))&255);
+     $fA = ((($3) + ($dw$027<<4)|0) + 12|0);
+     $7 = +HEAPF32[$fA>>2];
+     $mul12 = $7 * 255.0;
+     $conv13 = (~~(($mul12))&255);
+     $call14 = (__Z14setAlphaKeyRawP16REMRAWIMAGE_TYPEhhhh($call,$conv,$conv5,$conv9,$conv13)|0);
+     $cmp15 = ($call14|0)<(0);
+     $inc = (($dw$027) + 1)|0;
+     if ($cmp15) {
+      $retval$0 = $call14;
+      break;
+     }
+     $2 = HEAP32[$dwNum>>2]|0;
+     $cmp = ($inc>>>0)<($2>>>0);
+     if ($cmp) {
+      $dw$027 = $inc;
+     } else {
+      $hr$0$lcssa = $call14;
+      break L3;
+     }
+    }
+    STACKTOP = sp;return ($retval$0|0);
+   }
+  } while(0);
+  $8 = +HEAPF32[$pTexture>>2];
+  $cmp17 = $8 < 1.0;
+  if ($cmp17) {
+   $cmp23 = ($hr$0$lcssa|0)<(0);
+   if ($cmp23) {
+    $retval$0 = $hr$0$lcssa;
+    STACKTOP = sp;return ($retval$0|0);
+   }
+  }
+ }
+ _glGenTextures(1,($texID|0));
+ $9 = HEAP32[$texID>>2]|0;
+ $cmp28 = ($9|0)==(0);
+ if ($cmp28) {
+  $retval$0 = -4;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ _glBindTexture(3553,($9|0));
+ $format = (($call) + 8|0);
+ $10 = HEAP32[$format>>2]|0;
+ $11 = HEAP32[$call>>2]|0;
+ $height = (($call) + 4|0);
+ $12 = HEAP32[$height>>2]|0;
+ $type = (($call) + 12|0);
+ $13 = HEAP32[$type>>2]|0;
+ $pData = (($call) + 16|0);
+ $14 = HEAP32[$pData>>2]|0;
+ _glTexImage2D(3553,0,($10|0),($11|0),($12|0),0,6408,($13|0),($14|0));
+ _glTexParameteri(3553,10241,9987);
+ _glTexParameteri(3553,10240,9729);
+ _glGenerateMipmap(3553);
+ _glBindTexture(3553,0);
+ $call31 = (__Znaj(4)|0);
+ $pData32 = (($pTexture) + 8|0);
+ HEAP32[$pData32>>2] = $call31;
+ $15 = HEAP8[$texID>>0]|0;
+ HEAP8[$call31>>0] = $15;
+ $cmp35 = ($call31|0)==(0|0);
+ $$ = $cmp35 << 31 >> 31;
+ $retval$0 = $$;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN21REMVertexCacheManagerC2EP15REMRenderDevicejj($this,$r,$nMaxVerts,$nMaxIndis) {
  $this = $this|0;
  $r = $r|0;
  $nMaxVerts = $nMaxVerts|0;
  $nMaxIndis = $nMaxIndis|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $3 = 0, $4 = 0;
- var $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_cacheUL = 0, $_cacheUU = 0, $_dwActiveB = 0, $_dwActiveCache = 0, $_nNumB = 0, $_pB = 0, $_renderDevice = 0, $arrayidx = 0, $arrayidx11 = 0, $call = 0, $call2 = 0, $call4 = 0, $call7 = 0, $cmp = 0, $conv = 0;
- var $conv9 = 0, $dwID = 0, $ehselector$slot = 0, $exn = 0, $exn$slot = 0, $i = 0, $inc = 0, $inc12 = 0, $inc8 = 0, $nMaxIndis$addr = 0, $nMaxVerts$addr = 0, $r$addr = 0, $sel = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
+ var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
+ var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_dwActiveB = 0, $_dwActiveCache = 0, $_dwID$i = 0, $_dwID$i22 = 0, $_nNumB = 0;
+ var $_nNumIndis$i = 0, $_nNumIndis$i21 = 0, $_nNumIndisMax$i = 0, $_nNumIndisMax$i19 = 0, $_nNumVerts$i = 0, $_nNumVerts$i20 = 0, $_nNumVertsMax$i = 0, $_nNumVertsMax$i18 = 0, $_nStride$i = 0, $_nStride$i23 = 0, $_pB = 0, $_pInD$i = 0, $_pInD$i30 = 0, $_pSkinMan$i = 0, $_pSkinMan$i15 = 0, $_pVCM$i = 0, $_pVCM$i17 = 0, $_pVD$i = 0, $_pVD$i28 = 0, $_renderDevice = 0;
+ var $_skinID$i = 0, $_skinID$i24 = 0, $_vertexFormat$i = 0, $_vertexFormat$i16 = 0, $arrayidx = 0, $arrayidx11 = 0, $arrayinit$element$i = 0, $arrayinit$element$i14 = 0, $call = 0, $call$i = 0, $call$i27 = 0, $call16$i = 0, $call16$i29 = 0, $call2 = 0, $call4 = 0, $call7 = 0, $cmp = 0, $ehselector$slot$0 = 0, $exn$slot$0 = 0, $i$039 = 0;
+ var $inc12 = 0, $indvars$iv = 0, $indvars$iv$next = 0, $mul$i = 0, $mul13$i = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, dest = 0, label = 0, sp = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $r$addr = $r;
- $nMaxVerts$addr = $nMaxVerts;
- $nMaxIndis$addr = $nMaxIndis;
- $this1 = $this$addr;
- $0 = $r$addr;
- $_renderDevice = (($this1) + 4|0);
- HEAP32[$_renderDevice>>2] = $0;
- $dwID = 1;
- $i = 0;
- $_pB = (($this1) + 8|0);
+ STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer1 = sp + 8|0;
+ $vararg_buffer = sp;
+ $_renderDevice = (($this) + 4|0);
+ HEAP32[$_renderDevice>>2] = $r;
+ $_pB = (($this) + 8|0);
  HEAP32[$_pB>>2] = 0;
- $_nNumB = (($this1) + 12|0);
+ $_nNumB = (($this) + 12|0);
  HEAP32[$_nNumB>>2] = 0;
- $_dwActiveCache = (($this1) + 416|0);
+ $_dwActiveCache = (($this) + 416|0);
  HEAP16[$_dwActiveCache>>1] = -1;
- $_dwActiveB = (($this1) + 418|0);
+ $_dwActiveB = (($this) + 418|0);
  HEAP16[$_dwActiveB>>1] = -1;
- $i = 0;
+ __ZN21REMVertexCacheManager3logEPcz(0,760,$vararg_buffer);
+ $mul$i = ($nMaxVerts*36)|0;
+ $mul13$i = $nMaxIndis << 1;
+ $i$039 = 0;$indvars$iv = 1;
  while(1) {
-  $1 = $i;
-  $cmp = ($1|0)<(50);
-  if (!($cmp)) {
-   label = 11;
-   break;
-  }
   $call = (__Znwj(96)|0);
-  $2 = $nMaxVerts$addr;
-  $3 = $nMaxIndis$addr;
-  $4 = $r$addr;
   __THREW__ = 0;
-  $call2 = (invoke_ii(22,($4|0))|0);
-  $5 = __THREW__; __THREW__ = 0;
-  $6 = $5&1;
-  if ($6) {
-   label = 9;
+  $call2 = (invoke_ii(22,($r|0))|0);
+  $0 = __THREW__; __THREW__ = 0;
+  $1 = $0&1;
+  if ($1) {
+   label = 15;
    break;
   }
-  $7 = $dwID;
-  $inc = (($7) + 1)<<16>>16;
-  $dwID = $inc;
-  $conv = $7&65535;
+  $2 = (($indvars$iv) + 1)|0;
+  HEAP32[$call>>2] = -1;
+  $arrayinit$element$i = (($call) + 4|0);
+  HEAP32[$arrayinit$element$i>>2] = -1;
+  $_pSkinMan$i = (($call) + 20|0);
+  HEAP32[$_pSkinMan$i>>2] = $call2;
+  $_vertexFormat$i = (($call) + 12|0);
+  HEAP32[$_vertexFormat$i>>2] = 0;
+  $_pVCM$i = (($call) + 24|0);
+  HEAP32[$_pVCM$i>>2] = $this;
+  $_nNumVertsMax$i = (($call) + 76|0);
+  HEAP32[$_nNumVertsMax$i>>2] = $nMaxVerts;
+  $_nNumIndisMax$i = (($call) + 80|0);
+  HEAP32[$_nNumIndisMax$i>>2] = $nMaxIndis;
+  $_nNumVerts$i = (($call) + 84|0);
+  HEAP32[$_nNumVerts$i>>2] = 0;
+  $_nNumIndis$i = (($call) + 88|0);
+  HEAP32[$_nNumIndis$i>>2] = 0;
+  $_dwID$i = (($call) + 72|0);
+  HEAP32[$_dwID$i>>2] = $indvars$iv;
+  $_nStride$i = (($call) + 92|0);
+  HEAP32[$_nStride$i>>2] = 36;
+  $3 = (($call) + 28|0);
+  dest=$3+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=4294967295|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
+  $_skinID$i = (($call) + 68|0);
+  HEAP32[$_skinID$i>>2] = 65535;
   __THREW__ = 0;
-  invoke_viiiiiiii(23,($call|0),0,($2|0),($3|0),36,($call2|0),($this1|0),($conv|0));
-  $8 = __THREW__; __THREW__ = 0;
-  $9 = $8&1;
-  if ($9) {
-   label = 9;
+  invoke_vii(23,2,($call|0));
+  $4 = __THREW__; __THREW__ = 0;
+  $5 = $4&1;
+  if ($5) {
+   label = 15;
    break;
   }
-  $10 = $i;
-  $_cacheUU = (($this1) + 16|0);
-  $arrayidx = (($_cacheUU) + ($10<<2)|0);
-  HEAP32[$arrayidx>>2] = $call;
-  $call4 = (__Znwj(96)|0);
-  $11 = $nMaxVerts$addr;
-  $12 = $nMaxIndis$addr;
-  $13 = $r$addr;
+  $6 = HEAP32[$call>>2]|0;
   __THREW__ = 0;
-  $call7 = (invoke_ii(22,($13|0))|0);
+  invoke_vii(24,34962,($6|0));
+  $7 = __THREW__; __THREW__ = 0;
+  $8 = $7&1;
+  if ($8) {
+   label = 15;
+   break;
+  }
+  __THREW__ = 0;
+  invoke_viiii(25,34962,($mul$i|0),(0|0),35048);
+  $9 = __THREW__; __THREW__ = 0;
+  $10 = $9&1;
+  if ($10) {
+   label = 15;
+   break;
+  }
+  $11 = HEAP32[$arrayinit$element$i>>2]|0;
+  __THREW__ = 0;
+  invoke_vii(24,34963,($11|0));
+  $12 = __THREW__; __THREW__ = 0;
+  $13 = $12&1;
+  if ($13) {
+   label = 15;
+   break;
+  }
+  __THREW__ = 0;
+  invoke_viiii(25,34963,($mul13$i|0),(0|0),35048);
   $14 = __THREW__; __THREW__ = 0;
   $15 = $14&1;
   if ($15) {
-   label = 10;
+   label = 15;
    break;
   }
-  $16 = $dwID;
-  $inc8 = (($16) + 1)<<16>>16;
-  $dwID = $inc8;
-  $conv9 = $16&65535;
+  $call$i = (_malloc($mul$i)|0);
+  $_pVD$i = (($call) + 8|0);
+  HEAP32[$_pVD$i>>2] = $call$i;
+  $call16$i = (_malloc($mul13$i)|0);
+  $_pInD$i = (($call) + 16|0);
+  HEAP32[$_pInD$i>>2] = $call16$i;
+  $arrayidx = ((($this) + ($i$039<<2)|0) + 16|0);
+  HEAP32[$arrayidx>>2] = $call;
+  $call4 = (__Znwj(96)|0);
   __THREW__ = 0;
-  invoke_viiiiiiii(23,($call4|0),1,($11|0),($12|0),36,($call7|0),($this1|0),($conv9|0));
-  $17 = __THREW__; __THREW__ = 0;
-  $18 = $17&1;
-  if ($18) {
-   label = 10;
+  $call7 = (invoke_ii(22,($r|0))|0);
+  $16 = __THREW__; __THREW__ = 0;
+  $17 = $16&1;
+  if ($17) {
+   label = 16;
    break;
   }
-  $19 = $i;
-  $_cacheUL = (($this1) + 216|0);
-  $arrayidx11 = (($_cacheUL) + ($19<<2)|0);
+  HEAP32[$call4>>2] = -1;
+  $arrayinit$element$i14 = (($call4) + 4|0);
+  HEAP32[$arrayinit$element$i14>>2] = -1;
+  $_pSkinMan$i15 = (($call4) + 20|0);
+  HEAP32[$_pSkinMan$i15>>2] = $call7;
+  $_vertexFormat$i16 = (($call4) + 12|0);
+  HEAP32[$_vertexFormat$i16>>2] = 1;
+  $_pVCM$i17 = (($call4) + 24|0);
+  HEAP32[$_pVCM$i17>>2] = $this;
+  $_nNumVertsMax$i18 = (($call4) + 76|0);
+  HEAP32[$_nNumVertsMax$i18>>2] = $nMaxVerts;
+  $_nNumIndisMax$i19 = (($call4) + 80|0);
+  HEAP32[$_nNumIndisMax$i19>>2] = $nMaxIndis;
+  $_nNumVerts$i20 = (($call4) + 84|0);
+  HEAP32[$_nNumVerts$i20>>2] = 0;
+  $_nNumIndis$i21 = (($call4) + 88|0);
+  HEAP32[$_nNumIndis$i21>>2] = 0;
+  $_dwID$i22 = (($call4) + 72|0);
+  HEAP32[$_dwID$i22>>2] = $2;
+  $_nStride$i23 = (($call4) + 92|0);
+  HEAP32[$_nStride$i23>>2] = 36;
+  $18 = (($call4) + 28|0);
+  dest=$18+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=4294967295|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
+  $_skinID$i24 = (($call4) + 68|0);
+  HEAP32[$_skinID$i24>>2] = 65535;
+  __THREW__ = 0;
+  invoke_vii(23,2,($call4|0));
+  $19 = __THREW__; __THREW__ = 0;
+  $20 = $19&1;
+  if ($20) {
+   label = 16;
+   break;
+  }
+  $21 = HEAP32[$call4>>2]|0;
+  __THREW__ = 0;
+  invoke_vii(24,34962,($21|0));
+  $22 = __THREW__; __THREW__ = 0;
+  $23 = $22&1;
+  if ($23) {
+   label = 16;
+   break;
+  }
+  __THREW__ = 0;
+  invoke_viiii(25,34962,($mul$i|0),(0|0),35048);
+  $24 = __THREW__; __THREW__ = 0;
+  $25 = $24&1;
+  if ($25) {
+   label = 16;
+   break;
+  }
+  $26 = HEAP32[$arrayinit$element$i14>>2]|0;
+  __THREW__ = 0;
+  invoke_vii(24,34963,($26|0));
+  $27 = __THREW__; __THREW__ = 0;
+  $28 = $27&1;
+  if ($28) {
+   label = 16;
+   break;
+  }
+  __THREW__ = 0;
+  invoke_viiii(25,34963,($mul13$i|0),(0|0),35048);
+  $29 = __THREW__; __THREW__ = 0;
+  $30 = $29&1;
+  if ($30) {
+   label = 16;
+   break;
+  }
+  $call$i27 = (_malloc($mul$i)|0);
+  $_pVD$i28 = (($call4) + 8|0);
+  HEAP32[$_pVD$i28>>2] = $call$i27;
+  $call16$i29 = (_malloc($mul13$i)|0);
+  $_pInD$i30 = (($call4) + 16|0);
+  HEAP32[$_pInD$i30>>2] = $call16$i29;
+  $indvars$iv$next = (($indvars$iv) + 2)|0;
+  $arrayidx11 = ((($this) + ($i$039<<2)|0) + 216|0);
   HEAP32[$arrayidx11>>2] = $call4;
-  $20 = $i;
-  $inc12 = (($20) + 1)|0;
-  $i = $inc12;
+  $inc12 = (($i$039) + 1)|0;
+  $cmp = ($inc12|0)<(50);
+  if ($cmp) {
+   $i$039 = $inc12;$indvars$iv = $indvars$iv$next;
+  } else {
+   label = 17;
+   break;
+  }
  }
- if ((label|0) == 9) {
-  $21 = ___cxa_find_matching_catch()|0;
-  $22 = tempRet0;
-  $exn$slot = $21;
-  $ehselector$slot = $22;
+ if ((label|0) == 15) {
+  $31 = ___cxa_find_matching_catch()|0;
+  $32 = tempRet0;
   __ZdlPv($call);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  $ehselector$slot$0 = $32;$exn$slot$0 = $31;
+  ___resumeException($exn$slot$0|0);
   // unreachable;
  }
- else if ((label|0) == 10) {
-  $23 = ___cxa_find_matching_catch()|0;
-  $24 = tempRet0;
-  $exn$slot = $23;
-  $ehselector$slot = $24;
+ else if ((label|0) == 16) {
+  $33 = ___cxa_find_matching_catch()|0;
+  $34 = tempRet0;
   __ZdlPv($call4);
-  $exn = $exn$slot;
-  $sel = $ehselector$slot;
-  ___resumeException($exn|0);
+  $ehselector$slot$0 = $34;$exn$slot$0 = $33;
+  ___resumeException($exn$slot$0|0);
   // unreachable;
  }
- else if ((label|0) == 11) {
+ else if ((label|0) == 17) {
+  __ZN21REMVertexCacheManager3logEPcz(0,792,$vararg_buffer1);
   STACKTOP = sp;return;
  }
+}
+function __ZN21REMVertexCacheManager3logEPcz($this,$chString,$varargs) {
+ $this = $this|0;
+ $chString = $chString|0;
+ $varargs = $varargs|0;
+ var $args = 0, $vararg_buffer = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 32|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $vararg_buffer = sp;
+ $args = sp + 8|0;
+ HEAP32[$args>>2] = $varargs;
+ (_printf((800|0),($vararg_buffer|0))|0);
+ (_vprintf(($chString|0),($args|0))|0);
+ (_putchar(10)|0);
+ STACKTOP = sp;return;
 }
 function __ZN21REMVertexCacheManager6renderE14REMVERTEX_TYPEjjjPvPKt($this,$vertexFormat,$skinID,$nVerts,$nIndis,$pVerts,$pIndis) {
  $this = $this|0;
@@ -11543,149 +12052,111 @@ function __ZN21REMVertexCacheManager6renderE14REMVERTEX_TYPEjjjPvPKt($this,$vert
  $nIndis = $nIndis|0;
  $pVerts = $pVerts|0;
  $pIndis = $pIndis|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
- var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0, $5 = 0;
- var $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_cacheUL = 0, $_cacheUU = 0, $_dwActiveB = 0, $arrayidx = 0, $arrayidx11 = 0, $arrayidx16 = 0, $arrayidx4 = 0, $arrayidx6 = 0, $arrayidx9 = 0, $call = 0, $call12 = 0, $call13 = 0, $call19 = 0, $call22 = 0, $call5 = 0, $call7 = 0;
- var $cmp = 0, $cmp14 = 0, $i = 0, $inc = 0, $nEmptyVC = 0, $nFullestVC = 0, $nIndis$addr = 0, $nVerts$addr = 0, $pCache = 0, $pCacheEmpty = 0, $pCacheFullest = 0, $pIndis$addr = 0, $pVerts$addr = 0, $retval = 0, $skinID$addr = 0, $this$addr = 0, $this1 = 0, $tobool = 0, $vertexFormat$addr = 0, label = 0;
- var sp = 0;
+ var $$pCacheEmpty$0 = 0, $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_dwActiveB = 0, $_dwActiveCache$i$i = 0, $_dwActiveCache$i$i39 = 0, $_nNumVerts$i = 0, $_nNumVerts$i$i = 0;
+ var $_nNumVerts$i$i33 = 0, $_nNumVerts$i28 = 0, $_pSkinMan$i = 0, $_pSkinMan$i32 = 0, $_pVCM$i = 0, $_pVCM$i38 = 0, $_skinID$i = 0, $_skinID$i$i = 0, $_skinID$i$i30 = 0, $arraydecay = 0, $arraydecay3 = 0, $arrayidx = 0, $call19 = 0, $call22 = 0, $call5 = 0, $cmp = 0, $cmp$i = 0, $cmp$i$i = 0, $cmp$i$i31 = 0, $cmp$i26 = 0;
+ var $cmp$i3$i = 0, $cmp$i3$i34 = 0, $cmp14 = 0, $i$048 = 0, $inc = 0, $pCache$0 = 0, $pCacheEmpty$046 = 0, $pCacheFullest$047 = 0, $pCacheFullest$1 = 0, $retval$0 = 0, $tmpSkin$i = 0, $tmpSkin$i29 = 0, $tobool = 0, dest = 0, label = 0, sp = 0, src = 0, stop = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 64|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $vertexFormat$addr = $vertexFormat;
- $skinID$addr = $skinID;
- $nVerts$addr = $nVerts;
- $nIndis$addr = $nIndis;
- $pVerts$addr = $pVerts;
- $pIndis$addr = $pIndis;
- $this1 = $this$addr;
- $pCache = 0;
- $pCacheEmpty = 0;
- $pCacheFullest = 0;
- $nEmptyVC = -1;
- $nFullestVC = 0;
- $0 = $vertexFormat$addr;
- if ((($0|0) == 0)) {
-  $_cacheUU = (($this1) + 16|0);
-  $pCache = $_cacheUU;
- } else if ((($0|0) == 1)) {
-  $_cacheUL = (($this1) + 216|0);
-  $pCache = $_cacheUL;
+ STACKTOP = STACKTOP + 80|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
+ $tmpSkin$i29 = sp + 40|0;
+ $tmpSkin$i = sp;
+ if ((($vertexFormat|0) == 0)) {
+  $arraydecay = (($this) + 16|0);
+  $pCache$0 = $arraydecay;
+ } else if ((($vertexFormat|0) == 1)) {
+  $arraydecay3 = (($this) + 216|0);
+  $pCache$0 = $arraydecay3;
  } else {
-  $retval = -1;
-  $43 = $retval;
-  STACKTOP = sp;return ($43|0);
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
  }
- $_dwActiveB = (($this1) + 418|0);
+ $_dwActiveB = (($this) + 418|0);
  HEAP16[$_dwActiveB>>1] = -1;
- $i = 0;
+ $i$048 = 0;$pCacheEmpty$046 = 0;$pCacheFullest$047 = 0;
  while(1) {
-  $1 = $i;
-  $cmp = ($1|0)<(50);
-  if (!($cmp)) {
+  $arrayidx = (($pCache$0) + ($i$048<<2)|0);
+  $0 = HEAP32[$arrayidx>>2]|0;
+  $_skinID$i = (($0) + 68|0);
+  $1 = HEAP32[$_skinID$i>>2]|0;
+  $cmp$i = ($1|0)==($skinID|0);
+  if ($cmp$i) {
+   label = 6;
    break;
   }
-  $2 = $i;
-  $3 = $pCache;
-  $arrayidx = (($3) + ($2<<2)|0);
-  $4 = HEAP32[$arrayidx>>2]|0;
-  $5 = $skinID$addr;
-  $call = (__ZN14REMVertexCache8usesSkinEj($4,$5)|0);
-  if ($call) {
-   label = 8;
+  $_nNumVerts$i = (($0) + 84|0);
+  $2 = HEAP32[$_nNumVerts$i>>2]|0;
+  $cmp$i26 = ($2|0)==(0);
+  $$pCacheEmpty$0 = $cmp$i26 ? $0 : $pCacheEmpty$046;
+  $_nNumVerts$i28 = (($pCacheFullest$047) + 84|0);
+  $3 = HEAP32[$_nNumVerts$i28>>2]|0;
+  $cmp14 = ($2|0)>($3|0);
+  $pCacheFullest$1 = $cmp14 ? $0 : $pCacheFullest$047;
+  $inc = (($i$048) + 1)|0;
+  $cmp = ($inc|0)<(50);
+  if ($cmp) {
+   $i$048 = $inc;$pCacheEmpty$046 = $$pCacheEmpty$0;$pCacheFullest$047 = $pCacheFullest$1;
+  } else {
    break;
   }
-  $13 = $i;
-  $14 = $pCache;
-  $arrayidx6 = (($14) + ($13<<2)|0);
-  $15 = HEAP32[$arrayidx6>>2]|0;
-  $call7 = (__ZN14REMVertexCache7isEmptyEv($15)|0);
-  if ($call7) {
-   $16 = $i;
-   $17 = $pCache;
-   $arrayidx9 = (($17) + ($16<<2)|0);
-   $18 = HEAP32[$arrayidx9>>2]|0;
-   $pCacheEmpty = $18;
-  }
-  $19 = $i;
-  $20 = $pCache;
-  $arrayidx11 = (($20) + ($19<<2)|0);
-  $21 = HEAP32[$arrayidx11>>2]|0;
-  $call12 = (__ZN14REMVertexCache8numVertsEv($21)|0);
-  $22 = $pCacheFullest;
-  $call13 = (__ZN14REMVertexCache8numVertsEv($22)|0);
-  $cmp14 = ($call12|0)>($call13|0);
-  if ($cmp14) {
-   $23 = $i;
-   $24 = $pCache;
-   $arrayidx16 = (($24) + ($23<<2)|0);
-   $25 = HEAP32[$arrayidx16>>2]|0;
-   $pCacheFullest = $25;
-  }
-  $26 = $i;
-  $inc = (($26) + 1)|0;
-  $i = $inc;
  }
- if ((label|0) == 8) {
-  $6 = $i;
-  $7 = $pCache;
-  $arrayidx4 = (($7) + ($6<<2)|0);
-  $8 = HEAP32[$arrayidx4>>2]|0;
-  $9 = $nVerts$addr;
-  $10 = $nIndis$addr;
-  $11 = $pVerts$addr;
-  $12 = $pIndis$addr;
-  $call5 = (__ZN14REMVertexCache3addEjjPvPKt($8,$9,$10,$11,$12)|0);
-  $retval = $call5;
-  $43 = $retval;
-  STACKTOP = sp;return ($43|0);
+ if ((label|0) == 6) {
+  $call5 = (__ZN14REMVertexCache3addEjjPvPKt($0,$nVerts,$nIndis,$pVerts,$pIndis)|0);
+  $retval$0 = $call5;
+  STACKTOP = sp;return ($retval$0|0);
  }
- $27 = $pCacheEmpty;
- $tobool = ($27|0)!=(0|0);
+ $tobool = ($$pCacheEmpty$0|0)==(0|0);
  if ($tobool) {
-  $28 = $pCacheEmpty;
-  $29 = $skinID$addr;
-  __ZN14REMVertexCache7setSkinEj($28,$29);
-  $30 = $pCacheEmpty;
-  $31 = $nVerts$addr;
-  $32 = $nIndis$addr;
-  $33 = $pVerts$addr;
-  $34 = $pIndis$addr;
-  $call19 = (__ZN14REMVertexCache3addEjjPvPKt($30,$31,$32,$33,$34)|0);
-  $retval = $call19;
-  $43 = $retval;
-  STACKTOP = sp;return ($43|0);
+  (__ZN14REMVertexCache5flushEv($pCacheFullest$1)|0);
+  $_skinID$i$i = (($pCacheFullest$1) + 68|0);
+  $9 = HEAP32[$_skinID$i$i>>2]|0;
+  $cmp$i$i = ($9|0)==($skinID|0);
+  if (!($cmp$i$i)) {
+   $_pSkinMan$i = (($pCacheFullest$1) + 20|0);
+   $10 = HEAP32[$_pSkinMan$i>>2]|0;
+   __ZN14REMSkinManager7getSkinEj($tmpSkin$i,$10,$skinID);
+   $_nNumVerts$i$i = (($pCacheFullest$1) + 84|0);
+   $11 = HEAP32[$_nNumVerts$i$i>>2]|0;
+   $cmp$i3$i = ($11|0)==(0);
+   if (!($cmp$i3$i)) {
+    (__ZN14REMVertexCache5flushEv($pCacheFullest$1)|0);
+   }
+   $12 = (($pCacheFullest$1) + 28|0);
+   dest=$12+0|0; src=$tmpSkin$i+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+   HEAP32[$_skinID$i$i>>2] = $skinID;
+   $_pVCM$i = (($pCacheFullest$1) + 24|0);
+   $13 = HEAP32[$_pVCM$i>>2]|0;
+   $_dwActiveCache$i$i = (($13) + 416|0);
+   HEAP16[$_dwActiveCache$i$i>>1] = -1;
+  }
+  $call22 = (__ZN14REMVertexCache3addEjjPvPKt($pCacheFullest$1,$nVerts,$nIndis,$pVerts,$pIndis)|0);
+  $retval$0 = $call22;
+  STACKTOP = sp;return ($retval$0|0);
  } else {
-  $35 = $pCacheFullest;
-  (__ZN14REMVertexCache5flushEv($35)|0);
-  $36 = $pCacheFullest;
-  $37 = $skinID$addr;
-  __ZN14REMVertexCache7setSkinEj($36,$37);
-  $38 = $pCacheFullest;
-  $39 = $nVerts$addr;
-  $40 = $nIndis$addr;
-  $41 = $pVerts$addr;
-  $42 = $pIndis$addr;
-  $call22 = (__ZN14REMVertexCache3addEjjPvPKt($38,$39,$40,$41,$42)|0);
-  $retval = $call22;
-  $43 = $retval;
-  STACKTOP = sp;return ($43|0);
+  $_skinID$i$i30 = (($$pCacheEmpty$0) + 68|0);
+  $4 = HEAP32[$_skinID$i$i30>>2]|0;
+  $cmp$i$i31 = ($4|0)==($skinID|0);
+  if (!($cmp$i$i31)) {
+   $_pSkinMan$i32 = (($$pCacheEmpty$0) + 20|0);
+   $5 = HEAP32[$_pSkinMan$i32>>2]|0;
+   __ZN14REMSkinManager7getSkinEj($tmpSkin$i29,$5,$skinID);
+   $_nNumVerts$i$i33 = (($$pCacheEmpty$0) + 84|0);
+   $6 = HEAP32[$_nNumVerts$i$i33>>2]|0;
+   $cmp$i3$i34 = ($6|0)==(0);
+   if (!($cmp$i3$i34)) {
+    (__ZN14REMVertexCache5flushEv($$pCacheEmpty$0)|0);
+   }
+   $7 = (($$pCacheEmpty$0) + 28|0);
+   dest=$7+0|0; src=$tmpSkin$i29+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
+   HEAP32[$_skinID$i$i30>>2] = $skinID;
+   $_pVCM$i38 = (($$pCacheEmpty$0) + 24|0);
+   $8 = HEAP32[$_pVCM$i38>>2]|0;
+   $_dwActiveCache$i$i39 = (($8) + 416|0);
+   HEAP16[$_dwActiveCache$i$i39>>1] = -1;
+  }
+  $call19 = (__ZN14REMVertexCache3addEjjPvPKt($$pCacheEmpty$0,$nVerts,$nIndis,$pVerts,$pIndis)|0);
+  $retval$0 = $call19;
+  STACKTOP = sp;return ($retval$0|0);
  }
  return 0|0;
-}
-function __ZN14REMVertexCache8usesSkinEj($this,$skinID) {
- $this = $this|0;
- $skinID = $skinID|0;
- var $0 = 0, $1 = 0, $_skinID = 0, $cmp = 0, $skinID$addr = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $skinID$addr = $skinID;
- $this1 = $this$addr;
- $_skinID = (($this1) + 68|0);
- $0 = HEAP32[$_skinID>>2]|0;
- $1 = $skinID$addr;
- $cmp = ($0|0)==($1|0);
- STACKTOP = sp;return ($cmp|0);
 }
 function __ZN14REMVertexCache3addEjjPvPKt($this,$nVerts,$nIndis,$pVerts,$pIndices) {
  $this = $this|0;
@@ -11693,760 +12164,423 @@ function __ZN14REMVertexCache3addEjjPvPKt($this,$nVerts,$nIndis,$pVerts,$pIndice
  $nIndis = $nIndis|0;
  $pVerts = $pVerts|0;
  $pIndices = $pIndices|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
- var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0, $5 = 0;
- var $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_nNumIndis = 0, $_nNumIndis21 = 0, $_nNumIndis41 = 0, $_nNumIndisMax = 0, $_nNumIndisMax8 = 0, $_nNumVerts = 0, $_nNumVerts15 = 0, $_nNumVerts19 = 0, $_nNumVerts24 = 0, $_nNumVerts43 = 0, $_nNumVertsMax = 0, $_nNumVertsMax4 = 0, $_nStride = 0, $_nStride18 = 0, $_pInD = 0, $_pInD38 = 0;
- var $_pVD = 0, $add = 0, $add$ptr = 0, $add30 = 0, $add32 = 0, $add35 = 0, $add37 = 0, $add44 = 0, $add7 = 0, $arrayidx = 0, $arrayidx33 = 0, $arrayidx39 = 0, $call = 0, $cmp = 0, $cmp11 = 0, $cmp16 = 0, $cmp27 = 0, $cmp28 = 0, $cmp3 = 0, $cmp5 = 0;
- var $cmp9 = 0, $conv = 0, $conv31 = 0, $conv36 = 0, $i = 0, $inc = 0, $inc42 = 0, $mul = 0, $mul2 = 0, $mul20 = 0, $mul22 = 0, $nBase = 0, $nIndis$addr = 0, $nPosI = 0, $nPosV = 0, $nSizeI = 0, $nSizeV = 0, $nVerts$addr = 0, $pIndices$addr = 0, $pVerts$addr = 0;
- var $retval = 0, $this$addr = 0, $this1 = 0, $tobool = 0, label = 0, sp = 0;
+ var $$pre = 0, $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_nNumIndis = 0, $_nNumIndis21 = 0, $_nNumIndis41 = 0, $_nNumIndis41$promoted = 0, $_nNumIndisMax = 0, $_nNumVerts = 0;
+ var $_nNumVertsMax = 0, $_nStride = 0, $_pInD = 0, $_pVD = 0, $add = 0, $add$ptr = 0, $add30$us = 0, $add32$us = 0, $add35 = 0, $add37 = 0, $add44 = 0, $add7 = 0, $arrayidx$us = 0, $arrayidx33$us = 0, $arrayidx39 = 0, $call = 0, $cmp = 0, $cmp11 = 0, $cmp16 = 0, $cmp2716 = 0;
+ var $cmp3 = 0, $cmp5 = 0, $cmp9 = 0, $conv$us = 0, $conv31$us = 0, $conv36 = 0, $exitcond = 0, $exitcond20 = 0, $i$017 = 0, $i$017$us = 0, $inc$lcssa = 0, $inc42 = 0, $inc42$us = 0, $mul = 0, $mul20 = 0, $mul22 = 0, $nIndis$nVerts = 0, $nPosI$0 = 0, $nPosV$0 = 0, $retval$0 = 0;
+ var $tobool = 0, label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $nVerts$addr = $nVerts;
- $nIndis$addr = $nIndis;
- $pVerts$addr = $pVerts;
- $pIndices$addr = $pIndices;
- $this1 = $this$addr;
- $_nStride = (($this1) + 92|0);
+ $_nStride = (($this) + 92|0);
  $0 = HEAP32[$_nStride>>2]|0;
- $1 = $nVerts$addr;
- $mul = Math_imul($0, $1)|0;
- $nSizeV = $mul;
- $2 = $nIndis$addr;
- $mul2 = $2<<1;
- $nSizeI = $mul2;
- $3 = $nVerts$addr;
- $_nNumVertsMax = (($this1) + 76|0);
- $4 = HEAP32[$_nNumVertsMax>>2]|0;
- $cmp = ($3>>>0)>($4>>>0);
- if (!($cmp)) {
-  $5 = $nIndis$addr;
-  $_nNumIndisMax = (($this1) + 80|0);
-  $6 = HEAP32[$_nNumIndisMax>>2]|0;
-  $cmp3 = ($5>>>0)>($6>>>0);
-  if (!($cmp3)) {
-   $7 = $nVerts$addr;
-   $_nNumVerts = (($this1) + 84|0);
-   $8 = HEAP32[$_nNumVerts>>2]|0;
-   $add = (($7) + ($8))|0;
-   $_nNumVertsMax4 = (($this1) + 76|0);
-   $9 = HEAP32[$_nNumVertsMax4>>2]|0;
-   $cmp5 = ($add>>>0)>($9>>>0);
-   if ($cmp5) {
-    label = 6;
-   } else {
-    $10 = $nIndis$addr;
-    $_nNumIndis = (($this1) + 88|0);
-    $11 = HEAP32[$_nNumIndis>>2]|0;
-    $add7 = (($10) + ($11))|0;
-    $_nNumIndisMax8 = (($this1) + 80|0);
-    $12 = HEAP32[$_nNumIndisMax8>>2]|0;
-    $cmp9 = ($add7>>>0)>($12>>>0);
-    if ($cmp9) {
-     label = 6;
-    }
-   }
-   do {
-    if ((label|0) == 6) {
-     $call = (__ZN14REMVertexCache5flushEv($this1)|0);
-     $cmp11 = ($call|0)!=(0);
-     if (!($cmp11)) {
-      break;
-     }
-     $retval = -1;
-     $43 = $retval;
-     STACKTOP = sp;return ($43|0);
-    }
-   } while(0);
-   $_nNumVerts15 = (($this1) + 84|0);
-   $13 = HEAP32[$_nNumVerts15>>2]|0;
-   $cmp16 = ($13|0)==(0);
-   if ($cmp16) {
-    $nPosI = 0;
-    $nPosV = 0;
-   } else {
-    $_nStride18 = (($this1) + 92|0);
-    $14 = HEAP32[$_nStride18>>2]|0;
-    $_nNumVerts19 = (($this1) + 84|0);
-    $15 = HEAP32[$_nNumVerts19>>2]|0;
-    $mul20 = Math_imul($14, $15)|0;
-    $nPosV = $mul20;
-    $_nNumIndis21 = (($this1) + 88|0);
-    $16 = HEAP32[$_nNumIndis21>>2]|0;
-    $mul22 = $16<<1;
-    $nPosI = $mul22;
-   }
-   $_pVD = (($this1) + 8|0);
-   $17 = HEAP32[$_pVD>>2]|0;
-   $18 = $nPosV;
-   $add$ptr = (($17) + ($18)|0);
-   $19 = $pVerts$addr;
-   $20 = $nSizeV;
-   _memcpy(($add$ptr|0),($19|0),($20|0))|0;
-   $_nNumVerts24 = (($this1) + 84|0);
-   $21 = HEAP32[$_nNumVerts24>>2]|0;
-   $nBase = $21;
-   $22 = $pIndices$addr;
-   $tobool = ($22|0)!=(0|0);
-   if (!($tobool)) {
-    $23 = $nVerts$addr;
-    $nIndis$addr = $23;
-   }
-   $i = 0;
-   while(1) {
-    $24 = $i;
-    $25 = $nIndis$addr;
-    $cmp27 = ($24>>>0)<($25>>>0);
-    if (!($cmp27)) {
-     break;
-    }
-    $26 = $pIndices$addr;
-    $cmp28 = ($26|0)!=(0|0);
-    if ($cmp28) {
-     $27 = $i;
-     $28 = $pIndices$addr;
-     $arrayidx = (($28) + ($27<<1)|0);
-     $29 = HEAP16[$arrayidx>>1]|0;
-     $conv = $29&65535;
-     $30 = $nBase;
-     $add30 = (($conv) + ($30))|0;
-     $conv31 = $add30&65535;
-     $31 = $i;
-     $32 = $nPosI;
-     $add32 = (($31) + ($32))|0;
-     $_pInD = (($this1) + 16|0);
-     $33 = HEAP32[$_pInD>>2]|0;
-     $arrayidx33 = (($33) + ($add32<<1)|0);
-     HEAP16[$arrayidx33>>1] = $conv31;
-    } else {
-     $34 = $i;
-     $35 = $nBase;
-     $add35 = (($34) + ($35))|0;
-     $conv36 = $add35&65535;
-     $36 = $i;
-     $37 = $nPosI;
-     $add37 = (($36) + ($37))|0;
-     $_pInD38 = (($this1) + 16|0);
-     $38 = HEAP32[$_pInD38>>2]|0;
-     $arrayidx39 = (($38) + ($add37<<1)|0);
-     HEAP16[$arrayidx39>>1] = $conv36;
-    }
-    $_nNumIndis41 = (($this1) + 88|0);
-    $39 = HEAP32[$_nNumIndis41>>2]|0;
-    $inc = (($39) + 1)|0;
-    HEAP32[$_nNumIndis41>>2] = $inc;
-    $40 = $i;
-    $inc42 = (($40) + 1)|0;
-    $i = $inc42;
-   }
-   $41 = $nVerts$addr;
-   $_nNumVerts43 = (($this1) + 84|0);
-   $42 = HEAP32[$_nNumVerts43>>2]|0;
-   $add44 = (($42) + ($41))|0;
-   HEAP32[$_nNumVerts43>>2] = $add44;
-   $retval = 0;
-   $43 = $retval;
-   STACKTOP = sp;return ($43|0);
+ $mul = Math_imul($0, $nVerts)|0;
+ $_nNumVertsMax = (($this) + 76|0);
+ $1 = HEAP32[$_nNumVertsMax>>2]|0;
+ $cmp = ($1>>>0)<($nVerts>>>0);
+ if ($cmp) {
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $_nNumIndisMax = (($this) + 80|0);
+ $2 = HEAP32[$_nNumIndisMax>>2]|0;
+ $cmp3 = ($2>>>0)<($nIndis>>>0);
+ if ($cmp3) {
+  $retval$0 = -1;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $_nNumVerts = (($this) + 84|0);
+ $3 = HEAP32[$_nNumVerts>>2]|0;
+ $add = (($3) + ($nVerts))|0;
+ $cmp5 = ($add>>>0)>($1>>>0);
+ if ($cmp5) {
+  label = 5;
+ } else {
+  $_nNumIndis = (($this) + 88|0);
+  $4 = HEAP32[$_nNumIndis>>2]|0;
+  $add7 = (($4) + ($nIndis))|0;
+  $cmp9 = ($add7>>>0)>($2>>>0);
+  if ($cmp9) {
+   label = 5;
+  } else {
+   $5 = $3;
   }
  }
- $retval = -1;
- $43 = $retval;
- STACKTOP = sp;return ($43|0);
-}
-function __ZN14REMVertexCache7isEmptyEv($this) {
- $this = $this|0;
- var $$expand_i1_val = 0, $$expand_i1_val2 = 0, $$pre_trunc = 0, $0 = 0, $1 = 0, $_nNumVerts = 0, $cmp = 0, $retval = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_nNumVerts = (($this1) + 84|0);
- $0 = HEAP32[$_nNumVerts>>2]|0;
- $cmp = ($0>>>0)>(0);
- if ($cmp) {
-  $$expand_i1_val = 0;
-  $retval = $$expand_i1_val;
+ do {
+  if ((label|0) == 5) {
+   $call = (__ZN14REMVertexCache5flushEv($this)|0);
+   $cmp11 = ($call|0)==(0);
+   if ($cmp11) {
+    $$pre = HEAP32[$_nNumVerts>>2]|0;
+    $5 = $$pre;
+    break;
+   } else {
+    $retval$0 = -1;
+    STACKTOP = sp;return ($retval$0|0);
+   }
+  }
+ } while(0);
+ $cmp16 = ($5|0)==(0);
+ if ($cmp16) {
+  $nPosI$0 = 0;$nPosV$0 = 0;
  } else {
-  $$expand_i1_val2 = 1;
-  $retval = $$expand_i1_val2;
+  $6 = HEAP32[$_nStride>>2]|0;
+  $mul20 = Math_imul($6, $5)|0;
+  $_nNumIndis21 = (($this) + 88|0);
+  $7 = HEAP32[$_nNumIndis21>>2]|0;
+  $mul22 = $7 << 1;
+  $nPosI$0 = $mul22;$nPosV$0 = $mul20;
  }
- $$pre_trunc = $retval;
- $1 = $$pre_trunc&1;
- STACKTOP = sp;return ($1|0);
-}
-function __ZN14REMVertexCache8numVertsEv($this) {
- $this = $this|0;
- var $0 = 0, $_nNumVerts = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_nNumVerts = (($this1) + 84|0);
- $0 = HEAP32[$_nNumVerts>>2]|0;
- STACKTOP = sp;return ($0|0);
-}
-function __ZN14REMVertexCache7setSkinEj($this,$skinID) {
- $this = $this|0;
- $skinID = $skinID|0;
- var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $_pSkinMan = 0, $_pVCM = 0, $_skin = 0, $_skinID = 0, $call = 0, $call2 = 0, $pSkin = 0, $skinID$addr = 0, $this$addr = 0, $this1 = 0, $tmpSkin = 0, dest = 0, label = 0, sp = 0;
- var src = 0, stop = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 64|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $tmpSkin = sp + 8|0;
- $this$addr = $this;
- $skinID$addr = $skinID;
- $this1 = $this$addr;
- $0 = $skinID$addr;
- $call = (__ZN14REMVertexCache8usesSkinEj($this1,$0)|0);
- if ($call) {
-  STACKTOP = sp;return;
+ $_pVD = (($this) + 8|0);
+ $8 = HEAP32[$_pVD>>2]|0;
+ $add$ptr = (($8) + ($nPosV$0)|0);
+ _memcpy(($add$ptr|0),($pVerts|0),($mul|0))|0;
+ $9 = HEAP32[$_nNumVerts>>2]|0;
+ $tobool = ($pIndices|0)!=(0|0);
+ $nIndis$nVerts = $tobool ? $nIndis : $nVerts;
+ $cmp2716 = ($nIndis$nVerts|0)==(0);
+ if (!($cmp2716)) {
+  $_pInD = (($this) + 16|0);
+  $_nNumIndis41 = (($this) + 88|0);
+  $_nNumIndis41$promoted = HEAP32[$_nNumIndis41>>2]|0;
+  if ($tobool) {
+   $i$017$us = 0;
+   while(1) {
+    $arrayidx$us = (($pIndices) + ($i$017$us<<1)|0);
+    $10 = HEAP16[$arrayidx$us>>1]|0;
+    $conv$us = $10&65535;
+    $add30$us = (($conv$us) + ($9))|0;
+    $conv31$us = $add30$us&65535;
+    $add32$us = (($i$017$us) + ($nPosI$0))|0;
+    $11 = HEAP32[$_pInD>>2]|0;
+    $arrayidx33$us = (($11) + ($add32$us<<1)|0);
+    HEAP16[$arrayidx33$us>>1] = $conv31$us;
+    $inc42$us = (($i$017$us) + 1)|0;
+    $exitcond20 = ($inc42$us|0)==($nIndis$nVerts|0);
+    if ($exitcond20) {
+     break;
+    } else {
+     $i$017$us = $inc42$us;
+    }
+   }
+  } else {
+   $i$017 = 0;
+   while(1) {
+    $add35 = (($i$017) + ($9))|0;
+    $conv36 = $add35&65535;
+    $add37 = (($i$017) + ($nPosI$0))|0;
+    $12 = HEAP32[$_pInD>>2]|0;
+    $arrayidx39 = (($12) + ($add37<<1)|0);
+    HEAP16[$arrayidx39>>1] = $conv36;
+    $inc42 = (($i$017) + 1)|0;
+    $exitcond = ($inc42|0)==($nIndis$nVerts|0);
+    if ($exitcond) {
+     break;
+    } else {
+     $i$017 = $inc42;
+    }
+   }
+  }
+  $inc$lcssa = (($nIndis$nVerts) + ($_nNumIndis41$promoted))|0;
+  HEAP32[$_nNumIndis41>>2] = $inc$lcssa;
  }
- $_pSkinMan = (($this1) + 20|0);
- $1 = HEAP32[$_pSkinMan>>2]|0;
- $2 = $skinID$addr;
- __ZN14REMSkinManager7getSkinEj($tmpSkin,$1,$2);
- $pSkin = $tmpSkin;
- $call2 = (__ZN14REMVertexCache7isEmptyEv($this1)|0);
- if (!($call2)) {
-  (__ZN14REMVertexCache5flushEv($this1)|0);
- }
- $_skin = (($this1) + 28|0);
- $3 = $pSkin;
- dest=$_skin+0|0; src=$3+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=HEAP32[src>>2]|0; dest=dest+4|0; src=src+4|0; } while ((dest|0) < (stop|0));
- $4 = $skinID$addr;
- $_skinID = (($this1) + 68|0);
- HEAP32[$_skinID>>2] = $4;
- $_pVCM = (($this1) + 24|0);
- $5 = HEAP32[$_pVCM>>2]|0;
- __ZN21REMVertexCacheManager14setActiveCacheEj($5,65535);
- STACKTOP = sp;return;
+ $add44 = (($9) + ($nVerts))|0;
+ HEAP32[$_nNumVerts>>2] = $add44;
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
 }
 function __ZN14REMVertexCache5flushEv($this) {
  $this = $this|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0;
- var $27 = 0, $28 = 0, $29 = 0.0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0, $44 = 0;
- var $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $5 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $54 = 0, $55 = 0, $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0;
- var $_clrWire = 0, $_dwID = 0, $_dwID10 = 0, $_nNumIndis = 0, $_nNumIndis111 = 0, $_nNumIndis115 = 0, $_nNumIndis119 = 0, $_nNumIndis123 = 0, $_nNumIndis129 = 0, $_nNumVerts = 0, $_nNumVerts128 = 0, $_nNumVerts5 = 0, $_nStride = 0, $_pInD = 0, $_pMaterials = 0, $_pSkinMan = 0, $_pSkinMan62 = 0, $_pTextures = 0, $_pVCM = 0, $_pVCM102 = 0;
- var $_pVCM106 = 0, $_pVCM12 = 0, $_pVCM18 = 0, $_pVCM23 = 0, $_pVCM28 = 0, $_pVCM35 = 0, $_pVCM42 = 0, $_pVCM49 = 0, $_pVCM66 = 0, $_pVCM68 = 0, $_pVCM75 = 0, $_pVCM82 = 0, $_pVCM89 = 0, $_pVCM9 = 0, $_pVCM96 = 0, $_pVD = 0, $_skin = 0, $_skin55 = 0, $_skin59 = 0, $_skinID = 0;
- var $_skinID104 = 0, $_vertexFormat = 0, $add = 0, $arrayidx17 = 0, $arrayidx56 = 0, $arrayidx61 = 0, $arrayidx63 = 0, $arrayidx7 = 0, $cAmbient = 0, $cEmissive = 0, $cMat = 0, $cSpecular = 0, $call = 0, $call100 = 0, $call103 = 0, $call107 = 0, $call108 = 0, $call13 = 0, $call14 = 0, $call19 = 0;
- var $call20 = 0, $call24 = 0, $call25 = 0, $call26 = 0, $call27 = 0, $call29 = 0, $call30 = 0, $call31 = 0, $call32 = 0, $call36 = 0, $call37 = 0, $call38 = 0, $call39 = 0, $call43 = 0, $call44 = 0, $call45 = 0, $call46 = 0, $call50 = 0, $call51 = 0, $call52 = 0;
- var $call53 = 0, $call67 = 0, $call69 = 0, $call70 = 0, $call71 = 0, $call72 = 0, $call76 = 0, $call77 = 0, $call78 = 0, $call79 = 0, $call83 = 0, $call84 = 0, $call85 = 0, $call86 = 0, $call90 = 0, $call91 = 0, $call92 = 0, $call93 = 0, $call97 = 0, $call98 = 0;
- var $call99 = 0, $clrWire = 0, $cmp = 0, $cmp109 = 0, $cmp113 = 0, $cmp117 = 0, $cmp121 = 0, $cmp15 = 0, $cmp2 = 0, $cmp21 = 0, $cmp54 = 0, $cmp57 = 0, $div = 0, $fA = 0, $fB = 0, $fG = 0, $fPower = 0, $i = 0, $inc = 0, $mul = 0;
- var $mul8 = 0, $nMaterial = 0, $nTexture = 0, $nTexture60 = 0, $pData = 0, $pMat = 0, $pTex = 0, $ret = 0, $retval = 0, $sm = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 80|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $cMat = sp + 16|0;
- $clrWire = sp + 40|0;
- $this$addr = $this;
- $this1 = $this$addr;
- $ret = -1;
- $_nNumVerts = (($this1) + 84|0);
- $0 = HEAP32[$_nNumVerts>>2]|0;
- $cmp = ($0>>>0)<=(0);
- if ($cmp) {
-  $retval = 0;
-  $59 = $retval;
-  STACKTOP = sp;return ($59|0);
- }
- $_pVCM = (($this1) + 24|0);
- $1 = HEAP32[$_pVCM>>2]|0;
- $call = (__ZN21REMVertexCacheManager14getActiveCacheEv($1)|0);
- $_dwID = (($this1) + 72|0);
- $2 = HEAP32[$_dwID>>2]|0;
- $cmp2 = ($call|0)!=($2|0);
- if ($cmp2) {
-  $3 = HEAP32[$this1>>2]|0;
-  _glBindBuffer(34962,($3|0));
-  $_vertexFormat = (($this1) + 12|0);
-  $4 = HEAP32[$_vertexFormat>>2]|0;
-  if ((($4|0) == 0)) {
-   _glVertexAttribPointer(0,4,5126,0,36,(0|0));
-   _glEnableVertexAttribArray(0);
-   _glVertexAttribPointer(1,4,5126,0,36,((16)|0));
-   _glEnableVertexAttribArray(1);
-   _glVertexAttribPointer(2,2,5123,0,36,((32)|0));
-   _glEnableVertexAttribArray(2);
-  } else if ((($4|0) == 1)) {
-   _glVertexAttribPointer(0,4,5126,0,36,(0|0));
-   _glEnableVertexAttribArray(0);
-   _glVertexAttribPointer(1,4,5126,0,36,((16)|0));
-   _glEnableVertexAttribArray(1);
-   _glVertexAttribPointer(2,2,5123,0,36,((32)|0));
-   _glEnableVertexAttribArray(2);
-  } else {
-   $retval = -1;
-   $59 = $retval;
-   STACKTOP = sp;return ($59|0);
-  }
-  $_nNumVerts5 = (($this1) + 84|0);
-  $5 = HEAP32[$_nNumVerts5>>2]|0;
-  $_nStride = (($this1) + 92|0);
-  $6 = HEAP32[$_nStride>>2]|0;
-  $mul = Math_imul($5, $6)|0;
-  $_pVD = (($this1) + 8|0);
-  $7 = HEAP32[$_pVD>>2]|0;
-  _glBufferSubData(34962,0,($mul|0),($7|0));
-  $arrayidx7 = (($this1) + 4|0);
-  $8 = HEAP32[$arrayidx7>>2]|0;
-  _glBindBuffer(34963,($8|0));
-  $_nNumIndis = (($this1) + 88|0);
-  $9 = HEAP32[$_nNumIndis>>2]|0;
-  $mul8 = $9<<1;
-  $_pInD = (($this1) + 16|0);
-  $10 = HEAP32[$_pInD>>2]|0;
-  _glBufferSubData(34963,0,($mul8|0),($10|0));
-  $_pVCM9 = (($this1) + 24|0);
-  $11 = HEAP32[$_pVCM9>>2]|0;
-  $_dwID10 = (($this1) + 72|0);
-  $12 = HEAP32[$_dwID10>>2]|0;
-  __ZN21REMVertexCacheManager14setActiveCacheEj($11,$12);
- }
- $_pVCM12 = (($this1) + 24|0);
- $13 = HEAP32[$_pVCM12>>2]|0;
- $call13 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($13)|0);
- $call14 = (__ZN15REMRenderDevice15getActiveSkinIDEv($call13)|0);
- $_skinID = (($this1) + 68|0);
- $14 = HEAP32[$_skinID>>2]|0;
- $cmp15 = ($call14|0)!=($14|0);
- if ($cmp15) {
-  $pTex = 0;
-  $_skin = (($this1) + 28|0);
-  $nMaterial = (($_skin) + 4|0);
-  $15 = HEAP32[$nMaterial>>2]|0;
-  $_pSkinMan = (($this1) + 20|0);
-  $16 = HEAP32[$_pSkinMan>>2]|0;
-  $_pMaterials = (($16) + 16|0);
-  $17 = HEAP32[$_pMaterials>>2]|0;
-  $arrayidx17 = (($17) + (($15*68)|0)|0);
-  $pMat = $arrayidx17;
-  $_pVCM18 = (($this1) + 24|0);
-  $18 = HEAP32[$_pVCM18>>2]|0;
-  $call19 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($18)|0);
-  $call20 = (__ZN15REMRenderDevice12getShadeModeEv($call19)|0);
-  $cmp21 = ($call20|0)!=(7);
-  if ($cmp21) {
-   $19 = $pMat;
-   ;HEAP32[$cMat+0>>2]=HEAP32[$19+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$19+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$19+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$19+12>>2]|0;
-   $_pVCM23 = (($this1) + 24|0);
-   $20 = HEAP32[$_pVCM23>>2]|0;
-   $call24 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($20)|0);
-   $call25 = (__ZN15REMRenderDevice16getShaderManagerEv($call24)|0);
-   $call26 = (__ZN16REMShaderManager16getActiveProgramEv($call25)|0);
-   $call27 = (_glGetUniformLocation(($call26|0),(616|0))|0);
-   _glUniform4fv(($call27|0),1,($cMat|0));
-   $21 = $pMat;
-   $cAmbient = (($21) + 16|0);
-   ;HEAP32[$cMat+0>>2]=HEAP32[$cAmbient+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$cAmbient+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$cAmbient+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$cAmbient+12>>2]|0;
-   $_pVCM28 = (($this1) + 24|0);
-   $22 = HEAP32[$_pVCM28>>2]|0;
-   $call29 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($22)|0);
-   $call30 = (__ZN15REMRenderDevice16getShaderManagerEv($call29)|0);
-   $call31 = (__ZN16REMShaderManager16getActiveProgramEv($call30)|0);
-   $call32 = (_glGetUniformLocation(($call31|0),(632|0))|0);
-   _glUniform4fv(($call32|0),1,($cMat|0));
-   $23 = $pMat;
-   $cSpecular = (($23) + 32|0);
-   ;HEAP32[$cMat+0>>2]=HEAP32[$cSpecular+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$cSpecular+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$cSpecular+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$cSpecular+12>>2]|0;
-   $_pVCM35 = (($this1) + 24|0);
-   $24 = HEAP32[$_pVCM35>>2]|0;
-   $call36 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($24)|0);
-   $call37 = (__ZN15REMRenderDevice16getShaderManagerEv($call36)|0);
-   $call38 = (__ZN16REMShaderManager16getActiveProgramEv($call37)|0);
-   $call39 = (_glGetUniformLocation(($call38|0),(648|0))|0);
-   _glUniform4fv(($call39|0),1,($cMat|0));
-   $25 = $pMat;
-   $cEmissive = (($25) + 48|0);
-   ;HEAP32[$cMat+0>>2]=HEAP32[$cEmissive+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$cEmissive+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$cEmissive+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$cEmissive+12>>2]|0;
-   $_pVCM42 = (($this1) + 24|0);
-   $26 = HEAP32[$_pVCM42>>2]|0;
-   $call43 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($26)|0);
-   $call44 = (__ZN15REMRenderDevice16getShaderManagerEv($call43)|0);
-   $call45 = (__ZN16REMShaderManager16getActiveProgramEv($call44)|0);
-   $call46 = (_glGetUniformLocation(($call45|0),(664|0))|0);
-   _glUniform4fv(($call46|0),1,($cMat|0));
-   $_pVCM49 = (($this1) + 24|0);
-   $27 = HEAP32[$_pVCM49>>2]|0;
-   $call50 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($27)|0);
-   $call51 = (__ZN15REMRenderDevice16getShaderManagerEv($call50)|0);
-   $call52 = (__ZN16REMShaderManager16getActiveProgramEv($call51)|0);
-   $call53 = (_glGetUniformLocation(($call52|0),(680|0))|0);
-   $28 = $pMat;
-   $fPower = (($28) + 64|0);
-   $29 = +HEAPF32[$fPower>>2];
-   _glUniform1f(($call53|0),(+$29));
-   $i = 0;
-   while(1) {
-    $30 = $i;
-    $cmp54 = ($30|0)<(8);
-    if (!($cmp54)) {
-     break;
-    }
-    $31 = $i;
-    $_skin55 = (($this1) + 28|0);
-    $nTexture = (($_skin55) + 8|0);
-    $arrayidx56 = (($nTexture) + ($31<<2)|0);
-    $32 = HEAP32[$arrayidx56>>2]|0;
-    $cmp57 = ($32|0)!=(65535);
-    if (!($cmp57)) {
-     label = 15;
-     break;
-    }
-    $33 = $i;
-    $_skin59 = (($this1) + 28|0);
-    $nTexture60 = (($_skin59) + 8|0);
-    $arrayidx61 = (($nTexture60) + ($33<<2)|0);
-    $34 = HEAP32[$arrayidx61>>2]|0;
-    $_pSkinMan62 = (($this1) + 20|0);
-    $35 = HEAP32[$_pSkinMan62>>2]|0;
-    $_pTextures = (($35) + 20|0);
-    $36 = HEAP32[$_pTextures>>2]|0;
-    $arrayidx63 = (($36) + (($34*20)|0)|0);
-    $pData = (($arrayidx63) + 8|0);
-    $37 = HEAP32[$pData>>2]|0;
-    $pTex = $37;
-    $38 = $i;
-    $add = (33984 + ($38))|0;
-    _glActiveTexture(($add|0));
-    $39 = $pTex;
-    $40 = HEAP32[$39>>2]|0;
-    _glBindTexture(3553,($40|0));
-    $41 = $i;
-    $inc = (($41) + 1)|0;
-    $i = $inc;
-   }
-   if ((label|0) == 15) {
-   }
-  } else {
-   $_pVCM66 = (($this1) + 24|0);
-   $42 = HEAP32[$_pVCM66>>2]|0;
-   $call67 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($42)|0);
-   $_clrWire = (($call67) + 1000|0);
-   ;HEAP32[$clrWire+0>>2]=HEAP32[$_clrWire+0>>2]|0;HEAP32[$clrWire+4>>2]=HEAP32[$_clrWire+4>>2]|0;HEAP32[$clrWire+8>>2]=HEAP32[$_clrWire+8>>2]|0;HEAP32[$clrWire+12>>2]=HEAP32[$_clrWire+12>>2]|0;
-   $_pVCM68 = (($this1) + 24|0);
-   $43 = HEAP32[$_pVCM68>>2]|0;
-   $call69 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($43)|0);
-   $call70 = (__ZN15REMRenderDevice16getShaderManagerEv($call69)|0);
-   $call71 = (__ZN16REMShaderManager16getActiveProgramEv($call70)|0);
-   $call72 = (_glGetUniformLocation(($call71|0),(616|0))|0);
-   _glUniform4fv(($call72|0),1,($clrWire|0));
-   $_pVCM75 = (($this1) + 24|0);
-   $44 = HEAP32[$_pVCM75>>2]|0;
-   $call76 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($44)|0);
-   $call77 = (__ZN15REMRenderDevice16getShaderManagerEv($call76)|0);
-   $call78 = (__ZN16REMShaderManager16getActiveProgramEv($call77)|0);
-   $call79 = (_glGetUniformLocation(($call78|0),(632|0))|0);
-   _glUniform4fv(($call79|0),1,($clrWire|0));
-   HEAPF32[$clrWire>>2] = 0.0;
-   $fG = (($clrWire) + 4|0);
-   HEAPF32[$fG>>2] = 0.0;
-   $fB = (($clrWire) + 8|0);
-   HEAPF32[$fB>>2] = 0.0;
-   $fA = (($clrWire) + 12|0);
-   HEAPF32[$fA>>2] = 1.0;
-   $_pVCM82 = (($this1) + 24|0);
-   $45 = HEAP32[$_pVCM82>>2]|0;
-   $call83 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($45)|0);
-   $call84 = (__ZN15REMRenderDevice16getShaderManagerEv($call83)|0);
-   $call85 = (__ZN16REMShaderManager16getActiveProgramEv($call84)|0);
-   $call86 = (_glGetUniformLocation(($call85|0),(648|0))|0);
-   _glUniform4fv(($call86|0),1,($clrWire|0));
-   $_pVCM89 = (($this1) + 24|0);
-   $46 = HEAP32[$_pVCM89>>2]|0;
-   $call90 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($46)|0);
-   $call91 = (__ZN15REMRenderDevice16getShaderManagerEv($call90)|0);
-   $call92 = (__ZN16REMShaderManager16getActiveProgramEv($call91)|0);
-   $call93 = (_glGetUniformLocation(($call92|0),(664|0))|0);
-   _glUniform4fv(($call93|0),1,($clrWire|0));
-   $_pVCM96 = (($this1) + 24|0);
-   $47 = HEAP32[$_pVCM96>>2]|0;
-   $call97 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($47)|0);
-   $call98 = (__ZN15REMRenderDevice16getShaderManagerEv($call97)|0);
-   $call99 = (__ZN16REMShaderManager16getActiveProgramEv($call98)|0);
-   $call100 = (_glGetUniformLocation(($call99|0),(680|0))|0);
-   _glUniform1f(($call100|0),1.0);
-   _glActiveTexture(33984);
-   _glBindTexture(3553,0);
-  }
-  _glBlendFunc(770,771);
-  $_pVCM102 = (($this1) + 24|0);
-  $48 = HEAP32[$_pVCM102>>2]|0;
-  $call103 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($48)|0);
-  $_skinID104 = (($this1) + 68|0);
-  $49 = HEAP32[$_skinID104>>2]|0;
-  __ZN15REMRenderDevice15setActiveSkinIDEj($call103,$49);
- }
- $_pVCM106 = (($this1) + 24|0);
- $50 = HEAP32[$_pVCM106>>2]|0;
- $call107 = (__ZN21REMVertexCacheManager15getRenderDeviceEv($50)|0);
- $call108 = (__ZN15REMRenderDevice12getShadeModeEv($call107)|0);
- $sm = $call108;
- $51 = $sm;
- $cmp109 = ($51|0)==(6);
- if ($cmp109) {
-  $_nNumIndis111 = (($this1) + 88|0);
-  $52 = HEAP32[$_nNumIndis111>>2]|0;
-  _glDrawElements(0,($52|0),5123,(0|0));
- } else {
-  $53 = $sm;
-  $cmp113 = ($53|0)==(8);
-  if ($cmp113) {
-   $_nNumIndis115 = (($this1) + 88|0);
-   $54 = HEAP32[$_nNumIndis115>>2]|0;
-   _glDrawElements(3,($54|0),5123,(0|0));
-  } else {
-   $55 = $sm;
-   $cmp117 = ($55|0)==(9);
-   if ($cmp117) {
-    $_nNumIndis119 = (($this1) + 88|0);
-    $56 = HEAP32[$_nNumIndis119>>2]|0;
-    _glDrawElements(4,($56|0),5123,(0|0));
-   } else {
-    $57 = $sm;
-    $cmp121 = ($57|0)==(7);
-    if ($cmp121) {
-     $_nNumIndis123 = (($this1) + 88|0);
-     $58 = HEAP32[$_nNumIndis123>>2]|0;
-     $div = (($58>>>0) / 3)&-1;
-     _glDrawElements(4,($div|0),5123,(0|0));
-    }
-   }
-  }
- }
- $_nNumVerts128 = (($this1) + 84|0);
- HEAP32[$_nNumVerts128>>2] = 0;
- $_nNumIndis129 = (($this1) + 88|0);
- HEAP32[$_nNumIndis129>>2] = 0;
- $retval = 0;
- $59 = $retval;
- STACKTOP = sp;return ($59|0);
-}
-function __ZN21REMVertexCacheManager14getActiveCacheEv($this) {
- $this = $this|0;
- var $0 = 0, $_dwActiveCache = 0, $conv = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_dwActiveCache = (($this1) + 416|0);
- $0 = HEAP16[$_dwActiveCache>>1]|0;
- $conv = $0&65535;
- STACKTOP = sp;return ($conv|0);
-}
-function __ZN21REMVertexCacheManager14setActiveCacheEj($this,$cID) {
- $this = $this|0;
- $cID = $cID|0;
- var $0 = 0, $_dwActiveCache = 0, $cID$addr = 0, $conv = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $cID$addr = $cID;
- $this1 = $this$addr;
- $0 = $cID$addr;
- $conv = $0&65535;
- $_dwActiveCache = (($this1) + 416|0);
- HEAP16[$_dwActiveCache>>1] = $conv;
- STACKTOP = sp;return;
-}
-function __ZN21REMVertexCacheManager14forcedFlushAllEv($this) {
- $this = $this|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_cacheUL = 0, $_cacheUL16 = 0, $_cacheUL20 = 0;
- var $_cacheUU = 0, $_cacheUU2 = 0, $_cacheUU4 = 0, $arrayidx = 0, $arrayidx13 = 0, $arrayidx17 = 0, $arrayidx21 = 0, $arrayidx3 = 0, $arrayidx5 = 0, $call = 0, $call18 = 0, $call22 = 0, $call6 = 0, $cmp = 0, $cmp11 = 0, $cmp23 = 0, $cmp7 = 0, $i = 0, $inc = 0, $inc28 = 0;
- var $retval = 0, $this$addr = 0, $this1 = 0, $tobool = 0, $tobool14 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $i = 0;
- while(1) {
-  $0 = $i;
-  $cmp = ($0|0)<(50);
-  if (!($cmp)) {
-   break;
-  }
-  $1 = $i;
-  $_cacheUU = (($this1) + 16|0);
-  $arrayidx = (($_cacheUU) + ($1<<2)|0);
-  $2 = HEAP32[$arrayidx>>2]|0;
-  $tobool = ($2|0)!=(0|0);
-  if ($tobool) {
-   $3 = $i;
-   $_cacheUU2 = (($this1) + 16|0);
-   $arrayidx3 = (($_cacheUU2) + ($3<<2)|0);
-   $4 = HEAP32[$arrayidx3>>2]|0;
-   $call = (__ZN14REMVertexCache7isEmptyEv($4)|0);
-   if (!($call)) {
-    $5 = $i;
-    $_cacheUU4 = (($this1) + 16|0);
-    $arrayidx5 = (($_cacheUU4) + ($5<<2)|0);
-    $6 = HEAP32[$arrayidx5>>2]|0;
-    $call6 = (__ZN14REMVertexCache5flushEv($6)|0);
-    $cmp7 = ($call6|0)<(0);
-    if ($cmp7) {
-     label = 6;
-     break;
-    }
-   }
-  }
-  $7 = $i;
-  $inc = (($7) + 1)|0;
-  $i = $inc;
- }
- if ((label|0) == 6) {
-  $retval = -1;
-  $16 = $retval;
-  STACKTOP = sp;return ($16|0);
- }
- $i = 0;
- while(1) {
-  $8 = $i;
-  $cmp11 = ($8|0)<(50);
-  if (!($cmp11)) {
-   label = 19;
-   break;
-  }
-  $9 = $i;
-  $_cacheUL = (($this1) + 216|0);
-  $arrayidx13 = (($_cacheUL) + ($9<<2)|0);
-  $10 = HEAP32[$arrayidx13>>2]|0;
-  $tobool14 = ($10|0)!=(0|0);
-  if ($tobool14) {
-   $11 = $i;
-   $_cacheUL16 = (($this1) + 216|0);
-   $arrayidx17 = (($_cacheUL16) + ($11<<2)|0);
-   $12 = HEAP32[$arrayidx17>>2]|0;
-   $call18 = (__ZN14REMVertexCache7isEmptyEv($12)|0);
-   if (!($call18)) {
-    $13 = $i;
-    $_cacheUL20 = (($this1) + 216|0);
-    $arrayidx21 = (($_cacheUL20) + ($13<<2)|0);
-    $14 = HEAP32[$arrayidx21>>2]|0;
-    $call22 = (__ZN14REMVertexCache5flushEv($14)|0);
-    $cmp23 = ($call22|0)<(0);
-    if ($cmp23) {
-     label = 15;
-     break;
-    }
-   }
-  }
-  $15 = $i;
-  $inc28 = (($15) + 1)|0;
-  $i = $inc28;
- }
- if ((label|0) == 15) {
-  $retval = -1;
-  $16 = $retval;
-  STACKTOP = sp;return ($16|0);
- }
- else if ((label|0) == 19) {
-  $retval = 0;
-  $16 = $retval;
-  STACKTOP = sp;return ($16|0);
- }
- return 0|0;
-}
-function __ZN21REMVertexCacheManager15getRenderDeviceEv($this) {
- $this = $this|0;
- var $0 = 0, $_renderDevice = 0, $this$addr = 0, $this1 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $this$addr = $this;
- $this1 = $this$addr;
- $_renderDevice = (($this1) + 4|0);
- $0 = HEAP32[$_renderDevice>>2]|0;
- STACKTOP = sp;return ($0|0);
-}
-function __ZN14REMVertexCacheC2E14REMVERTEX_TYPEjjjP14REMSkinManagerP21REMVertexCacheManagerj($this,$vertexFormat,$nVertsMax,$nIndisMax,$nStride,$pSkinMan,$pVCM,$dwID) {
- $this = $this|0;
- $vertexFormat = $vertexFormat|0;
- $nVertsMax = $nVertsMax|0;
- $nIndisMax = $nIndisMax|0;
- $nStride = $nStride|0;
- $pSkinMan = $pSkinMan|0;
- $pVCM = $pVCM|0;
- $dwID = $dwID|0;
- var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $_dwID = 0, $_nNumIndis = 0, $_nNumIndisMax = 0;
- var $_nNumVerts = 0, $_nNumVertsMax = 0, $_nStride = 0, $_pInD = 0, $_pSkinMan = 0, $_pVCM = 0, $_pVD = 0, $_skin2 = 0, $_skinID = 0, $_vertexFormat = 0, $arrayidx11 = 0, $arrayidx6 = 0, $arrayinit$element = 0, $call14 = 0, $call16 = 0, $cmp = 0, $cmp7 = 0, $dwID$addr = 0, $mul = 0, $mul12 = 0;
- var $mul13 = 0, $mul15 = 0, $nIndisMax$addr = 0, $nStride$addr = 0, $nVertsMax$addr = 0, $pSkinMan$addr = 0, $pVCM$addr = 0, $this$addr = 0, $this1 = 0, $vararg_buffer = 0, $vertexFormat$addr = 0, dest = 0, label = 0, sp = 0, stop = 0;
+ var $0 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0.0, $25 = 0, $26 = 0;
+ var $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $5 = 0, $6 = 0, $7 = 0;
+ var $8 = 0, $9 = 0, $_clrWire = 0, $_dwActiveCache$i = 0, $_dwActiveCache$i35 = 0, $_dwID = 0, $_nNumIndis = 0, $_nNumIndis78 = 0, $_nNumIndis82 = 0, $_nNumIndis86 = 0, $_nNumIndis90 = 0, $_nNumIndis96$pre = 0, $_nNumIndis96$pre$phiZ2D = 0, $_nNumVerts = 0, $_nStride = 0, $_pInD = 0, $_pMaterials = 0, $_pSkinMan = 0, $_pTextures = 0, $_pVCM = 0;
+ var $_pVD = 0, $_renderDevice$i = 0, $_renderDevice$i30 = 0, $_renderDevice$i31 = 0, $_renderDevice$i32 = 0, $_renderDevice$i33 = 0, $_renderDevice$i34 = 0, $_skinID = 0, $_vertexFormat = 0, $add = 0, $arrayidx11 = 0, $arrayidx21 = 0, $arrayidx40 = 0, $cAmbient = 0, $cEmissive = 0, $cMat = 0, $cSpecular = 0, $call18 = 0, $call2 = 0, $call24 = 0;
+ var $call27 = 0, $call28 = 0, $call3 = 0, $call31 = 0, $call34 = 0, $call37 = 0, $call49 = 0, $call54 = 0, $call57 = 0, $call60 = 0, $call63 = 0, $call66 = 0, $call67 = 0, $call75 = 0, $clrWire = 0, $cmp = 0, $cmp19 = 0, $cmp25 = 0, $cmp38 = 0, $cmp41 = 0;
+ var $cmp6 = 0, $conv$i = 0, $conv$i36 = 0, $div = 0, $fA = 0, $fB = 0, $fG = 0, $fPower = 0, $i$037 = 0, $inc = 0, $mul = 0, $mul12 = 0, $nMaterial = 0, $pData = 0, $retval$0 = 0, $vararg_buffer = 0, label = 0, sp = 0;
  sp = STACKTOP;
  STACKTOP = STACKTOP + 48|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
  $vararg_buffer = sp;
- $this$addr = $this;
- $vertexFormat$addr = $vertexFormat;
- $nVertsMax$addr = $nVertsMax;
- $nIndisMax$addr = $nIndisMax;
- $nStride$addr = $nStride;
- $pSkinMan$addr = $pSkinMan;
- $pVCM$addr = $pVCM;
- $dwID$addr = $dwID;
- $this1 = $this$addr;
- HEAP32[$this1>>2] = -1;
- $arrayinit$element = (($this1) + 4|0);
- HEAP32[$arrayinit$element>>2] = -1;
- $0 = $pSkinMan$addr;
- $_pSkinMan = (($this1) + 20|0);
- HEAP32[$_pSkinMan>>2] = $0;
- $1 = $vertexFormat$addr;
- $_vertexFormat = (($this1) + 12|0);
- HEAP32[$_vertexFormat>>2] = $1;
- $2 = $pVCM$addr;
- $_pVCM = (($this1) + 24|0);
- HEAP32[$_pVCM>>2] = $2;
- $3 = $nVertsMax$addr;
- $_nNumVertsMax = (($this1) + 76|0);
- HEAP32[$_nNumVertsMax>>2] = $3;
- $4 = $nIndisMax$addr;
- $_nNumIndisMax = (($this1) + 80|0);
- HEAP32[$_nNumIndisMax>>2] = $4;
- $_nNumVerts = (($this1) + 84|0);
- HEAP32[$_nNumVerts>>2] = 0;
- $_nNumIndis = (($this1) + 88|0);
- HEAP32[$_nNumIndis>>2] = 0;
- $5 = $dwID$addr;
- $_dwID = (($this1) + 72|0);
- HEAP32[$_dwID>>2] = $5;
- $6 = $nStride$addr;
- $_nStride = (($this1) + 92|0);
- HEAP32[$_nStride>>2] = $6;
- $_skin2 = (($this1) + 28|0);
- dest=$_skin2+0|0; stop=dest+40|0; do { HEAP32[dest>>2]=4294967295|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
- $_skinID = (($this1) + 68|0);
- HEAP32[$_skinID>>2] = 65535;
- _glGenBuffers(2,($this1|0));
- $7 = HEAP32[$this1>>2]|0;
- $cmp = ($7>>>0)<(0);
+ $cMat = sp + 24|0;
+ $clrWire = sp + 8|0;
+ $_pVCM = (($this) + 24|0);
+ $0 = HEAP32[$_pVCM>>2]|0;
+ $_renderDevice$i = (($0) + 4|0);
+ $1 = HEAP32[$_renderDevice$i>>2]|0;
+ $call2 = (__ZN15REMRenderDevice16getShaderManagerEv($1)|0);
+ $call3 = (__ZN16REMShaderManager16getActiveProgramEv($call2)|0);
+ $_nNumVerts = (($this) + 84|0);
+ $2 = HEAP32[$_nNumVerts>>2]|0;
+ $cmp = ($2|0)==(0);
  if ($cmp) {
-  $arrayidx6 = (($this1) + 4|0);
-  $8 = HEAP32[$arrayidx6>>2]|0;
-  $cmp7 = ($8>>>0)<(0);
-  if ($cmp7) {
-   (_printf((696|0),($vararg_buffer|0))|0);
-   STACKTOP = sp;return;
+  $retval$0 = 0;
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ $3 = HEAP32[$_pVCM>>2]|0;
+ $_dwActiveCache$i35 = (($3) + 416|0);
+ $4 = HEAP16[$_dwActiveCache$i35>>1]|0;
+ $conv$i36 = $4&65535;
+ $_dwID = (($this) + 72|0);
+ $5 = HEAP32[$_dwID>>2]|0;
+ $cmp6 = ($conv$i36|0)==($5|0);
+ if ($cmp6) {
+  $16 = $3;
+ } else {
+  $6 = HEAP32[$this>>2]|0;
+  _glBindBuffer(34962,($6|0));
+  $_vertexFormat = (($this) + 12|0);
+  $7 = HEAP32[$_vertexFormat>>2]|0;
+  if ((($7|0) == 1)) {
+   _glVertexAttribPointer(0,4,5126,0,36,(0|0));
+   _glEnableVertexAttribArray(0);
+   _glBindAttribLocation(($call3|0),0,(824|0));
+   _glVertexAttribPointer(1,4,5126,0,36,((16)|0));
+   _glEnableVertexAttribArray(1);
+   _glBindAttribLocation(($call3|0),1,(864|0));
+   _glVertexAttribPointer(2,2,5123,0,36,((32)|0));
+   _glEnableVertexAttribArray(2);
+   _glBindAttribLocation(($call3|0),2,(848|0));
+  } else if ((($7|0) == 0)) {
+   _glVertexAttribPointer(0,4,5126,0,36,(0|0));
+   _glEnableVertexAttribArray(0);
+   _glBindAttribLocation(($call3|0),0,(824|0));
+   _glVertexAttribPointer(1,4,5126,0,36,((16)|0));
+   _glEnableVertexAttribArray(1);
+   _glBindAttribLocation(($call3|0),1,(840|0));
+   _glVertexAttribPointer(2,2,5123,0,36,((32)|0));
+   _glEnableVertexAttribArray(2);
+   _glBindAttribLocation(($call3|0),2,(848|0));
+  } else {
+   $retval$0 = -1;
+   STACKTOP = sp;return ($retval$0|0);
+  }
+  $8 = HEAP32[$_nNumVerts>>2]|0;
+  $_nStride = (($this) + 92|0);
+  $9 = HEAP32[$_nStride>>2]|0;
+  $mul = Math_imul($9, $8)|0;
+  $_pVD = (($this) + 8|0);
+  $10 = HEAP32[$_pVD>>2]|0;
+  _glBufferSubData(34962,0,($mul|0),($10|0));
+  $arrayidx11 = (($this) + 4|0);
+  $11 = HEAP32[$arrayidx11>>2]|0;
+  _glBindBuffer(34963,($11|0));
+  $_nNumIndis = (($this) + 88|0);
+  $12 = HEAP32[$_nNumIndis>>2]|0;
+  $mul12 = $12 << 1;
+  $_pInD = (($this) + 16|0);
+  $13 = HEAP32[$_pInD>>2]|0;
+  _glBufferSubData(34963,0,($mul12|0),($13|0));
+  $14 = HEAP32[$_pVCM>>2]|0;
+  $15 = HEAP32[$_dwID>>2]|0;
+  $conv$i = $15&65535;
+  $_dwActiveCache$i = (($14) + 416|0);
+  HEAP16[$_dwActiveCache$i>>1] = $conv$i;
+  $16 = $14;
+ }
+ $_renderDevice$i34 = (($16) + 4|0);
+ $17 = HEAP32[$_renderDevice$i34>>2]|0;
+ $call18 = (__ZN15REMRenderDevice15getActiveSkinIDEv($17)|0);
+ $_skinID = (($this) + 68|0);
+ $18 = HEAP32[$_skinID>>2]|0;
+ $cmp19 = ($call18|0)==($18|0);
+ if (!($cmp19)) {
+  $nMaterial = (($this) + 32|0);
+  $19 = HEAP32[$nMaterial>>2]|0;
+  $_pSkinMan = (($this) + 20|0);
+  $20 = HEAP32[$_pSkinMan>>2]|0;
+  $_pMaterials = (($20) + 16|0);
+  $21 = HEAP32[$_pMaterials>>2]|0;
+  $22 = HEAP32[$_pVCM>>2]|0;
+  $_renderDevice$i33 = (($22) + 4|0);
+  $23 = HEAP32[$_renderDevice$i33>>2]|0;
+  $call24 = (__ZN15REMRenderDevice12getShadeModeEv($23)|0);
+  $cmp25 = ($call24|0)==(7);
+  L14: do {
+   if ($cmp25) {
+    $31 = HEAP32[$_pVCM>>2]|0;
+    $_renderDevice$i32 = (($31) + 4|0);
+    $32 = HEAP32[$_renderDevice$i32>>2]|0;
+    $_clrWire = (($32) + 1000|0);
+    ;HEAP32[$clrWire+0>>2]=HEAP32[$_clrWire+0>>2]|0;HEAP32[$clrWire+4>>2]=HEAP32[$_clrWire+4>>2]|0;HEAP32[$clrWire+8>>2]=HEAP32[$_clrWire+8>>2]|0;HEAP32[$clrWire+12>>2]=HEAP32[$_clrWire+12>>2]|0;
+    $call54 = (_glGetUniformLocation(($call3|0),(872|0))|0);
+    _glUniform4fv(($call54|0),1,($clrWire|0));
+    $call57 = (_glGetUniformLocation(($call3|0),(888|0))|0);
+    _glUniform4fv(($call57|0),1,($clrWire|0));
+    HEAPF32[$clrWire>>2] = 0.0;
+    $fG = (($clrWire) + 4|0);
+    HEAPF32[$fG>>2] = 0.0;
+    $fB = (($clrWire) + 8|0);
+    HEAPF32[$fB>>2] = 0.0;
+    $fA = (($clrWire) + 12|0);
+    HEAPF32[$fA>>2] = 1.0;
+    $call60 = (_glGetUniformLocation(($call3|0),(904|0))|0);
+    _glUniform4fv(($call60|0),1,($clrWire|0));
+    $call63 = (_glGetUniformLocation(($call3|0),(920|0))|0);
+    _glUniform4fv(($call63|0),1,($clrWire|0));
+    $call66 = (_glGetUniformLocation(($call3|0),(936|0))|0);
+    _glUniform1f(($call66|0),1.0);
+    _glActiveTexture(33984);
+    _glBindTexture(3553,0);
+    $call67 = (_glGetUniformLocation(($call3|0),(952|0))|0);
+    _glUniform1i(($call67|0),0);
+   } else {
+    $arrayidx21 = (($21) + (($19*68)|0)|0);
+    ;HEAP32[$cMat+0>>2]=HEAP32[$arrayidx21+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$arrayidx21+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$arrayidx21+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$arrayidx21+12>>2]|0;
+    $call27 = (_glGetUniformLocation(($call3|0),(872|0))|0);
+    _glUniform4fv(($call27|0),1,($cMat|0));
+    $cAmbient = ((($21) + (($19*68)|0)|0) + 16|0);
+    ;HEAP32[$cMat+0>>2]=HEAP32[$cAmbient+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$cAmbient+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$cAmbient+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$cAmbient+12>>2]|0;
+    $call28 = (_glGetUniformLocation(($call3|0),(888|0))|0);
+    _glUniform4fv(($call28|0),1,($cMat|0));
+    $cSpecular = ((($21) + (($19*68)|0)|0) + 32|0);
+    ;HEAP32[$cMat+0>>2]=HEAP32[$cSpecular+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$cSpecular+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$cSpecular+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$cSpecular+12>>2]|0;
+    $call31 = (_glGetUniformLocation(($call3|0),(904|0))|0);
+    _glUniform4fv(($call31|0),1,($cMat|0));
+    $cEmissive = ((($21) + (($19*68)|0)|0) + 48|0);
+    ;HEAP32[$cMat+0>>2]=HEAP32[$cEmissive+0>>2]|0;HEAP32[$cMat+4>>2]=HEAP32[$cEmissive+4>>2]|0;HEAP32[$cMat+8>>2]=HEAP32[$cEmissive+8>>2]|0;HEAP32[$cMat+12>>2]=HEAP32[$cEmissive+12>>2]|0;
+    $call34 = (_glGetUniformLocation(($call3|0),(920|0))|0);
+    _glUniform4fv(($call34|0),1,($cMat|0));
+    $call37 = (_glGetUniformLocation(($call3|0),(936|0))|0);
+    $fPower = ((($21) + (($19*68)|0)|0) + 64|0);
+    $24 = +HEAPF32[$fPower>>2];
+    _glUniform1f(($call37|0),(+$24));
+    $i$037 = 0;
+    while(1) {
+     $arrayidx40 = ((($this) + ($i$037<<2)|0) + 36|0);
+     $25 = HEAP32[$arrayidx40>>2]|0;
+     $cmp41 = ($25|0)==(65535);
+     if ($cmp41) {
+      break L14;
+     }
+     $26 = HEAP32[$_pSkinMan>>2]|0;
+     $_pTextures = (($26) + 20|0);
+     $27 = HEAP32[$_pTextures>>2]|0;
+     $pData = ((($27) + (($25*20)|0)|0) + 8|0);
+     $28 = HEAP32[$pData>>2]|0;
+     $29 = HEAP32[$28>>2]|0;
+     HEAP32[$vararg_buffer>>2] = $29;
+     (_printf((968|0),($vararg_buffer|0))|0);
+     $add = (($i$037) + 33984)|0;
+     _glActiveTexture(($add|0));
+     $30 = HEAP32[$28>>2]|0;
+     _glBindTexture(3553,($30|0));
+     $call49 = (_glGetUniformLocation(($call3|0),(952|0))|0);
+     _glUniform1i(($call49|0),0);
+     $inc = (($i$037) + 1)|0;
+     $cmp38 = ($inc|0)<(8);
+     if ($cmp38) {
+      $i$037 = $inc;
+     } else {
+      break;
+     }
+    }
+   }
+  } while(0);
+  _glBlendFunc(770,771);
+  $33 = HEAP32[$_pVCM>>2]|0;
+  $_renderDevice$i31 = (($33) + 4|0);
+  $34 = HEAP32[$_renderDevice$i31>>2]|0;
+  $35 = HEAP32[$_skinID>>2]|0;
+  __ZN15REMRenderDevice15setActiveSkinIDEj($34,$35);
+ }
+ $36 = HEAP32[$_pVCM>>2]|0;
+ $_renderDevice$i30 = (($36) + 4|0);
+ $37 = HEAP32[$_renderDevice$i30>>2]|0;
+ $call75 = (__ZN15REMRenderDevice12getShadeModeEv($37)|0);
+ if ((($call75|0) == 6)) {
+  $_nNumIndis78 = (($this) + 88|0);
+  $38 = HEAP32[$_nNumIndis78>>2]|0;
+  _glDrawElements(0,($38|0),5123,(0|0));
+  $_nNumIndis96$pre$phiZ2D = $_nNumIndis78;
+ } else if ((($call75|0) == 8)) {
+  $_nNumIndis82 = (($this) + 88|0);
+  $39 = HEAP32[$_nNumIndis82>>2]|0;
+  _glDrawElements(3,($39|0),5123,(0|0));
+  $_nNumIndis96$pre$phiZ2D = $_nNumIndis82;
+ } else if ((($call75|0) == 9)) {
+  $_nNumIndis86 = (($this) + 88|0);
+  $40 = HEAP32[$_nNumIndis86>>2]|0;
+  _glDrawElements(4,($40|0),5123,(0|0));
+  $_nNumIndis96$pre$phiZ2D = $_nNumIndis86;
+ } else if ((($call75|0) == 7)) {
+  $_nNumIndis90 = (($this) + 88|0);
+  $41 = HEAP32[$_nNumIndis90>>2]|0;
+  $div = (($41>>>0) / 3)&-1;
+  _glDrawElements(4,($div|0),5123,(0|0));
+  $_nNumIndis96$pre$phiZ2D = $_nNumIndis90;
+ } else {
+  $_nNumIndis96$pre = (($this) + 88|0);
+  $_nNumIndis96$pre$phiZ2D = $_nNumIndis96$pre;
+ }
+ HEAP32[$_nNumVerts>>2] = 0;
+ HEAP32[$_nNumIndis96$pre$phiZ2D>>2] = 0;
+ $retval$0 = 0;
+ STACKTOP = sp;return ($retval$0|0);
+}
+function __ZN21REMVertexCacheManager14forcedFlushAllEv($this) {
+ $this = $this|0;
+ var $0 = 0, $1 = 0, $2 = 0, $3 = 0, $_nNumVerts$i = 0, $_nNumVerts$i10 = 0, $arrayidx = 0, $arrayidx13 = 0, $call22 = 0, $call6 = 0, $cmp = 0, $cmp$i = 0, $cmp$i11 = 0, $cmp11 = 0, $cmp23 = 0, $cmp7 = 0, $i$014 = 0, $i$112 = 0, $inc = 0, $inc28 = 0;
+ var $retval$0 = 0, $tobool = 0, $tobool14 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $i$014 = 0;
+ while(1) {
+  $arrayidx = ((($this) + ($i$014<<2)|0) + 16|0);
+  $0 = HEAP32[$arrayidx>>2]|0;
+  $tobool = ($0|0)==(0|0);
+  if (!($tobool)) {
+   $_nNumVerts$i = (($0) + 84|0);
+   $1 = HEAP32[$_nNumVerts$i>>2]|0;
+   $cmp$i = ($1|0)==(0);
+   if (!($cmp$i)) {
+    $call6 = (__ZN14REMVertexCache5flushEv($0)|0);
+    $cmp7 = ($call6|0)<(0);
+    if ($cmp7) {
+     $retval$0 = -1;
+     label = 10;
+     break;
+    }
+   }
+  }
+  $inc = (($i$014) + 1)|0;
+  $cmp = ($inc|0)<(50);
+  if ($cmp) {
+   $i$014 = $inc;
+  } else {
+   $i$112 = 0;
+   break;
   }
  }
- $9 = HEAP32[$this1>>2]|0;
- _glBindBuffer(34962,($9|0));
- $10 = $nVertsMax$addr;
- $11 = $nStride$addr;
- $mul = Math_imul($10, $11)|0;
- _glBufferData(34962,($mul|0),(0|0),35048);
- $arrayidx11 = (($this1) + 4|0);
- $12 = HEAP32[$arrayidx11>>2]|0;
- _glBindBuffer(34963,($12|0));
- $13 = $nIndisMax$addr;
- $mul12 = $13<<1;
- _glBufferData(34963,($mul12|0),(0|0),35048);
- $14 = $nVertsMax$addr;
- $15 = $nStride$addr;
- $mul13 = Math_imul($14, $15)|0;
- $call14 = (_malloc($mul13)|0);
- $_pVD = (($this1) + 8|0);
- HEAP32[$_pVD>>2] = $call14;
- $16 = $nIndisMax$addr;
- $mul15 = $16<<1;
- $call16 = (_malloc($mul15)|0);
- $_pInD = (($this1) + 16|0);
- HEAP32[$_pInD>>2] = $call16;
- STACKTOP = sp;return;
+ if ((label|0) == 10) {
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ while(1) {
+  $arrayidx13 = ((($this) + ($i$112<<2)|0) + 216|0);
+  $2 = HEAP32[$arrayidx13>>2]|0;
+  $tobool14 = ($2|0)==(0|0);
+  if (!($tobool14)) {
+   $_nNumVerts$i10 = (($2) + 84|0);
+   $3 = HEAP32[$_nNumVerts$i10>>2]|0;
+   $cmp$i11 = ($3|0)==(0);
+   if (!($cmp$i11)) {
+    $call22 = (__ZN14REMVertexCache5flushEv($2)|0);
+    $cmp23 = ($call22|0)<(0);
+    if ($cmp23) {
+     $retval$0 = -1;
+     label = 10;
+     break;
+    }
+   }
+  }
+  $inc28 = (($i$112) + 1)|0;
+  $cmp11 = ($inc28|0)<(50);
+  if ($cmp11) {
+   $i$112 = $inc28;
+  } else {
+   $retval$0 = 0;
+   label = 10;
+   break;
+  }
+ }
+ if ((label|0) == 10) {
+  STACKTOP = sp;return ($retval$0|0);
+ }
+ return 0|0;
 }
 function __Znwj($size) {
  $size = $size|0;
@@ -12478,14 +12612,21 @@ function __Znwj($size) {
  }
  if ((label|0) == 4) {
   $exception = (___cxa_allocate_exception(4)|0);
-  HEAP32[$exception>>2] = ((744 + 8|0));
-  ___cxa_throw(($exception|0),(800|0),(1|0));
+  HEAP32[$exception>>2] = ((992 + 8|0));
+  ___cxa_throw(($exception|0),(1048|0),(1|0));
   // unreachable;
  }
  else if ((label|0) == 5) {
   STACKTOP = sp;return ($call$lcssa|0);
  }
  return 0|0;
+}
+function __Znaj($size) {
+ $size = $size|0;
+ var $call = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $call = (__Znwj($size)|0);
+ STACKTOP = sp;return ($call|0);
 }
 function __ZdlPv($ptr) {
  $ptr = $ptr|0;
@@ -12511,12 +12652,12 @@ function __ZNKSt9bad_alloc4whatEv($this) {
  $this = $this|0;
  var label = 0, sp = 0;
  sp = STACKTOP;
- STACKTOP = sp;return (768|0);
+ STACKTOP = sp;return (1016|0);
 }
 function __ZSt15get_new_handlerv() {
  var $0 = 0, $1 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- $0 = HEAP32[816>>2]|0;HEAP32[816>>2] = (($0+0)|0);
+ $0 = HEAP32[1064>>2]|0;HEAP32[1064>>2] = (($0+0)|0);
  $1 = $0;
  STACKTOP = sp;return ($1|0);
 }
@@ -12583,7 +12724,7 @@ function __ZNK10__cxxabiv117__class_type_info9can_catchEPKNS_16__shim_type_infoE
   $retval$1 = 0;
   STACKTOP = sp;return ($retval$1|0);
  }
- $1 = (___dynamic_cast($thrown_type,912,968,0)|0);
+ $1 = (___dynamic_cast($thrown_type,1160,1216,0)|0);
  $cmp = ($1|0)==(0|0);
  if ($cmp) {
   $retval$1 = 0;
@@ -12745,7 +12886,26 @@ function ___dynamic_cast($static_ptr,$static_type,$dst_type,$src2dst_offset) {
  $6 = HEAP32[$vfn11>>2]|0;
  FUNCTION_TABLE_viiiii[$6 & 15]($3,$info,$add$ptr,1,0);
  $7 = HEAP32[$number_to_static_ptr>>2]|0;
- if ((($7|0) == 1)) {
+ if ((($7|0) == 0)) {
+  $8 = HEAP32[$number_to_dst_ptr>>2]|0;
+  $cmp14 = ($8|0)==(1);
+  if (!($cmp14)) {
+   $dst_ptr$0 = 0;
+   STACKTOP = sp;return ($dst_ptr$0|0);
+  }
+  $9 = HEAP32[$path_dynamic_ptr_to_static_ptr>>2]|0;
+  $cmp16 = ($9|0)==(1);
+  if (!($cmp16)) {
+   $dst_ptr$0 = 0;
+   STACKTOP = sp;return ($dst_ptr$0|0);
+  }
+  $10 = HEAP32[$path_dynamic_ptr_to_dst_ptr>>2]|0;
+  $cmp19 = ($10|0)==(1);
+  $11 = HEAP32[$dst_ptr_not_leading_to_static_ptr>>2]|0;
+  $$ = $cmp19 ? $11 : 0;
+  $dst_ptr$0 = $$;
+  STACKTOP = sp;return ($dst_ptr$0|0);
+ } else if ((($7|0) == 1)) {
   $12 = HEAP32[$path_dst_ptr_to_static_ptr>>2]|0;
   $cmp25 = ($12|0)==(1);
   if (!($cmp25)) {
@@ -12770,25 +12930,6 @@ function ___dynamic_cast($static_ptr,$static_type,$dst_type,$src2dst_offset) {
   }
   $16 = HEAP32[$dst_ptr_leading_to_static_ptr>>2]|0;
   $dst_ptr$0 = $16;
-  STACKTOP = sp;return ($dst_ptr$0|0);
- } else if ((($7|0) == 0)) {
-  $8 = HEAP32[$number_to_dst_ptr>>2]|0;
-  $cmp14 = ($8|0)==(1);
-  if (!($cmp14)) {
-   $dst_ptr$0 = 0;
-   STACKTOP = sp;return ($dst_ptr$0|0);
-  }
-  $9 = HEAP32[$path_dynamic_ptr_to_static_ptr>>2]|0;
-  $cmp16 = ($9|0)==(1);
-  if (!($cmp16)) {
-   $dst_ptr$0 = 0;
-   STACKTOP = sp;return ($dst_ptr$0|0);
-  }
-  $10 = HEAP32[$path_dynamic_ptr_to_dst_ptr>>2]|0;
-  $cmp19 = ($10|0)==(1);
-  $11 = HEAP32[$dst_ptr_not_leading_to_static_ptr>>2]|0;
-  $$ = $cmp19 ? $11 : 0;
-  $dst_ptr$0 = $$;
   STACKTOP = sp;return ($dst_ptr$0|0);
  } else {
   $dst_ptr$0 = 0;
@@ -13109,43 +13250,6 @@ function __ZNK10__cxxabiv117__class_type_info16search_above_dstEPNS_19__dynamic_
  __ZNK10__cxxabiv117__class_type_info29process_static_type_above_dstEPNS_19__dynamic_cast_infoEPKvS4_i(0,$info,$dst_ptr,$current_ptr,$path_below);
  STACKTOP = sp;return;
 }
-function ___cxa_can_catch($catchType,$excpType,$thrown) {
- $catchType = $catchType|0;
- $excpType = $excpType|0;
- $thrown = $thrown|0;
- var $0 = 0, $1 = 0, $2 = 0, $call = 0, $conv = 0, $temp = 0, $vfn = 0, $vtable = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 16|0; if ((STACKTOP|0) >= (STACK_MAX|0)) abort();
- $temp = sp;
- $0 = HEAP32[$thrown>>2]|0;
- HEAP32[$temp>>2] = $0;
- $vtable = HEAP32[$catchType>>2]|0;
- $vfn = (($vtable) + 16|0);
- $1 = HEAP32[$vfn>>2]|0;
- $call = (FUNCTION_TABLE_iiii[$1 & 15]($catchType,$excpType,$temp)|0);
- $conv = $call&1;
- if (!($call)) {
-  STACKTOP = sp;return ($conv|0);
- }
- $2 = HEAP32[$temp>>2]|0;
- HEAP32[$thrown>>2] = $2;
- STACKTOP = sp;return ($conv|0);
-}
-function ___cxa_is_pointer_type($type) {
- $type = $type|0;
- var $0 = 0, $1 = 0, $2 = 0, $conv = 0, $phitmp = 0, label = 0, sp = 0;
- sp = STACKTOP;
- $0 = ($type|0)==(0|0);
- if ($0) {
-  $2 = 0;
- } else {
-  $1 = (___dynamic_cast($type,912,1080,0)|0);
-  $phitmp = ($1|0)!=(0|0);
-  $2 = $phitmp;
- }
- $conv = $2&1;
- STACKTOP = sp;return ($conv|0);
-}
 function _malloc($bytes) {
  $bytes = $bytes|0;
  var $$pre = 0, $$pre$i = 0, $$pre$i$i = 0, $$pre$i144 = 0, $$pre$i66$i = 0, $$pre$phi$i$iZ2D = 0, $$pre$phi$i145Z2D = 0, $$pre$phi$i67$iZ2D = 0, $$pre$phi$iZ2D = 0, $$pre$phiZ2D = 0, $0 = 0, $1 = 0, $10 = 0, $100 = 0, $101 = 0, $102 = 0, $103 = 0, $104 = 0, $105 = 0, $106 = 0;
@@ -13226,7 +13330,7 @@ function _malloc($bytes) {
     $cond = $and;
    }
    $shr = $cond >>> 3;
-   $0 = HEAP32[1232>>2]|0;
+   $0 = HEAP32[1368>>2]|0;
    $shr3 = $0 >>> $shr;
    $and4 = $shr3 & 3;
    $cmp5 = ($and4|0)==(0);
@@ -13235,9 +13339,9 @@ function _malloc($bytes) {
     $and7 = $neg ^ 1;
     $add8 = (($and7) + ($shr))|0;
     $shl = $add8 << 1;
-    $arrayidx = ((1232 + ($shl<<2)|0) + 40|0);
+    $arrayidx = ((1368 + ($shl<<2)|0) + 40|0);
     $arrayidx$sum = (($shl) + 2)|0;
-    $1 = ((1232 + ($arrayidx$sum<<2)|0) + 40|0);
+    $1 = ((1368 + ($arrayidx$sum<<2)|0) + 40|0);
     $2 = HEAP32[$1>>2]|0;
     $fd9 = (($2) + 8|0);
     $3 = HEAP32[$fd9>>2]|0;
@@ -13247,9 +13351,9 @@ function _malloc($bytes) {
       $shl12 = 1 << $add8;
       $neg13 = $shl12 ^ -1;
       $and14 = $0 & $neg13;
-      HEAP32[1232>>2] = $and14;
+      HEAP32[1368>>2] = $and14;
      } else {
-      $4 = HEAP32[((1232 + 16|0))>>2]|0;
+      $4 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp15 = ($3>>>0)<($4>>>0);
       if ($cmp15) {
        _abort();
@@ -13280,7 +13384,7 @@ function _malloc($bytes) {
     $mem$0 = $fd9;
     STACKTOP = sp;return ($mem$0|0);
    }
-   $7 = HEAP32[((1232 + 8|0))>>2]|0;
+   $7 = HEAP32[((1368 + 8|0))>>2]|0;
    $cmp29 = ($cond>>>0)>($7>>>0);
    if ($cmp29) {
     $cmp31 = ($shr3|0)==(0);
@@ -13314,9 +13418,9 @@ function _malloc($bytes) {
      $shr63 = $shr59 >>> $and61;
      $add64 = (($add62) + ($shr63))|0;
      $shl65 = $add64 << 1;
-     $arrayidx66 = ((1232 + ($shl65<<2)|0) + 40|0);
+     $arrayidx66 = ((1368 + ($shl65<<2)|0) + 40|0);
      $arrayidx66$sum = (($shl65) + 2)|0;
-     $8 = ((1232 + ($arrayidx66$sum<<2)|0) + 40|0);
+     $8 = ((1368 + ($arrayidx66$sum<<2)|0) + 40|0);
      $9 = HEAP32[$8>>2]|0;
      $fd69 = (($9) + 8|0);
      $10 = HEAP32[$fd69>>2]|0;
@@ -13326,9 +13430,9 @@ function _malloc($bytes) {
        $shl72 = 1 << $add64;
        $neg73 = $shl72 ^ -1;
        $and74 = $0 & $neg73;
-       HEAP32[1232>>2] = $and74;
+       HEAP32[1368>>2] = $and74;
       } else {
-       $11 = HEAP32[((1232 + 16|0))>>2]|0;
+       $11 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp76 = ($10>>>0)<($11>>>0);
        if ($cmp76) {
         _abort();
@@ -13359,28 +13463,28 @@ function _malloc($bytes) {
      HEAP32[$head97>>2] = $or96;
      $add$ptr98 = (($9) + ($shl90)|0);
      HEAP32[$add$ptr98>>2] = $sub91;
-     $13 = HEAP32[((1232 + 8|0))>>2]|0;
+     $13 = HEAP32[((1368 + 8|0))>>2]|0;
      $cmp99 = ($13|0)==(0);
      if (!($cmp99)) {
-      $14 = HEAP32[((1232 + 20|0))>>2]|0;
+      $14 = HEAP32[((1368 + 20|0))>>2]|0;
       $shr101 = $13 >>> 3;
       $shl102 = $shr101 << 1;
-      $arrayidx103 = ((1232 + ($shl102<<2)|0) + 40|0);
-      $15 = HEAP32[1232>>2]|0;
+      $arrayidx103 = ((1368 + ($shl102<<2)|0) + 40|0);
+      $15 = HEAP32[1368>>2]|0;
       $shl105 = 1 << $shr101;
       $and106 = $15 & $shl105;
       $tobool107 = ($and106|0)==(0);
       if ($tobool107) {
        $or110 = $15 | $shl105;
-       HEAP32[1232>>2] = $or110;
+       HEAP32[1368>>2] = $or110;
        $arrayidx103$sum$pre = (($shl102) + 2)|0;
-       $$pre = ((1232 + ($arrayidx103$sum$pre<<2)|0) + 40|0);
+       $$pre = ((1368 + ($arrayidx103$sum$pre<<2)|0) + 40|0);
        $$pre$phiZ2D = $$pre;$F104$0 = $arrayidx103;
       } else {
        $arrayidx103$sum103 = (($shl102) + 2)|0;
-       $16 = ((1232 + ($arrayidx103$sum103<<2)|0) + 40|0);
+       $16 = ((1368 + ($arrayidx103$sum103<<2)|0) + 40|0);
        $17 = HEAP32[$16>>2]|0;
-       $18 = HEAP32[((1232 + 16|0))>>2]|0;
+       $18 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp113 = ($17>>>0)<($18>>>0);
        if ($cmp113) {
         _abort();
@@ -13397,12 +13501,12 @@ function _malloc($bytes) {
       $bk124 = (($14) + 12|0);
       HEAP32[$bk124>>2] = $arrayidx103;
      }
-     HEAP32[((1232 + 8|0))>>2] = $sub91;
-     HEAP32[((1232 + 20|0))>>2] = $add$ptr95;
+     HEAP32[((1368 + 8|0))>>2] = $sub91;
+     HEAP32[((1368 + 20|0))>>2] = $add$ptr95;
      $mem$0 = $fd69;
      STACKTOP = sp;return ($mem$0|0);
     }
-    $19 = HEAP32[((1232 + 4|0))>>2]|0;
+    $19 = HEAP32[((1368 + 4|0))>>2]|0;
     $cmp128 = ($19|0)==(0);
     if ($cmp128) {
      $nb$0 = $cond;
@@ -13430,7 +13534,7 @@ function _malloc($bytes) {
      $add18$i = $add14$i | $and17$i;
      $shr19$i = $shr15$i >>> $and17$i;
      $add20$i = (($add18$i) + ($shr19$i))|0;
-     $arrayidx$i = ((1232 + ($add20$i<<2)|0) + 304|0);
+     $arrayidx$i = ((1368 + ($add20$i<<2)|0) + 304|0);
      $20 = HEAP32[$arrayidx$i>>2]|0;
      $head$i = (($20) + 4|0);
      $21 = HEAP32[$head$i>>2]|0;
@@ -13462,7 +13566,7 @@ function _malloc($bytes) {
       $cond$v$0$i = $cmp32$i ? $cond6$i : $v$0$i;
       $rsize$0$i = $sub31$rsize$0$i;$t$0$i = $cond6$i;$v$0$i = $cond$v$0$i;
      }
-     $25 = HEAP32[((1232 + 16|0))>>2]|0;
+     $25 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp33$i = ($v$0$i>>>0)<($25>>>0);
      if ($cmp33$i) {
       _abort();
@@ -13557,7 +13661,7 @@ function _malloc($bytes) {
       if (!($cmp90$i)) {
        $index$i = (($v$0$i) + 28|0);
        $35 = HEAP32[$index$i>>2]|0;
-       $arrayidx94$i = ((1232 + ($35<<2)|0) + 304|0);
+       $arrayidx94$i = ((1368 + ($35<<2)|0) + 304|0);
        $36 = HEAP32[$arrayidx94$i>>2]|0;
        $cmp95$i = ($v$0$i|0)==($36|0);
        if ($cmp95$i) {
@@ -13566,13 +13670,13 @@ function _malloc($bytes) {
         if ($cond4$i) {
          $shl$i = 1 << $35;
          $neg$i = $shl$i ^ -1;
-         $37 = HEAP32[((1232 + 4|0))>>2]|0;
+         $37 = HEAP32[((1368 + 4|0))>>2]|0;
          $and103$i = $37 & $neg$i;
-         HEAP32[((1232 + 4|0))>>2] = $and103$i;
+         HEAP32[((1368 + 4|0))>>2] = $and103$i;
          break;
         }
        } else {
-        $38 = HEAP32[((1232 + 16|0))>>2]|0;
+        $38 = HEAP32[((1368 + 16|0))>>2]|0;
         $cmp107$i = ($26>>>0)<($38>>>0);
         if ($cmp107$i) {
          _abort();
@@ -13592,7 +13696,7 @@ function _malloc($bytes) {
          break;
         }
        }
-       $40 = HEAP32[((1232 + 16|0))>>2]|0;
+       $40 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp130$i = ($R$1$i>>>0)<($40>>>0);
        if ($cmp130$i) {
         _abort();
@@ -13605,7 +13709,7 @@ function _malloc($bytes) {
        $cmp138$i = ($41|0)==(0|0);
        do {
         if (!($cmp138$i)) {
-         $42 = HEAP32[((1232 + 16|0))>>2]|0;
+         $42 = HEAP32[((1368 + 16|0))>>2]|0;
          $cmp142$i = ($41>>>0)<($42>>>0);
          if ($cmp142$i) {
           _abort();
@@ -13623,7 +13727,7 @@ function _malloc($bytes) {
        $43 = HEAP32[$arrayidx154$i>>2]|0;
        $cmp155$i = ($43|0)==(0|0);
        if (!($cmp155$i)) {
-        $44 = HEAP32[((1232 + 16|0))>>2]|0;
+        $44 = HEAP32[((1368 + 16|0))>>2]|0;
         $cmp159$i = ($43>>>0)<($44>>>0);
         if ($cmp159$i) {
          _abort();
@@ -13660,28 +13764,28 @@ function _malloc($bytes) {
       $add$ptr$sum1$i = (($rsize$0$i) + ($cond))|0;
       $add$ptr190$i = (($v$0$i) + ($add$ptr$sum1$i)|0);
       HEAP32[$add$ptr190$i>>2] = $rsize$0$i;
-      $46 = HEAP32[((1232 + 8|0))>>2]|0;
+      $46 = HEAP32[((1368 + 8|0))>>2]|0;
       $cmp191$i = ($46|0)==(0);
       if (!($cmp191$i)) {
-       $47 = HEAP32[((1232 + 20|0))>>2]|0;
+       $47 = HEAP32[((1368 + 20|0))>>2]|0;
        $shr194$i = $46 >>> 3;
        $shl195$i = $shr194$i << 1;
-       $arrayidx196$i = ((1232 + ($shl195$i<<2)|0) + 40|0);
-       $48 = HEAP32[1232>>2]|0;
+       $arrayidx196$i = ((1368 + ($shl195$i<<2)|0) + 40|0);
+       $48 = HEAP32[1368>>2]|0;
        $shl198$i = 1 << $shr194$i;
        $and199$i = $48 & $shl198$i;
        $tobool200$i = ($and199$i|0)==(0);
        if ($tobool200$i) {
         $or204$i = $48 | $shl198$i;
-        HEAP32[1232>>2] = $or204$i;
+        HEAP32[1368>>2] = $or204$i;
         $arrayidx196$sum$pre$i = (($shl195$i) + 2)|0;
-        $$pre$i = ((1232 + ($arrayidx196$sum$pre$i<<2)|0) + 40|0);
+        $$pre$i = ((1368 + ($arrayidx196$sum$pre$i<<2)|0) + 40|0);
         $$pre$phi$iZ2D = $$pre$i;$F197$0$i = $arrayidx196$i;
        } else {
         $arrayidx196$sum2$i = (($shl195$i) + 2)|0;
-        $49 = ((1232 + ($arrayidx196$sum2$i<<2)|0) + 40|0);
+        $49 = ((1368 + ($arrayidx196$sum2$i<<2)|0) + 40|0);
         $50 = HEAP32[$49>>2]|0;
-        $51 = HEAP32[((1232 + 16|0))>>2]|0;
+        $51 = HEAP32[((1368 + 16|0))>>2]|0;
         $cmp208$i = ($50>>>0)<($51>>>0);
         if ($cmp208$i) {
          _abort();
@@ -13698,8 +13802,8 @@ function _malloc($bytes) {
        $bk220$i = (($47) + 12|0);
        HEAP32[$bk220$i>>2] = $arrayidx196$i;
       }
-      HEAP32[((1232 + 8|0))>>2] = $rsize$0$i;
-      HEAP32[((1232 + 20|0))>>2] = $add$ptr$i;
+      HEAP32[((1368 + 8|0))>>2] = $rsize$0$i;
+      HEAP32[((1368 + 20|0))>>2] = $add$ptr$i;
      }
      $add$ptr225$i = (($v$0$i) + 8|0);
      $mem$0 = $add$ptr225$i;
@@ -13715,7 +13819,7 @@ function _malloc($bytes) {
    } else {
     $add143 = (($bytes) + 11)|0;
     $and144 = $add143 & -8;
-    $52 = HEAP32[((1232 + 4|0))>>2]|0;
+    $52 = HEAP32[((1368 + 4|0))>>2]|0;
     $cmp145 = ($52|0)==(0);
     if ($cmp145) {
      $nb$0 = $and144;
@@ -13755,7 +13859,7 @@ function _malloc($bytes) {
        $idx$0$i = $add22$i;
       }
      }
-     $arrayidx$i117 = ((1232 + ($idx$0$i<<2)|0) + 304|0);
+     $arrayidx$i117 = ((1368 + ($idx$0$i<<2)|0) + 304|0);
      $53 = HEAP32[$arrayidx$i117>>2]|0;
      $cmp24$i = ($53|0)==(0|0);
      L126: do {
@@ -13845,7 +13949,7 @@ function _malloc($bytes) {
       $add89$i = $add85$i | $and88$i;
       $shr90$i = $shr86$i >>> $and88$i;
       $add91$i = (($add89$i) + ($shr90$i))|0;
-      $arrayidx93$i = ((1232 + ($add91$i<<2)|0) + 304|0);
+      $arrayidx93$i = ((1368 + ($add91$i<<2)|0) + 304|0);
       $57 = HEAP32[$arrayidx93$i>>2]|0;
       $t$2$ph$i = $57;
      } else {
@@ -13886,11 +13990,11 @@ function _malloc($bytes) {
      if ($cmp115$i) {
       $nb$0 = $and144;
      } else {
-      $61 = HEAP32[((1232 + 8|0))>>2]|0;
+      $61 = HEAP32[((1368 + 8|0))>>2]|0;
       $sub117$i = (($61) - ($and144))|0;
       $cmp118$i = ($rsize$3$lcssa$i>>>0)<($sub117$i>>>0);
       if ($cmp118$i) {
-       $62 = HEAP32[((1232 + 16|0))>>2]|0;
+       $62 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp120$i = ($v$3$lcssa$i>>>0)<($62>>>0);
        if ($cmp120$i) {
         _abort();
@@ -13985,7 +14089,7 @@ function _malloc($bytes) {
         if (!($cmp179$i)) {
          $index$i138 = (($v$3$lcssa$i) + 28|0);
          $72 = HEAP32[$index$i138>>2]|0;
-         $arrayidx183$i = ((1232 + ($72<<2)|0) + 304|0);
+         $arrayidx183$i = ((1368 + ($72<<2)|0) + 304|0);
          $73 = HEAP32[$arrayidx183$i>>2]|0;
          $cmp184$i = ($v$3$lcssa$i|0)==($73|0);
          if ($cmp184$i) {
@@ -13994,13 +14098,13 @@ function _malloc($bytes) {
           if ($cond18$i) {
            $shl191$i = 1 << $72;
            $neg$i139 = $shl191$i ^ -1;
-           $74 = HEAP32[((1232 + 4|0))>>2]|0;
+           $74 = HEAP32[((1368 + 4|0))>>2]|0;
            $and193$i = $74 & $neg$i139;
-           HEAP32[((1232 + 4|0))>>2] = $and193$i;
+           HEAP32[((1368 + 4|0))>>2] = $and193$i;
            break;
           }
          } else {
-          $75 = HEAP32[((1232 + 16|0))>>2]|0;
+          $75 = HEAP32[((1368 + 16|0))>>2]|0;
           $cmp197$i = ($63>>>0)<($75>>>0);
           if ($cmp197$i) {
            _abort();
@@ -14020,7 +14124,7 @@ function _malloc($bytes) {
            break;
           }
          }
-         $77 = HEAP32[((1232 + 16|0))>>2]|0;
+         $77 = HEAP32[((1368 + 16|0))>>2]|0;
          $cmp220$i = ($R$1$i137>>>0)<($77>>>0);
          if ($cmp220$i) {
           _abort();
@@ -14033,7 +14137,7 @@ function _malloc($bytes) {
          $cmp228$i = ($78|0)==(0|0);
          do {
           if (!($cmp228$i)) {
-           $79 = HEAP32[((1232 + 16|0))>>2]|0;
+           $79 = HEAP32[((1368 + 16|0))>>2]|0;
            $cmp232$i = ($78>>>0)<($79>>>0);
            if ($cmp232$i) {
             _abort();
@@ -14051,7 +14155,7 @@ function _malloc($bytes) {
          $80 = HEAP32[$arrayidx244$i>>2]|0;
          $cmp245$i = ($80|0)==(0|0);
          if (!($cmp245$i)) {
-          $81 = HEAP32[((1232 + 16|0))>>2]|0;
+          $81 = HEAP32[((1368 + 16|0))>>2]|0;
           $cmp249$i = ($80>>>0)<($81>>>0);
           if ($cmp249$i) {
            _abort();
@@ -14093,23 +14197,23 @@ function _malloc($bytes) {
          $cmp283$i = ($rsize$3$lcssa$i>>>0)<(256);
          if ($cmp283$i) {
           $shl287$i = $shr282$i << 1;
-          $arrayidx288$i = ((1232 + ($shl287$i<<2)|0) + 40|0);
-          $83 = HEAP32[1232>>2]|0;
+          $arrayidx288$i = ((1368 + ($shl287$i<<2)|0) + 40|0);
+          $83 = HEAP32[1368>>2]|0;
           $shl290$i = 1 << $shr282$i;
           $and291$i = $83 & $shl290$i;
           $tobool292$i = ($and291$i|0)==(0);
           do {
            if ($tobool292$i) {
             $or296$i = $83 | $shl290$i;
-            HEAP32[1232>>2] = $or296$i;
+            HEAP32[1368>>2] = $or296$i;
             $arrayidx288$sum$pre$i = (($shl287$i) + 2)|0;
-            $$pre$i144 = ((1232 + ($arrayidx288$sum$pre$i<<2)|0) + 40|0);
+            $$pre$i144 = ((1368 + ($arrayidx288$sum$pre$i<<2)|0) + 40|0);
             $$pre$phi$i145Z2D = $$pre$i144;$F289$0$i = $arrayidx288$i;
            } else {
             $arrayidx288$sum15$i = (($shl287$i) + 2)|0;
-            $84 = ((1232 + ($arrayidx288$sum15$i<<2)|0) + 40|0);
+            $84 = ((1368 + ($arrayidx288$sum15$i<<2)|0) + 40|0);
             $85 = HEAP32[$84>>2]|0;
-            $86 = HEAP32[((1232 + 16|0))>>2]|0;
+            $86 = HEAP32[((1368 + 16|0))>>2]|0;
             $cmp300$i = ($85>>>0)<($86>>>0);
             if (!($cmp300$i)) {
              $$pre$phi$i145Z2D = $84;$F289$0$i = $85;
@@ -14164,7 +14268,7 @@ function _malloc($bytes) {
            $I315$0$i = $add350$i;
           }
          }
-         $arrayidx354$i = ((1232 + ($I315$0$i<<2)|0) + 304|0);
+         $arrayidx354$i = ((1368 + ($I315$0$i<<2)|0) + 304|0);
          $add$ptr$sum2$i = (($and144) + 28)|0;
          $index355$i = (($v$3$lcssa$i) + ($add$ptr$sum2$i)|0);
          HEAP32[$index355$i>>2] = $I315$0$i;
@@ -14174,13 +14278,13 @@ function _malloc($bytes) {
          $arrayidx357$i = (($v$3$lcssa$i) + ($child356$sum$i)|0);
          HEAP32[$arrayidx357$i>>2] = 0;
          HEAP32[$child356$i>>2] = 0;
-         $87 = HEAP32[((1232 + 4|0))>>2]|0;
+         $87 = HEAP32[((1368 + 4|0))>>2]|0;
          $shl361$i = 1 << $I315$0$i;
          $and362$i = $87 & $shl361$i;
          $tobool363$i = ($and362$i|0)==(0);
          if ($tobool363$i) {
           $or367$i = $87 | $shl361$i;
-          HEAP32[((1232 + 4|0))>>2] = $or367$i;
+          HEAP32[((1368 + 4|0))>>2] = $or367$i;
           HEAP32[$arrayidx354$i>>2] = $add$ptr$i126;
           $add$ptr$sum4$i = (($and144) + 24)|0;
           $parent368$i = (($v$3$lcssa$i) + ($add$ptr$sum4$i)|0);
@@ -14232,7 +14336,7 @@ function _malloc($bytes) {
              $K372$024$i = $shl394$i;$T$023$i = $90;
             }
            }
-           $92 = HEAP32[((1232 + 16|0))>>2]|0;
+           $92 = HEAP32[((1368 + 16|0))>>2]|0;
            $cmp400$i = ($arrayidx393$i>>>0)<($92>>>0);
            if ($cmp400$i) {
             _abort();
@@ -14254,7 +14358,7 @@ function _malloc($bytes) {
          } while(0);
          $fd412$i = (($T$0$lcssa$i) + 8|0);
          $93 = HEAP32[$fd412$i>>2]|0;
-         $94 = HEAP32[((1232 + 16|0))>>2]|0;
+         $94 = HEAP32[((1368 + 16|0))>>2]|0;
          $cmp414$i = ($T$0$lcssa$i>>>0)<($94>>>0);
          if ($cmp414$i) {
           _abort();
@@ -14292,16 +14396,16 @@ function _malloc($bytes) {
    }
   }
  } while(0);
- $95 = HEAP32[((1232 + 8|0))>>2]|0;
+ $95 = HEAP32[((1368 + 8|0))>>2]|0;
  $cmp155 = ($nb$0>>>0)>($95>>>0);
  if (!($cmp155)) {
   $sub159 = (($95) - ($nb$0))|0;
-  $96 = HEAP32[((1232 + 20|0))>>2]|0;
+  $96 = HEAP32[((1368 + 20|0))>>2]|0;
   $cmp161 = ($sub159>>>0)>(15);
   if ($cmp161) {
    $add$ptr165 = (($96) + ($nb$0)|0);
-   HEAP32[((1232 + 20|0))>>2] = $add$ptr165;
-   HEAP32[((1232 + 8|0))>>2] = $sub159;
+   HEAP32[((1368 + 20|0))>>2] = $add$ptr165;
+   HEAP32[((1368 + 8|0))>>2] = $sub159;
    $or166 = $sub159 | 1;
    $add$ptr165$sum = (($nb$0) + 4)|0;
    $head167 = (($96) + ($add$ptr165$sum)|0);
@@ -14312,8 +14416,8 @@ function _malloc($bytes) {
    $head172 = (($96) + 4|0);
    HEAP32[$head172>>2] = $or171;
   } else {
-   HEAP32[((1232 + 8|0))>>2] = 0;
-   HEAP32[((1232 + 20|0))>>2] = 0;
+   HEAP32[((1368 + 8|0))>>2] = 0;
+   HEAP32[((1368 + 20|0))>>2] = 0;
    $or175 = $95 | 3;
    $head176 = (($96) + 4|0);
    HEAP32[$head176>>2] = $or175;
@@ -14327,14 +14431,14 @@ function _malloc($bytes) {
   $mem$0 = $add$ptr181;
   STACKTOP = sp;return ($mem$0|0);
  }
- $98 = HEAP32[((1232 + 12|0))>>2]|0;
+ $98 = HEAP32[((1368 + 12|0))>>2]|0;
  $cmp183 = ($nb$0>>>0)<($98>>>0);
  if ($cmp183) {
   $sub187 = (($98) - ($nb$0))|0;
-  HEAP32[((1232 + 12|0))>>2] = $sub187;
-  $99 = HEAP32[((1232 + 24|0))>>2]|0;
+  HEAP32[((1368 + 12|0))>>2] = $sub187;
+  $99 = HEAP32[((1368 + 24|0))>>2]|0;
   $add$ptr190 = (($99) + ($nb$0)|0);
-  HEAP32[((1232 + 24|0))>>2] = $add$ptr190;
+  HEAP32[((1368 + 24|0))>>2] = $add$ptr190;
   $or191 = $sub187 | 1;
   $add$ptr190$sum = (($nb$0) + 4)|0;
   $head192 = (($99) + ($add$ptr190$sum)|0);
@@ -14346,7 +14450,7 @@ function _malloc($bytes) {
   $mem$0 = $add$ptr196;
   STACKTOP = sp;return ($mem$0|0);
  }
- $100 = HEAP32[1704>>2]|0;
+ $100 = HEAP32[1840>>2]|0;
  $cmp$i146 = ($100|0)==(0);
  do {
   if ($cmp$i146) {
@@ -14355,16 +14459,16 @@ function _malloc($bytes) {
    $and$i$i = $sub$i$i & $call$i$i;
    $cmp1$i$i = ($and$i$i|0)==(0);
    if ($cmp1$i$i) {
-    HEAP32[((1704 + 8|0))>>2] = $call$i$i;
-    HEAP32[((1704 + 4|0))>>2] = $call$i$i;
-    HEAP32[((1704 + 12|0))>>2] = -1;
-    HEAP32[((1704 + 16|0))>>2] = -1;
-    HEAP32[((1704 + 20|0))>>2] = 0;
-    HEAP32[((1232 + 444|0))>>2] = 0;
+    HEAP32[((1840 + 8|0))>>2] = $call$i$i;
+    HEAP32[((1840 + 4|0))>>2] = $call$i$i;
+    HEAP32[((1840 + 12|0))>>2] = -1;
+    HEAP32[((1840 + 16|0))>>2] = -1;
+    HEAP32[((1840 + 20|0))>>2] = 0;
+    HEAP32[((1368 + 444|0))>>2] = 0;
     $call6$i$i = (_time((0|0))|0);
     $xor$i$i = $call6$i$i & -16;
     $and7$i$i = $xor$i$i ^ 1431655768;
-    HEAP32[1704>>2] = $and7$i$i;
+    HEAP32[1840>>2] = $and7$i$i;
     break;
    } else {
     _abort();
@@ -14373,7 +14477,7 @@ function _malloc($bytes) {
   }
  } while(0);
  $add$i147 = (($nb$0) + 48)|0;
- $101 = HEAP32[((1704 + 8|0))>>2]|0;
+ $101 = HEAP32[((1840 + 8|0))>>2]|0;
  $sub$i148 = (($nb$0) + 47)|0;
  $add9$i = (($101) + ($sub$i148))|0;
  $neg$i149 = (0 - ($101))|0;
@@ -14383,10 +14487,10 @@ function _malloc($bytes) {
   $mem$0 = 0;
   STACKTOP = sp;return ($mem$0|0);
  }
- $102 = HEAP32[((1232 + 440|0))>>2]|0;
+ $102 = HEAP32[((1368 + 440|0))>>2]|0;
  $cmp15$i = ($102|0)==(0);
  if (!($cmp15$i)) {
-  $103 = HEAP32[((1232 + 432|0))>>2]|0;
+  $103 = HEAP32[((1368 + 432|0))>>2]|0;
   $add17$i150 = (($103) + ($and11$i))|0;
   $cmp19$i = ($add17$i150>>>0)<=($103>>>0);
   $cmp21$i = ($add17$i150>>>0)>($102>>>0);
@@ -14396,18 +14500,18 @@ function _malloc($bytes) {
    STACKTOP = sp;return ($mem$0|0);
   }
  }
- $104 = HEAP32[((1232 + 444|0))>>2]|0;
+ $104 = HEAP32[((1368 + 444|0))>>2]|0;
  $and26$i = $104 & 4;
  $tobool27$i = ($and26$i|0)==(0);
  L269: do {
   if ($tobool27$i) {
-   $105 = HEAP32[((1232 + 24|0))>>2]|0;
+   $105 = HEAP32[((1368 + 24|0))>>2]|0;
    $cmp29$i = ($105|0)==(0|0);
    L271: do {
     if ($cmp29$i) {
      label = 182;
     } else {
-     $sp$0$i$i = ((1232 + 448|0));
+     $sp$0$i$i = ((1368 + 448|0));
      while(1) {
       $106 = HEAP32[$sp$0$i$i>>2]|0;
       $cmp$i9$i = ($106>>>0)>($105>>>0);
@@ -14434,7 +14538,7 @@ function _malloc($bytes) {
      if ($cmp32$i152) {
       label = 182;
      } else {
-      $113 = HEAP32[((1232 + 12|0))>>2]|0;
+      $113 = HEAP32[((1368 + 12|0))>>2]|0;
       $add74$i = (($add9$i) - ($113))|0;
       $and77$i = $add74$i & $neg$i149;
       $cmp78$i = ($and77$i>>>0)<(2147483647);
@@ -14462,7 +14566,7 @@ function _malloc($bytes) {
       $tsize$0748284$i = 0;
      } else {
       $109 = $call34$i;
-      $110 = HEAP32[((1704 + 4|0))>>2]|0;
+      $110 = HEAP32[((1840 + 4|0))>>2]|0;
       $sub38$i = (($110) + -1)|0;
       $and39$i = $sub38$i & $109;
       $cmp40$i155 = ($and39$i|0)==(0);
@@ -14476,13 +14580,13 @@ function _malloc($bytes) {
        $add48$i = (($sub47$i) + ($and46$i))|0;
        $ssize$0$i = $add48$i;
       }
-      $111 = HEAP32[((1232 + 432|0))>>2]|0;
+      $111 = HEAP32[((1368 + 432|0))>>2]|0;
       $add51$i = (($111) + ($ssize$0$i))|0;
       $cmp52$i = ($ssize$0$i>>>0)>($nb$0>>>0);
       $cmp54$i156 = ($ssize$0$i>>>0)<(2147483647);
       $or$cond$i157 = $cmp52$i & $cmp54$i156;
       if ($or$cond$i157) {
-       $112 = HEAP32[((1232 + 440|0))>>2]|0;
+       $112 = HEAP32[((1368 + 440|0))>>2]|0;
        $cmp57$i = ($112|0)==(0);
        if (!($cmp57$i)) {
         $cmp60$i = ($add51$i>>>0)<=($111>>>0);
@@ -14521,7 +14625,7 @@ function _malloc($bytes) {
      $or$cond4$i = $or$cond3$i & $cmp93$i;
      do {
       if ($or$cond4$i) {
-       $116 = HEAP32[((1704 + 8|0))>>2]|0;
+       $116 = HEAP32[((1840 + 8|0))>>2]|0;
        $sub96$i = (($sub$i148) - ($ssize$1$i))|0;
        $add98$i = (($sub96$i) + ($116))|0;
        $neg100$i = (0 - ($116))|0;
@@ -14556,9 +14660,9 @@ function _malloc($bytes) {
      }
     }
    } while(0);
-   $117 = HEAP32[((1232 + 444|0))>>2]|0;
+   $117 = HEAP32[((1368 + 444|0))>>2]|0;
    $or$i163 = $117 | 4;
-   HEAP32[((1232 + 444|0))>>2] = $or$i163;
+   HEAP32[((1368 + 444|0))>>2] = $or$i163;
    $tsize$1$i = $tsize$0748284$i;
    label = 199;
   } else {
@@ -14591,40 +14695,40 @@ function _malloc($bytes) {
   }
  }
  if ((label|0) == 202) {
-  $118 = HEAP32[((1232 + 432|0))>>2]|0;
+  $118 = HEAP32[((1368 + 432|0))>>2]|0;
   $add147$i = (($118) + ($tsize$290$i))|0;
-  HEAP32[((1232 + 432|0))>>2] = $add147$i;
-  $119 = HEAP32[((1232 + 436|0))>>2]|0;
+  HEAP32[((1368 + 432|0))>>2] = $add147$i;
+  $119 = HEAP32[((1368 + 436|0))>>2]|0;
   $cmp148$i = ($add147$i>>>0)>($119>>>0);
   if ($cmp148$i) {
-   HEAP32[((1232 + 436|0))>>2] = $add147$i;
+   HEAP32[((1368 + 436|0))>>2] = $add147$i;
   }
-  $120 = HEAP32[((1232 + 24|0))>>2]|0;
+  $120 = HEAP32[((1368 + 24|0))>>2]|0;
   $cmp154$i = ($120|0)==(0|0);
   L311: do {
    if ($cmp154$i) {
-    $121 = HEAP32[((1232 + 16|0))>>2]|0;
+    $121 = HEAP32[((1368 + 16|0))>>2]|0;
     $cmp156$i = ($121|0)==(0|0);
     $cmp159$i166 = ($tbase$291$i>>>0)<($121>>>0);
     $or$cond8$i = $cmp156$i | $cmp159$i166;
     if ($or$cond8$i) {
-     HEAP32[((1232 + 16|0))>>2] = $tbase$291$i;
+     HEAP32[((1368 + 16|0))>>2] = $tbase$291$i;
     }
-    HEAP32[((1232 + 448|0))>>2] = $tbase$291$i;
-    HEAP32[((1232 + 452|0))>>2] = $tsize$290$i;
-    HEAP32[((1232 + 460|0))>>2] = 0;
-    $122 = HEAP32[1704>>2]|0;
-    HEAP32[((1232 + 36|0))>>2] = $122;
-    HEAP32[((1232 + 32|0))>>2] = -1;
+    HEAP32[((1368 + 448|0))>>2] = $tbase$291$i;
+    HEAP32[((1368 + 452|0))>>2] = $tsize$290$i;
+    HEAP32[((1368 + 460|0))>>2] = 0;
+    $122 = HEAP32[1840>>2]|0;
+    HEAP32[((1368 + 36|0))>>2] = $122;
+    HEAP32[((1368 + 32|0))>>2] = -1;
     $i$02$i$i = 0;
     while(1) {
      $shl$i$i = $i$02$i$i << 1;
-     $arrayidx$i$i = ((1232 + ($shl$i$i<<2)|0) + 40|0);
+     $arrayidx$i$i = ((1368 + ($shl$i$i<<2)|0) + 40|0);
      $arrayidx$sum$i$i = (($shl$i$i) + 3)|0;
-     $123 = ((1232 + ($arrayidx$sum$i$i<<2)|0) + 40|0);
+     $123 = ((1368 + ($arrayidx$sum$i$i<<2)|0) + 40|0);
      HEAP32[$123>>2] = $arrayidx$i$i;
      $arrayidx$sum1$i$i = (($shl$i$i) + 2)|0;
-     $124 = ((1232 + ($arrayidx$sum1$i$i<<2)|0) + 40|0);
+     $124 = ((1368 + ($arrayidx$sum1$i$i<<2)|0) + 40|0);
      HEAP32[$124>>2] = $arrayidx$i$i;
      $inc$i$i = (($i$02$i$i) + 1)|0;
      $exitcond$i$i = ($inc$i$i|0)==(32);
@@ -14648,8 +14752,8 @@ function _malloc($bytes) {
     }
     $add$ptr4$i$i = (($tbase$291$i) + ($cond$i$i)|0);
     $sub5$i$i = (($sub169$i) - ($cond$i$i))|0;
-    HEAP32[((1232 + 24|0))>>2] = $add$ptr4$i$i;
-    HEAP32[((1232 + 12|0))>>2] = $sub5$i$i;
+    HEAP32[((1368 + 24|0))>>2] = $add$ptr4$i$i;
+    HEAP32[((1368 + 12|0))>>2] = $sub5$i$i;
     $or$i$i = $sub5$i$i | 1;
     $add$ptr4$sum$i$i = (($cond$i$i) + 4)|0;
     $head$i$i = (($tbase$291$i) + ($add$ptr4$sum$i$i)|0);
@@ -14657,10 +14761,10 @@ function _malloc($bytes) {
     $add$ptr6$sum$i$i = (($tsize$290$i) + -36)|0;
     $head7$i$i = (($tbase$291$i) + ($add$ptr6$sum$i$i)|0);
     HEAP32[$head7$i$i>>2] = 40;
-    $127 = HEAP32[((1704 + 16|0))>>2]|0;
-    HEAP32[((1232 + 28|0))>>2] = $127;
+    $127 = HEAP32[((1840 + 16|0))>>2]|0;
+    HEAP32[((1368 + 28|0))>>2] = $127;
    } else {
-    $sp$0109$i = ((1232 + 448|0));
+    $sp$0109$i = ((1368 + 448|0));
     while(1) {
      $128 = HEAP32[$sp$0109$i>>2]|0;
      $size185$i = (($sp$0109$i) + 4|0);
@@ -14692,7 +14796,7 @@ function _malloc($bytes) {
       if ($or$cond93$i) {
        $add209$i = (($129) + ($tsize$290$i))|0;
        HEAP32[$size185$i>>2] = $add209$i;
-       $132 = HEAP32[((1232 + 12|0))>>2]|0;
+       $132 = HEAP32[((1368 + 12|0))>>2]|0;
        $add212$i = (($132) + ($tsize$290$i))|0;
        $add$ptr$i22$i = (($120) + 8|0);
        $133 = $add$ptr$i22$i;
@@ -14707,8 +14811,8 @@ function _malloc($bytes) {
        }
        $add$ptr4$i28$i = (($120) + ($cond$i27$i)|0);
        $sub5$i29$i = (($add212$i) - ($cond$i27$i))|0;
-       HEAP32[((1232 + 24|0))>>2] = $add$ptr4$i28$i;
-       HEAP32[((1232 + 12|0))>>2] = $sub5$i29$i;
+       HEAP32[((1368 + 24|0))>>2] = $add$ptr4$i28$i;
+       HEAP32[((1368 + 12|0))>>2] = $sub5$i29$i;
        $or$i30$i = $sub5$i29$i | 1;
        $add$ptr4$sum$i31$i = (($cond$i27$i) + 4)|0;
        $head$i32$i = (($120) + ($add$ptr4$sum$i31$i)|0);
@@ -14716,19 +14820,19 @@ function _malloc($bytes) {
        $add$ptr6$sum$i33$i = (($add212$i) + 4)|0;
        $head7$i34$i = (($120) + ($add$ptr6$sum$i33$i)|0);
        HEAP32[$head7$i34$i>>2] = 40;
-       $135 = HEAP32[((1704 + 16|0))>>2]|0;
-       HEAP32[((1232 + 28|0))>>2] = $135;
+       $135 = HEAP32[((1840 + 16|0))>>2]|0;
+       HEAP32[((1368 + 28|0))>>2] = $135;
        break;
       }
      }
     }
-    $136 = HEAP32[((1232 + 16|0))>>2]|0;
+    $136 = HEAP32[((1368 + 16|0))>>2]|0;
     $cmp215$i = ($tbase$291$i>>>0)<($136>>>0);
     if ($cmp215$i) {
-     HEAP32[((1232 + 16|0))>>2] = $tbase$291$i;
+     HEAP32[((1368 + 16|0))>>2] = $tbase$291$i;
     }
     $add$ptr224$i = (($tbase$291$i) + ($tsize$290$i)|0);
-    $sp$1105$i = ((1232 + 448|0));
+    $sp$1105$i = ((1368 + 448|0));
     while(1) {
      $137 = HEAP32[$sp$1105$i>>2]|0;
      $cmp225$i = ($137|0)==($add$ptr224$i|0);
@@ -14792,26 +14896,26 @@ function _malloc($bytes) {
       $add$ptr4$sum1$i$i = (($cond$i42$i) + 4)|0;
       $head$i50$i = (($tbase$291$i) + ($add$ptr4$sum1$i$i)|0);
       HEAP32[$head$i50$i>>2] = $or19$i$i;
-      $145 = HEAP32[((1232 + 24|0))>>2]|0;
+      $145 = HEAP32[((1368 + 24|0))>>2]|0;
       $cmp20$i$i = ($add$ptr16$i$i|0)==($145|0);
-      L338: do {
+      L348: do {
        if ($cmp20$i$i) {
-        $146 = HEAP32[((1232 + 12|0))>>2]|0;
+        $146 = HEAP32[((1368 + 12|0))>>2]|0;
         $add$i$i = (($146) + ($sub18$i$i))|0;
-        HEAP32[((1232 + 12|0))>>2] = $add$i$i;
-        HEAP32[((1232 + 24|0))>>2] = $add$ptr17$i$i;
+        HEAP32[((1368 + 12|0))>>2] = $add$i$i;
+        HEAP32[((1368 + 24|0))>>2] = $add$ptr17$i$i;
         $or22$i$i = $add$i$i | 1;
         $add$ptr17$sum35$i$i = (($add$ptr4$sum$i49$i) + 4)|0;
         $head23$i$i = (($tbase$291$i) + ($add$ptr17$sum35$i$i)|0);
         HEAP32[$head23$i$i>>2] = $or22$i$i;
        } else {
-        $147 = HEAP32[((1232 + 20|0))>>2]|0;
+        $147 = HEAP32[((1368 + 20|0))>>2]|0;
         $cmp24$i$i = ($add$ptr16$i$i|0)==($147|0);
         if ($cmp24$i$i) {
-         $148 = HEAP32[((1232 + 8|0))>>2]|0;
+         $148 = HEAP32[((1368 + 8|0))>>2]|0;
          $add26$i$i = (($148) + ($sub18$i$i))|0;
-         HEAP32[((1232 + 8|0))>>2] = $add26$i$i;
-         HEAP32[((1232 + 20|0))>>2] = $add$ptr17$i$i;
+         HEAP32[((1368 + 8|0))>>2] = $add26$i$i;
+         HEAP32[((1368 + 20|0))>>2] = $add$ptr17$i$i;
          $or28$i$i = $add26$i$i | 1;
          $add$ptr17$sum33$i$i = (($add$ptr4$sum$i49$i) + 4)|0;
          $head29$i$i = (($tbase$291$i) + ($add$ptr17$sum33$i$i)|0);
@@ -14831,7 +14935,7 @@ function _malloc($bytes) {
          $and37$i$i = $149 & -8;
          $shr$i54$i = $149 >>> 3;
          $cmp38$i$i = ($149>>>0)<(256);
-         L346: do {
+         L356: do {
           if ($cmp38$i$i) {
            $add$ptr16$sum3031$i$i = $cond15$i$i | 8;
            $add$ptr224$sum142$i = (($add$ptr16$sum3031$i$i) + ($tsize$290$i))|0;
@@ -14842,11 +14946,11 @@ function _malloc($bytes) {
            $bk$i55$i = (($tbase$291$i) + ($add$ptr224$sum143$i)|0);
            $151 = HEAP32[$bk$i55$i>>2]|0;
            $shl$i56$i = $shr$i54$i << 1;
-           $arrayidx$i57$i = ((1232 + ($shl$i56$i<<2)|0) + 40|0);
+           $arrayidx$i57$i = ((1368 + ($shl$i56$i<<2)|0) + 40|0);
            $cmp41$i$i = ($150|0)==($arrayidx$i57$i|0);
            do {
             if (!($cmp41$i$i)) {
-             $152 = HEAP32[((1232 + 16|0))>>2]|0;
+             $152 = HEAP32[((1368 + 16|0))>>2]|0;
              $cmp42$i$i = ($150>>>0)<($152>>>0);
              if ($cmp42$i$i) {
               _abort();
@@ -14866,9 +14970,9 @@ function _malloc($bytes) {
            if ($cmp46$i59$i) {
             $shl48$i$i = 1 << $shr$i54$i;
             $neg$i$i = $shl48$i$i ^ -1;
-            $154 = HEAP32[1232>>2]|0;
+            $154 = HEAP32[1368>>2]|0;
             $and49$i$i = $154 & $neg$i$i;
-            HEAP32[1232>>2] = $and49$i$i;
+            HEAP32[1368>>2] = $and49$i$i;
             break;
            }
            $cmp54$i$i = ($151|0)==($arrayidx$i57$i|0);
@@ -14877,7 +14981,7 @@ function _malloc($bytes) {
              $fd68$pre$i$i = (($151) + 8|0);
              $fd68$pre$phi$i$iZ2D = $fd68$pre$i$i;
             } else {
-             $155 = HEAP32[((1232 + 16|0))>>2]|0;
+             $155 = HEAP32[((1368 + 16|0))>>2]|0;
              $cmp57$i$i = ($151>>>0)<($155>>>0);
              if ($cmp57$i$i) {
               _abort();
@@ -14945,7 +15049,7 @@ function _malloc($bytes) {
                $R$0$i$i = $166;$RP$0$i$i = $arrayidx107$i$i;
               }
              }
-             $167 = HEAP32[((1232 + 16|0))>>2]|0;
+             $167 = HEAP32[((1368 + 16|0))>>2]|0;
              $cmp112$i$i = ($RP$0$i$i>>>0)<($167>>>0);
              if ($cmp112$i$i) {
               _abort();
@@ -14960,7 +15064,7 @@ function _malloc($bytes) {
              $add$ptr224$sum135$i = (($add$ptr16$sum2829$i$i) + ($tsize$290$i))|0;
              $fd78$i$i = (($tbase$291$i) + ($add$ptr224$sum135$i)|0);
              $159 = HEAP32[$fd78$i$i>>2]|0;
-             $160 = HEAP32[((1232 + 16|0))>>2]|0;
+             $160 = HEAP32[((1368 + 16|0))>>2]|0;
              $cmp81$i$i = ($159>>>0)<($160>>>0);
              if ($cmp81$i$i) {
               _abort();
@@ -14995,7 +15099,7 @@ function _malloc($bytes) {
            $add$ptr224$sum136$i = (($add$ptr16$sum25$i$i) + ($cond15$i$i))|0;
            $index$i64$i = (($tbase$291$i) + ($add$ptr224$sum136$i)|0);
            $168 = HEAP32[$index$i64$i>>2]|0;
-           $arrayidx123$i$i = ((1232 + ($168<<2)|0) + 304|0);
+           $arrayidx123$i$i = ((1368 + ($168<<2)|0) + 304|0);
            $169 = HEAP32[$arrayidx123$i$i>>2]|0;
            $cmp124$i$i = ($add$ptr16$i$i|0)==($169|0);
            do {
@@ -15007,12 +15111,12 @@ function _malloc($bytes) {
              }
              $shl131$i$i = 1 << $168;
              $neg132$i$i = $shl131$i$i ^ -1;
-             $170 = HEAP32[((1232 + 4|0))>>2]|0;
+             $170 = HEAP32[((1368 + 4|0))>>2]|0;
              $and133$i$i = $170 & $neg132$i$i;
-             HEAP32[((1232 + 4|0))>>2] = $and133$i$i;
-             break L346;
+             HEAP32[((1368 + 4|0))>>2] = $and133$i$i;
+             break L356;
             } else {
-             $171 = HEAP32[((1232 + 16|0))>>2]|0;
+             $171 = HEAP32[((1368 + 16|0))>>2]|0;
              $cmp137$i$i = ($157>>>0)<($171>>>0);
              if ($cmp137$i$i) {
               _abort();
@@ -15029,11 +15133,11 @@ function _malloc($bytes) {
              }
              $cmp156$i$i = ($R$1$i$i|0)==(0|0);
              if ($cmp156$i$i) {
-              break L346;
+              break L356;
              }
             }
            } while(0);
-           $173 = HEAP32[((1232 + 16|0))>>2]|0;
+           $173 = HEAP32[((1368 + 16|0))>>2]|0;
            $cmp160$i$i = ($R$1$i$i>>>0)<($173>>>0);
            if ($cmp160$i$i) {
             _abort();
@@ -15048,7 +15152,7 @@ function _malloc($bytes) {
            $cmp168$i$i = ($174|0)==(0|0);
            do {
             if (!($cmp168$i$i)) {
-             $175 = HEAP32[((1232 + 16|0))>>2]|0;
+             $175 = HEAP32[((1368 + 16|0))>>2]|0;
              $cmp172$i$i = ($174>>>0)<($175>>>0);
              if ($cmp172$i$i) {
               _abort();
@@ -15069,7 +15173,7 @@ function _malloc($bytes) {
            if ($cmp185$i$i) {
             break;
            }
-           $177 = HEAP32[((1232 + 16|0))>>2]|0;
+           $177 = HEAP32[((1368 + 16|0))>>2]|0;
            $cmp189$i$i = ($176>>>0)<($177>>>0);
            if ($cmp189$i$i) {
             _abort();
@@ -15106,23 +15210,23 @@ function _malloc($bytes) {
         $cmp215$i$i = ($qsize$0$i$i>>>0)<(256);
         if ($cmp215$i$i) {
          $shl221$i$i = $shr214$i$i << 1;
-         $arrayidx223$i$i = ((1232 + ($shl221$i$i<<2)|0) + 40|0);
-         $179 = HEAP32[1232>>2]|0;
+         $arrayidx223$i$i = ((1368 + ($shl221$i$i<<2)|0) + 40|0);
+         $179 = HEAP32[1368>>2]|0;
          $shl226$i$i = 1 << $shr214$i$i;
          $and227$i$i = $179 & $shl226$i$i;
          $tobool228$i$i = ($and227$i$i|0)==(0);
          do {
           if ($tobool228$i$i) {
            $or232$i$i = $179 | $shl226$i$i;
-           HEAP32[1232>>2] = $or232$i$i;
+           HEAP32[1368>>2] = $or232$i$i;
            $arrayidx223$sum$pre$i$i = (($shl221$i$i) + 2)|0;
-           $$pre$i66$i = ((1232 + ($arrayidx223$sum$pre$i$i<<2)|0) + 40|0);
+           $$pre$i66$i = ((1368 + ($arrayidx223$sum$pre$i$i<<2)|0) + 40|0);
            $$pre$phi$i67$iZ2D = $$pre$i66$i;$F224$0$i$i = $arrayidx223$i$i;
           } else {
            $arrayidx223$sum24$i$i = (($shl221$i$i) + 2)|0;
-           $180 = ((1232 + ($arrayidx223$sum24$i$i<<2)|0) + 40|0);
+           $180 = ((1368 + ($arrayidx223$sum24$i$i<<2)|0) + 40|0);
            $181 = HEAP32[$180>>2]|0;
-           $182 = HEAP32[((1232 + 16|0))>>2]|0;
+           $182 = HEAP32[((1368 + 16|0))>>2]|0;
            $cmp236$i$i = ($181>>>0)<($182>>>0);
            if (!($cmp236$i$i)) {
             $$pre$phi$i67$iZ2D = $180;$F224$0$i$i = $181;
@@ -15179,7 +15283,7 @@ function _malloc($bytes) {
           $I252$0$i$i = $add283$i$i;
          }
         } while(0);
-        $arrayidx287$i$i = ((1232 + ($I252$0$i$i<<2)|0) + 304|0);
+        $arrayidx287$i$i = ((1368 + ($I252$0$i$i<<2)|0) + 304|0);
         $add$ptr17$sum9$i$i = (($add$ptr4$sum$i49$i) + 28)|0;
         $index288$i$i = (($tbase$291$i) + ($add$ptr17$sum9$i$i)|0);
         HEAP32[$index288$i$i>>2] = $I252$0$i$i;
@@ -15189,13 +15293,13 @@ function _malloc($bytes) {
         $arrayidx290$i$i = (($tbase$291$i) + ($child289$sum$i$i)|0);
         HEAP32[$arrayidx290$i$i>>2] = 0;
         HEAP32[$child289$i$i>>2] = 0;
-        $183 = HEAP32[((1232 + 4|0))>>2]|0;
+        $183 = HEAP32[((1368 + 4|0))>>2]|0;
         $shl294$i$i = 1 << $I252$0$i$i;
         $and295$i$i = $183 & $shl294$i$i;
         $tobool296$i$i = ($and295$i$i|0)==(0);
         if ($tobool296$i$i) {
          $or300$i$i = $183 | $shl294$i$i;
-         HEAP32[((1232 + 4|0))>>2] = $or300$i$i;
+         HEAP32[((1368 + 4|0))>>2] = $or300$i$i;
          HEAP32[$arrayidx287$i$i>>2] = $add$ptr17$i$i;
          $add$ptr17$sum11$i$i = (($add$ptr4$sum$i49$i) + 24)|0;
          $parent301$i$i = (($tbase$291$i) + ($add$ptr17$sum11$i$i)|0);
@@ -15221,7 +15325,7 @@ function _malloc($bytes) {
         $185 = HEAP32[$head31739$i$i>>2]|0;
         $and31840$i$i = $185 & -8;
         $cmp31941$i$i = ($and31840$i$i|0)==($qsize$0$i$i|0);
-        L435: do {
+        L445: do {
          if ($cmp31941$i$i) {
           $T$0$lcssa$i69$i = $184;
          } else {
@@ -15242,12 +15346,12 @@ function _malloc($bytes) {
            $cmp319$i$i = ($and318$i$i|0)==($qsize$0$i$i|0);
            if ($cmp319$i$i) {
             $T$0$lcssa$i69$i = $186;
-            break L435;
+            break L445;
            } else {
             $K305$043$i$i = $shl326$i$i;$T$042$i$i = $186;
            }
           }
-          $188 = HEAP32[((1232 + 16|0))>>2]|0;
+          $188 = HEAP32[((1368 + 16|0))>>2]|0;
           $cmp332$i$i = ($arrayidx325$i$i>>>0)<($188>>>0);
           if ($cmp332$i$i) {
            _abort();
@@ -15263,13 +15367,13 @@ function _malloc($bytes) {
            $add$ptr17$sum21$i$i = (($add$ptr4$sum$i49$i) + 8)|0;
            $fd339$i$i = (($tbase$291$i) + ($add$ptr17$sum21$i$i)|0);
            HEAP32[$fd339$i$i>>2] = $add$ptr17$i$i;
-           break L338;
+           break L348;
           }
          }
         } while(0);
         $fd344$i$i = (($T$0$lcssa$i69$i) + 8|0);
         $189 = HEAP32[$fd344$i$i>>2]|0;
-        $190 = HEAP32[((1232 + 16|0))>>2]|0;
+        $190 = HEAP32[((1368 + 16|0))>>2]|0;
         $cmp346$i$i = ($T$0$lcssa$i69$i>>>0)<($190>>>0);
         if ($cmp346$i$i) {
          _abort();
@@ -15302,7 +15406,7 @@ function _malloc($bytes) {
       STACKTOP = sp;return ($mem$0|0);
      }
     }
-    $sp$0$i$i$i = ((1232 + 448|0));
+    $sp$0$i$i$i = ((1368 + 448|0));
     while(1) {
      $191 = HEAP32[$sp$0$i$i$i>>2]|0;
      $cmp$i$i$i = ($191>>>0)>($120>>>0);
@@ -15352,8 +15456,8 @@ function _malloc($bytes) {
     }
     $add$ptr4$i$i$i = (($tbase$291$i) + ($cond$i$i$i)|0);
     $sub5$i$i$i = (($sub16$i$i) - ($cond$i$i$i))|0;
-    HEAP32[((1232 + 24|0))>>2] = $add$ptr4$i$i$i;
-    HEAP32[((1232 + 12|0))>>2] = $sub5$i$i$i;
+    HEAP32[((1368 + 24|0))>>2] = $add$ptr4$i$i$i;
+    HEAP32[((1368 + 12|0))>>2] = $sub5$i$i$i;
     $or$i$i$i = $sub5$i$i$i | 1;
     $add$ptr4$sum$i$i$i = (($cond$i$i$i) + 4)|0;
     $head$i$i$i = (($tbase$291$i) + ($add$ptr4$sum$i$i$i)|0);
@@ -15361,15 +15465,15 @@ function _malloc($bytes) {
     $add$ptr6$sum$i$i$i = (($tsize$290$i) + -36)|0;
     $head7$i$i$i = (($tbase$291$i) + ($add$ptr6$sum$i$i$i)|0);
     HEAP32[$head7$i$i$i>>2] = 40;
-    $198 = HEAP32[((1704 + 16|0))>>2]|0;
-    HEAP32[((1232 + 28|0))>>2] = $198;
+    $198 = HEAP32[((1840 + 16|0))>>2]|0;
+    HEAP32[((1368 + 28|0))>>2] = $198;
     $head$i18$i = (($cond13$i$i) + 4|0);
     HEAP32[$head$i18$i>>2] = 27;
-    ;HEAP32[$add$ptr14$i$i+0>>2]=HEAP32[((1232 + 448|0))+0>>2]|0;HEAP32[$add$ptr14$i$i+4>>2]=HEAP32[((1232 + 448|0))+4>>2]|0;HEAP32[$add$ptr14$i$i+8>>2]=HEAP32[((1232 + 448|0))+8>>2]|0;HEAP32[$add$ptr14$i$i+12>>2]=HEAP32[((1232 + 448|0))+12>>2]|0;
-    HEAP32[((1232 + 448|0))>>2] = $tbase$291$i;
-    HEAP32[((1232 + 452|0))>>2] = $tsize$290$i;
-    HEAP32[((1232 + 460|0))>>2] = 0;
-    HEAP32[((1232 + 456|0))>>2] = $add$ptr14$i$i;
+    ;HEAP32[$add$ptr14$i$i+0>>2]=HEAP32[((1368 + 448|0))+0>>2]|0;HEAP32[$add$ptr14$i$i+4>>2]=HEAP32[((1368 + 448|0))+4>>2]|0;HEAP32[$add$ptr14$i$i+8>>2]=HEAP32[((1368 + 448|0))+8>>2]|0;HEAP32[$add$ptr14$i$i+12>>2]=HEAP32[((1368 + 448|0))+12>>2]|0;
+    HEAP32[((1368 + 448|0))>>2] = $tbase$291$i;
+    HEAP32[((1368 + 452|0))>>2] = $tsize$290$i;
+    HEAP32[((1368 + 460|0))>>2] = 0;
+    HEAP32[((1368 + 456|0))>>2] = $add$ptr14$i$i;
     $add$ptr2418$i$i = (($cond13$i$i) + 28|0);
     HEAP32[$add$ptr2418$i$i>>2] = 7;
     $199 = (($cond13$i$i) + 32|0);
@@ -15407,23 +15511,23 @@ function _malloc($bytes) {
      $cmp36$i$i = ($sub$ptr$sub$i$i>>>0)<(256);
      if ($cmp36$i$i) {
       $shl$i20$i = $shr$i$i << 1;
-      $arrayidx$i21$i = ((1232 + ($shl$i20$i<<2)|0) + 40|0);
-      $203 = HEAP32[1232>>2]|0;
+      $arrayidx$i21$i = ((1368 + ($shl$i20$i<<2)|0) + 40|0);
+      $203 = HEAP32[1368>>2]|0;
       $shl39$i$i = 1 << $shr$i$i;
       $and40$i$i = $203 & $shl39$i$i;
       $tobool$i$i = ($and40$i$i|0)==(0);
       do {
        if ($tobool$i$i) {
         $or44$i$i = $203 | $shl39$i$i;
-        HEAP32[1232>>2] = $or44$i$i;
+        HEAP32[1368>>2] = $or44$i$i;
         $arrayidx$sum$pre$i$i = (($shl$i20$i) + 2)|0;
-        $$pre$i$i = ((1232 + ($arrayidx$sum$pre$i$i<<2)|0) + 40|0);
+        $$pre$i$i = ((1368 + ($arrayidx$sum$pre$i$i<<2)|0) + 40|0);
         $$pre$phi$i$iZ2D = $$pre$i$i;$F$0$i$i = $arrayidx$i21$i;
        } else {
         $arrayidx$sum9$i$i = (($shl$i20$i) + 2)|0;
-        $204 = ((1232 + ($arrayidx$sum9$i$i<<2)|0) + 40|0);
+        $204 = ((1368 + ($arrayidx$sum9$i$i<<2)|0) + 40|0);
         $205 = HEAP32[$204>>2]|0;
-        $206 = HEAP32[((1232 + 16|0))>>2]|0;
+        $206 = HEAP32[((1368 + 16|0))>>2]|0;
         $cmp46$i$i = ($205>>>0)<($206>>>0);
         if (!($cmp46$i$i)) {
          $$pre$phi$i$iZ2D = $204;$F$0$i$i = $205;
@@ -15476,7 +15580,7 @@ function _malloc($bytes) {
        $I57$0$i$i = $add88$i$i;
       }
      }
-     $arrayidx91$i$i = ((1232 + ($I57$0$i$i<<2)|0) + 304|0);
+     $arrayidx91$i$i = ((1368 + ($I57$0$i$i<<2)|0) + 304|0);
      $index$i$i = (($120) + 28|0);
      $I57$0$c$i$i = $I57$0$i$i;
      HEAP32[$index$i$i>>2] = $I57$0$c$i$i;
@@ -15484,13 +15588,13 @@ function _malloc($bytes) {
      HEAP32[$arrayidx92$i$i>>2] = 0;
      $207 = (($120) + 16|0);
      HEAP32[$207>>2] = 0;
-     $208 = HEAP32[((1232 + 4|0))>>2]|0;
+     $208 = HEAP32[((1368 + 4|0))>>2]|0;
      $shl95$i$i = 1 << $I57$0$i$i;
      $and96$i$i = $208 & $shl95$i$i;
      $tobool97$i$i = ($and96$i$i|0)==(0);
      if ($tobool97$i$i) {
       $or101$i$i = $208 | $shl95$i$i;
-      HEAP32[((1232 + 4|0))>>2] = $or101$i$i;
+      HEAP32[((1368 + 4|0))>>2] = $or101$i$i;
       HEAP32[$arrayidx91$i$i>>2] = $120;
       $parent$i$i = (($120) + 24|0);
       HEAP32[$parent$i$i>>2] = $arrayidx91$i$i;
@@ -15513,7 +15617,7 @@ function _malloc($bytes) {
      $210 = HEAP32[$head11813$i$i>>2]|0;
      $and11914$i$i = $210 & -8;
      $cmp12015$i$i = ($and11914$i$i|0)==($sub$ptr$sub$i$i|0);
-     L489: do {
+     L499: do {
       if ($cmp12015$i$i) {
        $T$0$lcssa$i$i = $209;
       } else {
@@ -15534,12 +15638,12 @@ function _malloc($bytes) {
         $cmp120$i$i = ($and119$i$i|0)==($sub$ptr$sub$i$i|0);
         if ($cmp120$i$i) {
          $T$0$lcssa$i$i = $211;
-         break L489;
+         break L499;
         } else {
          $K105$017$i$i = $shl127$i$i;$T$016$i$i = $211;
         }
        }
-       $213 = HEAP32[((1232 + 16|0))>>2]|0;
+       $213 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp133$i$i = ($arrayidx126$i$i>>>0)<($213>>>0);
        if ($cmp133$i$i) {
         _abort();
@@ -15558,7 +15662,7 @@ function _malloc($bytes) {
      } while(0);
      $fd145$i$i = (($T$0$lcssa$i$i) + 8|0);
      $214 = HEAP32[$fd145$i$i>>2]|0;
-     $215 = HEAP32[((1232 + 16|0))>>2]|0;
+     $215 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp147$i$i = ($T$0$lcssa$i$i>>>0)<($215>>>0);
      if ($cmp147$i$i) {
       _abort();
@@ -15583,14 +15687,14 @@ function _malloc($bytes) {
     }
    }
   } while(0);
-  $216 = HEAP32[((1232 + 12|0))>>2]|0;
+  $216 = HEAP32[((1368 + 12|0))>>2]|0;
   $cmp250$i = ($216>>>0)>($nb$0>>>0);
   if ($cmp250$i) {
    $sub253$i = (($216) - ($nb$0))|0;
-   HEAP32[((1232 + 12|0))>>2] = $sub253$i;
-   $217 = HEAP32[((1232 + 24|0))>>2]|0;
+   HEAP32[((1368 + 12|0))>>2] = $sub253$i;
+   $217 = HEAP32[((1368 + 24|0))>>2]|0;
    $add$ptr255$i = (($217) + ($nb$0)|0);
-   HEAP32[((1232 + 24|0))>>2] = $add$ptr255$i;
+   HEAP32[((1368 + 24|0))>>2] = $add$ptr255$i;
    $or257$i = $sub253$i | 1;
    $add$ptr255$sum$i = (($nb$0) + 4)|0;
    $head258$i = (($217) + ($add$ptr255$sum$i)|0);
@@ -15635,7 +15739,7 @@ function _free($mem) {
   STACKTOP = sp;return;
  }
  $add$ptr = (($mem) + -8|0);
- $0 = HEAP32[((1232 + 16|0))>>2]|0;
+ $0 = HEAP32[((1368 + 16|0))>>2]|0;
  $cmp1 = ($add$ptr>>>0)<($0>>>0);
  if ($cmp1) {
   _abort();
@@ -15669,7 +15773,7 @@ function _free($mem) {
     _abort();
     // unreachable;
    }
-   $3 = HEAP32[((1232 + 20|0))>>2]|0;
+   $3 = HEAP32[((1368 + 20|0))>>2]|0;
    $cmp22 = ($add$ptr16|0)==($3|0);
    if ($cmp22) {
     $add$ptr6$sum = (($and5) + -4)|0;
@@ -15681,7 +15785,7 @@ function _free($mem) {
      $p$0 = $add$ptr16;$psize$0 = $add17;
      break;
     }
-    HEAP32[((1232 + 8|0))>>2] = $add17;
+    HEAP32[((1368 + 8|0))>>2] = $add17;
     $29 = HEAP32[$head209>>2]|0;
     $and215 = $29 & -2;
     HEAP32[$head209>>2] = $and215;
@@ -15702,7 +15806,7 @@ function _free($mem) {
     $bk = (($mem) + ($add$ptr16$sum258)|0);
     $5 = HEAP32[$bk>>2]|0;
     $shl = $shr << 1;
-    $arrayidx = ((1232 + ($shl<<2)|0) + 40|0);
+    $arrayidx = ((1368 + ($shl<<2)|0) + 40|0);
     $cmp29 = ($4|0)==($arrayidx|0);
     if (!($cmp29)) {
      $cmp31 = ($4>>>0)<($0>>>0);
@@ -15722,9 +15826,9 @@ function _free($mem) {
     if ($cmp42) {
      $shl45 = 1 << $shr;
      $neg = $shl45 ^ -1;
-     $7 = HEAP32[1232>>2]|0;
+     $7 = HEAP32[1368>>2]|0;
      $and46 = $7 & $neg;
-     HEAP32[1232>>2] = $and46;
+     HEAP32[1368>>2] = $and46;
      $p$0 = $add$ptr16;$psize$0 = $add17;
      break;
     }
@@ -15844,7 +15948,7 @@ function _free($mem) {
     $add$ptr16$sum254 = (($add$ptr$sum230) + 28)|0;
     $index = (($mem) + ($add$ptr16$sum254)|0);
     $18 = HEAP32[$index>>2]|0;
-    $arrayidx130 = ((1232 + ($18<<2)|0) + 304|0);
+    $arrayidx130 = ((1368 + ($18<<2)|0) + 304|0);
     $19 = HEAP32[$arrayidx130>>2]|0;
     $cmp131 = ($add$ptr16|0)==($19|0);
     if ($cmp131) {
@@ -15853,14 +15957,14 @@ function _free($mem) {
      if ($cond263) {
       $shl138 = 1 << $18;
       $neg139 = $shl138 ^ -1;
-      $20 = HEAP32[((1232 + 4|0))>>2]|0;
+      $20 = HEAP32[((1368 + 4|0))>>2]|0;
       $and140 = $20 & $neg139;
-      HEAP32[((1232 + 4|0))>>2] = $and140;
+      HEAP32[((1368 + 4|0))>>2] = $and140;
       $p$0 = $add$ptr16;$psize$0 = $add17;
       break;
      }
     } else {
-     $21 = HEAP32[((1232 + 16|0))>>2]|0;
+     $21 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp143 = ($9>>>0)<($21>>>0);
      if ($cmp143) {
       _abort();
@@ -15881,7 +15985,7 @@ function _free($mem) {
       break;
      }
     }
-    $23 = HEAP32[((1232 + 16|0))>>2]|0;
+    $23 = HEAP32[((1368 + 16|0))>>2]|0;
     $cmp165 = ($R$1>>>0)<($23>>>0);
     if ($cmp165) {
      _abort();
@@ -15895,7 +15999,7 @@ function _free($mem) {
     $cmp173 = ($24|0)==(0|0);
     do {
      if (!($cmp173)) {
-      $25 = HEAP32[((1232 + 16|0))>>2]|0;
+      $25 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp176 = ($24>>>0)<($25>>>0);
       if ($cmp176) {
        _abort();
@@ -15916,7 +16020,7 @@ function _free($mem) {
     if ($cmp189) {
      $p$0 = $add$ptr16;$psize$0 = $add17;
     } else {
-     $27 = HEAP32[((1232 + 16|0))>>2]|0;
+     $27 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp192 = ($26>>>0)<($27>>>0);
      if ($cmp192) {
       _abort();
@@ -15952,32 +16056,32 @@ function _free($mem) {
  $and237 = $30 & 2;
  $tobool238 = ($and237|0)==(0);
  if ($tobool238) {
-  $31 = HEAP32[((1232 + 24|0))>>2]|0;
+  $31 = HEAP32[((1368 + 24|0))>>2]|0;
   $cmp240 = ($add$ptr6|0)==($31|0);
   if ($cmp240) {
-   $32 = HEAP32[((1232 + 12|0))>>2]|0;
+   $32 = HEAP32[((1368 + 12|0))>>2]|0;
    $add243 = (($32) + ($psize$0))|0;
-   HEAP32[((1232 + 12|0))>>2] = $add243;
-   HEAP32[((1232 + 24|0))>>2] = $p$0;
+   HEAP32[((1368 + 12|0))>>2] = $add243;
+   HEAP32[((1368 + 24|0))>>2] = $p$0;
    $or244 = $add243 | 1;
    $head245 = (($p$0) + 4|0);
    HEAP32[$head245>>2] = $or244;
-   $33 = HEAP32[((1232 + 20|0))>>2]|0;
+   $33 = HEAP32[((1368 + 20|0))>>2]|0;
    $cmp246 = ($p$0|0)==($33|0);
    if (!($cmp246)) {
     STACKTOP = sp;return;
    }
-   HEAP32[((1232 + 20|0))>>2] = 0;
-   HEAP32[((1232 + 8|0))>>2] = 0;
+   HEAP32[((1368 + 20|0))>>2] = 0;
+   HEAP32[((1368 + 8|0))>>2] = 0;
    STACKTOP = sp;return;
   }
-  $34 = HEAP32[((1232 + 20|0))>>2]|0;
+  $34 = HEAP32[((1368 + 20|0))>>2]|0;
   $cmp251 = ($add$ptr6|0)==($34|0);
   if ($cmp251) {
-   $35 = HEAP32[((1232 + 8|0))>>2]|0;
+   $35 = HEAP32[((1368 + 8|0))>>2]|0;
    $add254 = (($35) + ($psize$0))|0;
-   HEAP32[((1232 + 8|0))>>2] = $add254;
-   HEAP32[((1232 + 20|0))>>2] = $p$0;
+   HEAP32[((1368 + 8|0))>>2] = $add254;
+   HEAP32[((1368 + 20|0))>>2] = $p$0;
    $or255 = $add254 | 1;
    $head256 = (($p$0) + 4|0);
    HEAP32[$head256>>2] = $or255;
@@ -15997,10 +16101,10 @@ function _free($mem) {
     $bk270 = (($mem) + ($add$ptr6$sum247248)|0);
     $37 = HEAP32[$bk270>>2]|0;
     $shl273 = $shr263 << 1;
-    $arrayidx274 = ((1232 + ($shl273<<2)|0) + 40|0);
+    $arrayidx274 = ((1368 + ($shl273<<2)|0) + 40|0);
     $cmp275 = ($36|0)==($arrayidx274|0);
     if (!($cmp275)) {
-     $38 = HEAP32[((1232 + 16|0))>>2]|0;
+     $38 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp278 = ($36>>>0)<($38>>>0);
      if ($cmp278) {
       _abort();
@@ -16018,9 +16122,9 @@ function _free($mem) {
     if ($cmp291) {
      $shl294 = 1 << $shr263;
      $neg295 = $shl294 ^ -1;
-     $40 = HEAP32[1232>>2]|0;
+     $40 = HEAP32[1368>>2]|0;
      $and296 = $40 & $neg295;
-     HEAP32[1232>>2] = $and296;
+     HEAP32[1368>>2] = $and296;
      break;
     }
     $cmp300 = ($37|0)==($arrayidx274|0);
@@ -16028,7 +16132,7 @@ function _free($mem) {
      $fd317$pre = (($37) + 8|0);
      $fd317$pre$phiZ2D = $fd317$pre;
     } else {
-     $41 = HEAP32[((1232 + 16|0))>>2]|0;
+     $41 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp303 = ($37>>>0)<($41>>>0);
      if ($cmp303) {
       _abort();
@@ -16092,7 +16196,7 @@ function _free($mem) {
         $R327$0 = $52;$RP355$0 = $arrayidx374;
        }
       }
-      $53 = HEAP32[((1232 + 16|0))>>2]|0;
+      $53 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp381 = ($RP355$0>>>0)<($53>>>0);
       if ($cmp381) {
        _abort();
@@ -16105,7 +16209,7 @@ function _free($mem) {
      } else {
       $fd333 = (($mem) + ($and5)|0);
       $45 = HEAP32[$fd333>>2]|0;
-      $46 = HEAP32[((1232 + 16|0))>>2]|0;
+      $46 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp335 = ($45>>>0)<($46>>>0);
       if ($cmp335) {
        _abort();
@@ -16137,7 +16241,7 @@ function _free($mem) {
      $add$ptr6$sum243 = (($and5) + 20)|0;
      $index394 = (($mem) + ($add$ptr6$sum243)|0);
      $54 = HEAP32[$index394>>2]|0;
-     $arrayidx395 = ((1232 + ($54<<2)|0) + 304|0);
+     $arrayidx395 = ((1368 + ($54<<2)|0) + 304|0);
      $55 = HEAP32[$arrayidx395>>2]|0;
      $cmp396 = ($add$ptr6|0)==($55|0);
      if ($cmp396) {
@@ -16146,13 +16250,13 @@ function _free($mem) {
       if ($cond264) {
        $shl403 = 1 << $54;
        $neg404 = $shl403 ^ -1;
-       $56 = HEAP32[((1232 + 4|0))>>2]|0;
+       $56 = HEAP32[((1368 + 4|0))>>2]|0;
        $and405 = $56 & $neg404;
-       HEAP32[((1232 + 4|0))>>2] = $and405;
+       HEAP32[((1368 + 4|0))>>2] = $and405;
        break;
       }
      } else {
-      $57 = HEAP32[((1232 + 16|0))>>2]|0;
+      $57 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp408 = ($43>>>0)<($57>>>0);
       if ($cmp408) {
        _abort();
@@ -16172,7 +16276,7 @@ function _free($mem) {
        break;
       }
      }
-     $59 = HEAP32[((1232 + 16|0))>>2]|0;
+     $59 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp430 = ($R327$1>>>0)<($59>>>0);
      if ($cmp430) {
       _abort();
@@ -16186,7 +16290,7 @@ function _free($mem) {
      $cmp440 = ($60|0)==(0|0);
      do {
       if (!($cmp440)) {
-       $61 = HEAP32[((1232 + 16|0))>>2]|0;
+       $61 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp443 = ($60>>>0)<($61>>>0);
        if ($cmp443) {
         _abort();
@@ -16205,7 +16309,7 @@ function _free($mem) {
      $62 = HEAP32[$arrayidx455>>2]|0;
      $cmp456 = ($62|0)==(0|0);
      if (!($cmp456)) {
-      $63 = HEAP32[((1232 + 16|0))>>2]|0;
+      $63 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp459 = ($62>>>0)<($63>>>0);
       if ($cmp459) {
        _abort();
@@ -16226,10 +16330,10 @@ function _free($mem) {
   HEAP32[$head476>>2] = $or475;
   $add$ptr477 = (($p$0) + ($add262)|0);
   HEAP32[$add$ptr477>>2] = $add262;
-  $64 = HEAP32[((1232 + 20|0))>>2]|0;
+  $64 = HEAP32[((1368 + 20|0))>>2]|0;
   $cmp479 = ($p$0|0)==($64|0);
   if ($cmp479) {
-   HEAP32[((1232 + 8|0))>>2] = $add262;
+   HEAP32[((1368 + 8|0))>>2] = $add262;
    STACKTOP = sp;return;
   } else {
    $psize$1 = $add262;
@@ -16248,22 +16352,22 @@ function _free($mem) {
  $cmp494 = ($psize$1>>>0)<(256);
  if ($cmp494) {
   $shl500 = $shr493 << 1;
-  $arrayidx501 = ((1232 + ($shl500<<2)|0) + 40|0);
-  $65 = HEAP32[1232>>2]|0;
+  $arrayidx501 = ((1368 + ($shl500<<2)|0) + 40|0);
+  $65 = HEAP32[1368>>2]|0;
   $shl503 = 1 << $shr493;
   $and504 = $65 & $shl503;
   $tobool505 = ($and504|0)==(0);
   if ($tobool505) {
    $or508 = $65 | $shl503;
-   HEAP32[1232>>2] = $or508;
+   HEAP32[1368>>2] = $or508;
    $arrayidx501$sum$pre = (($shl500) + 2)|0;
-   $$pre = ((1232 + ($arrayidx501$sum$pre<<2)|0) + 40|0);
+   $$pre = ((1368 + ($arrayidx501$sum$pre<<2)|0) + 40|0);
    $$pre$phiZ2D = $$pre;$F502$0 = $arrayidx501;
   } else {
    $arrayidx501$sum242 = (($shl500) + 2)|0;
-   $66 = ((1232 + ($arrayidx501$sum242<<2)|0) + 40|0);
+   $66 = ((1368 + ($arrayidx501$sum242<<2)|0) + 40|0);
    $67 = HEAP32[$66>>2]|0;
-   $68 = HEAP32[((1232 + 16|0))>>2]|0;
+   $68 = HEAP32[((1368 + 16|0))>>2]|0;
    $cmp511 = ($67>>>0)<($68>>>0);
    if ($cmp511) {
     _abort();
@@ -16315,7 +16419,7 @@ function _free($mem) {
    $I526$0 = $add556;
   }
  }
- $arrayidx559 = ((1232 + ($I526$0<<2)|0) + 304|0);
+ $arrayidx559 = ((1368 + ($I526$0<<2)|0) + 304|0);
  $index560 = (($p$0) + 28|0);
  $I526$0$c = $I526$0;
  HEAP32[$index560>>2] = $I526$0$c;
@@ -16323,14 +16427,14 @@ function _free($mem) {
  HEAP32[$arrayidx562>>2] = 0;
  $69 = (($p$0) + 16|0);
  HEAP32[$69>>2] = 0;
- $70 = HEAP32[((1232 + 4|0))>>2]|0;
+ $70 = HEAP32[((1368 + 4|0))>>2]|0;
  $shl565 = 1 << $I526$0;
  $and566 = $70 & $shl565;
  $tobool567 = ($and566|0)==(0);
  L199: do {
   if ($tobool567) {
    $or570 = $70 | $shl565;
-   HEAP32[((1232 + 4|0))>>2] = $or570;
+   HEAP32[((1368 + 4|0))>>2] = $or570;
    HEAP32[$arrayidx559>>2] = $p$0;
    $parent571 = (($p$0) + 24|0);
    HEAP32[$parent571>>2] = $arrayidx559;
@@ -16378,7 +16482,7 @@ function _free($mem) {
        $K575$0270 = $shl592;$T$0269 = $73;
       }
      }
-     $75 = HEAP32[((1232 + 16|0))>>2]|0;
+     $75 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp597 = ($arrayidx591>>>0)<($75>>>0);
      if ($cmp597) {
       _abort();
@@ -16397,7 +16501,7 @@ function _free($mem) {
    } while(0);
    $fd609 = (($T$0$lcssa) + 8|0);
    $76 = HEAP32[$fd609>>2]|0;
-   $77 = HEAP32[((1232 + 16|0))>>2]|0;
+   $77 = HEAP32[((1368 + 16|0))>>2]|0;
    $cmp610 = ($T$0$lcssa>>>0)<($77>>>0);
    if ($cmp610) {
     _abort();
@@ -16421,12 +16525,12 @@ function _free($mem) {
    }
   }
  } while(0);
- $78 = HEAP32[((1232 + 32|0))>>2]|0;
+ $78 = HEAP32[((1368 + 32|0))>>2]|0;
  $dec = (($78) + -1)|0;
- HEAP32[((1232 + 32|0))>>2] = $dec;
+ HEAP32[((1368 + 32|0))>>2] = $dec;
  $cmp628 = ($dec|0)==(0);
  if ($cmp628) {
-  $sp$0$in$i = ((1232 + 456|0));
+  $sp$0$in$i = ((1368 + 456|0));
  } else {
   STACKTOP = sp;return;
  }
@@ -16440,7 +16544,7 @@ function _free($mem) {
    $sp$0$in$i = $next4$i;
   }
  }
- HEAP32[((1232 + 32|0))>>2] = -1;
+ HEAP32[((1368 + 32|0))>>2] = -1;
  STACKTOP = sp;return;
 }
 function _calloc($n_elements,$elem_size) {
@@ -16553,7 +16657,7 @@ function _try_realloc_chunk($p,$nb) {
  $0 = HEAP32[$head>>2]|0;
  $and = $0 & -8;
  $add$ptr = (($p) + ($and)|0);
- $1 = HEAP32[((1232 + 16|0))>>2]|0;
+ $1 = HEAP32[((1368 + 16|0))>>2]|0;
  $cmp = ($p>>>0)<($1>>>0);
  if ($cmp) {
   _abort();
@@ -16587,7 +16691,7 @@ function _try_realloc_chunk($p,$nb) {
   $cmp1$i = ($and>>>0)<($add$i>>>0);
   if (!($cmp1$i)) {
    $sub$i = (($and) - ($nb))|0;
-   $3 = HEAP32[((1704 + 8|0))>>2]|0;
+   $3 = HEAP32[((1840 + 8|0))>>2]|0;
    $shl$i = $3 << 1;
    $cmp2$i = ($sub$i>>>0)>($shl$i>>>0);
    if (!($cmp2$i)) {
@@ -16622,10 +16726,10 @@ function _try_realloc_chunk($p,$nb) {
   $newp$0 = $p;
   STACKTOP = sp;return ($newp$0|0);
  }
- $5 = HEAP32[((1232 + 24|0))>>2]|0;
+ $5 = HEAP32[((1368 + 24|0))>>2]|0;
  $cmp34 = ($add$ptr|0)==($5|0);
  if ($cmp34) {
-  $6 = HEAP32[((1232 + 12|0))>>2]|0;
+  $6 = HEAP32[((1368 + 12|0))>>2]|0;
   $add = (($6) + ($and))|0;
   $cmp36 = ($add>>>0)>($nb>>>0);
   if (!($cmp36)) {
@@ -16642,15 +16746,15 @@ function _try_realloc_chunk($p,$nb) {
   $head48 = (($p) + ($add$ptr41$sum)|0);
   $or50 = $sub40 | 1;
   HEAP32[$head48>>2] = $or50;
-  HEAP32[((1232 + 24|0))>>2] = $add$ptr41;
-  HEAP32[((1232 + 12|0))>>2] = $sub40;
+  HEAP32[((1368 + 24|0))>>2] = $add$ptr41;
+  HEAP32[((1368 + 12|0))>>2] = $sub40;
   $newp$0 = $p;
   STACKTOP = sp;return ($newp$0|0);
  }
- $7 = HEAP32[((1232 + 20|0))>>2]|0;
+ $7 = HEAP32[((1368 + 20|0))>>2]|0;
  $cmp56 = ($add$ptr|0)==($7|0);
  if ($cmp56) {
-  $8 = HEAP32[((1232 + 8|0))>>2]|0;
+  $8 = HEAP32[((1368 + 8|0))>>2]|0;
   $add58 = (($8) + ($and))|0;
   $cmp59 = ($add58>>>0)<($nb>>>0);
   if ($cmp59) {
@@ -16689,8 +16793,8 @@ function _try_realloc_chunk($p,$nb) {
    HEAP32[$head92>>2] = $or93;
    $storemerge = 0;$storemerge12 = 0;
   }
-  HEAP32[((1232 + 8|0))>>2] = $storemerge12;
-  HEAP32[((1232 + 20|0))>>2] = $storemerge;
+  HEAP32[((1368 + 8|0))>>2] = $storemerge12;
+  HEAP32[((1368 + 20|0))>>2] = $storemerge;
   $newp$0 = $p;
   STACKTOP = sp;return ($newp$0|0);
  }
@@ -16719,7 +16823,7 @@ function _try_realloc_chunk($p,$nb) {
    $bk = (($p) + ($add$ptr$sum11)|0);
    $12 = HEAP32[$bk>>2]|0;
    $shl = $shr << 1;
-   $arrayidx = ((1232 + ($shl<<2)|0) + 40|0);
+   $arrayidx = ((1368 + ($shl<<2)|0) + 40|0);
    $cmp114 = ($11|0)==($arrayidx|0);
    if (!($cmp114)) {
     $cmp116 = ($11>>>0)<($1>>>0);
@@ -16739,9 +16843,9 @@ function _try_realloc_chunk($p,$nb) {
    if ($cmp125) {
     $shl127 = 1 << $shr;
     $neg = $shl127 ^ -1;
-    $14 = HEAP32[1232>>2]|0;
+    $14 = HEAP32[1368>>2]|0;
     $and128 = $14 & $neg;
-    HEAP32[1232>>2] = $and128;
+    HEAP32[1368>>2] = $and128;
     break;
    }
    $cmp133 = ($12|0)==($arrayidx|0);
@@ -16856,7 +16960,7 @@ function _try_realloc_chunk($p,$nb) {
     $add$ptr$sum7 = (($and) + 28)|0;
     $index = (($p) + ($add$ptr$sum7)|0);
     $25 = HEAP32[$index>>2]|0;
-    $arrayidx206 = ((1232 + ($25<<2)|0) + 304|0);
+    $arrayidx206 = ((1368 + ($25<<2)|0) + 304|0);
     $26 = HEAP32[$arrayidx206>>2]|0;
     $cmp207 = ($add$ptr|0)==($26|0);
     if ($cmp207) {
@@ -16865,13 +16969,13 @@ function _try_realloc_chunk($p,$nb) {
      if ($cond) {
       $shl214 = 1 << $25;
       $neg215 = $shl214 ^ -1;
-      $27 = HEAP32[((1232 + 4|0))>>2]|0;
+      $27 = HEAP32[((1368 + 4|0))>>2]|0;
       $and216 = $27 & $neg215;
-      HEAP32[((1232 + 4|0))>>2] = $and216;
+      HEAP32[((1368 + 4|0))>>2] = $and216;
       break;
      }
     } else {
-     $28 = HEAP32[((1232 + 16|0))>>2]|0;
+     $28 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp220 = ($16>>>0)<($28>>>0);
      if ($cmp220) {
       _abort();
@@ -16891,7 +16995,7 @@ function _try_realloc_chunk($p,$nb) {
       break;
      }
     }
-    $30 = HEAP32[((1232 + 16|0))>>2]|0;
+    $30 = HEAP32[((1368 + 16|0))>>2]|0;
     $cmp243 = ($R$1>>>0)<($30>>>0);
     if ($cmp243) {
      _abort();
@@ -16905,7 +17009,7 @@ function _try_realloc_chunk($p,$nb) {
     $cmp251 = ($31|0)==(0|0);
     do {
      if (!($cmp251)) {
-      $32 = HEAP32[((1232 + 16|0))>>2]|0;
+      $32 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp255 = ($31>>>0)<($32>>>0);
       if ($cmp255) {
        _abort();
@@ -16924,7 +17028,7 @@ function _try_realloc_chunk($p,$nb) {
     $33 = HEAP32[$arrayidx267>>2]|0;
     $cmp268 = ($33|0)==(0|0);
     if (!($cmp268)) {
-     $34 = HEAP32[((1232 + 16|0))>>2]|0;
+     $34 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp272 = ($33>>>0)<($34>>>0);
      if ($cmp272) {
       _abort();
@@ -17015,13 +17119,13 @@ function _dispose_chunk($p,$psize) {
    $idx$neg = (0 - ($1))|0;
    $add$ptr5 = (($p) + ($idx$neg)|0);
    $add6 = (($1) + ($psize))|0;
-   $2 = HEAP32[((1232 + 16|0))>>2]|0;
+   $2 = HEAP32[((1368 + 16|0))>>2]|0;
    $cmp7 = ($add$ptr5>>>0)<($2>>>0);
    if ($cmp7) {
     _abort();
     // unreachable;
    }
-   $3 = HEAP32[((1232 + 20|0))>>2]|0;
+   $3 = HEAP32[((1368 + 20|0))>>2]|0;
    $cmp10 = ($add$ptr5|0)==($3|0);
    if ($cmp10) {
     $add$ptr$sum = (($psize) + 4)|0;
@@ -17033,7 +17137,7 @@ function _dispose_chunk($p,$psize) {
      $p$addr$0 = $add$ptr5;$psize$addr$0 = $add6;
      break;
     }
-    HEAP32[((1232 + 8|0))>>2] = $add6;
+    HEAP32[((1368 + 8|0))>>2] = $add6;
     $29 = HEAP32[$head201>>2]|0;
     $and207 = $29 & -2;
     HEAP32[$head201>>2] = $and207;
@@ -17054,7 +17158,7 @@ function _dispose_chunk($p,$psize) {
     $bk = (($p) + ($add$ptr5$sum25)|0);
     $5 = HEAP32[$bk>>2]|0;
     $shl = $shr << 1;
-    $arrayidx = ((1232 + ($shl<<2)|0) + 40|0);
+    $arrayidx = ((1368 + ($shl<<2)|0) + 40|0);
     $cmp17 = ($4|0)==($arrayidx|0);
     if (!($cmp17)) {
      $cmp20 = ($4>>>0)<($2>>>0);
@@ -17074,9 +17178,9 @@ function _dispose_chunk($p,$psize) {
     if ($cmp28) {
      $shl31 = 1 << $shr;
      $neg = $shl31 ^ -1;
-     $7 = HEAP32[1232>>2]|0;
+     $7 = HEAP32[1368>>2]|0;
      $and32 = $7 & $neg;
-     HEAP32[1232>>2] = $and32;
+     HEAP32[1368>>2] = $and32;
      $p$addr$0 = $add$ptr5;$psize$addr$0 = $add6;
      break;
     }
@@ -17196,7 +17300,7 @@ function _dispose_chunk($p,$psize) {
     $add$ptr5$sum21 = (28 - ($1))|0;
     $index = (($p) + ($add$ptr5$sum21)|0);
     $18 = HEAP32[$index>>2]|0;
-    $arrayidx118 = ((1232 + ($18<<2)|0) + 304|0);
+    $arrayidx118 = ((1368 + ($18<<2)|0) + 304|0);
     $19 = HEAP32[$arrayidx118>>2]|0;
     $cmp119 = ($add$ptr5|0)==($19|0);
     if ($cmp119) {
@@ -17205,14 +17309,14 @@ function _dispose_chunk($p,$psize) {
      if ($cond29) {
       $shl126 = 1 << $18;
       $neg127 = $shl126 ^ -1;
-      $20 = HEAP32[((1232 + 4|0))>>2]|0;
+      $20 = HEAP32[((1368 + 4|0))>>2]|0;
       $and128 = $20 & $neg127;
-      HEAP32[((1232 + 4|0))>>2] = $and128;
+      HEAP32[((1368 + 4|0))>>2] = $and128;
       $p$addr$0 = $add$ptr5;$psize$addr$0 = $add6;
       break;
      }
     } else {
-     $21 = HEAP32[((1232 + 16|0))>>2]|0;
+     $21 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp132 = ($9>>>0)<($21>>>0);
      if ($cmp132) {
       _abort();
@@ -17233,7 +17337,7 @@ function _dispose_chunk($p,$psize) {
       break;
      }
     }
-    $23 = HEAP32[((1232 + 16|0))>>2]|0;
+    $23 = HEAP32[((1368 + 16|0))>>2]|0;
     $cmp155 = ($R$1>>>0)<($23>>>0);
     if ($cmp155) {
      _abort();
@@ -17247,7 +17351,7 @@ function _dispose_chunk($p,$psize) {
     $cmp163 = ($24|0)==(0|0);
     do {
      if (!($cmp163)) {
-      $25 = HEAP32[((1232 + 16|0))>>2]|0;
+      $25 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp167 = ($24>>>0)<($25>>>0);
       if ($cmp167) {
        _abort();
@@ -17268,7 +17372,7 @@ function _dispose_chunk($p,$psize) {
     if ($cmp180) {
      $p$addr$0 = $add$ptr5;$psize$addr$0 = $add6;
     } else {
-     $27 = HEAP32[((1232 + 16|0))>>2]|0;
+     $27 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp184 = ($26>>>0)<($27>>>0);
      if ($cmp184) {
       _abort();
@@ -17287,7 +17391,7 @@ function _dispose_chunk($p,$psize) {
    $p$addr$0 = $p;$psize$addr$0 = $psize;
   }
  } while(0);
- $30 = HEAP32[((1232 + 16|0))>>2]|0;
+ $30 = HEAP32[((1368 + 16|0))>>2]|0;
  $cmp217 = ($add$ptr>>>0)<($30>>>0);
  if ($cmp217) {
   _abort();
@@ -17299,32 +17403,32 @@ function _dispose_chunk($p,$psize) {
  $and223 = $31 & 2;
  $tobool224 = ($and223|0)==(0);
  if ($tobool224) {
-  $32 = HEAP32[((1232 + 24|0))>>2]|0;
+  $32 = HEAP32[((1368 + 24|0))>>2]|0;
   $cmp226 = ($add$ptr|0)==($32|0);
   if ($cmp226) {
-   $33 = HEAP32[((1232 + 12|0))>>2]|0;
+   $33 = HEAP32[((1368 + 12|0))>>2]|0;
    $add229 = (($33) + ($psize$addr$0))|0;
-   HEAP32[((1232 + 12|0))>>2] = $add229;
-   HEAP32[((1232 + 24|0))>>2] = $p$addr$0;
+   HEAP32[((1368 + 12|0))>>2] = $add229;
+   HEAP32[((1368 + 24|0))>>2] = $p$addr$0;
    $or231 = $add229 | 1;
    $head232 = (($p$addr$0) + 4|0);
    HEAP32[$head232>>2] = $or231;
-   $34 = HEAP32[((1232 + 20|0))>>2]|0;
+   $34 = HEAP32[((1368 + 20|0))>>2]|0;
    $cmp234 = ($p$addr$0|0)==($34|0);
    if (!($cmp234)) {
     STACKTOP = sp;return;
    }
-   HEAP32[((1232 + 20|0))>>2] = 0;
-   HEAP32[((1232 + 8|0))>>2] = 0;
+   HEAP32[((1368 + 20|0))>>2] = 0;
+   HEAP32[((1368 + 8|0))>>2] = 0;
    STACKTOP = sp;return;
   }
-  $35 = HEAP32[((1232 + 20|0))>>2]|0;
+  $35 = HEAP32[((1368 + 20|0))>>2]|0;
   $cmp242 = ($add$ptr|0)==($35|0);
   if ($cmp242) {
-   $36 = HEAP32[((1232 + 8|0))>>2]|0;
+   $36 = HEAP32[((1368 + 8|0))>>2]|0;
    $add246 = (($36) + ($psize$addr$0))|0;
-   HEAP32[((1232 + 8|0))>>2] = $add246;
-   HEAP32[((1232 + 20|0))>>2] = $p$addr$0;
+   HEAP32[((1368 + 8|0))>>2] = $add246;
+   HEAP32[((1368 + 20|0))>>2] = $p$addr$0;
    $or248 = $add246 | 1;
    $head249 = (($p$addr$0) + 4|0);
    HEAP32[$head249>>2] = $or248;
@@ -17345,7 +17449,7 @@ function _dispose_chunk($p,$psize) {
     $bk263 = (($p) + ($add$ptr$sum16)|0);
     $38 = HEAP32[$bk263>>2]|0;
     $shl266 = $shr256 << 1;
-    $arrayidx268 = ((1232 + ($shl266<<2)|0) + 40|0);
+    $arrayidx268 = ((1368 + ($shl266<<2)|0) + 40|0);
     $cmp269 = ($37|0)==($arrayidx268|0);
     if (!($cmp269)) {
      $cmp273 = ($37>>>0)<($30>>>0);
@@ -17365,9 +17469,9 @@ function _dispose_chunk($p,$psize) {
     if ($cmp286) {
      $shl289 = 1 << $shr256;
      $neg290 = $shl289 ^ -1;
-     $40 = HEAP32[1232>>2]|0;
+     $40 = HEAP32[1368>>2]|0;
      $and292 = $40 & $neg290;
-     HEAP32[1232>>2] = $and292;
+     HEAP32[1368>>2] = $and292;
      break;
     }
     $cmp297 = ($38|0)==($arrayidx268|0);
@@ -17482,7 +17586,7 @@ function _dispose_chunk($p,$psize) {
      $add$ptr$sum12 = (($psize) + 28)|0;
      $index394 = (($p) + ($add$ptr$sum12)|0);
      $51 = HEAP32[$index394>>2]|0;
-     $arrayidx396 = ((1232 + ($51<<2)|0) + 304|0);
+     $arrayidx396 = ((1368 + ($51<<2)|0) + 304|0);
      $52 = HEAP32[$arrayidx396>>2]|0;
      $cmp397 = ($add$ptr|0)==($52|0);
      if ($cmp397) {
@@ -17491,13 +17595,13 @@ function _dispose_chunk($p,$psize) {
       if ($cond30) {
        $shl404 = 1 << $51;
        $neg405 = $shl404 ^ -1;
-       $53 = HEAP32[((1232 + 4|0))>>2]|0;
+       $53 = HEAP32[((1368 + 4|0))>>2]|0;
        $and407 = $53 & $neg405;
-       HEAP32[((1232 + 4|0))>>2] = $and407;
+       HEAP32[((1368 + 4|0))>>2] = $and407;
        break;
       }
      } else {
-      $54 = HEAP32[((1232 + 16|0))>>2]|0;
+      $54 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp411 = ($42>>>0)<($54>>>0);
       if ($cmp411) {
        _abort();
@@ -17517,7 +17621,7 @@ function _dispose_chunk($p,$psize) {
        break;
       }
      }
-     $56 = HEAP32[((1232 + 16|0))>>2]|0;
+     $56 = HEAP32[((1368 + 16|0))>>2]|0;
      $cmp434 = ($R325$1>>>0)<($56>>>0);
      if ($cmp434) {
       _abort();
@@ -17531,7 +17635,7 @@ function _dispose_chunk($p,$psize) {
      $cmp444 = ($57|0)==(0|0);
      do {
       if (!($cmp444)) {
-       $58 = HEAP32[((1232 + 16|0))>>2]|0;
+       $58 = HEAP32[((1368 + 16|0))>>2]|0;
        $cmp448 = ($57>>>0)<($58>>>0);
        if ($cmp448) {
         _abort();
@@ -17550,7 +17654,7 @@ function _dispose_chunk($p,$psize) {
      $59 = HEAP32[$arrayidx460>>2]|0;
      $cmp461 = ($59|0)==(0|0);
      if (!($cmp461)) {
-      $60 = HEAP32[((1232 + 16|0))>>2]|0;
+      $60 = HEAP32[((1368 + 16|0))>>2]|0;
       $cmp465 = ($59>>>0)<($60>>>0);
       if ($cmp465) {
        _abort();
@@ -17571,10 +17675,10 @@ function _dispose_chunk($p,$psize) {
   HEAP32[$head482>>2] = $or481;
   $add$ptr483 = (($p$addr$0) + ($add255)|0);
   HEAP32[$add$ptr483>>2] = $add255;
-  $61 = HEAP32[((1232 + 20|0))>>2]|0;
+  $61 = HEAP32[((1368 + 20|0))>>2]|0;
   $cmp486 = ($p$addr$0|0)==($61|0);
   if ($cmp486) {
-   HEAP32[((1232 + 8|0))>>2] = $add255;
+   HEAP32[((1368 + 8|0))>>2] = $add255;
    STACKTOP = sp;return;
   } else {
    $psize$addr$1 = $add255;
@@ -17593,22 +17697,22 @@ function _dispose_chunk($p,$psize) {
  $cmp502 = ($psize$addr$1>>>0)<(256);
  if ($cmp502) {
   $shl508 = $shr501 << 1;
-  $arrayidx510 = ((1232 + ($shl508<<2)|0) + 40|0);
-  $62 = HEAP32[1232>>2]|0;
+  $arrayidx510 = ((1368 + ($shl508<<2)|0) + 40|0);
+  $62 = HEAP32[1368>>2]|0;
   $shl513 = 1 << $shr501;
   $and514 = $62 & $shl513;
   $tobool515 = ($and514|0)==(0);
   if ($tobool515) {
    $or519 = $62 | $shl513;
-   HEAP32[1232>>2] = $or519;
+   HEAP32[1368>>2] = $or519;
    $arrayidx510$sum$pre = (($shl508) + 2)|0;
-   $$pre = ((1232 + ($arrayidx510$sum$pre<<2)|0) + 40|0);
+   $$pre = ((1368 + ($arrayidx510$sum$pre<<2)|0) + 40|0);
    $$pre$phiZ2D = $$pre;$F511$0 = $arrayidx510;
   } else {
    $arrayidx510$sum11 = (($shl508) + 2)|0;
-   $63 = ((1232 + ($arrayidx510$sum11<<2)|0) + 40|0);
+   $63 = ((1368 + ($arrayidx510$sum11<<2)|0) + 40|0);
    $64 = HEAP32[$63>>2]|0;
-   $65 = HEAP32[((1232 + 16|0))>>2]|0;
+   $65 = HEAP32[((1368 + 16|0))>>2]|0;
    $cmp523 = ($64>>>0)<($65>>>0);
    if ($cmp523) {
     _abort();
@@ -17660,7 +17764,7 @@ function _dispose_chunk($p,$psize) {
    $I539$0 = $add569;
   }
  }
- $arrayidx573 = ((1232 + ($I539$0<<2)|0) + 304|0);
+ $arrayidx573 = ((1368 + ($I539$0<<2)|0) + 304|0);
  $index574 = (($p$addr$0) + 28|0);
  $I539$0$c = $I539$0;
  HEAP32[$index574>>2] = $I539$0$c;
@@ -17668,13 +17772,13 @@ function _dispose_chunk($p,$psize) {
  HEAP32[$arrayidx576>>2] = 0;
  $66 = (($p$addr$0) + 16|0);
  HEAP32[$66>>2] = 0;
- $67 = HEAP32[((1232 + 4|0))>>2]|0;
+ $67 = HEAP32[((1368 + 4|0))>>2]|0;
  $shl580 = 1 << $I539$0;
  $and581 = $67 & $shl580;
  $tobool582 = ($and581|0)==(0);
  if ($tobool582) {
   $or586 = $67 | $shl580;
-  HEAP32[((1232 + 4|0))>>2] = $or586;
+  HEAP32[((1368 + 4|0))>>2] = $or586;
   HEAP32[$arrayidx573>>2] = $p$addr$0;
   $parent587 = (($p$addr$0) + 24|0);
   HEAP32[$parent587>>2] = $arrayidx573;
@@ -17723,7 +17827,7 @@ function _dispose_chunk($p,$psize) {
      $K591$036 = $shl608;$T$035 = $70;
     }
    }
-   $72 = HEAP32[((1232 + 16|0))>>2]|0;
+   $72 = HEAP32[((1368 + 16|0))>>2]|0;
    $cmp614 = ($arrayidx607>>>0)<($72>>>0);
    if ($cmp614) {
     _abort();
@@ -17741,7 +17845,7 @@ function _dispose_chunk($p,$psize) {
  } while(0);
  $fd626 = (($T$0$lcssa) + 8|0);
  $73 = HEAP32[$fd626>>2]|0;
- $74 = HEAP32[((1232 + 16|0))>>2]|0;
+ $74 = HEAP32[((1368 + 16|0))>>2]|0;
  $cmp628 = ($T$0$lcssa>>>0)<($74>>>0);
  if ($cmp628) {
   _abort();
@@ -17762,6 +17866,42 @@ function _dispose_chunk($p,$psize) {
  $parent643 = (($p$addr$0) + 24|0);
  HEAP32[$parent643>>2] = 0;
  STACKTOP = sp;return;
+}
+function _strcmp($l,$r) {
+ $l = $l|0;
+ $r = $r|0;
+ var $$lcssa = 0, $$lcssa6 = 0, $0 = 0, $1 = 0, $2 = 0, $3 = 0, $cmp = 0, $cmp7 = 0, $conv5 = 0, $conv6 = 0, $incdec$ptr = 0, $incdec$ptr4 = 0, $l$addr$010 = 0, $or$cond = 0, $or$cond9 = 0, $r$addr$011 = 0, $sub = 0, $tobool = 0, $tobool8 = 0, label = 0;
+ var sp = 0;
+ sp = STACKTOP;
+ $0 = HEAP8[$l>>0]|0;
+ $1 = HEAP8[$r>>0]|0;
+ $cmp7 = ($0<<24>>24)!=($1<<24>>24);
+ $tobool8 = ($0<<24>>24)==(0);
+ $or$cond9 = $cmp7 | $tobool8;
+ if ($or$cond9) {
+  $$lcssa = $0;$$lcssa6 = $1;
+ } else {
+  $l$addr$010 = $l;$r$addr$011 = $r;
+  while(1) {
+   $incdec$ptr = (($l$addr$010) + 1|0);
+   $incdec$ptr4 = (($r$addr$011) + 1|0);
+   $2 = HEAP8[$incdec$ptr>>0]|0;
+   $3 = HEAP8[$incdec$ptr4>>0]|0;
+   $cmp = ($2<<24>>24)!=($3<<24>>24);
+   $tobool = ($2<<24>>24)==(0);
+   $or$cond = $cmp | $tobool;
+   if ($or$cond) {
+    $$lcssa = $2;$$lcssa6 = $3;
+    break;
+   } else {
+    $l$addr$010 = $incdec$ptr;$r$addr$011 = $incdec$ptr4;
+   }
+  }
+ }
+ $conv5 = $$lcssa&255;
+ $conv6 = $$lcssa6&255;
+ $sub = (($conv5) - ($conv6))|0;
+ STACKTOP = sp;return ($sub|0);
 }
 function runPostSets() {
  
@@ -17892,13 +18032,6 @@ function _memset(ptr, value, num) {
     }
   
 
-    function dynCall_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
-      index = index|0;
-      a1=a1|0; a2=a2|0; a3=a3|0; a4=a4|0; a5=a5|0; a6=a6|0; a7=a7|0; a8=a8|0;
-      FUNCTION_TABLE_viiiiiiii[index&31](a1|0,a2|0,a3|0,a4|0,a5|0,a6|0,a7|0,a8|0);
-    }
-  
-
     function dynCall_viiii(index,a1,a2,a3,a4) {
       index = index|0;
       a1=a1|0; a2=a2|0; a3=a3|0; a4=a4|0;
@@ -17910,11 +18043,13 @@ function b0(p0,p1,p2,p3) { p0 = p0|0;p1 = +p1;p2 = +p2;p3 = +p3; nullFunc_viddd(
   function b2(p0,p1,p2,p3,p4) { p0 = p0|0;p1 = p1|0;p2 = p2|0;p3 = p3|0;p4 = p4|0; nullFunc_viiiii(2); }
   function b3(p0) { p0 = p0|0; nullFunc_vi(3); }
   function b4(p0,p1) { p0 = p0|0;p1 = p1|0; nullFunc_vii(4); }
+  function _glGenBuffers__wrapper(p0,p1) { p0 = p0|0;p1 = p1|0; _glGenBuffers(p0|0,p1|0); }
+  function _glBindBuffer__wrapper(p0,p1) { p0 = p0|0;p1 = p1|0; _glBindBuffer(p0|0,p1|0); }
   function b5(p0) { p0 = p0|0; nullFunc_ii(5);return 0; }
   function b6() { ; nullFunc_v(6); }
   function b7(p0,p1,p2,p3,p4,p5) { p0 = p0|0;p1 = p1|0;p2 = p2|0;p3 = p3|0;p4 = p4|0;p5 = p5|0; nullFunc_viiiiii(7); }
-  function b8(p0,p1,p2,p3,p4,p5,p6,p7) { p0 = p0|0;p1 = p1|0;p2 = p2|0;p3 = p3|0;p4 = p4|0;p5 = p5|0;p6 = p6|0;p7 = p7|0; nullFunc_viiiiiiii(8); }
-  function b9(p0,p1,p2,p3) { p0 = p0|0;p1 = p1|0;p2 = p2|0;p3 = p3|0; nullFunc_viiii(9); }
+  function b8(p0,p1,p2,p3) { p0 = p0|0;p1 = p1|0;p2 = p2|0;p3 = p3|0; nullFunc_viiii(8); }
+  function _glBufferData__wrapper(p0,p1,p2,p3) { p0 = p0|0;p1 = p1|0;p2 = p2|0;p3 = p3|0; _glBufferData(p0|0,p1|0,p2|0,p3|0); }
   // EMSCRIPTEN_END_FUNCS
   var FUNCTION_TABLE_viddd = [b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,__ZN9REMVectorC2Efff,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0,b0
   ,b0,b0,b0];
@@ -17922,26 +18057,24 @@ function b0(p0,p1,p2,p3) { p0 = p0|0;p1 = +p1;p2 = +p2;p3 = +p3; nullFunc_viddd(
   var FUNCTION_TABLE_viiiii = [b2,b2,b2,b2,b2,b2,b2,b2,b2,b2,__ZNK10__cxxabiv117__class_type_info16search_below_dstEPNS_19__dynamic_cast_infoEPKvib,b2,b2,b2,__ZNK10__cxxabiv120__si_class_type_info16search_below_dstEPNS_19__dynamic_cast_infoEPKvib,b2];
   var FUNCTION_TABLE_vi = [b3,__ZNSt9bad_allocD2Ev,__ZNSt9bad_allocD0Ev,b3,__ZN10__cxxabiv116__shim_type_infoD2Ev,__ZN10__cxxabiv117__class_type_infoD0Ev,__ZNK10__cxxabiv116__shim_type_info5noop1Ev,__ZNK10__cxxabiv116__shim_type_info5noop2Ev,b3,b3,b3,b3,__ZN10__cxxabiv120__si_class_type_infoD0Ev,b3,b3,b3,b3,__ZN15REMRenderDeviceC2Ev,b3,__ZN14REMSkinManagerC2Ev,b3,b3,b3,b3,b3,b3,b3,b3,b3
   ,b3,b3,b3];
-  var FUNCTION_TABLE_vii = [b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,__ZN16REMShaderManagerC2EP15REMRenderDevice,b4,b4,b4,b4,b4,b4,b4,b4
+  var FUNCTION_TABLE_vii = [b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,b4,__ZN16REMShaderManagerC2EP15REMRenderDevice,b4,b4,_glGenBuffers__wrapper,_glBindBuffer__wrapper,b4,b4,b4,b4
   ,b4,b4,b4];
   var FUNCTION_TABLE_ii = [b5,b5,b5,__ZNKSt9bad_alloc4whatEv,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,b5,__ZN15REMRenderDevice14getSkinManagerEv,b5,b5,b5,b5,b5,b5
   ,b5,b5,b5];
   var FUNCTION_TABLE_v = [b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6,__Z9web_framev,b6,b6,b6,b6,b6,b6,b6,b6,b6,b6
   ,b6,b6,b6];
   var FUNCTION_TABLE_viiiiii = [b7,b7,b7,b7,b7,b7,b7,b7,b7,__ZNK10__cxxabiv117__class_type_info16search_above_dstEPNS_19__dynamic_cast_infoEPKvS4_ib,b7,b7,b7,__ZNK10__cxxabiv120__si_class_type_info16search_above_dstEPNS_19__dynamic_cast_infoEPKvS4_ib,b7,b7];
-  var FUNCTION_TABLE_viiiiiiii = [b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,__ZN14REMVertexCacheC2E14REMVERTEX_TYPEjjjP14REMSkinManagerP21REMVertexCacheManagerj,b8,b8,b8,b8,b8
+  var FUNCTION_TABLE_viiii = [b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,b8,__ZNK10__cxxabiv117__class_type_info27has_unambiguous_public_baseEPNS_19__dynamic_cast_infoEPvi,b8,b8,b8,__ZNK10__cxxabiv120__si_class_type_info27has_unambiguous_public_baseEPNS_19__dynamic_cast_infoEPvi,b8,b8,b8,b8,b8,__ZN21REMVertexCacheManagerC2EP15REMRenderDevicejj,b8,b8,b8,_glBufferData__wrapper,b8,b8,b8
   ,b8,b8,b8];
-  var FUNCTION_TABLE_viiii = [b9,b9,b9,b9,b9,b9,b9,b9,b9,b9,b9,__ZNK10__cxxabiv117__class_type_info27has_unambiguous_public_baseEPNS_19__dynamic_cast_infoEPvi,b9,b9,b9,__ZNK10__cxxabiv120__si_class_type_info27has_unambiguous_public_baseEPNS_19__dynamic_cast_infoEPvi,b9,b9,b9,b9,b9,__ZN21REMVertexCacheManagerC2EP15REMRenderDevicejj,b9,b9,b9,b9,b9,b9,b9
-  ,b9,b9,b9];
 
-    return { ___cxa_can_catch: ___cxa_can_catch, _free: _free, _main: _main, ___cxa_is_pointer_type: ___cxa_is_pointer_type, _realloc: _realloc, _strlen: _strlen, _memset: _memset, _malloc: _malloc, _memcpy: _memcpy, _calloc: _calloc, runPostSets: runPostSets, stackAlloc: stackAlloc, stackSave: stackSave, stackRestore: stackRestore, setThrew: setThrew, setTempRet0: setTempRet0, getTempRet0: getTempRet0, dynCall_viddd: dynCall_viddd, dynCall_iiii: dynCall_iiii, dynCall_viiiii: dynCall_viiiii, dynCall_vi: dynCall_vi, dynCall_vii: dynCall_vii, dynCall_ii: dynCall_ii, dynCall_v: dynCall_v, dynCall_viiiiii: dynCall_viiiiii, dynCall_viiiiiiii: dynCall_viiiiiiii, dynCall_viiii: dynCall_viiii };
+    return { _strlen: _strlen, _free: _free, _main: _main, _realloc: _realloc, _memset: _memset, _malloc: _malloc, _memcpy: _memcpy, _calloc: _calloc, runPostSets: runPostSets, stackAlloc: stackAlloc, stackSave: stackSave, stackRestore: stackRestore, setThrew: setThrew, setTempRet0: setTempRet0, getTempRet0: getTempRet0, dynCall_viddd: dynCall_viddd, dynCall_iiii: dynCall_iiii, dynCall_viiiii: dynCall_viiiii, dynCall_vi: dynCall_vi, dynCall_vii: dynCall_vii, dynCall_ii: dynCall_ii, dynCall_v: dynCall_v, dynCall_viiiiii: dynCall_viiiiii, dynCall_viiii: dynCall_viiii };
   })
   // EMSCRIPTEN_END_ASM
-  ({ "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Uint32Array": Uint32Array, "Float32Array": Float32Array, "Float64Array": Float64Array }, { "abort": abort, "assert": assert, "min": Math_min, "nullFunc_viddd": nullFunc_viddd, "nullFunc_iiii": nullFunc_iiii, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_ii": nullFunc_ii, "nullFunc_v": nullFunc_v, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_viiiiiiii": nullFunc_viiiiiiii, "nullFunc_viiii": nullFunc_viiii, "invoke_viddd": invoke_viddd, "invoke_iiii": invoke_iiii, "invoke_viiiii": invoke_viiiii, "invoke_vi": invoke_vi, "invoke_vii": invoke_vii, "invoke_ii": invoke_ii, "invoke_v": invoke_v, "invoke_viiiiii": invoke_viiiiii, "invoke_viiiiiiii": invoke_viiiiiiii, "invoke_viiii": invoke_viiii, "_glUseProgram": _glUseProgram, "_fabs": _fabs, "_glVertexAttribPointer": _glVertexAttribPointer, "_glCullFace": _glCullFace, "_cosf": _cosf, "_send": _send, "_fread": _fread, "_glBindBuffer": _glBindBuffer, "_glUniformMatrix4fv": _glUniformMatrix4fv, "_lseek": _lseek, "_open": _open, "___gxx_personality_v0": ___gxx_personality_v0, "_glfwOpenWindow": _glfwOpenWindow, "___cxa_allocate_exception": ___cxa_allocate_exception, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_fsync": _fsync, "_glDisable": _glDisable, "_fflush": _fflush, "_glDepthMask": _glDepthMask, "_glGetShaderInfoLog": _glGetShaderInfoLog, "_pwrite": _pwrite, "___setErrNo": ___setErrNo, "_glViewport": _glViewport, "_glGetUniformLocation": _glGetUniformLocation, "__reallyNegative": __reallyNegative, "_glClearColor": _glClearColor, "_sbrk": _sbrk, "_glBlendFunc": _glBlendFunc, "_glBindTexture": _glBindTexture, "_glUniform1f": _glUniform1f, "_glClear": _glClear, "_sinf": _sinf, "_fileno": _fileno, "___resumeException": ___resumeException, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "_sysconf": _sysconf, "_glActiveTexture": _glActiveTexture, "_close": _close, "_vprintf": _vprintf, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_rewind": _rewind, "_glGetShaderiv": _glGetShaderiv, "_cos": _cos, "_fseek": _fseek, "_glUniform4fv": _glUniform4fv, "_glCompileShader": _glCompileShader, "_glEnable": _glEnable, "_pread": _pread, "_mkport": _mkport, "_fclose": _fclose, "_glDrawElements": _glDrawElements, "_glfwInit": _glfwInit, "_glLinkProgram": _glLinkProgram, "_write": _write, "_glfwSwapBuffers": _glfwSwapBuffers, "_ftell": _ftell, "___errno_location": ___errno_location, "_glGenBuffers": _glGenBuffers, "_glShaderSource": _glShaderSource, "_recv": _recv, "_glBufferSubData": _glBufferSubData, "_glAttachShader": _glAttachShader, "_printf": _printf, "___cxa_throw": ___cxa_throw, "_read": _read, "_glCreateProgram": _glCreateProgram, "_emscripten_set_main_loop": _emscripten_set_main_loop, "_abort": _abort, "_fwrite": _fwrite, "_emscripten_get_now": _emscripten_get_now, "_time": _time, "_fprintf": _fprintf, "_glBufferData": _glBufferData, "__formatString": __formatString, "_sqrt": _sqrt, "_fopen": _fopen, "_glCreateShader": _glCreateShader, "_glEnableVertexAttribArray": _glEnableVertexAttribArray, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "NaN": NaN, "Infinity": Infinity }, buffer);
-  var real____cxa_can_catch = asm["___cxa_can_catch"]; asm["___cxa_can_catch"] = function() {
+  ({ "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Uint32Array": Uint32Array, "Float32Array": Float32Array, "Float64Array": Float64Array }, { "abort": abort, "assert": assert, "min": Math_min, "nullFunc_viddd": nullFunc_viddd, "nullFunc_iiii": nullFunc_iiii, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_ii": nullFunc_ii, "nullFunc_v": nullFunc_v, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_viiii": nullFunc_viiii, "invoke_viddd": invoke_viddd, "invoke_iiii": invoke_iiii, "invoke_viiiii": invoke_viiiii, "invoke_vi": invoke_vi, "invoke_vii": invoke_vii, "invoke_ii": invoke_ii, "invoke_v": invoke_v, "invoke_viiiiii": invoke_viiiiii, "invoke_viiii": invoke_viiii, "_glUseProgram": _glUseProgram, "_fread": _fread, "_glUniformMatrix4fv": _glUniformMatrix4fv, "_SDL_RWFromFile": _SDL_RWFromFile, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "_glBindBuffer": _glBindBuffer, "_glGetShaderInfoLog": _glGetShaderInfoLog, "_ftell": _ftell, "_sbrk": _sbrk, "_glBlendFunc": _glBlendFunc, "_Mix_PlayChannel": _Mix_PlayChannel, "_TTF_RenderText_Solid": _TTF_RenderText_Solid, "_sysconf": _sysconf, "_close": _close, "_Mix_PlayMusic": _Mix_PlayMusic, "_rewind": _rewind, "_cos": _cos, "_fileno": _fileno, "_puts": _puts, "_Mix_LoadWAV_RW": _Mix_LoadWAV_RW, "_glfwInit": _glfwInit, "_write": _write, "_fsync": _fsync, "_glGenBuffers": _glGenBuffers, "_glShaderSource": _glShaderSource, "_Mix_HaltMusic": _Mix_HaltMusic, "_SDL_LoadBMP_RW": _SDL_LoadBMP_RW, "_glGenerateMipmap": _glGenerateMipmap, "_glVertexAttribPointer": _glVertexAttribPointer, "__reallyNegative": __reallyNegative, "_send": _send, "_SDL_GetTicks": _SDL_GetTicks, "_glfwOpenWindow": _glfwOpenWindow, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_glDrawElements": _glDrawElements, "_glDepthMask": _glDepthMask, "_glBufferSubData": _glBufferSubData, "_SDL_LockSurface": _SDL_LockSurface, "_glViewport": _glViewport, "___setErrNo": ___setErrNo, "___resumeException": ___resumeException, "_putchar": _putchar, "_glEnable": _glEnable, "_printf": _printf, "_glGenTextures": _glGenTextures, "_glCreateShader": _glCreateShader, "_emscripten_get_now": _emscripten_get_now, "_SDL_MapRGB": _SDL_MapRGB, "_glCreateProgram": _glCreateProgram, "_read": _read, "_fwrite": _fwrite, "_time": _time, "_fprintf": _fprintf, "_SDL_UpperBlitScaled": _SDL_UpperBlitScaled, "_putenv": _putenv, "_IMG_Load": _IMG_Load, "_lseek": _lseek, "_SDL_SetColorKey": _SDL_SetColorKey, "_glClearColor": _glClearColor, "___cxa_allocate_exception": ___cxa_allocate_exception, "___buildEnvironment": ___buildEnvironment, "_pwrite": _pwrite, "_open": _open, "_fabsf": _fabsf, "_glBindTexture": _glBindTexture, "_glUniform1f": _glUniform1f, "_glUniform1i": _glUniform1i, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_glAttachShader": _glAttachShader, "_fseek": _fseek, "_getenv": _getenv, "_fclose": _fclose, "_sqrtf": _sqrtf, "_glActiveTexture": _glActiveTexture, "_glfwSwapBuffers": _glfwSwapBuffers, "_recv": _recv, "_glCompileShader": _glCompileShader, "_glEnableVertexAttribArray": _glEnableVertexAttribArray, "_abort": _abort, "_glBufferData": _glBufferData, "_glTexImage2D": _glTexImage2D, "_fopen": _fopen, "_sin": _sin, "_cosf": _cosf, "_SDL_CloseAudio": _SDL_CloseAudio, "___gxx_personality_v0": ___gxx_personality_v0, "_fflush": _fflush, "_SDL_FreeRW": _SDL_FreeRW, "_SDL_PauseAudio": _SDL_PauseAudio, "_glGetUniformLocation": _glGetUniformLocation, "_glClear": _glClear, "_glUniform4fv": _glUniform4fv, "_Mix_FreeChunk": _Mix_FreeChunk, "_sinf": _sinf, "_IMG_Load_RW": _IMG_Load_RW, "_vprintf": _vprintf, "_glBindAttribLocation": _glBindAttribLocation, "_glGetShaderiv": _glGetShaderiv, "_pread": _pread, "_mkport": _mkport, "_glLinkProgram": _glLinkProgram, "_emscripten_set_main_loop": _emscripten_set_main_loop, "___errno_location": ___errno_location, "_fputc": _fputc, "___cxa_throw": ___cxa_throw, "_glDisable": _glDisable, "_glTexParameteri": _glTexParameteri, "__formatString": __formatString, "_fputs": _fputs, "_SDL_UpperBlit": _SDL_UpperBlit, "_SDL_RWFromConstMem": _SDL_RWFromConstMem, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "NaN": NaN, "Infinity": Infinity }, buffer);
+  var real__strlen = asm["_strlen"]; asm["_strlen"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return real____cxa_can_catch.apply(null, arguments);
+  return real__strlen.apply(null, arguments);
 };
 
 var real__main = asm["_main"]; asm["_main"] = function() {
@@ -17950,22 +18083,10 @@ var real__main = asm["_main"]; asm["_main"] = function() {
   return real__main.apply(null, arguments);
 };
 
-var real____cxa_is_pointer_type = asm["___cxa_is_pointer_type"]; asm["___cxa_is_pointer_type"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return real____cxa_is_pointer_type.apply(null, arguments);
-};
-
 var real__realloc = asm["_realloc"]; asm["_realloc"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return real__realloc.apply(null, arguments);
-};
-
-var real__strlen = asm["_strlen"]; asm["_strlen"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return real__strlen.apply(null, arguments);
 };
 
 var real__calloc = asm["_calloc"]; asm["_calloc"] = function() {
@@ -17979,12 +18100,10 @@ var real_runPostSets = asm["runPostSets"]; asm["runPostSets"] = function() {
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return real_runPostSets.apply(null, arguments);
 };
-var ___cxa_can_catch = Module["___cxa_can_catch"] = asm["___cxa_can_catch"];
+var _strlen = Module["_strlen"] = asm["_strlen"];
 var _free = Module["_free"] = asm["_free"];
 var _main = Module["_main"] = asm["_main"];
-var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = asm["___cxa_is_pointer_type"];
 var _realloc = Module["_realloc"] = asm["_realloc"];
-var _strlen = Module["_strlen"] = asm["_strlen"];
 var _memset = Module["_memset"] = asm["_memset"];
 var _malloc = Module["_malloc"] = asm["_malloc"];
 var _memcpy = Module["_memcpy"] = asm["_memcpy"];
@@ -17998,7 +18117,6 @@ var dynCall_vii = Module["dynCall_vii"] = asm["dynCall_vii"];
 var dynCall_ii = Module["dynCall_ii"] = asm["dynCall_ii"];
 var dynCall_v = Module["dynCall_v"] = asm["dynCall_v"];
 var dynCall_viiiiii = Module["dynCall_viiiiii"] = asm["dynCall_viiiiii"];
-var dynCall_viiiiiiii = Module["dynCall_viiiiiiii"] = asm["dynCall_viiiiiiii"];
 var dynCall_viiii = Module["dynCall_viiii"] = asm["dynCall_viiii"];
   
   Runtime.stackAlloc = asm['stackAlloc'];

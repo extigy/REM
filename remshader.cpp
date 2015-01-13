@@ -5,7 +5,7 @@ REMShaderManager::REMShaderManager(REMRenderDevice* renderDevice){
   _renderDevice =  renderDevice;
 }
 
-int REMShaderManager::createVShader(const char *pData, bool bLoadFromFile,REMVertexFormat vertexFormat, unsigned int* pID){
+int REMShaderManager::createVShader(const char *pData, bool bLoadFromFile, unsigned int* pID){
   char* vs_source;
   long fSize;
   GLint compile_ok = GL_FALSE;
@@ -45,7 +45,7 @@ int REMShaderManager::createVShader(const char *pData, bool bLoadFromFile,REMVer
     if ( infoLen > 1 ){
       char* infoLog = (char*)malloc (sizeof(char) * infoLen );
       glGetShaderInfoLog ( vs, infoLen, NULL, infoLog );
-      printf( "Error compiling shader:\n%s\n", infoLog );
+      log( "Error compiling shader:\n%s.", infoLog );
       free ( infoLog );
     }
   }
@@ -54,14 +54,13 @@ int REMShaderManager::createVShader(const char *pData, bool bLoadFromFile,REMVer
     free(vs_source);
   }
 
-  _pVertexFormat[_nNumVShaders] = vertexFormat;
   _pVShader[_nNumVShaders] = vs;
 
   if(pID){
     (*pID) = _nNumVShaders;
   }
 
-  printf( "Created Vertex Shader with ID: %d\n", _nNumVShaders );
+  log( "Created Vertex Shader with ID: %d.", _nNumVShaders );
   _nNumVShaders++;
   return REMOK;
 }
@@ -106,7 +105,7 @@ int REMShaderManager::createFShader(const char *pData, bool bLoadFromFile, unsig
     if ( infoLen > 1 ){
       char* infoLog = (char*)malloc (sizeof(char) * infoLen );
       glGetShaderInfoLog ( fs, infoLen, NULL, infoLog );
-      printf( "Error compiling shader:\n%s\n", infoLog );
+      log( "Error compiling shader:\n%s.", infoLog );
       free ( infoLog );
     }
   }
@@ -121,7 +120,7 @@ int REMShaderManager::createFShader(const char *pData, bool bLoadFromFile, unsig
     (*pID) = _nNumFShaders;
   }
 
-  printf( "Created Fragment Shader with ID: %d\n", _nNumFShaders );
+  log( "Created Fragment Shader with ID: %d.", _nNumFShaders );
   _nNumFShaders++;
   return REMOK;
 }
@@ -135,8 +134,7 @@ int REMShaderManager::createProgram(unsigned int vID, unsigned int fID, unsigned
   if(pID){
     (*pID) = _nNumPrograms;
   }
-  printf("Created Shader programme: %d\n",_nNumPrograms);
-  _pVertexFormatProgram[_nNumPrograms] = _pVertexFormat[vID];
+  log("Created Shader programme: %d.",_nNumPrograms);
   _nNumPrograms++;
   return REMOK;
 }
@@ -146,21 +144,19 @@ int REMShaderManager::activateProgram(unsigned int pID){
   _renderDevice->getVertexManager()->forcedFlushAll();
   glUseProgram(_pProgram[pID]);
   _activeProgram = _pProgram[pID];
-
-  REMColour cMat;
-  cMat.fR = 1.0f;
-  cMat.fG = 1.0f;
-  cMat.fB = 1.0f;
-  cMat.fA = 1.0f;
-  glUniform4fv(glGetUniformLocation(_pProgram[pID], "matDiffuse"),1,cMat.c);
-  glUniform4fv(glGetUniformLocation(_pProgram[pID], "matAmbient"),1,cMat.c);
-  glUniform4fv(glGetUniformLocation(_pProgram[pID], "matSpecular"),1,cMat.c);
-  glUniform4fv(glGetUniformLocation(_pProgram[pID], "matEmissive"),1,cMat.c);
-  glUniform1f(glGetUniformLocation(_pProgram[pID], "matPower"),1.0f);
-  printf("Activated Shader Program: %d.\n",pID);
+  log("Activated Shader Program: %d.",pID);
   return REMOK;
 }
 
 GLuint REMShaderManager::getActiveProgram(){
   return(_activeProgram);
+}
+
+void REMShaderManager::log(char* chString,...){
+  va_list args;
+  va_start(args, chString);
+  printf("[ShaderManager]: ");
+  vprintf(chString, args);
+  printf("\n");
+  va_end(args);
 }

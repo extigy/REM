@@ -8,8 +8,6 @@ class REMShaderManager{
 private:
   REMRenderDevice* _renderDevice;
   GLuint          _pVShader[MAX_ID];
-  REMVertexFormat _pVertexFormat[MAX_ID];
-  REMVertexFormat _pVertexFormatProgram[MAX_ID];
   GLuint          _pFShader[MAX_ID];
   GLuint          _pProgram[MAX_ID];
   unsigned int _nNumVShaders;
@@ -18,11 +16,12 @@ private:
   GLuint _activeProgram;
 public:
   REMShaderManager(REMRenderDevice* renderDevice);
-  int createVShader(const char *pData, bool bLoadFromFile, REMVertexFormat vertexFormat, unsigned int* pID);
+  int createVShader(const char *pData, bool bLoadFromFile, unsigned int* pID);
   int createFShader(const char *pData, bool bLoadFromFile, unsigned int* pID);
   int createProgram(unsigned int vID, unsigned int fID, unsigned int* pID);
   int activateProgram(unsigned int pID);
   GLuint getActiveProgram();
+  void log(char*,...);
 };
 
 #endif

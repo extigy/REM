@@ -30,6 +30,7 @@ public:
   unsigned int getActiveCache();
   void setActiveCache(unsigned int cID);
   REMRenderDevice* getRenderDevice();
+  void log(char*,...);
 };
 
 class REMVertexCache{

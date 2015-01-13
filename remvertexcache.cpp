@@ -11,11 +11,23 @@ REMVertexCacheManager::REMVertexCacheManager(REMRenderDevice* r, unsigned int nM
   _dwActiveCache = MAX_ID;
   _dwActiveB = MAX_ID;
 
+  log("Creating Vertex Buffers...");
   for(i=0;i<NUM_CACHES;i++){
     _cacheUU[i] = new REMVertexCache(UU_VERTEX,nMaxVerts,nMaxIndis,sizeof(REMUUVertex),r->getSkinManager(),this,dwID++);
     _cacheUL[i] = new REMVertexCache(UL_VERTEX,nMaxVerts,nMaxIndis,sizeof(REMULVertex),r->getSkinManager(),this,dwID++);
   }
+  log("Done.");
 }
+
+void REMVertexCacheManager::log(char* chString,...){
+  va_list args;
+  va_start(args, chString);
+  printf("[VertexCacheManager]: ");
+  vprintf(chString, args);
+  printf("\n");
+  va_end(args);
+}
+
 
 REMVertexCacheManager::~REMVertexCacheManager(){
   unsigned int n=0;
@@ -146,6 +158,7 @@ int REMVertexCacheManager::createBuffer(REMVertexFormat vertexFormat, unsigned i
   _pB[_nNumB].nNumIndis = nIndis;
   _pB[_nNumB].nSkinID = nSkinID;
 
+  _pB[_nNumB].vF = vertexFormat;
   switch(vertexFormat){
     case UU_VERTEX:
     _pB[_nNumB].nStride = sizeof(REMUUVertex);
@@ -189,6 +202,32 @@ int REMVertexCacheManager::render(unsigned int nID){
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, _pB[nID].nNumIndis*sizeof(unsigned short), _pB[nID].pID, GL_STATIC_DRAW);
     }
     glBindBuffer(GL_ARRAY_BUFFER, _pB[nID].pVB);
+    switch(_pB[nID].vF){
+      case UU_VERTEX:
+      glVertexAttribPointer(0, 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)0);
+      glEnableVertexAttribArray(0);
+      glBindAttribLocation(_renderDevice->getShaderManager()->getActiveProgram(),0,"aPosition");
+      glVertexAttribPointer(1, 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(4*sizeof(float)));
+      glEnableVertexAttribArray(1);
+      glBindAttribLocation(_renderDevice->getShaderManager()->getActiveProgram(),1,"aNormal");
+      glVertexAttribPointer(2, 2, GL_UNSIGNED_SHORT, 0, sizeof(REMUUVertex), (const void*)(8*sizeof(float)));
+      glEnableVertexAttribArray(2);
+      glBindAttribLocation(_renderDevice->getShaderManager()->getActiveProgram(),2,"aTexCoord");
+      break;
+      case UL_VERTEX:
+      glVertexAttribPointer(0, 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
+      glEnableVertexAttribArray(0);
+      glBindAttribLocation(_renderDevice->getShaderManager()->getActiveProgram(),0,"aPosition");
+      glVertexAttribPointer(1, 4, GL_FLOAT, 0, sizeof(REMULVertex), (const void*)(4*sizeof(float)));
+      glEnableVertexAttribArray(1);
+      glBindAttribLocation(_renderDevice->getShaderManager()->getActiveProgram(),1,"aColour");
+      glVertexAttribPointer(2, 2, GL_UNSIGNED_SHORT, 0, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
+      glEnableVertexAttribArray(2);
+      glBindAttribLocation(_renderDevice->getShaderManager()->getActiveProgram(),2,"aTexCoord");
+      break;
+      default:
+      return REMFAIL;
+    }
     glBufferData(GL_ARRAY_BUFFER, _pB[nID].nNumVerts*_pB[nID].nStride, _pB[nID].pVD, GL_STATIC_DRAW);
   }
 
@@ -208,13 +247,13 @@ int REMVertexCacheManager::render(unsigned int nID){
       cMat = pMat->cEmissive;
       glUniform4fv(glGetUniformLocation(_renderDevice->getShaderManager()->getActiveProgram(), "matEmissive"),1,cMat.c);
       glUniform1f(glGetUniformLocation(_renderDevice->getShaderManager()->getActiveProgram(), "matPower"),pMat->fPower);
-
       for(int i=0;i<8;i++){
         if(pSkin->nTexture[i] != MAX_ID){
           unsigned int* pTex = NULL;
           pTex = _renderDevice->getSkinManager()->_pTextures[pSkin->nTexture[i]].pData;
           glActiveTexture(0x84C0+i);
           glBindTexture(GL_TEXTURE_2D, *pTex);
+          glUniform1i(glGetUniformLocation(_renderDevice->getShaderManager()->getActiveProgram(), "uSampler0"), 0);
         } else break;
       }
     } else {
@@ -228,6 +267,7 @@ int REMVertexCacheManager::render(unsigned int nID){
 
       glActiveTexture(0x84C0);
       glBindTexture(GL_TEXTURE_2D, 0);
+      glUniform1i(glGetUniformLocation(_renderDevice->getShaderManager()->getActiveProgram(), "uSampler0"), 0);
     }
 
     //TODO: ALTERNATIVE BLENDING FCNS
@@ -287,7 +327,7 @@ REMVertexCache::REMVertexCache(REMVertexFormat vertexFormat,unsigned int nVertsM
   _skinID = MAX_ID;
   glGenBuffers(2, _pB);
   if(_pB[0] < 0 && _pB[1]<0){
-    printf("Error creating buffers in Vertex Cache.\n");
+    _pVCM->log("Error creating buffers in Vertex Cache.");
     return;
   }
 
@@ -363,6 +403,7 @@ int REMVertexCache::add(unsigned int nVerts, unsigned int nIndis, void* pVerts, 
 
 int REMVertexCache::flush(){
   REMRenderState sm;
+  GLuint sp = _pVCM->getRenderDevice()->getShaderManager()->getActiveProgram();
   int ret = REMFAIL;
   if(_nNumVerts <= 0) return REMOK;
   if(_pVCM->getActiveCache() != _dwID){
@@ -371,18 +412,24 @@ int REMVertexCache::flush(){
       case UU_VERTEX:
         glVertexAttribPointer(0, 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)0);
         glEnableVertexAttribArray(0);
+        glBindAttribLocation(sp,0,"aPosition");
         glVertexAttribPointer(1, 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(4*sizeof(float)));
         glEnableVertexAttribArray(1);
+        glBindAttribLocation(sp,1,"aNormal");
         glVertexAttribPointer(2, 2, GL_UNSIGNED_SHORT, 0, sizeof(REMUUVertex), (const void*)(8*sizeof(float)));
         glEnableVertexAttribArray(2);
+        glBindAttribLocation(sp,2,"aTexCoord");
       break;
       case UL_VERTEX:
         glVertexAttribPointer(0, 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
         glEnableVertexAttribArray(0);
+        glBindAttribLocation(sp,0,"aPosition");
         glVertexAttribPointer(1, 4, GL_FLOAT, 0, sizeof(REMULVertex), (const void*)(4*sizeof(float)));
         glEnableVertexAttribArray(1);
+        glBindAttribLocation(sp,1,"aColour");
         glVertexAttribPointer(2, 2, GL_UNSIGNED_SHORT, 0, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
         glEnableVertexAttribArray(2);
+        glBindAttribLocation(sp,2,"aTexCoord");
       break;
       default:
       return REMFAIL;
@@ -399,32 +446,35 @@ int REMVertexCache::flush(){
     if(_pVCM->getRenderDevice()->getShadeMode()!=RS_SHADE_TRIWIRE){
       REMColour cMat;
       cMat = pMat->cDiffuse;
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matDiffuse"),1,cMat.c);
+      glUniform4fv(glGetUniformLocation(sp, "matDiffuse"),1,cMat.c);
       cMat = pMat->cAmbient;
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matAmbient"),1,cMat.c);
+      glUniform4fv(glGetUniformLocation(sp, "matAmbient"),1,cMat.c);
       cMat = pMat->cSpecular;
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matSpecular"),1,cMat.c);
+      glUniform4fv(glGetUniformLocation(sp, "matSpecular"),1,cMat.c);
       cMat = pMat->cEmissive;
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matEmissive"),1,cMat.c);
-      glUniform1f(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matPower"),pMat->fPower);
+      glUniform4fv(glGetUniformLocation(sp, "matEmissive"),1,cMat.c);
+      glUniform1f(glGetUniformLocation(sp, "matPower"),pMat->fPower);
       for(int i=0;i<8;i++){
         if(_skin.nTexture[i] != MAX_ID){
           pTex = _pSkinMan->_pTextures[_skin.nTexture[i]].pData;
+          printf("texture binding - %d\n",*pTex);
           glActiveTexture(0x84C0+i);
           glBindTexture(GL_TEXTURE_2D, *pTex);
+          glUniform1i(glGetUniformLocation(sp, "uSampler0"), 0);
         } else break;
       }
     } else {
       REMColour clrWire = _pVCM->getRenderDevice()->_clrWire;
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matDiffuse"),1,clrWire.c);
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matAmbient"),1,clrWire.c);
+      glUniform4fv(glGetUniformLocation(sp, "matDiffuse"),1,clrWire.c);
+      glUniform4fv(glGetUniformLocation(sp, "matAmbient"),1,clrWire.c);
       clrWire.fR = 0.0f;clrWire.fG = 0.0f;clrWire.fB = 0.0f;clrWire.fA = 1.0f;
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matSpecular"),1,clrWire.c);
-      glUniform4fv(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matEmissive"),1,clrWire.c);
-      glUniform1f(glGetUniformLocation(_pVCM->getRenderDevice()->getShaderManager()->getActiveProgram(), "matPower"),1.0f);
+      glUniform4fv(glGetUniformLocation(sp, "matSpecular"),1,clrWire.c);
+      glUniform4fv(glGetUniformLocation(sp, "matEmissive"),1,clrWire.c);
+      glUniform1f(glGetUniformLocation(sp, "matPower"),1.0f);
 
       glActiveTexture(0x84C0);
       glBindTexture(GL_TEXTURE_2D, 0);
+      glUniform1i(glGetUniformLocation(sp, "uSampler0"), 0);
     }
 
     //TODO: ALTERNATIVE BLENDING FCNS

@@ -277,23 +277,23 @@ int REMSkinManager::createTexture(REMTexture* pTexture, bool bAlpha){
     return REMGLGENTEXTUREERROR;
   }
   glBindTexture(GL_TEXTURE_2D, texID);
+  glTexImage2D(GL_TEXTURE_2D, 0, rI->format, rI->width, rI->height, 0, GL_RGBA, rI->type, rI->pData);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glTexImage2D(GL_TEXTURE_2D, 0, rI->format, rI->width, rI->height, 0, rI->format, rI->type, rI->pData);
-  //glGenerateMipmap(GL_TEXTURE_2D);
+  glGenerateMipmap(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, 0);
 
   pTexture->pData = new GLuint[1];
   memcpy(pTexture->pData, &texID, 1);
   if(pTexture->pData == NULL) return REMOUTOFMEMORY;
-  releaseRawImage(rI);
+  //releaseRawImage(rI);
   return REMOK;
 }
 
 void REMSkinManager::log(char* chString,...){
   va_list args;
   va_start(args, chString);
-  printf("[REMSkinManager]: ");
+  printf("[SkinManager]: ");
   vprintf(chString, args);
   printf("\n");
   va_end(args);

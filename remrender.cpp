@@ -42,37 +42,54 @@ int REMRenderDevice::oneTimeInit(){
   setClippingPlanes(0.1f,1000.0f);
   setWorldTransform(NULL);
 
-  _pShaderMan->createVShader("./shader/vertex.glsl", true,UL_VERTEX, NULL);
-  _pShaderMan->createFShader("./shader/fragment.glsl", true, NULL);
+
+
+  _pShaderMan->createVShader("./shader/UL_V0.glsl", true, NULL);
+  _pShaderMan->createFShader("./shader/UL_F0.glsl", true, NULL);
   _pShaderMan->createProgram(0, 0, NULL);
   _pShaderMan->activateProgram(0);
+  //_pShaderMan->createVShader("./shader/UU_V0.glsl", true, NULL);
+  //_pShaderMan->createFShader("./shader/UU_F0.glsl", true, NULL);
+  //_pShaderMan->createProgram(1, 1, NULL);
+  //_pShaderMan->activateProgram(1);
 
-  initStage(0.8f,&vpView,0);
+  //default material
+  REMColour cMat;
+  cMat.fR = 1.0f;
+  cMat.fG = 1.0f;
+  cMat.fB = 1.0f;
+  cMat.fA = 1.0f;
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matDiffuse"),1,cMat.c);
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matAmbient"),1,cMat.c);
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matSpecular"),1,cMat.c);
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matEmissive"),1,cMat.c);
+  glUniform1f(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matPower"),1.0f);
+
+  initStage(0.9f,&vpView,0);
   setMode(PERSPECTIVE,0);
-
   return REMOK;
 }
 
 
 int REMRenderDevice::setView3D(const REMVector& vcRight,const REMVector& vcUp,const REMVector& vcDir,const REMVector& vcPos){
   if (!_bRunning) return REMFAIL;
-  _mView3D._data[0][3] = _mView3D._data[1][3] = _mView3D._data[2][3] = 0.0f;
-  _mView3D._data[3][3] = 1.0f;
+  _mView3D._14 = _mView3D._24 = _mView3D._34 = 0.0f;
+  _mView3D._44 = 1.0f;
 
-  _mView3D._data[0][0] = vcRight.x;
-  _mView3D._data[1][0] = vcRight.y;
-  _mView3D._data[2][0] = vcRight.z;
-  _mView3D._data[3][0] = -(vcRight*vcPos);
+  _mView3D._11 = vcRight.x;
+  _mView3D._21 = vcRight.y;
+  _mView3D._31 = vcRight.z;
+  _mView3D._41 = -(vcRight*vcPos);
 
-  _mView3D._data[0][1] = vcUp.x;
-  _mView3D._data[1][1] = vcUp.y;
-  _mView3D._data[2][1] = vcUp.z;
-  _mView3D._data[3][1] = -(vcUp*vcPos);
+  _mView3D._12 = vcUp.x;
+  _mView3D._22 = vcUp.y;
+  _mView3D._32 = vcUp.z;
+  _mView3D._42 = -(vcUp*vcPos);
 
-  _mView3D._data[0][2] = vcDir.x;
-  _mView3D._data[1][2] = vcDir.y;
-  _mView3D._data[2][2] = vcDir.z;
-  _mView3D._data[3][2] = -(vcDir*vcPos);
+  _mView3D._13 = vcDir.x;
+  _mView3D._23 = vcDir.y;
+  _mView3D._33 = vcDir.z;
+  _mView3D._43 = -(vcDir*vcPos);
 
   calcViewProjMatrix();
   calcWorldViewProjMatrix();
@@ -116,35 +133,35 @@ int REMRenderDevice::setViewLookAt(const REMVector& vcPos,const REMVector& vcPoi
 }
 
 int REMRenderDevice::getFrustum(REMPlane* p){
-  p[0]._vcN.x = -(_mViewProj._data[0][3] + _mViewProj._data[0][0]);
-  p[0]._vcN.y = -(_mViewProj._data[1][3] + _mViewProj._data[1][0]);
-  p[0]._vcN.z = -(_mViewProj._data[2][3] + _mViewProj._data[2][0]);
-  p[0]._fD    = -(_mViewProj._data[3][3] + _mViewProj._data[3][0]);
+  p[0]._vcN.x = -(_mViewProj._14 + _mViewProj._11);
+  p[0]._vcN.y = -(_mViewProj._24 + _mViewProj._21);
+  p[0]._vcN.z = -(_mViewProj._34 + _mViewProj._31);
+  p[0]._fD    = -(_mViewProj._44 + _mViewProj._41);
 
-  p[1]._vcN.x = -(_mViewProj._data[0][3] - _mViewProj._data[0][0]);
-  p[1]._vcN.y = -(_mViewProj._data[1][3] - _mViewProj._data[1][0]);
-  p[1]._vcN.z = -(_mViewProj._data[2][3] - _mViewProj._data[2][0]);
-  p[1]._fD    = -(_mViewProj._data[3][3] - _mViewProj._data[3][0]);
+  p[1]._vcN.x = -(_mViewProj._14 - _mViewProj._11);
+  p[1]._vcN.y = -(_mViewProj._24 - _mViewProj._21);
+  p[1]._vcN.z = -(_mViewProj._34 - _mViewProj._31);
+  p[1]._fD    = -(_mViewProj._44 - _mViewProj._41);
 
-  p[2]._vcN.x = -(_mViewProj._data[0][3] - _mViewProj._data[0][1]);
-  p[2]._vcN.y = -(_mViewProj._data[1][3] - _mViewProj._data[1][1]);
-  p[2]._vcN.z = -(_mViewProj._data[2][3] - _mViewProj._data[2][1]);
-  p[2]._fD    = -(_mViewProj._data[3][3] - _mViewProj._data[3][1]);
+  p[2]._vcN.x = -(_mViewProj._14 - _mViewProj._12);
+  p[2]._vcN.y = -(_mViewProj._24 - _mViewProj._22);
+  p[2]._vcN.z = -(_mViewProj._34 - _mViewProj._32);
+  p[2]._fD    = -(_mViewProj._44 - _mViewProj._42);
 
-  p[3]._vcN.x = -(_mViewProj._data[0][3] + _mViewProj._data[0][1]);
-  p[3]._vcN.y = -(_mViewProj._data[1][3] + _mViewProj._data[1][1]);
-  p[3]._vcN.z = -(_mViewProj._data[2][3] + _mViewProj._data[2][1]);
-  p[3]._fD    = -(_mViewProj._data[3][3] + _mViewProj._data[3][1]);
+  p[3]._vcN.x = -(_mViewProj._14 + _mViewProj._12);
+  p[3]._vcN.y = -(_mViewProj._24 + _mViewProj._22);
+  p[3]._vcN.z = -(_mViewProj._34 + _mViewProj._32);
+  p[3]._fD    = -(_mViewProj._44 + _mViewProj._42);
 
-  p[4]._vcN.x = -_mViewProj._data[0][2];
-  p[4]._vcN.y = -_mViewProj._data[1][2];
-  p[4]._vcN.z = -_mViewProj._data[2][2];
-  p[4]._fD    = -_mViewProj._data[3][2];
+  p[4]._vcN.x = -_mViewProj._13;
+  p[4]._vcN.y = -_mViewProj._23;
+  p[4]._vcN.z = -_mViewProj._33;
+  p[4]._fD    = -_mViewProj._43;
 
-  p[5]._vcN.x = -(_mViewProj._data[0][3] - _mViewProj._data[0][2]);
-  p[5]._vcN.y = -(_mViewProj._data[1][3] - _mViewProj._data[1][2]);
-  p[5]._vcN.z = -(_mViewProj._data[2][3] - _mViewProj._data[2][2]);
-  p[5]._fD    = -(_mViewProj._data[3][3] - _mViewProj._data[3][2]);
+  p[5]._vcN.x = -(_mViewProj._14 - _mViewProj._13);
+  p[5]._vcN.y = -(_mViewProj._24 - _mViewProj._23);
+  p[5]._vcN.z = -(_mViewProj._34 - _mViewProj._33);
+  p[5]._fD    = -(_mViewProj._44 - _mViewProj._43);
 
   for (int i=0;i<6;i++){
     float fL = p[i]._vcN.getLength();
@@ -170,39 +187,40 @@ void REMRenderDevice::setClippingPlanes(float fNear, float fFar){
 
   float Q = 1.0f/(_fFar - _fNear);
   float X = -Q*_fNear;
-  _mProjO[0]._data[2][2] = _mProjO[1]._data[2][2] = Q;
-  _mProjO[2]._data[2][2] = _mProjO[3]._data[2][2] = Q;
-  _mProjO[0]._data[3][2] = _mProjO[1]._data[3][2] = X;
-  _mProjO[2]._data[3][2] = _mProjO[3]._data[3][2] = X;
+  _mProjO[0]._33 = _mProjO[1]._33 = Q;
+  _mProjO[2]._33 = _mProjO[3]._33 = Q;
+  _mProjO[0]._43 = _mProjO[1]._43 = X;
+  _mProjO[2]._43 = _mProjO[3]._43 = X;
 
   Q*=_fFar;
   X = -Q*_fNear;
 
-  _mProjP[0]._data[2][2] = _mProjP[1]._data[2][2] = Q;
-  _mProjP[2]._data[2][2] = _mProjP[3]._data[2][2] = Q;
-  _mProjP[0]._data[3][2] = _mProjP[1]._data[3][2] = X;
-  _mProjP[2]._data[3][2] = _mProjP[3]._data[3][2] = X;
+  _mProjP[0]._33 = _mProjP[1]._33 = Q;
+  _mProjP[2]._33 = _mProjP[3]._33 = Q;
+  _mProjP[0]._43 = _mProjP[1]._43 = X;
+  _mProjP[2]._43 = _mProjP[3]._43 = X;
 }
 
 void REMRenderDevice::prepare2D(){
   _mProj2D.identity();
   _mView2D.identity();
 
-  _mProj2D._data[0][0] = 2.0f/REMWIDTH;
-  _mProj2D._data[1][1] = 2.0f/REMHEIGHT;
-  _mProj2D._data[2][2] = 1.0f/(_fFar-_fNear);
-  _mProj2D._data[3][2] = -_fNear*(1.0f/(_fFar-_fNear));
-  _mProj2D._data[3][3] = 1.0f;
+  _mProj2D._11 = 2.0f/REMWIDTH;
+  _mProj2D._22 = 2.0f/REMHEIGHT;
+  _mProj2D._33 = 1.0f/(_fFar-_fNear);
+  _mProj2D._43 = -_fNear*(1.0f/(_fFar-_fNear));
+  _mProj2D._44 = 1.0f;
 
   float tx,ty,tz;
   tx = -((int)REMWIDTH) + REMWIDTH*0.5f;
   ty = REMHEIGHT - REMHEIGHT*0.5f;
   tz = _fNear + 0.1f;
 
-  _mView2D._data[1][1] = -1.0f;
-  _mView2D._data[3][0] = tx;
-  _mView2D._data[3][1] = ty;
-  _mView2D._data[3][2] = tz;
+  _mView2D._22 = -1.0f;
+  _mView2D._41 = tx;
+  _mView2D._42 = ty;
+  _mView2D._43 = tz;
+
 }
 
 int REMRenderDevice::calcPerspProjMatrix(float fFOV, float fAspect, REMMatrix* m){
@@ -220,11 +238,12 @@ int REMRenderDevice::calcPerspProjMatrix(float fFOV, float fAspect, REMMatrix* m
 
   m->identity();
 
-  m->_data[0][0]=w;
-  m->_data[1][1]=h;
-  m->_data[2][2]=Q;
-  m->_data[2][3]=1.0f;
-  m->_data[3][2]=-Q*_fNear;
+  m->_11=w;
+  m->_22=h;
+  m->_33=Q;
+  m->_34=1.0f;
+  m->_43=-Q*_fNear;
+  m->_44=0.0f;
   return REMOK;
 }
 
@@ -266,10 +285,8 @@ void REMRenderDevice::calcWorldViewProjMatrix(){
   }
   REMMatrix* pCombo = &_mWorldViewProj;
   (*pCombo) = ((*pWorld)*(*pView))*(*pProj);
-
-  //_mWorldViewProj.transposeOf(_mWorldViewProj);
-  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMat"),1,0,&(_mWorldViewProj._data[0][0]));
-  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMatTrans"),1,1,&(_mWorldViewProj._data[0][0]));
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMat"),1,0,_mWorldViewProj._data);
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMatTrans"),1,1,_mWorldViewProj._data);
 
 }
 
@@ -323,14 +340,14 @@ int REMRenderDevice::initStage(float fFOV, REMViewport* pView, int nStage){
 
   fAspect = (float)(_VP[nStage].height) / _VP[nStage].width;
 
-  if (this->calcPerspProjMatrix(fFOV, fAspect, &_mProjP[nStage]) < 0) return REMFAIL;
+  calcPerspProjMatrix(fFOV, fAspect, &_mProjP[nStage]);
 
   _mProjO[nStage].identity();
-  _mProjO[nStage]._data[0][0] = 2.0f / _VP[nStage].width;
-  _mProjO[nStage]._data[1][1] = 2.0f / _VP[nStage].height;
-  _mProjO[nStage]._data[2][2] = 1.0f / (_fFar - _fNear);
-  _mProjO[nStage]._data[3][2] = -(_fNear * _mProjO[nStage]._data[2][2]);
-  _mProjO[nStage]._data[3][3] = 1.0f;
+  _mProjO[nStage]._11 = 2.0f / _VP[nStage].width;
+  _mProjO[nStage]._22 = 2.0f / _VP[nStage].height;
+  _mProjO[nStage]._33 = 1.0f / (_fFar - _fNear);
+  _mProjO[nStage]._43 = -(_fNear * _mProjO[nStage]._33);
+  _mProjO[nStage]._44 = 1.0f;
   return REMOK;
 }
 
@@ -350,9 +367,9 @@ POINT REMRenderDevice::transform3DTo2D(const REMVector& vcPoint){
   fClip_x = (float)(width  >> 1);
   fClip_y = (float)(height >> 1);
 
-  fXp = (_mViewProj._data[0][0]*vcPoint.x) + (_mViewProj._data[1][0]*vcPoint.y) + (_mViewProj._data[2][0]*vcPoint.z) + _mViewProj._data[3][0];
-  fYp = (_mViewProj._data[0][1]*vcPoint.x) + (_mViewProj._data[1][1]*vcPoint.y) + (_mViewProj._data[2][1]*vcPoint.z) + _mViewProj._data[3][1];
-  fWp = (_mViewProj._data[0][3]*vcPoint.x) + (_mViewProj._data[1][3]*vcPoint.y) + (_mViewProj._data[2][3]*vcPoint.z) + _mViewProj._data[3][3];
+  fXp = (_mViewProj._11*vcPoint.x) + (_mViewProj._21*vcPoint.y) + (_mViewProj._31*vcPoint.z) + _mViewProj._41;
+  fYp = (_mViewProj._12*vcPoint.x) + (_mViewProj._22*vcPoint.y) + (_mViewProj._32*vcPoint.z) + _mViewProj._42;
+  fWp = (_mViewProj._14*vcPoint.x) + (_mViewProj._24*vcPoint.y) + (_mViewProj._34*vcPoint.z) + _mViewProj._44;
 
   float fWpInv = 1.0f / fWp;
 
@@ -383,19 +400,19 @@ void REMRenderDevice::transform2DTo3D(const POINT& pt, REMVector* vcOrig, REMVec
       pProj = &_mProjO[_nStage];
     }
   }
-  vcS.x = (((pt.x*2.0f) / width) - 1.0f) / _mProjP[_nStage]._data[0][0];
-  vcS.y = (((pt.y*2.0f) / height) - 1.0f) / _mProjP[_nStage]._data[1][1];
+  vcS.x = (((pt.x*2.0f) / width) - 1.0f) / _mProjP[_nStage]._11;
+  vcS.y = (((pt.y*2.0f) / height) - 1.0f) / _mProjP[_nStage]._22;
   vcS.z = 1.0f;
 
   mInvView.inverseOf(_mView3D);
 
-  (*vcDir).x = (vcS.x * mInvView._data[0][0]) + (vcS.y * mInvView._data[1][0]) + (vcS.z * mInvView._data[2][0]);
-  (*vcDir).y = (vcS.x * mInvView._data[0][1]) + (vcS.y * mInvView._data[1][1]) + (vcS.z * mInvView._data[2][1]);
-  (*vcDir).z = (vcS.x * mInvView._data[0][2]) + (vcS.y * mInvView._data[1][2]) + (vcS.z * mInvView._data[2][2]);
+  (*vcDir).x = (vcS.x * mInvView._11) + (vcS.y * mInvView._21) + (vcS.z * mInvView._31);
+  (*vcDir).y = (vcS.x * mInvView._12) + (vcS.y * mInvView._22) + (vcS.z * mInvView._32);
+  (*vcDir).z = (vcS.x * mInvView._13) + (vcS.y * mInvView._23) + (vcS.z * mInvView._33);
 
-  (*vcOrig).x = mInvView._data[3][0];
-  (*vcOrig).y = mInvView._data[3][1];
-  (*vcOrig).z = mInvView._data[3][2];
+  (*vcOrig).x = mInvView._41;
+  (*vcOrig).y = mInvView._42;
+  (*vcOrig).z = mInvView._43;
 
   (*vcDir).normalise();
 }
@@ -409,8 +426,8 @@ void REMRenderDevice::setWorldTransform(const REMMatrix* mWorld){
     memcpy(&_mWorld, mWorld, sizeof(REMMatrix));
   }
 
-  calcWorldViewProjMatrix();
   GLuint activeProg = _pShaderMan->getActiveProgram();
+  calcWorldViewProjMatrix();
 }
 
 void REMRenderDevice::setBackfaceCulling(REMRenderState rs){

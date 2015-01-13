@@ -74,7 +74,7 @@ void REMQuat::getMatrix(REMMatrix* m){
   float wx, wy, wz, xx, yy, yz, xy, xz, zz, x2, y2, z2;
 
   memset(m, 0, sizeof(REMMatrix));
-  m->_data[3][3] = 1.0f;
+  m->_44 = 1.0f;
 
   x2 = x + x;
   y2 = y + y;
@@ -92,17 +92,17 @@ void REMQuat::getMatrix(REMMatrix* m){
   wy = w * y2;
   wz = w * z2;
 
-  m->_data[0][0] = 1.0f - (yy + zz);
-  m->_data[0][1] = xy - wz;
-  m->_data[0][2] = xz + wy;
+  m->_11 = 1.0f - (yy + zz);
+  m->_12 = xy - wz;
+  m->_13 = xz + wy;
 
-  m->_data[1][0] = xy + wz;
-  m->_data[1][1] = 1.0f - (xx + zz);
-  m->_data[1][2] = yz - wx;
+  m->_21 = xy + wz;
+  m->_22 = 1.0f - (xx + zz);
+  m->_23 = yz - wx;
 
-  m->_data[2][0] = xz - wy;
-  m->_data[2][1] = yz + wx;
-  m->_data[2][2] = 1.0f - (xx + yy);
+  m->_31 = xz - wy;
+  m->_32 = yz + wx;
+  m->_33 = 1.0f - (xx + yy);
 }
 
 void REMQuat::getEulers(float *fPitch, float *fYaw, float *fRoll) {

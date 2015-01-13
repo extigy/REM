@@ -10,8 +10,8 @@
 
 #define MAX_ID 65535
 #define NUM_CACHES 50
-#define REMWIDTH 280
-#define REMHEIGHT 200
+#define REMWIDTH 640
+#define REMHEIGHT 360
 
 #define REMOK 0
 #define REMFAIL -1
@@ -22,20 +22,20 @@
 #define GENERICERROR -5
 
 typedef enum REMVERTEX_TYPE{
-  UU_VERTEX,
+  UU_VERTEX = 0,
   UL_VERTEX
-} REMVertexFormat;  //VERTEXID
+} REMVertexFormat;  //VERTEX Type
 
 typedef struct UU_VERTEX_TYPE {
-  float vcP[4]; //position
-  float vcN[4]; //normal
-  unsigned short vcT[2]; //texture
+  float vcP[4];           //position
+  float vcN[4];           //normal
+  unsigned short vcT[2];  //texture
 } REMUUVertex;
 
 typedef struct UL_VERTEX_TYPE {
-  float vcP[4]; //position
-  float vcC[4]; //colour
-  unsigned short vcT[2]; //texture
+  float vcP[4];           //position
+  float vcC[4];           //colour
+  unsigned short vcT[2];  //texture
 } REMULVertex;
 
 typedef enum REMRENDERSTATE_TYPE{
@@ -80,6 +80,7 @@ typedef struct REMBUFFER_TYPE {
   unsigned int pIB = -1;
   void* pVD;
   unsigned short* pID;
+  REMVertexFormat vF;
 } REMBuffer;
 
 #endif
