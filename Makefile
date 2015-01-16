@@ -7,7 +7,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 .PHONY: $(EXEC)
 $(EXEC): $(OBJECTS)
-	$(CC) $(OBJECTS) $(addprefix --preload-file ,$(wildcard *.png *.bmp ./shader/*.glsl)) -o $(EXEC)
+	$(CC) $(OBJECTS) -s TOTAL_MEMORY=200000000 $(addprefix --preload-file ,$(wildcard ./textures/*.png ./textures/*.jpg ./shader/*.glsl)) -o $(EXEC)
 
 %.o: %.cpp
 	$(CC) -c $(CC_FLAGS) $< -o $@

@@ -65,7 +65,7 @@ int REMRenderDevice::oneTimeInit(){
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matEmissive"),1,cMat.c);
   glUniform1f(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matPower"),1.0f);
 
-  initStage(0.9f,&vpView,0);
+  initStage(0.85f,&vpView,0);
   setMode(PERSPECTIVE,0);
   return REMOK;
 }

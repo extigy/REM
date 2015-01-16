@@ -15,10 +15,10 @@ float xx = 0;
 
 void web_frame(){
   //draw calls
-  xx=xx+0.03f;
+  xx=xx+0.003f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  REMVector* a = new REMVector(25.0f*sin(xx),0.0f,-25.0f);
-  REMVector* b = new REMVector(0.0f,0.0f,0.0f);
+  REMVector* a = new REMVector(0.0,0.0f,0.0f);
+  REMVector* b = new REMVector(cos(xx)*1.0f,0.0f,sin(xx)*1.0f);
   REMVector* c = new REMVector(0.0f,0.0f,0.0f);
   rd->setViewLookAt(*a,*b,*c);
 
@@ -58,7 +58,7 @@ int main(int argc, char **argv){
     cAmbient.fR = 0.2f;cAmbient.fG = 0.2f;cAmbient.fB = 0.2f;cAmbient.fA = 1.0f;
 
     rd->getSkinManager()->addSkin(&cAmbient,&cMat,&cNone,&cNone, 1.0f, &nSkinID);
-    rd->getSkinManager()->addTexture(nSkinID, "awesome.png", true, 1.0f, NULL, 0);
+    rd->getSkinManager()->addTexture(nSkinID, "textures/brick.jpg", true, 1.0f, NULL, 0);
 
 
     points = (REMULVertex*)malloc(8*sizeof(REMULVertex));
