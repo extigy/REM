@@ -3,13 +3,17 @@ uniform mat4 WVPMat;
 uniform mat4 WVPMatTrans;
 
 attribute vec4 aPosition;
-attribute vec4 aNormal;
+attribute vec4 aColour;
+attribute vec2 aTexCoord;
 
 varying vec4 vPosition;
-varying vec4 vNormal;
+varying vec4 vColour;
+varying vec2 vTexCoord;
+
 
 void main(){
   vPosition = aPosition;
-  vNormal = aNormal;
+  vColour = aColour;
+  vTexCoord = aTexCoord;
   gl_Position = WVPMat*aPosition;
 }

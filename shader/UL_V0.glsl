@@ -1,4 +1,5 @@
 #version 100
+//Basic Lit Vertex Shader
 uniform mat4 WVPMat;
 uniform mat4 WVPMatTrans;
 

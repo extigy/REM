@@ -1,4 +1,5 @@
 precision highp float;
+//Basic Lit Vertex Shader
 uniform vec4 matDiffuse;
 uniform vec4 matAmbient;
 uniform vec4 matSpecular;
@@ -11,6 +12,7 @@ varying vec4 vColour;
 varying vec2 vTexCoord;
 
 void main(){
-  vec4 light  = vColour*matDiffuse;
-  gl_FragColor = texture2D(uSampler0, vec2(vTexCoord.s, vTexCoord.t));
+  vec4 light  = matAmbient + (vColour*matDiffuse);
+  vec4 tex  = texture2D(uSampler0, vTexCoord);
+  gl_FragColor = light*tex;
 }

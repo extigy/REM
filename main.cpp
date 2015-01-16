@@ -17,8 +17,8 @@ void web_frame(){
   //draw calls
   xx=xx+0.03f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  REMVector* a = new REMVector(10.0f*sin(xx),cos(xx)*10.0f,0.0f);
-  REMVector* b = new REMVector(0.0f,0.0f,20.0f);
+  REMVector* a = new REMVector(25.0f*sin(xx),0.0f,-25.0f);
+  REMVector* b = new REMVector(0.0f,0.0f,0.0f);
   REMVector* c = new REMVector(0.0f,0.0f,0.0f);
   rd->setViewLookAt(*a,*b,*c);
 
@@ -51,45 +51,47 @@ int main(int argc, char **argv){
     rd->oneTimeInit();
     unsigned int nSkinID;
     REMColour cMat;
-    cMat.fR = 1.0f;
-    cMat.fG = 1.0f;
-    cMat.fB = 1.0f;
-    cMat.fA = 1.0f;
-    rd->getSkinManager()->addSkin(&cMat,&cMat,&cMat,&cMat, 1.0f, &nSkinID);
+    cMat.fR = 1.0f;cMat.fG = 1.0f;cMat.fB = 1.0f;cMat.fA = 1.0f;
+    REMColour cNone;
+    cNone.fR = 0.0f;cNone.fG = 0.0f;cNone.fB = 0.0f;cNone.fA = 1.0f;
+    REMColour cAmbient;
+    cAmbient.fR = 0.2f;cAmbient.fG = 0.2f;cAmbient.fB = 0.2f;cAmbient.fA = 1.0f;
+
+    rd->getSkinManager()->addSkin(&cAmbient,&cMat,&cNone,&cNone, 1.0f, &nSkinID);
     rd->getSkinManager()->addTexture(nSkinID, "awesome.png", true, 1.0f, NULL, 0);
 
 
     points = (REMULVertex*)malloc(8*sizeof(REMULVertex));
-    memcpy(points[0].vcP, (float [4]){-5.0f, 5.0f, 15.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[0].vcP, (float [4]){-5.0f, 5.0f, -5.0f, 1.0f}, 4*sizeof(float));
     memcpy(points[0].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
     memcpy(points[0].vcT, (unsigned short [2]){0, 0}, 2*sizeof(unsigned short));
 
-    memcpy(points[1].vcP, (float [4]){5.0f, -5.0f, 15.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[1].vcP, (float [4]){5.0f, -5.0f, -5.0f, 1.0f}, 4*sizeof(float));
     memcpy(points[1].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[1].vcT, (unsigned short [2]){336, 336}, 2*sizeof(unsigned short));
+    memcpy(points[1].vcT, (unsigned short [2]){65535, 65535}, 2*sizeof(unsigned short));
 
-    memcpy(points[2].vcP, (float [4]){-5.0f, -5.0f, 15.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[2].vcP, (float [4]){-5.0f, -5.0f, -5.0f, 1.0f}, 4*sizeof(float));
     memcpy(points[2].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[2].vcT, (unsigned short [2]){0, 336}, 2*sizeof(unsigned short));
+    memcpy(points[2].vcT, (unsigned short [2]){0, 65535}, 2*sizeof(unsigned short));
 
-    memcpy(points[3].vcP, (float [4]){5.0f,  5.0f,  15.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[3].vcP, (float [4]){5.0f,  5.0f, -5.0f, 1.0f}, 4*sizeof(float));
     memcpy(points[3].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[3].vcT, (unsigned short [2]){336, 0}, 2*sizeof(unsigned short));
+    memcpy(points[3].vcT, (unsigned short [2]){65535, 0}, 2*sizeof(unsigned short));
 
-    memcpy(points[4].vcP, (float [4]){-5.0f, 5.0f, 25.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[4].vcC, (float [4]){0.8f, 0.0f, 0.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[4].vcT, (unsigned short [2]){0, 0}, 2*sizeof(unsigned short));
+    memcpy(points[4].vcP, (float [4]){-5.0f, 5.0f, 5.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[4].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[4].vcT, (unsigned short [2]){65535, 0}, 2*sizeof(unsigned short));
 
-    memcpy(points[5].vcP, (float [4]){5.0f, -5.0f, 25.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[5].vcC, (float [4]){0.8f, 0.8f, 0.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[5].vcT, (unsigned short [2]){0, 0}, 2*sizeof(unsigned short));
+    memcpy(points[5].vcP, (float [4]){5.0f, -5.0f, 5.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[5].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[5].vcT, (unsigned short [2]){0, 65535}, 2*sizeof(unsigned short));
 
-    memcpy(points[6].vcP, (float [4]){-5.0f, -5.0f, 25.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[6].vcC, (float [4]){0.0f, 0.8f, 0.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[6].vcT, (unsigned short [2]){0, 0}, 2*sizeof(unsigned short));
+    memcpy(points[6].vcP, (float [4]){-5.0f, -5.0f, 5.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[6].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[6].vcT, (unsigned short [2]){65535, 65535}, 2*sizeof(unsigned short));
 
-    memcpy(points[7].vcP, (float [4]){5.0f,  5.0f,  25.0f, 1.0f}, 4*sizeof(float));
-    memcpy(points[7].vcC, (float [4]){0.0f, 0.0f, 0.8f, 1.0f}, 4*sizeof(float));
+    memcpy(points[7].vcP, (float [4]){5.0f,  5.0f,  5.0f, 1.0f}, 4*sizeof(float));
+    memcpy(points[7].vcC, (float [4]){1.0f, 1.0f, 1.0f, 1.0f}, 4*sizeof(float));
     memcpy(points[7].vcT, (unsigned short [2]){0, 0}, 2*sizeof(unsigned short));
 
     glfwSwapBuffers();

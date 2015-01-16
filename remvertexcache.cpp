@@ -253,26 +253,20 @@ int REMVertexCache::flush(){
     glBindBuffer(GL_ARRAY_BUFFER, _pB[0]);
     switch(_vertexFormat){
       case UU_VERTEX:
-        glVertexAttribPointer(0, 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)0);
-        glEnableVertexAttribArray(0);
-        glBindAttribLocation(sp,0,"aPosition");
-        glVertexAttribPointer(1, 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(4*sizeof(float)));
-        glEnableVertexAttribArray(1);
-        glBindAttribLocation(sp,1,"aNormal");
-        glVertexAttribPointer(2, 2, GL_UNSIGNED_SHORT, 0, sizeof(REMUUVertex), (const void*)(8*sizeof(float)));
-        glEnableVertexAttribArray(2);
-        glBindAttribLocation(sp,2,"aTexCoord");
+        glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aPosition"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aNormal"), 4, GL_FLOAT, 0, sizeof(REMULVertex), (const void*)(4*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aNormal"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aTexCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexCoord"));
       break;
       case UL_VERTEX:
-        glVertexAttribPointer(0, 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
-        glEnableVertexAttribArray(0);
-        glBindAttribLocation(sp,0,"aPosition");
-        glVertexAttribPointer(1, 4, GL_FLOAT, 0, sizeof(REMULVertex), (const void*)(4*sizeof(float)));
-        glEnableVertexAttribArray(1);
-        glBindAttribLocation(sp,1,"aColour");
-        glVertexAttribPointer(2, 2, GL_UNSIGNED_SHORT, 0, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
-        glEnableVertexAttribArray(2);
-        glBindAttribLocation(sp,2,"aTexCoord");
+        glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aPosition"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aColour"), 4, GL_FLOAT, 0, sizeof(REMULVertex), (const void*)(4*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aColour"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aTexCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexCoord"));
       break;
       default:
       return REMFAIL;
@@ -287,15 +281,10 @@ int REMVertexCache::flush(){
     unsigned int* pTex = NULL;
     REMMaterial *pMat = &(_pSkinMan->_pMaterials[_skin.nMaterial]);
     if(_pVCM->getRenderDevice()->getShadeMode()!=RS_SHADE_TRIWIRE){
-      REMColour cMat;
-      cMat = pMat->cDiffuse;
-      glUniform4fv(glGetUniformLocation(sp, "matDiffuse"),1,cMat.c);
-      cMat = pMat->cAmbient;
-      glUniform4fv(glGetUniformLocation(sp, "matAmbient"),1,cMat.c);
-      cMat = pMat->cSpecular;
-      glUniform4fv(glGetUniformLocation(sp, "matSpecular"),1,cMat.c);
-      cMat = pMat->cEmissive;
-      glUniform4fv(glGetUniformLocation(sp, "matEmissive"),1,cMat.c);
+      glUniform4fv(glGetUniformLocation(sp, "matDiffuse"),1,pMat->cDiffuse.c);
+      glUniform4fv(glGetUniformLocation(sp, "matAmbient"),1,pMat->cAmbient.c);
+      glUniform4fv(glGetUniformLocation(sp, "matSpecular"),1,pMat->cSpecular.c);
+      glUniform4fv(glGetUniformLocation(sp, "matEmissive"),1,pMat->cEmissive.c);
       glUniform1f(glGetUniformLocation(sp, "matPower"),pMat->fPower);
       for(int i=0;i<8;i++){
         if(_skin.nTexture[i] != MAX_ID){
