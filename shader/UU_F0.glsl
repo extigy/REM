@@ -13,5 +13,5 @@ varying vec2 vTexCoord;
 
 void main(){
   vec4 tex  = texture2D(uSampler0, vTexCoord);
-  gl_FragColor = tex;
+  gl_FragColor = tex*matDiffuse;
 }
