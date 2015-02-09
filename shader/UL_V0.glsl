@@ -1,7 +1,6 @@
 #version 100
 //Basic Lit Vertex Shader
 uniform mat4 WVPMat;
-uniform mat4 WVPMatTrans;
 
 attribute vec4 aPosition;
 attribute vec4 aColour;

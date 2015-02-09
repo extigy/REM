@@ -108,10 +108,10 @@ int REMVertexCacheManager::forcedFlush(REMVertexFormat vertexFormat){
 
   switch(vertexFormat){
     case UU_VERTEX:
-    pCache = _cacheUU;
+      pCache = _cacheUU;
     break;
     case UL_VERTEX:
-    pCache = _cacheUL;
+      pCache = _cacheUL;
     break;
     default:
     return REMFAIL;
@@ -253,11 +253,11 @@ int REMVertexCache::flush(){
     glBindBuffer(GL_ARRAY_BUFFER, _pB[0]);
     switch(_vertexFormat){
       case UU_VERTEX:
-        glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
+        glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMUUVertex), (const void*)0);
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aPosition"));
-        glVertexAttribPointer(glGetAttribLocation(sp,"aNormal"), 4, GL_FLOAT, 0, sizeof(REMULVertex), (const void*)(4*sizeof(float)));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aNormal"), 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(4*sizeof(float)));
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aNormal"));
-        glVertexAttribPointer(glGetAttribLocation(sp,"aTexCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aTexCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMUUVertex), (const void*)(8*sizeof(float)));
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexCoord"));
       break;
       case UL_VERTEX:
@@ -289,7 +289,7 @@ int REMVertexCache::flush(){
       for(int i=0;i<8;i++){
         if(_skin.nTexture[i] != MAX_ID){
           pTex = _pSkinMan->_pTextures[_skin.nTexture[i]].pData;
-          printf("texture binding - %d\n",*pTex);
+          //log("Activting Texture - %d",*pTex);
           glActiveTexture(0x84C0+i);
           glBindTexture(GL_TEXTURE_2D, *pTex);
           glUniform1i(glGetUniformLocation(sp, "uSampler0"), 0);
