@@ -6,20 +6,9 @@
 #include <string.h>
 #include "rem3d.h"
 #include "remimage.h"
+#include "const.h"
 
 typedef unsigned int GLuint;
-
-typedef struct REMCOLOUR_TYPE{
-  union{
-    struct{
-      float fR;
-      float fG;
-      float fB;
-      float fA;
-    };
-    float c[4];
-  };
-} REMColour;
 
 typedef struct REMMATERIAL_TYPE{
   REMColour cDiffuse;
@@ -41,6 +30,7 @@ typedef struct REMSKIN_TYPE{
   bool bAlpha;
   unsigned int nMaterial;
   unsigned int nTexture[8];
+  int nOfTextures;
 } REMSkin;
 
 class REMSkinManager{

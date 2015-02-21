@@ -259,6 +259,10 @@ int REMVertexCache::flush(){
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aNormal"));
         glVertexAttribPointer(glGetAttribLocation(sp,"aTexCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMUUVertex), (const void*)(8*sizeof(float)));
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexCoord"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aTexDetailCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMUUVertex), (const void*)(9*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexDetailCoord"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aTangent"), 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(10*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aTangent"));
       break;
       case UL_VERTEX:
         glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
@@ -279,6 +283,7 @@ int REMVertexCache::flush(){
 
   if(_pVCM->getRenderDevice()->getActiveSkinID() != _skinID){
     unsigned int* pTex = NULL;
+    char texUniformStr[15];
     REMMaterial *pMat = &(_pSkinMan->_pMaterials[_skin.nMaterial]);
     if(_pVCM->getRenderDevice()->getShadeMode()!=RS_SHADE_TRIWIRE){
       glUniform4fv(glGetUniformLocation(sp, "matDiffuse"),1,pMat->cDiffuse.c);
@@ -286,13 +291,15 @@ int REMVertexCache::flush(){
       glUniform4fv(glGetUniformLocation(sp, "matSpecular"),1,pMat->cSpecular.c);
       glUniform4fv(glGetUniformLocation(sp, "matEmissive"),1,pMat->cEmissive.c);
       glUniform1f(glGetUniformLocation(sp, "matPower"),pMat->fPower);
+      glUniform1i(glGetUniformLocation(sp, "nTextures"),_skin.nOfTextures);
       for(int i=0;i<8;i++){
         if(_skin.nTexture[i] != MAX_ID){
           pTex = _pSkinMan->_pTextures[_skin.nTexture[i]].pData;
           //log("Activting Texture - %d",*pTex);
           glActiveTexture(0x84C0+i);
           glBindTexture(GL_TEXTURE_2D, *pTex);
-          glUniform1i(glGetUniformLocation(sp, "uSampler0"), 0);
+          sprintf(texUniformStr,"uSampler%d",i);
+          glUniform1i(glGetUniformLocation(sp, texUniformStr), i);
         } else break;
       }
     } else {

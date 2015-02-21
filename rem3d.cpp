@@ -166,9 +166,9 @@ void REMMatrix::rotaArbi(REMVector& vcAxis, float a){
   _44 = 1.0f;
 };
 void REMMatrix::translate(float dx, float dy, float dz){
-  _41 = dx;
-  _42 = dy;
-  _43 = dz;
+  _41 += dx;
+  _42 += dy;
+  _43 += dz;
 };
 
 void REMMatrix::transposeOf(const REMMatrix& m){

@@ -98,6 +98,7 @@ const char* REMSkinManager::getTextureName(unsigned int nID, float* pfAlpha, REM
   return _pTextures[nID].chName;
 }
 
+
 int REMSkinManager::addSkin(const REMColour* pcAmbient, const REMColour* pcDiffuse, const REMColour* pcEmissive, const REMColour* pcSpecular, float fSpecPower, unsigned int* nSkinID){
   unsigned int nMat, n;
   bool bMat = false;
@@ -195,6 +196,7 @@ int REMSkinManager::addTexture(unsigned int nSkinID, const char *chName, bool bA
     for(int i=0; i<8; i++){
       if(_pSkins[nSkinID].nTexture[i] == MAX_ID){
         _pSkins[nSkinID].nTexture[i] = nTex;
+        _pSkins[nSkinID].nOfTextures = i+1;
         break;
       }
     }
@@ -249,6 +251,7 @@ int REMSkinManager::addTextureHeightmapAsBump(unsigned int nSkinID, const char *
   for(int i=0; i<8; i++){
     if(_pSkins[nSkinID].nTexture[i] == MAX_ID){
       _pSkins[nSkinID].nTexture[i] = nTex;
+      _pSkins[nSkinID].nOfTextures = i+1;
       break;
     }
   }

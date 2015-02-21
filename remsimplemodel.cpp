@@ -117,7 +117,7 @@ void REMSimpleModel::readObjNormal(){
   char* token = strtok(NULL," ");
   _pObjNormal[_nNumObjNormal].p[0] = atof(token);
   token = strtok(NULL," ");
-  *(_pObjNormal[_nNumObjNormal].p+4) = atof(token); //WTF!?
+  *(_pObjNormal[_nNumObjNormal].p+1) = atof(token); //WTF!?
   token = strtok(NULL," ");
   _pObjNormal[_nNumObjNormal].p[2] = atof(token);
   //log("Read a Normal Position: %f, %f, %f.",_pObjNormal[_nNumObjNormal].p[0],_pObjNormal[_nNumObjNormal].p[1],_pObjNormal[_nNumObjNormal].p[2]);

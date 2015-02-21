@@ -7,7 +7,12 @@
 class REMMatrix;
 class REMVector {
 public:
-  float x,y,z,w;
+  union{
+    struct{
+      float x,y,z,w;
+    };
+    float _data[4];
+  };
   REMVector();
   REMVector(float _x, float _y, float _z);
   void set(float _x, float _y, float _z,float _w=1.0f);

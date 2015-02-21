@@ -1,6 +1,5 @@
 #include "remrender.h"
 #include "const.h"
-#include "remshader.h"
 #include <GLES2/gl2.h>
 
 REMRenderDevice::REMRenderDevice(){
@@ -21,11 +20,15 @@ REMShaderManager* REMRenderDevice::getShaderManager(){
 REMVertexCacheManager* REMRenderDevice::getVertexManager(){
   return _pVertexMan;
 }
+REMLightManager* REMRenderDevice::getLightManager(){
+  return _pLightMan;
+}
 
 int REMRenderDevice::oneTimeInit(){
   _pSkinMan = new REMSkinManager();
   _pShaderMan = new REMShaderManager(this);
   _pVertexMan = new REMVertexCacheManager(this, 300, 450);
+  _pLightMan = new REMLightManager(this);
   setBackfaceCulling(RS_CULL_NONE);
   glEnable(GL_DEPTH_TEST);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -39,10 +42,8 @@ int REMRenderDevice::oneTimeInit(){
   setDepthBufferMode(RS_DEPTH_READWRITE);
 
   _mView3D.identity();
+  _mWorldInv.identity();
   setClippingPlanes(0.1f,1000.0f);
-  setWorldTransform(NULL);
-
-
 
   _pShaderMan->createVShader("./shader/UL_V0.glsl", true, NULL);
   _pShaderMan->createFShader("./shader/UL_F0.glsl", true, NULL);
@@ -53,12 +54,26 @@ int REMRenderDevice::oneTimeInit(){
   _pShaderMan->createProgram(1, 1, NULL);
   _pShaderMan->activateProgram(1);
 
+  setWorldTransform(NULL);
   //default material
   REMColour cMat;
-  cMat.fR = 1.0f;
-  cMat.fG = 1.0f;
+  cMat.fR = 0.2f;
+  cMat.fG = 0.2f;
+  cMat.fB = 0.2f;
+  cMat.fA = 1.0f;
+  _pLightMan->setAmbientLight(cMat);
+  REMVector dMat;
+  dMat.x = 0.5f;
+  dMat.y = 0.5f;
+  dMat.z = 0.0f;
+  dMat.w = 0.0f;
+  cMat.fR = 0.5f;
+  cMat.fG = 0.5f;
   cMat.fB = 1.0f;
   cMat.fA = 1.0f;
+  //_pLightMan->setDirLight(cMat, dMat);
+  _pLightMan->addPointLight(cMat, 0.0f, 0.0f, 0.0f,5.0f);
+
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matDiffuse"),1,cMat.c);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matAmbient"),1,cMat.c);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matSpecular"),1,cMat.c);
@@ -69,7 +84,6 @@ int REMRenderDevice::oneTimeInit(){
   setMode(PERSPECTIVE,0);
   return REMOK;
 }
-
 
 int REMRenderDevice::setView3D(const REMVector& vcRight,const REMVector& vcUp,const REMVector& vcDir,const REMVector& vcPos){
   if (!_bRunning) return REMFAIL;
@@ -286,8 +300,6 @@ void REMRenderDevice::calcWorldViewProjMatrix(){
   REMMatrix* pCombo = &_mWorldViewProj;
   (*pCombo) = ((*pWorld)*(*pView))*(*pProj);
   glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMat"),1,0,_mWorldViewProj._data);
-  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMatTrans"),1,1,_mWorldViewProj._data);
-
 }
 
 
@@ -422,11 +434,13 @@ void REMRenderDevice::setWorldTransform(const REMMatrix* mWorld){
 
   if (!mWorld){
     _mWorld.identity();
+    _mWorldInv.identity();
   } else {
     memcpy(&_mWorld, mWorld, sizeof(REMMatrix));
+    _mWorldInv.inverseOf(_mWorld);
   }
-
-  GLuint activeProg = _pShaderMan->getActiveProgram();
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WInv"),1,0,_mWorldInv._data);
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "W"),1,0,_mWorld._data);
   calcWorldViewProjMatrix();
 }
 

@@ -19,7 +19,7 @@
 #define REMINVALIDID -2
 #define REMTEXTURESFULL -3
 #define REMGLGENTEXTUREERROR -4
-#define GENERICERROR -5
+#define GENERICERROR -5s
 
 typedef enum REMVERTEX_TYPE{
   UU_VERTEX = 0,
@@ -30,6 +30,8 @@ typedef struct UU_VERTEX_TYPE {
   float vcP[4];           //position
   float vcN[4];           //normal
   unsigned short vcT[2];  //texture
+  unsigned short vcTD[2];  //texture detail map
+  float vcU[4];           //tangent
 } REMUUVertex;
 
 typedef struct UL_VERTEX_TYPE {
@@ -82,5 +84,17 @@ typedef struct REMBUFFER_TYPE {
   unsigned short* pID;
   REMVertexFormat vF;
 } REMBuffer;
+
+typedef struct REMCOLOUR_TYPE{
+  union{
+    struct{
+      float fR;
+      float fG;
+      float fB;
+      float fA;
+    };
+    float c[4];
+  };
+} REMColour;
 
 #endif

@@ -1,2 +1,4 @@
 TODO:
 ALTERNATIVE BLENDING FCNS in vcache
+
+int nLights; // TODO - MOVE TO LIGHTS CLASS in render.cpp
