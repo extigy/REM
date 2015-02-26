@@ -42,7 +42,9 @@ int REMRenderDevice::oneTimeInit(){
   setDepthBufferMode(RS_DEPTH_READWRITE);
 
   _mView3D.identity();
-  _mWorldInv.identity();
+  _I_mWorldView.identity();
+  _mWorldView.identity();
+
   setClippingPlanes(0.1f,1000.0f);
 
   _pShaderMan->createVShader("./shader/UL_V0.glsl", true, NULL);
@@ -57,23 +59,11 @@ int REMRenderDevice::oneTimeInit(){
   setWorldTransform(NULL);
   //default material
   REMColour cMat;
-  cMat.fR = 0.2f;
-  cMat.fG = 0.2f;
-  cMat.fB = 0.2f;
-  cMat.fA = 1.0f;
-  _pLightMan->setAmbientLight(cMat);
-  REMVector dMat;
-  dMat.x = 0.5f;
-  dMat.y = 0.5f;
-  dMat.z = 0.0f;
-  dMat.w = 0.0f;
   cMat.fR = 0.5f;
   cMat.fG = 0.5f;
-  cMat.fB = 1.0f;
+  cMat.fB = 0.5f;
   cMat.fA = 1.0f;
-  //_pLightMan->setDirLight(cMat, dMat);
-  _pLightMan->addPointLight(cMat, 0.0f, 0.0f, 0.0f,5.0f);
-
+  _pLightMan->setAmbientLight(cMat);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matDiffuse"),1,cMat.c);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matAmbient"),1,cMat.c);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matSpecular"),1,cMat.c);
@@ -297,8 +287,16 @@ void REMRenderDevice::calcWorldViewProjMatrix(){
       pProj = &(_mProjO[_nStage]);
     }
   }
-  REMMatrix* pCombo = &_mWorldViewProj;
-  (*pCombo) = ((*pWorld)*(*pView))*(*pProj);
+
+  _mWorldView = ((*pWorld)*(*pView));
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVMat"),1,0,_mWorldView._data);
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "VMat"),1,0,pView->_data);
+
+  _I_mWorldView.inverseOf(_mWorldView);
+  _mWorldViewProj.transposeOf(_I_mWorldView);
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "TI_WVMat"),1,0,_mWorldViewProj._data);
+
+  _mWorldViewProj = ((*pWorld)*(*pView))*(*pProj);
   glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WVPMat"),1,0,_mWorldViewProj._data);
 }
 
@@ -434,13 +432,10 @@ void REMRenderDevice::setWorldTransform(const REMMatrix* mWorld){
 
   if (!mWorld){
     _mWorld.identity();
-    _mWorldInv.identity();
   } else {
     memcpy(&_mWorld, mWorld, sizeof(REMMatrix));
-    _mWorldInv.inverseOf(_mWorld);
   }
-  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WInv"),1,0,_mWorldInv._data);
-  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "W"),1,0,_mWorld._data);
+  glUniformMatrix4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "WMat"),1,0,_mWorld._data);
   calcWorldViewProjMatrix();
 }
 

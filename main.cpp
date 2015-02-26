@@ -16,20 +16,25 @@ float xx = 0;
 
 void web_frame(){
   //draw calls
-  xx=xx+0.03f;
+  xx=xx+0.003f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  REMVector* a = new REMVector(5.0f,5.0f,5.0f);
+  REMVector* a = new REMVector(0.0f,8.0f,-5.0f);
   REMVector* b = new REMVector(0.0f,0.0f,0.0f);
   REMVector* c = new REMVector(0.0f,1.0f,0.0f);
   rd->setViewLookAt(*a,*b,*c);
   REMMatrix* world = new REMMatrix();
-  world->identity();
-  world->translate(4.0f,0.0f,0.0f);
-  rd->setWorldTransform(world);
-
-  rd->getVertexManager()->render(UU_VERTEX, 0, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+  int i=0,j=0,k=0;
+  for(i=-5;i<5;i++){
+  for(k=-5;k<5;k++){
+    world->identity();
+    world->rotaZ(xx);
+    world->translate(2*i,2*j,2*k);
+    rd->setWorldTransform(world);
+    rd->getVertexManager()->render(UU_VERTEX, 0, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+  }
+  }
   rd->getVertexManager()->forcedFlushAll();
-
+  delete world;
   glfwSwapBuffers();
 }
 
@@ -59,13 +64,32 @@ int main(int argc, char **argv){
     REMColour cNone;
     cNone.fR = 0.0f;cNone.fG = 0.0f;cNone.fB = 0.0f;cNone.fA = 1.0f;
 
-    rd->getSkinManager()->addSkin(&cOne,&cOne,&cNone,&cNone, 1.0f, &nSkinID);
+    rd->getSkinManager()->addSkin(&cOne,&cOne,&cOne,&cNone, 1000.0f, &nSkinID);
     rd->getSkinManager()->addTexture(nSkinID, "textures/brick.jpg", true, 1.0f, NULL, 0);
     //rd->getSkinManager()->addTexture(nSkinID, "textures/brick-detail.jpg", true, 1.0f, NULL, 0);
     glfwSwapBuffers();
 
     sm = new REMSimpleModel(rd,UU_VERTEX);
     sm->readFile("models/box.obj");
+
+    REMVector dMat;
+    REMColour cMat;
+    dMat.x = 0.577f;
+    dMat.y = -0.577f;
+    dMat.z = 0.577f;
+    dMat.w = 0.0f;
+    cMat.fR = 1.0f;
+    cMat.fG = 1.0f;
+    cMat.fB = 1.0f;
+    cMat.fA = 1.0f;
+    rd->getLightManager()->setDirLight(cMat, dMat);
+    cMat.fR = 0.5f;
+    cMat.fG = 0.5f;
+    cMat.fB = 1.0f;
+    cMat.fA = 1.0f;
+    //rd->getLightManager()->addPointLight(cMat, 0.0f, 0.0f, 0.0f,10.0f);
+    //rd->getLightManager()->enableLightBank(0);
+
     //delete rd;
     emscripten_set_main_loop (web_frame, 0, true);
   }

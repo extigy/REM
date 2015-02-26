@@ -99,7 +99,7 @@ const char* REMSkinManager::getTextureName(unsigned int nID, float* pfAlpha, REM
 }
 
 
-int REMSkinManager::addSkin(const REMColour* pcAmbient, const REMColour* pcDiffuse, const REMColour* pcEmissive, const REMColour* pcSpecular, float fSpecPower, unsigned int* nSkinID){
+int REMSkinManager::addSkin(const REMColour* pcAmbient, const REMColour* pcDiffuse, const REMColour* pcSpecular, const REMColour* pcEmissive, float fSpecPower, unsigned int* nSkinID){
   unsigned int nMat, n;
   bool bMat = false;
 

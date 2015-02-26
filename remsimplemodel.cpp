@@ -156,7 +156,7 @@ void REMSimpleModel::readObjFace(){
         slashtoken = strtok(NULL,"/");
         //Normals
         memcpy(((REMUUVertex*)_pVertices)[_nNumVertices].vcN,_pObjNormal[atoi(slashtoken)-1].p, 3*sizeof(float));
-        ((REMUUVertex*)_pVertices)[_nNumVertices].vcN[3] = 1.0f;
+        ((REMUUVertex*)_pVertices)[_nNumVertices].vcN[3] = 0.0f;
       break;
       case UL_VERTEX:
       //TODO

@@ -13,6 +13,7 @@
 
 class REMVertexCacheManager;
 class REMRenderDevice{
+friend class REMLightManager;
 private:
   REMSkinManager* _pSkinMan;
   REMShaderManager* _pShaderMan;
@@ -32,8 +33,9 @@ private:
             _mProjP[4],
             _mProjO[4],
             _mWorld,          //Move 3d data from obj coords to world coords
-            _mWorldInv,
+            _I_mWorldView,
             _mViewProj,       //combined-matrix view with projection
+            _mWorldView,
             _mWorldViewProj;  //combined-matrix world with view with projection -> for shaders
 
 public:

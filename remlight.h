@@ -13,14 +13,15 @@ class REMLightManager{
 private:
   REMRenderDevice* _renderDevice;
   REMShaderManager* _pShaderMan;
-  REMVector dirLightDirection;
-  REMColour dirLightColour;
+  REMVector _dirLightDirection;
+  REMColour _dirLightColour;
   REMColour ambientLightColour;
   unsigned int _nPointLights;
   float* _pPointLightPower;
   float* _pPointLightMTP;
   float* _pPointLightCol;
-  unsigned int currentLightBankOffset;
+  float* _pPointLightPos;
+  unsigned int _currentBank;
   unsigned int _nBanks;
 public:
   REMLightManager(REMRenderDevice* r);
@@ -31,6 +32,7 @@ public:
   int addPointLight(REMColour col, REMVector loc,float radius);
   int addPointLight(REMColour col, float x, float y, float z,float radius);
   int enableLightBank(unsigned int bank);
+  void updateDirLight();
 };
 
 

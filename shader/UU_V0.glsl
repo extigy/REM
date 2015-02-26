@@ -2,10 +2,14 @@
 //Basic Vertex Shader
 
 uniform mat4 WVPMat;
-uniform mat4 WInv;
-uniform mat4 W;
+uniform mat4 WVMat;
+uniform mat4 TI_WVMat;
+uniform mat4 WMat;
+uniform mat4 VMat;
+uniform mat4 pPointLightMTP[4];
+uniform vec4 pPointLightPos[4];
 uniform vec4 dirLightDir;
-uniform mat4 pPointLightMTP[8];
+
 
 attribute vec4 aPosition;
 attribute vec4 aNormal;
@@ -14,19 +18,25 @@ attribute vec2 aTexDetailCoord;
 attribute vec4 aTangent;
 
 varying vec4 vPosition;
+varying vec4 vNormal;
+varying vec4 vEye;
 varying vec2 vTexCoord;
 varying vec2 vTexDetailCoord;
-varying float fDirLightAmount;
-varying vec3 pointLightMTP[8];
+varying vec3 pointLightMTP[4];
+varying vec3 pointLightRay[4];
+varying vec3 vDirLight;
 
 void main(){
+  gl_Position = WVPMat*aPosition;
   vTexCoord = aTexCoord;
   vTexDetailCoord = aTexDetailCoord;
 
-  vec4 lightdir  = WInv*dirLightDir;
-  fDirLightAmount = dot(vec3(aNormal),vec3(lightdir));
-  gl_Position = WVPMat*aPosition;
-  for(int i=0;i<8;i++){
-    pointLightMTP[i] = vec3(pPointLightMTP[i]*(W*aPosition));
+  vNormal = TI_WVMat*aNormal;
+  vEye = -(WVMat*aPosition);
+  vDirLight = normalize(vec3(VMat*dirLightDir));
+
+  for(int i=0;i<4;i++){
+    pointLightMTP[i] = vec3(pPointLightMTP[i]*(WMat*aPosition));
+    pointLightRay[i] = normalize(vec3(VMat*(pPointLightPos[i] - (WMat*aPosition))));
   }
 }

@@ -26,11 +26,13 @@ float REMVector::getLength(){
 float REMVector::getSqrLength(){
   return (x*x+y*y+z*z);
 };
+
 void REMVector::negate(){
   x = -x;
   y = -y;
   x = -z;
 };
+
 void REMVector::normalise(){
   float f =  (float)sqrt(x*x+y*y+z*z);
   if(f!=0){
