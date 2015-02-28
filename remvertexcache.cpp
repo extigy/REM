@@ -15,6 +15,7 @@ REMVertexCacheManager::REMVertexCacheManager(REMRenderDevice* r, unsigned int nM
   for(i=0;i<NUM_CACHES;i++){
     _cacheUU[i] = new REMVertexCache(UU_VERTEX,nMaxVerts,nMaxIndis,sizeof(REMUUVertex),r->getSkinManager(),this,dwID++);
     _cacheUL[i] = new REMVertexCache(UL_VERTEX,nMaxVerts,nMaxIndis,sizeof(REMULVertex),r->getSkinManager(),this,dwID++);
+    _cacheCEL[i] = new REMVertexCache(CEL_VERTEX,nMaxVerts,nMaxIndis,sizeof(REMCELVertex),r->getSkinManager(),this,dwID++);
   }
   log("Done.");
 }
@@ -53,6 +54,10 @@ REMVertexCacheManager::~REMVertexCacheManager(){
       delete _cacheUL[i];
       _cacheUL[i]=NULL;
     }
+    if(_cacheCEL[i]){
+      delete _cacheCEL[i];
+      _cacheCEL[i]=NULL;
+    }
   }
 }
 
@@ -70,7 +75,11 @@ int REMVertexCacheManager::render(REMVertexFormat vertexFormat, unsigned int ski
     case UL_VERTEX:
       pCache = _cacheUL;
       break;
+    case CEL_VERTEX:
+      pCache = _cacheCEL;
+      break;
     default:
+      log("Error: Vertex format not handled.");
       return REMFAIL;
   }
 
@@ -109,12 +118,16 @@ int REMVertexCacheManager::forcedFlush(REMVertexFormat vertexFormat){
   switch(vertexFormat){
     case UU_VERTEX:
       pCache = _cacheUU;
-    break;
+      break;
     case UL_VERTEX:
       pCache = _cacheUL;
-    break;
+      break;
+    case CEL_VERTEX:
+      pCache = _cacheCEL;
+      break;
     default:
-    return REMFAIL;
+      log("Error: Vertex format not handled.");
+      return REMFAIL;
   }
 
   for(i=0;i<NUM_CACHES;i++){
@@ -135,6 +148,11 @@ int REMVertexCacheManager::forcedFlushAll(){
   for(i=0;i<NUM_CACHES;i++){
     if(_cacheUL[i] && !_cacheUL[i]->isEmpty()){
       if(_cacheUL[i]->flush() < 0) return REMFAIL;
+    }
+  }
+  for(i=0;i<NUM_CACHES;i++){
+    if(_cacheCEL[i] && !_cacheCEL[i]->isEmpty()){
+      if(_cacheCEL[i]->flush() < 0) return REMFAIL;
     }
   }
   return REMOK;
@@ -263,7 +281,15 @@ int REMVertexCache::flush(){
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexDetailCoord"));
         glVertexAttribPointer(glGetAttribLocation(sp,"aTangent"), 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(10*sizeof(float)));
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTangent"));
-      break;
+        break;
+      case CEL_VERTEX:
+        glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMCELVertex), (const void*)0);
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aPosition"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aNormal"), 4, GL_FLOAT, 0, sizeof(REMCELVertex), (const void*)(4*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aNormal"));
+        glVertexAttribPointer(glGetAttribLocation(sp,"aTangent"), 4, GL_FLOAT, 0, sizeof(REMCELVertex), (const void*)(8*sizeof(float)));
+        glEnableVertexAttribArray(glGetAttribLocation(sp,"aTangent"));
+        break;
       case UL_VERTEX:
         glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMULVertex), (const void*)0);
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aPosition"));
@@ -271,8 +297,9 @@ int REMVertexCache::flush(){
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aColour"));
         glVertexAttribPointer(glGetAttribLocation(sp,"aTexCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMULVertex), (const void*)(8*sizeof(float)));
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexCoord"));
-      break;
+        break;
       default:
+        //log("Error: Vertex format not handled.");
       return REMFAIL;
     }
     glBufferSubData(GL_ARRAY_BUFFER,0,_nNumVerts*_nStride,_pVD);

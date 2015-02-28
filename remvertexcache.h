@@ -16,6 +16,7 @@ private:
   unsigned int _nNumB;
   REMVertexCache* _cacheUU[NUM_CACHES];
   REMVertexCache* _cacheUL[NUM_CACHES];
+  REMVertexCache* _cacheCEL[NUM_CACHES];
   unsigned short _dwActiveCache;
   unsigned short _dwActiveB;
 public:

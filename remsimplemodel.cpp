@@ -53,6 +53,9 @@ void REMSimpleModel::setupVertexArrays(){
   case UL_VERTEX:
     _pVertices = (REMULVertex*)malloc(_nMaxObjV*sizeof(REMULVertex));
     break;
+  case CEL_VERTEX:
+    _pVertices = (REMCELVertex*)malloc(_nMaxObjV*sizeof(REMCELVertex));
+    break;
   }
   _nNumVertices = 0;
   _pIndices = (unsigned short*)malloc(_nMaxObjV*sizeof(unsigned short)) ;
@@ -257,8 +260,21 @@ void REMSimpleModel::readObjFace(){
         ((REMUUVertex*)_pVertices)[_nNumVertices].vcN[3] = 0.0f;
       break;
       case UL_VERTEX:
-      //TODO
-      break;
+        //TODO
+        break;
+      case CEL_VERTEX:
+        //position
+        memcpy(((REMCELVertex*)_pVertices)[_nNumVertices].vcP,_pObjVertex[atoi(slashtoken)-1].p, 3*sizeof(float));
+        ((REMCELVertex*)_pVertices)[_nNumVertices].vcP[3] = 1.0f;
+
+        slashtoken = strtok(NULL,"/");
+        slashtoken = strtok(NULL,"/");
+        //Normals
+        memcpy(((REMCELVertex*)_pVertices)[_nNumVertices].vcN,_pObjNormal[atoi(slashtoken)-1].p, 3*sizeof(float));
+        ((REMCELVertex*)_pVertices)[_nNumVertices].vcN[3] = 0.0f;
+        break;
+      default:
+        log("Error: Vertex type not supported");
     }
     _nNumVertices++;
     ((unsigned short*)_pIndices)[_nNumIndices] = _nNumIndices;

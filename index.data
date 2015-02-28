@@ -39,6 +39,47 @@ f 4/3/5 8/2/5 6/4/5
 s 6
 f 7/1/6 1/2/6 5/3/6
 f 5/3/6 1/2/6 3/4/6
+v -0.500000 -0.500000 0.500000
+v 0.500000 -0.500000 0.500000
+v -0.500000 0.500000 0.500000
+v 0.500000 0.500000 0.500000
+v -0.500000 0.500000 -0.500000
+v 0.500000 0.500000 -0.500000
+v -0.500000 -0.500000 -0.500000
+v 0.500000 -0.500000 -0.500000
+
+vt 0.000000 0.000000
+vt 1.000000 0.000000
+vt 0.000000 1.000000
+vt 1.000000 1.000000
+
+vn 0.000000 0.000000 1.000000
+vn 0.000000 1.000000 0.000000
+vn 0.000000 0.000000 -1.000000
+vn 0.000000 -1.000000 0.000000
+vn 1.000000 0.000000 0.000000
+vn -1.000000 0.000000 0.000000
+
+g cube
+usemtl box0
+s 1
+f 1/1/1 2/2/1 3/3/1
+f 3/3/1 2/2/1 4/4/1
+s 2
+f 3/1/2 4/2/2 5/3/2
+f 5/3/2 4/2/2 6/4/2
+s 3
+f 5/4/3 6/3/3 7/2/3
+f 7/2/3 6/3/3 8/1/3
+s 4
+f 7/1/4 8/2/4 1/3/4
+f 1/3/4 8/2/4 2/4/4
+s 5
+f 2/1/5 8/2/5 4/3/5
+f 4/3/5 8/2/5 6/4/5
+s 6
+f 7/1/6 1/2/6 5/3/6
+f 5/3/6 1/2/6 3/4/6
 mtllib sphere.mtl
 v -1 0 1.40385e-007
 v -0.983024 -0.156077 0.0964607
@@ -1874,15 +1915,23 @@ f 126/305/125 168/293/158 137/300/141
 f 141/299/138 173/286/174 168/293/158
 f 164/294/165 200/279/198 173/286/174
 newmtl box
-Ns 1000.0000
-d 1.0000
+Ns 1000.0
+d 1.0
 illum 2
 Ka 1.0000 1.0000 1.0000
 Kd 1.0000 1.0000 1.0000
+Ks 1.0000 1.0000 0.8000
+Ke 0.0000 0.0000 0.0000
+map_Ka brick.jpg
+map_Kd brick.jpg
+newmtl box
+Ns 1000.0
+d 1.0
+illum 2
+Ka 0.0000 0.9000 0.0000
+Kd 0.0000 0.9000 0.0000
 Ks 1.0000 1.0000 1.0000
 Ke 0.0000 0.0000 0.0000
-#map_Ka brick.jpg
-#map_Kd brick.jpg
 ‰PNG
 
    IHDR         \r¨f  ğiCCPICC Profile  8UİoÛT?‰o\¤? ±‹¯US[¹­ÆI“¥éB¹ÍØ*¤ÉunS×6¶ÓmUŸöoø€²xBÄö²í´ISAÕ$¤=tÚ@h“ö‚ªp®¯S»]Æ¸‘¯9çw>ïÑ5@ÇWšã˜I`Şò]5Ÿ‘Ÿ˜–;V!	ÏA'ô@§¦{Nº\..Æ…GÖÃ_!ÁŞ7ÚëÿsuV©§$BlW=}ñi€”©;® ŞFùğ)ßAÜñ<â.&ˆXax–ã,Ã38Sê(b–‹¤×µ*â%Äı31ùló‚µ#O-êºÌzQvíšaÒXºOPÿÏ5o6Zñzñéòæ&â»Õ^wÇÔ®k¹IÄ/#¾æø&ñ½Æ\%x/@ò™š{¤ÂùÉ7ëSï Ş‰¸jø…©P¾hÍ”&¸mryÎ>ª†œkº7Š=ƒßªÓB‘ç#@•fs¬_ˆ{ë±Ğ¿0î-LæZ~ë£%îGpßÓÆËˆ{èÚêÏYX¦f^åş…+_sÖ-³Tä>‰D½ Æ@î×§Æ¸-9àã!r[2]3Bş’c³ˆ¹‘ónC­„œš›Ës?ä>µ*¡ÏÔ®ª–e½D|%4 `Ãî:X°2¨‡¾pQSL”PÔR”‰§aeíyå€ÃqÄ˜¬×™5FiÏáî„›t…ìÇç )’Cd˜Œ€LŞ$o‘Ã$‹ÒrpÓ¶‹ÏbİÙôó>4Ğ+ãƒÌ¹F_ï¬{ÒĞ¯ô÷kû‘œi+ŸxÀÃ´˜ñú¯.ı°+ò±B.¼{³ëêL<©¿©Û©õÔ
@@ -5629,6 +5678,92 @@ n$
 ŠPç òk&TngEzghË–;~£qèOoÏnyq	)aüB±­t{X¯^äR»Šï%sşÈí]â%äDHLtãúÔKMÊ…Ê¬óDÍQ€*³\¸š!:–UÎßîJ—Ëyd$§æQ••^D¶¶ŠH¡‹l— £¹Éfæš²Ônıí#QïR›LŠC$ÅÌ¹íÇ$VĞR®òÈæÎĞ;b³4û7L‘.á³Œúõ¤—Ï¾YhB
 ‚>÷åÒµrŠµŒTdş"¦3ØY47.¬ZS0íèµiî$†&óNxÕç_íI$P¢6|f'­DË< ’Ä¿9lËŒm¡»§+]º¹àw=ñZr^ìlm­¼ß7ø‡+NfU'vzÿ JÒÌjE%Èîh“ÖÇ$‘§&¨Z‹xĞnO“8>½j›ÜHÊp÷³{ÚšL{„!HÏëøÓ±åì,A^ãÔP—s;•çyW;ˆşÒªH1¨4‘ÌT2åƒĞ­Zê<ÍÈ›\·}À JÎ[I33düç©ö­”’ZãØlƒs©“vã5ZCæJK¶Íø Õfs/ß(A…•MËmÇ—Æ3õõ¦š¸Ò-ÃÂÎ#ˆ"Ÿ”¹U†Ú@óHÛËûâ™s'‘¾nœŸÒ¨éíy{s)uÄK}¿¥5#£EêX’GíyGÊ7­>Íİ«;ŒÕtipÃp¸ÁÜ9ÈéJÖÑ#ì‰rSøGŒœR±ÑfïĞy„Û—æÚEThiıØãš¼v=ËÊ¤b0dç«MwkK—o_JÉ^÷5o•jAäÆ@THJÙ^å"ºhJ«ä.kVEI·¯–YcáÛ¶­UiH¶âL2ôR1Ç­W5…Ë{*Igÿ hdW+{n ÕĞüÇæük©P‹·Cëë\Î±¼Ş‘ò‡oNÂ¶¥'}êÅ%rœ÷’$ë$lÑí=ºšÒÌ†…È"Dl)ÎOÔÖÔ‡jª*`Ÿz±Ùİwcî×­Gk).k›škKÛ^aHqò© ş5ŞÃ%†Şêq¢üÁ’MyÊ_ U@F6ñë]æ•!¸Ñ­|Ñ¹rÉëÚ¦¼¬™7“lãõ÷¾œˆ|¼n.£ErfÚdK¨İMzŒuH#ÒÆ)#3¹
 ÈÊ/¿§¥yÔ.!™Î@¬h·4vUŠ…µöDŒ4ÓåAeÅM§_$²âæE‚Î#¹>i=«=ç™î¶I¹cëš²-­ÚÖ_,–+ó÷5Ù»jqÊI=·7­s*ÉKosåúîjÄäğªNÓÔS6M2E¨c¿ÔÕYdòP«n={RQ°{NmÏÿÙprecision highp float;
+//Basic Vertex Shader
+
+uniform vec4 worldAmbient;
+uniform vec4 dirLightColour;
+uniform vec4 pPointLightCol[4];
+
+uniform vec4 matDiffuse;
+uniform vec4 matAmbient;
+uniform vec4 matSpecular;
+uniform float matPower;
+
+varying vec4 vNormal;
+varying vec4 vEye;
+varying vec3 pointLightMTP[4];
+varying vec3 pointLightRay[4];
+varying vec3 vDirLight;
+
+void main(){
+  //setup
+  vec4 pointLight = vec4(0.0);
+  vec4 spec = vec4(0.0);
+  vec3 normal = normalize(vec3(vNormal));
+  vec3 eye = normalize(vec3(vEye));
+
+  //ambient
+  vec4 ambientLight = matAmbient*worldAmbient;
+
+  //diffuse
+  float fDirIntensity = max(dot(normal,vDirLight),0.0);
+  if(fDirIntensity > 0.0){
+    vec3 h = normalize(vDirLight + eye);
+    float intSpec = max(dot(h,normal),0.0);
+    spec += matSpecular * dirLightColour * pow(intSpec,matPower);
+  }
+  vec4 diffuseLight = matDiffuse*dirLightColour*fDirIntensity;
+
+  //point lights
+  for(int i=0;i<4;i++){
+    float plt = 1.0-min(max(dot(pointLightMTP[i],pointLightMTP[i]),-1.0),1.0);
+    if(plt > 0.0){
+      pointLight += matDiffuse*pPointLightCol[i]*plt;
+      vec3 h = normalize(pointLightRay[i] + eye);
+      float intSpec = max(dot(h,normal),0.0);
+      spec += matSpecular * pPointLightCol[i]* pow(intSpec,matPower);
+    }
+  }
+
+  gl_FragColor = (max(ambientLight,diffuseLight)+pointLight) + spec;
+}
+#version 100
+//Basic Cel Vertex Shader
+uniform mat4 WVPMat;
+uniform mat4 WVMat;
+uniform mat4 TI_WVMat;
+uniform mat4 WMat;
+uniform mat4 VMat;
+uniform mat4 pPointLightMTP[4];
+uniform vec4 pPointLightPos[4];
+uniform vec4 dirLightDir;
+
+attribute vec4 aPosition;
+attribute vec4 aNormal;
+attribute vec2 aTexCoord;
+attribute vec2 aTexDetailCoord;
+attribute vec4 aTangent;
+
+varying vec4 vPosition;
+varying vec4 vNormal;
+varying vec4 vEye;
+varying vec3 pointLightMTP[4];
+varying vec3 pointLightRay[4];
+varying vec3 vDirLight;
+
+void main(){
+  gl_Position = WVPMat*aPosition;
+  
+  vNormal = TI_WVMat*aNormal;
+  vEye = -(WVMat*aPosition);
+  vDirLight = normalize(vec3(VMat*dirLightDir));
+
+  for(int i=0;i<4;i++){
+    pointLightMTP[i] = vec3(pPointLightMTP[i]*(WMat*aPosition));
+    pointLightRay[i] = normalize(vec3(VMat*(pPointLightPos[i] - (WMat*aPosition))));
+  }
+}
+precision highp float;
 //Basic Lit Vertex Shader
 uniform vec4 matDiffuse;
 uniform vec4 matAmbient;

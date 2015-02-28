@@ -16,9 +16,9 @@ float xx = 0;
 
 void web_frame(){
   //draw calls
-  xx=xx+0.003f;
+  xx=xx+0.006f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  REMVector* a = new REMVector(0.0f,8.0f,-5.0f);
+  REMVector* a = new REMVector(8.0f*sin(xx),8.0f,8.0f*cos(xx));
   REMVector* b = new REMVector(0.0f,0.0f,0.0f);
   REMVector* c = new REMVector(0.0f,1.0f,0.0f);
   rd->setViewLookAt(*a,*b,*c);
@@ -27,10 +27,9 @@ void web_frame(){
   for(i=-5;i<5;i++){
   for(k=-5;k<5;k++){
     world->identity();
-    world->rotaZ(xx);
     world->translate(2*i,2*j,2*k);
     rd->setWorldTransform(world);
-    rd->getVertexManager()->render(UU_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+    rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
   }
   }
   rd->getVertexManager()->forcedFlushAll();
@@ -60,8 +59,8 @@ int main(int argc, char **argv){
     rd->oneTimeInit();
     glfwSwapBuffers();
 
-    sm = new REMSimpleModel(rd,UU_VERTEX);
-    sm->readFile("models/box.obj");
+    sm = new REMSimpleModel(rd,CEL_VERTEX);
+    sm->readFile("models/box0.obj");
 
     REMVector dMat;
     REMColour cMat;

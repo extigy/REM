@@ -23,7 +23,8 @@
 
 typedef enum REMVERTEX_TYPE{
   UU_VERTEX = 0,
-  UL_VERTEX
+  UL_VERTEX,
+  CEL_VERTEX
 } REMVertexFormat;  //VERTEX Type
 
 typedef struct UU_VERTEX_TYPE {
@@ -33,6 +34,12 @@ typedef struct UU_VERTEX_TYPE {
   unsigned short vcTD[2];  //texture detail map
   float vcU[4];           //tangent
 } REMUUVertex;
+
+typedef struct CEL_VERTEX_TYPE {
+  float vcP[4];           //position
+  float vcN[4];           //normal
+  float vcU[4];           //tangent
+} REMCELVertex;
 
 typedef struct UL_VERTEX_TYPE {
   float vcP[4];           //position
