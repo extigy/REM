@@ -15,7 +15,7 @@ private:
   REMShaderManager* _pShaderMan;
   REMVector _dirLightDirection;
   REMColour _dirLightColour;
-  REMColour ambientLightColour;
+  REMColour _ambientLightColour;
   unsigned int _nPointLights;
   float* _pPointLightPower;
   float* _pPointLightMTP;
@@ -33,6 +33,7 @@ public:
   int addPointLight(REMColour col, float x, float y, float z,float radius);
   int enableLightBank(unsigned int bank);
   void updateDirLight();
+  void reInitLights();
 };
 
 

@@ -59,6 +59,10 @@ int REMRenderDevice::oneTimeInit(){
   _pShaderMan->createFShader("./shader/CEL_F0.glsl", true, NULL);
   _pShaderMan->createProgram(2, 2, NULL);
   _pShaderMan->activateProgram(2);
+  _pShaderMan->createVShader("./shader/CEL_V1.glsl", true, NULL);
+  _pShaderMan->createFShader("./shader/CEL_F1.glsl", true, NULL);
+  _pShaderMan->createProgram(3, 3, NULL);
+  _pShaderMan->activateProgram(3);
 
   setWorldTransform(NULL);
   //default material

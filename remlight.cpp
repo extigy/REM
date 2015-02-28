@@ -10,6 +10,7 @@ REMLightManager::REMLightManager(REMRenderDevice* r){
 }
 
 void REMLightManager::setAmbientLight(REMColour cMat){
+  _ambientLightColour = cMat;
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "worldAmbient"),1,cMat.c);
   log("Setting ambient light to (%5.3f,%5.3f,%5.3f,%5.3f).",cMat.fR,cMat.fG,cMat.fB,cMat.fA);
 }
@@ -21,9 +22,17 @@ void REMLightManager::setDirLight(REMColour col, REMVector dir){
   dir.z = -dir.z;
   dir.w = 0.0f;
   _dirLightDirection = dir;
+  _dirLightColour = col;
   REMVector wLightDir =  _dirLightDirection;
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "dirLightDir"),1,wLightDir._data);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "dirLightColour"),1,col.c);
+}
+
+void REMLightManager::reInitLights(){
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "dirLightDir"),1,_dirLightDirection._data);
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "dirLightColour"),1,_dirLightColour.c);
+  enableLightBank(_currentBank);
+  glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "worldAmbient"),1,_ambientLightColour.c);
 }
 
 int REMLightManager::addPointLight(REMColour col, REMVector loc, float fRadius){

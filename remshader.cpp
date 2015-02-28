@@ -142,9 +142,9 @@ int REMShaderManager::createProgram(unsigned int vID, unsigned int fID, unsigned
 int REMShaderManager::activateProgram(unsigned int pID){
   if (pID >= _nNumPrograms) return REMFAIL;
   _renderDevice->getVertexManager()->forcedFlushAll();
+  _renderDevice->setActiveSkinID(MAX_ID);
   glUseProgram(_pProgram[pID]);
   _activeProgram = _pProgram[pID];
-  log("Activated Shader Program: %d.",pID);
   return REMOK;
 }
 

@@ -1928,8 +1928,8 @@ newmtl box
 Ns 1000.0
 d 1.0
 illum 2
-Ka 0.0000 0.9000 0.0000
-Kd 0.0000 0.9000 0.0000
+Ka 0.0000 0.0000 1.0000
+Kd 0.0000 0.0000 0.5000
 Ks 1.0000 1.0000 1.0000
 Ke 0.0000 0.0000 0.0000
 ‰PNG
@@ -5678,6 +5678,11 @@ n$
 ŠPç òk&TngEzghË–;~£qèOoÏnyq	)aüB±­t{X¯^äR»Šï%sşÈí]â%äDHLtãúÔKMÊ…Ê¬óDÍQ€*³\¸š!:–UÎßîJ—Ëyd$§æQ••^D¶¶ŠH¡‹l— £¹Éfæš²Ônıí#QïR›LŠC$ÅÌ¹íÇ$VĞR®òÈæÎĞ;b³4û7L‘.á³Œúõ¤—Ï¾YhB
 ‚>÷åÒµrŠµŒTdş"¦3ØY47.¬ZS0íèµiî$†&óNxÕç_íI$P¢6|f'­DË< ’Ä¿9lËŒm¡»§+]º¹àw=ñZr^ìlm­¼ß7ø‡+NfU'vzÿ JÒÌjE%Èîh“ÖÇ$‘§&¨Z‹xĞnO“8>½j›ÜHÊp÷³{ÚšL{„!HÏëøÓ±åì,A^ãÔP—s;•çyW;ˆşÒªH1¨4‘ÌT2åƒĞ­Zê<ÍÈ›\·}À JÎ[I33düç©ö­”’ZãØlƒs©“vã5ZCæJK¶Íø Õfs/ß(A…•MËmÇ—Æ3õõ¦š¸Ò-ÃÂÎ#ˆ"Ÿ”¹U†Ú@óHÛËûâ™s'‘¾nœŸÒ¨éíy{s)uÄK}¿¥5#£EêX’GíyGÊ7­>Íİ«;ŒÕtipÃp¸ÁÜ9ÈéJÖÑ#ì‰rSøGŒœR±ÑfïĞy„Û—æÚEThiıØãš¼v=ËÊ¤b0dç«MwkK—o_JÉ^÷5o•jAäÆ@THJÙ^å"ºhJ«ä.kVEI·¯–YcáÛ¶­UiH¶âL2ôR1Ç­W5…Ë{*Igÿ hdW+{n ÕĞüÇæük©P‹·Cëë\Î±¼Ş‘ò‡oNÂ¶¥'}êÅ%rœ÷’$ë$lÑí=ºšÒÌ†…È"Dl)ÎOÔÖÔ‡jª*`Ÿz±Ùİwcî×­Gk).k›škKÛ^aHqò© ş5ŞÃ%†Şêq¢üÁ’MyÊ_ U@F6ñë]æ•!¸Ñ­|Ñ¹rÉëÚ¦¼¬™7“lãõ÷¾œˆ|¼n.£ErfÚdK¨İMzŒuH#ÒÆ)#3¹
 ÈÊ/¿§¥yÔ.!™Î@¬h·4vUŠ…µöDŒ4ÓåAeÅM§_$²âæE‚Î#¹>i=«=ç™î¶I¹cëš²-­ÚÖ_,–+ó÷5Ù»jqÊI=·7­s*ÉKosåúîjÄäğªNÓÔS6M2E¨c¿ÔÕYdòP«n={RQ°{NmÏÿÙprecision highp float;
+
+void main(){
+  gl_FragColor = vec4(0.0,0.0,0.0,1.0);
+}
+precision highp float;
 //Basic Vertex Shader
 
 uniform vec4 worldAmbient;
@@ -5694,6 +5699,7 @@ varying vec4 vEye;
 varying vec3 pointLightMTP[4];
 varying vec3 pointLightRay[4];
 varying vec3 vDirLight;
+varying float isEdge;
 
 void main(){
   //setup
@@ -5724,8 +5730,38 @@ void main(){
       spec += matSpecular * pPointLightCol[i]* pow(intSpec,matPower);
     }
   }
+  float outline = float(isEdge<0.1);
+  gl_FragColor = vec4(vec3(outline),1.0)*((ambientLight+diffuseLight+pointLight) + spec);
+}
+#version 100
+//Basic Cel Vertex Shader
+uniform mat4 WVPMat;
+uniform mat4 WVMat;
+uniform mat4 TI_WVMat;
+uniform mat4 VMat;
 
-  gl_FragColor = (max(ambientLight,diffuseLight)+pointLight) + spec;
+attribute vec4 aPosition;
+attribute vec4 aNormal;
+attribute vec2 aTexCoord;
+attribute vec2 aTexDetailCoord;
+attribute vec4 aTangent;
+
+varying vec4 vPosition;
+varying vec4 vNormal;
+varying vec4 vEye;
+
+void main(){
+  vNormal = TI_WVMat*aNormal;
+  vEye = -WVMat*aPosition;
+
+  mat4 scale = mat4(
+   1.14, 0.0, 0.0, 0.0,
+   0.0, 1.14, 0.0, 0.0,
+   0.0, 0.0, 1.14, 0.0,
+   0.0, 0.0, 0.0, 1.0
+  );
+
+  gl_Position = WVPMat*(scale*aPosition);
 }
 #version 100
 //Basic Cel Vertex Shader
@@ -5740,8 +5776,6 @@ uniform vec4 dirLightDir;
 
 attribute vec4 aPosition;
 attribute vec4 aNormal;
-attribute vec2 aTexCoord;
-attribute vec2 aTexDetailCoord;
 attribute vec4 aTangent;
 
 varying vec4 vPosition;
@@ -5750,13 +5784,22 @@ varying vec4 vEye;
 varying vec3 pointLightMTP[4];
 varying vec3 pointLightRay[4];
 varying vec3 vDirLight;
+varying float isEdge;
 
 void main(){
-  gl_Position = WVPMat*aPosition;
-  
+  mat4 scale = mat4(
+   0.88, 0.0, 0.0, 0.0,
+   0.0, 0.88, 0.0, 0.0,
+   0.0, 0.0, 0.88, 0.0,
+   0.0, 0.0, 0.0, 1.0
+  );
+
   vNormal = TI_WVMat*aNormal;
-  vEye = -(WVMat*aPosition);
+  vEye = -WVMat*aPosition;
   vDirLight = normalize(vec3(VMat*dirLightDir));
+  isEdge = float(dot(normalize(vec3(vNormal)),normalize(vec3(-vEye)))>0.0);
+  vec4 delta = isEdge*aNormal*0.1;
+  gl_Position = WVPMat*(isEdge*aPosition+(1.0-isEdge)*scale*aPosition);
 
   for(int i=0;i<4;i++){
     pointLightMTP[i] = vec3(pPointLightMTP[i]*(WMat*aPosition));

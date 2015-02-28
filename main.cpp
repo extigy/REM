@@ -24,13 +24,15 @@ void web_frame(){
   rd->setViewLookAt(*a,*b,*c);
   REMMatrix* world = new REMMatrix();
   int i=0,j=0,k=0;
-  for(i=-5;i<5;i++){
-  for(k=-5;k<5;k++){
-    world->identity();
-    world->translate(2*i,2*j,2*k);
-    rd->setWorldTransform(world);
-    rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
-  }
+  rd->getShaderManager()->activateProgram(3);
+  for(i=-5;i<6;i++){
+    for(k=-5;k<6;k++){
+      world->identity();
+      world->rotaY(-xx*20);
+      world->translate((sin(xx*2)+2)*i,j,(sin(xx*2)+2)*k);
+      rd->setWorldTransform(world);
+      rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+    }
   }
   rd->getVertexManager()->forcedFlushAll();
   delete world;
