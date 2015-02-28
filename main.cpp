@@ -30,7 +30,7 @@ void web_frame(){
     world->rotaZ(xx);
     world->translate(2*i,2*j,2*k);
     rd->setWorldTransform(world);
-    rd->getVertexManager()->render(UU_VERTEX, 0, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+    rd->getVertexManager()->render(UU_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
   }
   }
   rd->getVertexManager()->forcedFlushAll();
@@ -58,15 +58,6 @@ int main(int argc, char **argv){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     rd = new REMRenderDevice();
     rd->oneTimeInit();
-    unsigned int nSkinID;
-    REMColour cOne;
-    cOne.fR = 1.0f;cOne.fG = 1.0f;cOne.fB = 1.0f;cOne.fA = 1.0f;
-    REMColour cNone;
-    cNone.fR = 0.0f;cNone.fG = 0.0f;cNone.fB = 0.0f;cNone.fA = 1.0f;
-
-    rd->getSkinManager()->addSkin(&cOne,&cOne,&cOne,&cNone, 1000.0f, &nSkinID);
-    rd->getSkinManager()->addTexture(nSkinID, "textures/brick.jpg", true, 1.0f, NULL, 0);
-    //rd->getSkinManager()->addTexture(nSkinID, "textures/brick-detail.jpg", true, 1.0f, NULL, 0);
     glfwSwapBuffers();
 
     sm = new REMSimpleModel(rd,UU_VERTEX);
@@ -83,13 +74,14 @@ int main(int argc, char **argv){
     cMat.fB = 1.0f;
     cMat.fA = 1.0f;
     rd->getLightManager()->setDirLight(cMat, dMat);
+    /*
     cMat.fR = 0.5f;
     cMat.fG = 0.5f;
     cMat.fB = 1.0f;
     cMat.fA = 1.0f;
-    //rd->getLightManager()->addPointLight(cMat, 0.0f, 0.0f, 0.0f,10.0f);
-    //rd->getLightManager()->enableLightBank(0);
-
+    rd->getLightManager()->addPointLight(cMat, 0.0f, 0.0f, 0.0f,10.0f);
+    rd->getLightManager()->enableLightBank(0);
+    */
     //delete rd;
     emscripten_set_main_loop (web_frame, 0, true);
   }

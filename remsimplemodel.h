@@ -8,7 +8,18 @@
 #define INT_V_POS 0
 #define INT_V_NOR 1
 #define INT_V_TEX 2
+#define INT_MTL 4
 #define INT_FACE 3
+#define MTL_NS 5
+#define MTL_D 6
+#define MTL_ILLUM 7
+#define MTL_KA 8
+#define MTL_KD 9
+#define MTL_KS 10
+#define MTL_KE 11
+#define MTL_MAP_KA 12
+#define MTL_MAP_KD 13
+
 #define MAX_LINE_LENGTH 1024
 
 typedef struct OBJ_3V_TYPE {
@@ -33,18 +44,34 @@ protected:
   obj3V* _pObjNormal;
   unsigned int _nNumObjNormal;
 
-  FILE* _pFile;
-  char* _pFileName;
+  char _kaFilename[1024];
+  char _kdFilename[1024];
+
+  REMColour _cAmbient;
+  REMColour _cDiffuse;
+  REMColour _cEmissive;
+  REMColour _cSpecular;
+  float _fSpecPower;
+  float _alpha;
+
+  FILE* _pObjFile;
+  FILE* _pMTLFile;
   bool _bReady;
+  bool _bTex;
+  bool _bDetailTex;
   char _pChunk[MAX_LINE_LENGTH];
-  int getNextChunk();
+  char _pMTLChunk[MAX_LINE_LENGTH];
+  int getObjNextChunk();
+  int getMTLNextChunk();
   void readObjVertex();
   void readObjNormal();
   void readObjTexCoord();
   void readObjFace();
+  void handleMTL();
   void setupObjCache();
   void setupVertexArrays();
   void cleanupObjCache();
+  void setupMTL();
   void log(char* chString,...);
   int getNumberOfLinesInFile();
   int getNumberOfFacesInFile();

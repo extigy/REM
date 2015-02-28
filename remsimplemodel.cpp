@@ -4,6 +4,7 @@
 REMSimpleModel::REMSimpleModel(REMRenderDevice* pDevice,REMVertexFormat format){
   _pDevice = pDevice;
   _vFormat = format;
+  _bTex = false;
 }
 
 REMSimpleModel::~REMSimpleModel(){
@@ -14,23 +15,23 @@ REMSimpleModel::~REMSimpleModel(){
 int REMSimpleModel::getNumberOfLinesInFile(){
   int ch, number_of_lines = 0;
   do{
-    ch = fgetc(_pFile);
+    ch = fgetc(_pObjFile);
     if(ch == '\n')
       number_of_lines++;
   }while (ch != EOF);
   if(ch != '\n' && number_of_lines != 0) number_of_lines++;
-  rewind(_pFile);
+  rewind(_pObjFile);
   log("Model definition is %d lines.", number_of_lines);
   return number_of_lines;
 }
 int REMSimpleModel::getNumberOfFacesInFile(){
   char ch[MAX_LINE_LENGTH];
   int nof = 0;
-  while (fgets(ch,MAX_LINE_LENGTH,_pFile) != NULL){
+  while (fgets(ch,MAX_LINE_LENGTH,_pObjFile) != NULL){
     char* token = strtok(ch," ");
     if(strcmp("f",token) == 0) nof++;
   }
-  rewind(_pFile);
+  rewind(_pObjFile);
   log("Model definition has %d faces.", nof);
   return nof;
 }
@@ -58,9 +59,103 @@ void REMSimpleModel::setupVertexArrays(){
   _nNumIndices = 0;
 }
 
+void REMSimpleModel::handleMTL(){
+  char matFilename[1024];
+  sprintf(matFilename,"models/%s.mtl",strtok(NULL," \n"));
+  _pMTLFile = fopen(matFilename,"r");
+
+  if(_pMTLFile == NULL) {
+   log("Error reading material file!");
+  } else {
+   log("Opened material file %s",matFilename);
+   bool bLoop = true;
+   while (bLoop){
+     switch(getMTLNextChunk()){
+        case MTL_NS:
+          _fSpecPower = atof(strtok(NULL," "));
+          log("Material specular component: %f",_fSpecPower);
+          break;
+        case MTL_KA:
+          _cAmbient.fR = atof(strtok(NULL," "));
+          _cAmbient.fG = atof(strtok(NULL," "));
+          _cAmbient.fB = atof(strtok(NULL," "));
+          log("Material ambient colour: (%f, %f, %f)",_cAmbient.fR,_cAmbient.fG,_cAmbient.fB);
+          break;
+        case MTL_KD:
+          _cDiffuse.fR = atof(strtok(NULL," "));
+          _cDiffuse.fG = atof(strtok(NULL," "));
+          _cDiffuse.fB = atof(strtok(NULL," "));
+          log("Material diffuse colour: (%f, %f, %f)",_cDiffuse.fR,_cDiffuse.fG,_cDiffuse.fB);
+          break;
+        case MTL_KS:
+          _cSpecular.fR = atof(strtok(NULL," "));
+          _cSpecular.fG = atof(strtok(NULL," "));
+          _cSpecular.fB = atof(strtok(NULL," "));
+          log("Material specular colour: (%f, %f, %f)",_cSpecular.fR,_cSpecular.fG,_cSpecular.fB);
+          break;
+        case MTL_KE:
+          _cEmissive.fR = atof(strtok(NULL," "));
+          _cEmissive.fG = atof(strtok(NULL," "));
+          _cEmissive.fB = atof(strtok(NULL," "));
+          log("Material emissive colour: (%f, %f, %f)",_cEmissive.fR,_cEmissive.fG,_cEmissive.fB);
+          break;
+        case MTL_D:
+          _alpha = atof(strtok(NULL," "));
+          _cAmbient.fA = _alpha;
+          _cDiffuse.fA = _alpha;
+          _cSpecular.fA = _alpha;
+          _cEmissive.fA = _alpha;
+          log("Material alpha: %f",_alpha);
+          break;
+        case MTL_MAP_KA:
+          _bTex = true;
+          sprintf(_kaFilename,"textures/%s",strtok(NULL," \n"));
+          log("Ambient texture: %s",_kaFilename);
+          break;
+        case MTL_MAP_KD:
+          _bTex = true;
+          sprintf(_kdFilename,"textures/%s",strtok(NULL," \n"));
+          log("Diffuse texture: %s",_kdFilename);
+          break;
+        case -1:
+          bLoop = false;
+          break;
+        case -2:
+          break;
+      }
+    }
+    log("Finished reading %s.",matFilename);
+    fclose(_pMTLFile);
+    setupMTL();
+  }
+}
+
+void REMSimpleModel::setupMTL(){
+  _pDevice->getSkinManager()->addSkin(&_cAmbient,&_cDiffuse,&_cSpecular,&_cEmissive, _fSpecPower, &_nSkin);
+  if(_bTex)_pDevice->getSkinManager()->addTexture(_nSkin, _kdFilename, true, _alpha, NULL, 0);
+  //if(_bDetail)_pDevice->getSkinManager()->addTexture(nSkinID, "textures/brick-detail.jpg", true, 1.0f, NULL, 0);
+}
+
+int REMSimpleModel::getMTLNextChunk(){
+  if (fgets(_pMTLChunk,MAX_LINE_LENGTH,_pMTLFile) == NULL) return -1;
+  int br;
+  char* token = strtok(_pMTLChunk," ");
+  if(strcmp("Ns",token) == 0) br=MTL_NS;
+  else if(strcmp("d",token) == 0) br=MTL_D;
+  else if(strcmp("illum",token) == 0) br=MTL_ILLUM;
+  else if(strcmp("Ka",token) == 0) br=MTL_KA;
+  else if(strcmp("Kd",token) == 0) br=MTL_KD;
+  else if(strcmp("Ks",token) == 0) br=MTL_KS;
+  else if(strcmp("Ke",token) == 0) br=MTL_KE;
+  else if(strcmp("map_Ka",token) == 0) br=MTL_MAP_KA;
+  else if(strcmp("map_Kd",token) == 0) br=MTL_MAP_KD;
+  else return -2;
+  return br;
+}
+
 void REMSimpleModel::readFile(const char *chFile){
-  _pFile = fopen(chFile,"r");
-  if(_pFile == NULL) {
+  _pObjFile = fopen(chFile,"r");
+  if(_pObjFile == NULL) {
     log("Error Reading File!");
   } else {
     log("Opened %s.",chFile);
@@ -69,7 +164,7 @@ void REMSimpleModel::readFile(const char *chFile){
     setupObjCache();
     bool bLoop = true;
     while (bLoop){
-      switch(getNextChunk()){
+      switch(getObjNextChunk()){
         case INT_V_POS:
           readObjVertex();
           break;
@@ -82,6 +177,9 @@ void REMSimpleModel::readFile(const char *chFile){
         case INT_FACE:
           readObjFace();
           break;
+        case INT_MTL:
+          handleMTL();
+          break;
         case -1:
           bLoop = false;
           break;
@@ -91,7 +189,7 @@ void REMSimpleModel::readFile(const char *chFile){
     }
     log("Loaded %d vertices.",_nNumVertices);
     log("Finished reading %s.",chFile);
-    fclose(_pFile);
+    fclose(_pObjFile);
     cleanupObjCache();
   }
 }
@@ -168,14 +266,15 @@ void REMSimpleModel::readObjFace(){
   }
 }
 
-int REMSimpleModel::getNextChunk(){
-  if (fgets(_pChunk,MAX_LINE_LENGTH,_pFile) == NULL) return -1;
+int REMSimpleModel::getObjNextChunk(){
+  if (fgets(_pChunk,MAX_LINE_LENGTH,_pObjFile) == NULL) return -1;
   int br;
   char* token = strtok(_pChunk," ");
   if(strcmp("v",token) == 0) br=INT_V_POS;
   else if(strcmp("vn",token) == 0) br=INT_V_NOR;
   else if(strcmp("vt",token) == 0) br=INT_V_TEX;
   else if(strcmp("f",token) == 0) br=INT_FACE;
+  else if(strcmp("usemtl",token) == 0) br=INT_MTL;
   else return -2;
   return br;
 }
