@@ -6,5 +6,5 @@ Ka 1.0000 1.0000 1.0000
 Kd 1.0000 1.0000 1.0000
 Ks 1.0000 1.0000 1.0000
 Ke 0.0000 0.0000 0.0000
-#map_Ka brick.jpg
-#map_Kd brick.jpg
+map_Ka brick.jpg
+map_Kd brick.jpg
