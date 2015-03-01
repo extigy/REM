@@ -67,9 +67,9 @@ int REMRenderDevice::oneTimeInit(){
   setWorldTransform(NULL);
   //default material
   REMColour cMat;
-  cMat.fR = 0.5f;
-  cMat.fG = 0.5f;
-  cMat.fB = 0.5f;
+  cMat.fR = 0.3f;
+  cMat.fG = 0.3f;
+  cMat.fB = 0.3f;
   cMat.fA = 1.0f;
   _pLightMan->setAmbientLight(cMat);
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "matDiffuse"),1,cMat.c);

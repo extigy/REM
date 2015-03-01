@@ -17,7 +17,6 @@ varying vec4 vPosition;
 varying vec4 vNormal;
 varying vec4 vEye;
 varying vec3 pointLightMTP[4];
-varying vec3 pointLightRay[4];
 varying vec3 vDirLight;
 varying float isEdge;
 
@@ -38,6 +37,5 @@ void main(){
 
   for(int i=0;i<4;i++){
     pointLightMTP[i] = vec3(pPointLightMTP[i]*(WMat*aPosition));
-    pointLightRay[i] = normalize(vec3(VMat*(pPointLightPos[i] - (WMat*aPosition))));
   }
 }

@@ -29,7 +29,7 @@ void web_frame(){
     for(k=-5;k<6;k++){
       world->identity();
       world->rotaY(-xx*20);
-      world->translate((sin(xx*2)+2)*i,j,(sin(xx*2)+2)*k);
+      world->translate((sin(xx*2)+2.3)*i,j,(sin(xx*2)+2.3)*k);
       rd->setWorldTransform(world);
       rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
     }
@@ -70,19 +70,19 @@ int main(int argc, char **argv){
     dMat.y = -0.577f;
     dMat.z = 0.577f;
     dMat.w = 0.0f;
-    cMat.fR = 1.0f;
-    cMat.fG = 1.0f;
-    cMat.fB = 1.0f;
+    cMat.fR = 0.8f;
+    cMat.fG = 0.8f;
+    cMat.fB = 0.8f;
     cMat.fA = 1.0f;
     rd->getLightManager()->setDirLight(cMat, dMat);
-    /*
-    cMat.fR = 0.5f;
-    cMat.fG = 0.5f;
-    cMat.fB = 1.0f;
+
+    cMat.fR = 1.0f;
+    cMat.fG = 0.0f;
+    cMat.fB = 0.0f;
     cMat.fA = 1.0f;
-    rd->getLightManager()->addPointLight(cMat, 0.0f, 0.0f, 0.0f,10.0f);
-    rd->getLightManager()->enableLightBank(0);
-    */
+    //rd->getLightManager()->addPointLight(cMat, 0.0f, 3.0f, 0.0f,8.0f);
+    //rd->getLightManager()->enableLightBank(0);
+
     //delete rd;
     emscripten_set_main_loop (web_frame, 0, true);
   }

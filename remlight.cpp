@@ -12,11 +12,11 @@ REMLightManager::REMLightManager(REMRenderDevice* r){
 void REMLightManager::setAmbientLight(REMColour cMat){
   _ambientLightColour = cMat;
   glUniform4fv(glGetUniformLocation(_pShaderMan->getActiveProgram(), "worldAmbient"),1,cMat.c);
-  log("Setting ambient light to (%5.3f,%5.3f,%5.3f,%5.3f).",cMat.fR,cMat.fG,cMat.fB,cMat.fA);
+  //log("Setting ambient light to (%5.3f,%5.3f,%5.3f,%5.3f).",cMat.fR,cMat.fG,cMat.fB,cMat.fA);
 }
 
 void REMLightManager::setDirLight(REMColour col, REMVector dir){
-  log("Setting directional light (%5.3f,%5.3f,%5.3f,%5.3f), in direction (%5.3f,%5.3f,%5.3f).",col.fR,col.fG,col.fB,col.fA,dir.x,dir.y,dir.z);
+  //log("Setting directional light (%5.3f,%5.3f,%5.3f,%5.3f), in direction (%5.3f,%5.3f,%5.3f).",col.fR,col.fG,col.fB,col.fA,dir.x,dir.y,dir.z);
   dir.x = -dir.x;
   dir.y = -dir.y;
   dir.z = -dir.z;

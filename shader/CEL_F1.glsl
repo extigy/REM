@@ -39,12 +39,6 @@ void main(){
   //point lights
   for(int i=0;i<4;i++){
     float plt = 1.0-min(max(dot(pointLightMTP[i],pointLightMTP[i]),-1.0),1.0);
-    if(plt > 0.0){
-      pointLight += matDiffuse*pPointLightCol[i]*plt;
-      vec3 h = normalize(pointLightRay[i] + eye);
-      float intSpec = max(dot(h,normal),0.0);
-      spec += matSpecular * pPointLightCol[i]* pow(intSpec,matPower);
-    }
   }
   float outline = float(isEdge<0.1);
   gl_FragColor = vec4(vec3(outline),1.0)*((ambientLight+diffuseLight+pointLight) + spec);
