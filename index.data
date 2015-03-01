@@ -5697,7 +5697,6 @@ uniform float matPower;
 varying vec4 vNormal;
 varying vec4 vEye;
 varying vec3 pointLightMTP[4];
-varying vec3 pointLightRay[4];
 varying vec3 vDirLight;
 varying float isEdge;
 
@@ -5772,7 +5771,6 @@ attribute vec4 aPosition;
 attribute vec4 aNormal;
 attribute vec4 aTangent;
 
-varying vec4 vPosition;
 varying vec4 vNormal;
 varying vec4 vEye;
 varying vec3 pointLightMTP[4];

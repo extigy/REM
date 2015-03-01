@@ -24,8 +24,8 @@ Module.expectedDataFileDownloads++;
     var REMOTE_PACKAGE_NAME = typeof Module['locateFile'] === 'function' ?
                               Module['locateFile'](REMOTE_PACKAGE_BASE) :
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
-    var REMOTE_PACKAGE_SIZE = 1240467;
-    var PACKAGE_UUID = '73afd3a3-2ab4-47a1-a97a-78b849ccbbfe';
+    var REMOTE_PACKAGE_SIZE = 1240412;
+    var PACKAGE_UUID = 'be422991-227e-4200-bb30-79f4a2bce045';
   
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
@@ -134,13 +134,13 @@ Module['FS_createPath']('/', 'shader', true, true);
     new DataRequest(81400, 148164, 0, 0).open('GET', '/textures/brick-detail.jpg');
     new DataRequest(148164, 1234298, 0, 0).open('GET', '/textures/brick.jpg');
     new DataRequest(1234298, 1234377, 0, 0).open('GET', '/shader/CEL_F0.glsl');
-    new DataRequest(1234377, 1235548, 0, 0).open('GET', '/shader/CEL_F1.glsl');
-    new DataRequest(1235548, 1236107, 0, 0).open('GET', '/shader/CEL_V0.glsl');
-    new DataRequest(1236107, 1237077, 0, 0).open('GET', '/shader/CEL_V1.glsl');
-    new DataRequest(1237077, 1237443, 0, 0).open('GET', '/shader/UL_F0.glsl');
-    new DataRequest(1237443, 1237773, 0, 0).open('GET', '/shader/UL_V0.glsl');
-    new DataRequest(1237773, 1239498, 0, 0).open('GET', '/shader/UU_F0.glsl');
-    new DataRequest(1239498, 1240467, 0, 0).open('GET', '/shader/UU_V0.glsl');
+    new DataRequest(1234377, 1235517, 0, 0).open('GET', '/shader/CEL_F1.glsl');
+    new DataRequest(1235517, 1236076, 0, 0).open('GET', '/shader/CEL_V0.glsl');
+    new DataRequest(1236076, 1237022, 0, 0).open('GET', '/shader/CEL_V1.glsl');
+    new DataRequest(1237022, 1237388, 0, 0).open('GET', '/shader/UL_F0.glsl');
+    new DataRequest(1237388, 1237718, 0, 0).open('GET', '/shader/UL_V0.glsl');
+    new DataRequest(1237718, 1239443, 0, 0).open('GET', '/shader/UU_F0.glsl');
+    new DataRequest(1239443, 1240412, 0, 0).open('GET', '/shader/UU_V0.glsl');
 
     function processPackageData(arrayBuffer) {
       Module.finishedDataFileDownloads++;

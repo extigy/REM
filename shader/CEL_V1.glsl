@@ -13,7 +13,6 @@ attribute vec4 aPosition;
 attribute vec4 aNormal;
 attribute vec4 aTangent;
 
-varying vec4 vPosition;
 varying vec4 vNormal;
 varying vec4 vEye;
 varying vec3 pointLightMTP[4];
