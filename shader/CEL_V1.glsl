@@ -1,5 +1,6 @@
 #version 100
 //Basic Cel Vertex Shader
+
 uniform mat4 WVPMat;
 uniform mat4 WVMat;
 uniform mat4 TI_WVMat;
@@ -26,13 +27,18 @@ void main(){
    0.0, 0.0, 0.88, 0.0,
    0.0, 0.0, 0.0, 1.0
   );
+  vec4 shift = vec4(
+   (0.15*float(aPosition[0]>0.0)-0.075)/abs(WMat[0][0]),
+   (0.15*float(aPosition[1]>0.0)-0.075)/abs(WMat[1][1]),
+   (0.15*float(aPosition[2]>0.0)-0.075)/abs(WMat[2][2]),
+   0.0
+  );
 
   vNormal = TI_WVMat*aNormal;
   vEye = -WVMat*aPosition;
   vDirLight = normalize(vec3(VMat*dirLightDir));
   isEdge = float(dot(normalize(vec3(vNormal)),normalize(vec3(-vEye)))>0.0);
-  vec4 delta = isEdge*aNormal*0.1;
-  gl_Position = WVPMat*(isEdge*aPosition+(1.0-isEdge)*scale*aPosition);
+  gl_Position = WVPMat*(isEdge*aPosition+(1.0-isEdge)*(aPosition-shift));
 
   for(int i=0;i<4;i++){
     pointLightMTP[i] = vec3(pPointLightMTP[i]*(WMat*aPosition));

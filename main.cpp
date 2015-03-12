@@ -6,36 +6,48 @@
 #include <stdlib.h>
 #include "remrender.h"
 #include "remsimplemodel.h"
+#include "reminput.h"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
 REMRenderDevice* rd;
 REMSimpleModel* sm;
+REMInputManager* id;
 float xx = 0;
 
 void web_frame(){
   //draw calls
-  xx=xx+0.006f;
+  xx=xx+0.01f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  REMVector* a = new REMVector(8.0f*sin(xx),8.0f,8.0f*cos(xx));
+  REMVector* a = new REMVector(4.0f*sin(xx),sin(xx)*4.0f+4.5f,4.0f*cos(xx));
   REMVector* b = new REMVector(0.0f,0.0f,0.0f);
   REMVector* c = new REMVector(0.0f,1.0f,0.0f);
   rd->setViewLookAt(*a,*b,*c);
   REMMatrix* world = new REMMatrix();
-  int i=0,j=0,k=0;
+  int i=0,k=0;
   rd->getShaderManager()->activateProgram(3);
-  for(i=-5;i<6;i++){
-    for(k=-5;k<6;k++){
+  //for(i=-5;i<6;i++){
+    //for(k=-5;k<6;k++){
       world->identity();
-      world->rotaY(-xx*20);
-      world->translate((sin(xx*2)+2.3)*i,j,(sin(xx*2)+2.3)*k);
+      //world->scale(1.0f,1.0f+sqrt(i*i*k*k)/4.0f,1.0f);
+      //world->translate(1.5f*i,0.0f,1.5f*k);
       rd->setWorldTransform(world);
       rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
-    }
-  }
+    //}
+  //}
   rd->getVertexManager()->forcedFlushAll();
   delete world;
+
+  if(id->isPressed(IDV_KEYBOARD, 68)){
+    printf("D is pressed!\n");
+  }
+  if(id->isPressed(IDV_MOUSE, 0)){
+    printf("Mouse0 is pressed!\n");
+  }
+  if(id->isPressed(IDV_MOUSE, 2)){
+    printf("Mouse2 is pressed!\n");
+  }
   glfwSwapBuffers();
 }
 
@@ -57,6 +69,7 @@ int main(int argc, char **argv){
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    id = new REMInputManager();
     rd = new REMRenderDevice();
     rd->oneTimeInit();
     glfwSwapBuffers();
@@ -76,11 +89,11 @@ int main(int argc, char **argv){
     cMat.fA = 1.0f;
     rd->getLightManager()->setDirLight(cMat, dMat);
 
-    cMat.fR = 1.0f;
+    cMat.fR = 0.0f;
     cMat.fG = 0.0f;
-    cMat.fB = 0.0f;
+    cMat.fB = 0.8f;
     cMat.fA = 1.0f;
-    //rd->getLightManager()->addPointLight(cMat, 0.0f, 3.0f, 0.0f,8.0f);
+    //rd->getLightManager()->addPointLight(cMat, 1.0f, 1.0f, 0.0f,1.5f);
     //rd->getLightManager()->enableLightBank(0);
 
     //delete rd;

@@ -21,7 +21,7 @@ typedef struct REMMATERIAL_TYPE{
 typedef struct REMTEXTURE_TYPE{
   float fAlpha;
   char* chName;
-  GLuint* pData;
+  GLuint texInt;
   REMColour* pClrKeys;
   unsigned int dwNum;
 } REMTexture;

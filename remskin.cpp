@@ -17,10 +17,10 @@ REMSkinManager::~REMSkinManager(){
   log("Deinitialising...");
   if(_pTextures){
     for(int i=0;i<_nNumTextures;i++){
-      if(_pTextures[i].pData){
-        glDeleteTextures(1,_pTextures[i].pData);
-        delete [] _pTextures[i].pData;
-        _pTextures[i].pData = NULL;
+      if(_pTextures[i].texInt > 0){
+        glDeleteTextures(1,&(_pTextures[i].texInt));
+        log("Deleted Texture %d",_pTextures[i].texInt);
+        _pTextures[i].texInt = 0;
       }
 
       if(_pTextures[i].pClrKeys){
@@ -286,9 +286,9 @@ int REMSkinManager::createTexture(REMTexture* pTexture, bool bAlpha){
   glGenerateMipmap(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, 0);
 
-  pTexture->pData = new GLuint[1];
-  memcpy(pTexture->pData, &texID, 1);
-  if(pTexture->pData == NULL) return REMOUTOFMEMORY;
+  pTexture->texInt = texID;
+  log("Created glTexture with ID: %d",pTexture->texInt);
+  if(pTexture->texInt == 0) return REMOUTOFMEMORY;
   //releaseRawImage(rI);
   return REMOK;
 }

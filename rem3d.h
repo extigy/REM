@@ -59,7 +59,7 @@ public:
   void rotaZ(float a);
   void rotaArbi(REMVector& vcAxis, float a);
   void translate(float dx, float dy, float dz);
-
+  void scale(float dx, float dy, float dz);
   void transposeOf(const REMMatrix& m);
   void inverseOf(const REMMatrix& m);
   void billboard(REMVector vcPos, REMVector vcDir, REMVector vcWorldUp);

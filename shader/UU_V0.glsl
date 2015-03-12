@@ -17,7 +17,6 @@ attribute vec2 aTexCoord;
 attribute vec2 aTexDetailCoord;
 attribute vec4 aTangent;
 
-varying vec4 vPosition;
 varying vec4 vNormal;
 varying vec4 vEye;
 varying vec2 vTexCoord;

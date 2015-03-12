@@ -30,8 +30,8 @@ void main(){
   vec3 eye = normalize(vec3(vEye));
 
   //textures
-  vec4 tex  = vec4(1.0);
-  vec4 detail = vec4(1.0);
+  vec4 tex  = vec4(1.0,1.0,1.0,1.0);
+  vec4 detail = vec4(1.0,1.0,1.0,1.0);
   if(nTextures==1){
     tex  = texture2D(uSampler0, vTexCoord);
   }
@@ -59,7 +59,7 @@ void main(){
       pointLight += matDiffuse*pPointLightCol[i]*plt;
       vec3 h = normalize(pointLightRay[i] + eye);
       float intSpec = max(dot(h,normal),0.0);
-      spec += matSpecular * pPointLightCol[i]* pow(intSpec,matPower);
+      //spec += matSpecular * pPointLightCol[i]* pow(intSpec,matPower);
     }
   }
 

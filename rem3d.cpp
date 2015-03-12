@@ -173,6 +173,12 @@ void REMMatrix::translate(float dx, float dy, float dz){
   _43 += dz;
 };
 
+void REMMatrix::scale(float dx, float dy, float dz){
+  _11 *= dx;
+  _22 *= dy;
+  _33 *= dz;
+};
+
 void REMMatrix::transposeOf(const REMMatrix& m){
   _11 = m._11;
   _21 = m._12;

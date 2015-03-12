@@ -104,4 +104,10 @@ typedef struct REMCOLOUR_TYPE{
   };
 } REMColour;
 
+typedef enum REMINPUT_TYPE{
+  IDV_KEYBOARD,
+  IDV_JOYSTICK,
+  IDV_MOUSE
+} REMInputType;
+
 #endif

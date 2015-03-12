@@ -279,8 +279,8 @@ int REMVertexCache::flush(){
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexCoord"));
         glVertexAttribPointer(glGetAttribLocation(sp,"aTexDetailCoord"), 2, GL_UNSIGNED_SHORT, GL_TRUE, sizeof(REMUUVertex), (const void*)(9*sizeof(float)));
         glEnableVertexAttribArray(glGetAttribLocation(sp,"aTexDetailCoord"));
-        glVertexAttribPointer(glGetAttribLocation(sp,"aTangent"), 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(10*sizeof(float)));
-        glEnableVertexAttribArray(glGetAttribLocation(sp,"aTangent"));
+        //glVertexAttribPointer(glGetAttribLocation(sp,"aTangent"), 4, GL_FLOAT, 0, sizeof(REMUUVertex), (const void*)(10*sizeof(float)));
+        //glEnableVertexAttribArray(glGetAttribLocation(sp,"aTangent"));
         break;
       case CEL_VERTEX:
         glVertexAttribPointer(glGetAttribLocation(sp,"aPosition"), 4, GL_FLOAT, 0,sizeof(REMCELVertex), (const void*)0);
@@ -309,7 +309,7 @@ int REMVertexCache::flush(){
   }
 
   if(_pVCM->getRenderDevice()->getActiveSkinID() != _skinID){
-    unsigned int* pTex = NULL;
+    unsigned int pTex = 0;
     char texUniformStr[15];
     REMMaterial *pMat = &(_pSkinMan->_pMaterials[_skin.nMaterial]);
     if(_pVCM->getRenderDevice()->getShadeMode()!=RS_SHADE_TRIWIRE){
@@ -321,10 +321,10 @@ int REMVertexCache::flush(){
       glUniform1i(glGetUniformLocation(sp, "nTextures"),_skin.nOfTextures);
       for(int i=0;i<8;i++){
         if(_skin.nTexture[i] != MAX_ID){
-          pTex = _pSkinMan->_pTextures[_skin.nTexture[i]].pData;
-          //log("Activting Texture - %d",*pTex);
+          pTex = _pSkinMan->_pTextures[_skin.nTexture[i]].texInt;
+          //printf("Activting Texture - %d\n",pTex);
           glActiveTexture(0x84C0+i);
-          glBindTexture(GL_TEXTURE_2D, *pTex);
+          glBindTexture(GL_TEXTURE_2D, pTex);
           sprintf(texUniformStr,"uSampler%d",i);
           glUniform1i(glGetUniformLocation(sp, texUniformStr), i);
         } else break;

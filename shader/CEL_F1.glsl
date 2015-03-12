@@ -5,6 +5,7 @@ uniform vec4 worldAmbient;
 uniform vec4 dirLightColour;
 uniform vec4 pPointLightCol[4];
 
+
 uniform vec4 matDiffuse;
 uniform vec4 matAmbient;
 uniform vec4 matSpecular;
