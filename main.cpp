@@ -53,15 +53,23 @@ void web_frame(){
   REMMatrix* world = new REMMatrix();
   int i=0,k=0;
   rd->getShaderManager()->activateProgram(3);
-  //for(i=-5;i<6;i++){
-    //for(k=-5;k<6;k++){
+  for(i=-20;i<20;i++){
+    //for(k=-20;k<20;k++){
       world->identity();
-      //world->scale(1.0f,1.0f+sqrt(i*i*k*k)/4.0f,1.0f);
-      //world->translate(1.5f*i,0.0f,1.5f*k);
+      world->scale(1.0f,1.0f,1.0f);
+      world->translate(0.0f,0.0f,i);
       rd->setWorldTransform(world);
       rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
     //}
-  //}
+  }
+  for(i=-20;i<20;i++){
+    if(i==0)continue;
+    world->identity();
+    world->scale(1.0f,1.0f,1.0f);
+    world->translate(i,0.0f,0.0f);
+    rd->setWorldTransform(world);
+    rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+  }
   rd->getVertexManager()->forcedFlushAll();
   delete world;
 
