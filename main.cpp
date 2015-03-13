@@ -7,6 +7,7 @@
 #include "remrender.h"
 #include "remsimplemodel.h"
 #include "reminput.h"
+#include "remmovement.h"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -14,16 +15,41 @@
 REMRenderDevice* rd;
 REMSimpleModel* sm;
 REMInputManager* id;
+REMFreeMC* freeCamera;
 float xx = 0;
 
 void web_frame(){
   //draw calls
   xx=xx+0.01f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  REMVector* a = new REMVector(4.0f*sin(xx),sin(xx)*4.0f+4.5f,4.0f*cos(xx));
-  REMVector* b = new REMVector(0.0f,0.0f,0.0f);
-  REMVector* c = new REMVector(0.0f,1.0f,0.0f);
-  rd->setViewLookAt(*a,*b,*c);
+  freeCamera->update(0.1f);
+  POINT tempP;
+  id->getPosition(IDV_MOUSE,&tempP);
+  if(id->isPointerLocked())freeCamera->setRotationSpeed((float)(tempP.y)/20.0f, (float)(tempP.x)/20.0f, 0.0f);
+
+  freeCamera->setThrustZ(0.0f);
+  freeCamera->setThrustX(0.0f);
+  freeCamera->setRotationSpeedZ(0.0f);
+  if(id->isPressed(IDV_KEYBOARD, 87)){
+    freeCamera->setThrustZ(0.5f);
+  }
+  if(id->isPressed(IDV_KEYBOARD, 83)){
+    freeCamera->setThrustZ(-0.5f);
+  }
+  if(id->isPressed(IDV_KEYBOARD, 68)){
+    freeCamera->setThrustX(0.5f);
+  }
+  if(id->isPressed(IDV_KEYBOARD, 65)){
+    freeCamera->setThrustX(-0.5f);
+  }
+  if(id->isPressed(IDV_KEYBOARD, 81)){
+    freeCamera->setRotationSpeedZ(-0.5f);
+  }
+  if(id->isPressed(IDV_KEYBOARD, 69)){
+    freeCamera->setRotationSpeedZ(0.5f);
+  }
+
+  freeCamera->setAsView(rd);
   REMMatrix* world = new REMMatrix();
   int i=0,k=0;
   rd->getShaderManager()->activateProgram(3);
@@ -39,15 +65,15 @@ void web_frame(){
   rd->getVertexManager()->forcedFlushAll();
   delete world;
 
-  if(id->isPressed(IDV_KEYBOARD, 68)){
-    printf("D is pressed!\n");
-  }
+  /*
   if(id->isPressed(IDV_MOUSE, 0)){
     printf("Mouse0 is pressed!\n");
   }
   if(id->isPressed(IDV_MOUSE, 2)){
     printf("Mouse2 is pressed!\n");
   }
+  id->getPosition(IDV_MOUSE,&temp);
+  */
   glfwSwapBuffers();
 }
 
@@ -70,8 +96,10 @@ int main(int argc, char **argv){
     glEnable(GL_BLEND);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     id = new REMInputManager();
+    id->init();
     rd = new REMRenderDevice();
     rd->oneTimeInit();
+    freeCamera = new REMFreeMC();
     glfwSwapBuffers();
 
     sm = new REMSimpleModel(rd,CEL_VERTEX);

@@ -61,8 +61,8 @@ typedef enum REMRENDERSTATE_TYPE{
 } REMRenderState;
 
 typedef struct POINT_TYPE{
-  unsigned int x;
-  unsigned int y;
+  long x;
+  long y;
 } POINT;
 
 typedef struct REMVIEWPORT_TYPE{

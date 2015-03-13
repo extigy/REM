@@ -4,9 +4,32 @@
 
 REMInputManager::REMInputManager(){
   keyboard = new REMKeyboard();
-  keyboard->init();
   mouse = new REMMouse();
+}
+REMInputManager::~REMInputManager(){
+  delete keyboard;
+  delete mouse;
+}
+
+int REMInputManager::init(){
+  keyboard->init();
   mouse->init();
+}
+
+bool REMInputManager::isPointerLocked(){
+  return mouse->getMouseInfo().pointerLocked;
+}
+
+int REMInputManager::getPosition(REMInputType input,POINT* rPoint){
+  switch(input){
+    case IDV_MOUSE:
+      if(rPoint) *rPoint = mouse->getMovement();
+      break;
+    default:
+      printf("Input type not recognised!\n");
+      return -1;
+  }
+  return 0;
 }
 
 bool REMInputManager::isPressed(REMInputType input, unsigned int key){
@@ -48,17 +71,24 @@ EM_BOOL handleKeypess(int eventType, const EmscriptenKeyboardEvent *keyEvent, vo
   return true;
 }
 
-EM_BOOL handleMouse(int eventType, const EmscriptenMouseEvent *keyEvent, void *mouseDown){
-  //printf("Got %s,%d - %ld!\n",emscripten_event_type_to_string(eventType),eventType,keyEvent->button);
+EM_BOOL handleMouse(int eventType, const EmscriptenMouseEvent* keyEvent, void* mouseInfo){
   switch(eventType){
     case EMSCRIPTEN_EVENT_MOUSEDOWN:
-    ((bool*)mouseDown)[keyEvent->button] = true;
-    break;
+      ((mI*)mouseInfo)->mouseDown[keyEvent->button] = true;
+      if(!((mI*)mouseInfo)->pointerLocked){
+        emscripten_request_pointerlock(NULL, true);
+        ((mI*)mouseInfo)->movementX = ((mI*)mouseInfo)->movementY = 0;
+      }
+      break;
     case EMSCRIPTEN_EVENT_MOUSEUP:
-    ((bool*)mouseDown)[keyEvent->button] = false;
-    break;
+      ((mI*)mouseInfo)->mouseDown[keyEvent->button] = false;
+      break;
     case EMSCRIPTEN_EVENT_MOUSEMOVE:
-    //break;
+      ((mI*)mouseInfo)->movementX += keyEvent->movementX;
+      ((mI*)mouseInfo)->movementY += keyEvent->movementY;
+      ((mI*)mouseInfo)->mouseX = keyEvent->screenX;
+      ((mI*)mouseInfo)->mouseY = keyEvent->screenY;
+    break;
     default:
     printf("[Mouse]: Event \"%s\" not recognised!\n",emscripten_event_type_to_string(eventType));
   }
@@ -66,6 +96,11 @@ EM_BOOL handleMouse(int eventType, const EmscriptenMouseEvent *keyEvent, void *m
 }
 
 REMKeyboard::REMKeyboard(){
+}
+REMKeyboard::~REMKeyboard(){
+  EMSCRIPTEN_RESULT res1, res2;
+  res1 = emscripten_set_keydown_callback(NULL, NULL, true, NULL);
+  res2 = emscripten_set_keyup_callback(NULL, NULL, true, NULL);
 }
 
 void REMKeyboard::init(){
@@ -96,20 +131,54 @@ void REMKeyboard::log(char* chString,...){
 REMMouse::REMMouse(){
 }
 
+REMMouse::~REMMouse(){
+  EMSCRIPTEN_RESULT res1, res2, res3;
+  res1 = emscripten_set_mousedown_callback(NULL, NULL, true, NULL);
+  res2 = emscripten_set_mouseup_callback(NULL, NULL, true, NULL);
+  res2 = emscripten_set_mousemove_callback(NULL, NULL, true, NULL);
+}
+
 bool REMMouse::isKeyPressed(unsigned int key){
-  return mouseDown[key];
+  return _mouseInfo.mouseDown[key];
+}
+
+POINT REMMouse::getMovement(){
+  POINT mMovement;
+  mMovement.x = _mouseInfo.movementX;
+  mMovement.y = _mouseInfo.movementY;
+  //log("Mouse movement is now at %d, %d",mMovement.x,mMovement.y);
+  _mouseInfo.movementX = 0;
+  _mouseInfo.movementY = 0;
+  return mMovement;
+}
+
+EM_BOOL handleMousePointerLockChange(int eventType, const EmscriptenPointerlockChangeEvent *keyEvent, void* mouseInfo){
+  ((mI*)mouseInfo)->pointerLocked = keyEvent->isActive;
+  return true;
 }
 
 void REMMouse::init(){
   em_mouse_callback_func callback = &handleMouse;
-  EMSCRIPTEN_RESULT res1, res2;
-  res1 = emscripten_set_mousedown_callback(NULL, mouseDown, true, callback);
-  res2 = emscripten_set_mouseup_callback(NULL, mouseDown, true, callback);
-  if(res1>-1 && res2>-1){
+  EMSCRIPTEN_RESULT res1, res2, res3;
+  res1 = emscripten_set_mousedown_callback(NULL, &_mouseInfo, true, callback);
+  res2 = emscripten_set_mouseup_callback(NULL, &_mouseInfo, true, callback);
+  res3 = emscripten_set_mousemove_callback(NULL, &_mouseInfo, true, callback);
+  if(res1>-1 && res2>-1 && res3>-1){
     log("Listening for mouse movement");
   } else {
-    log("Error listening for keystrokes: %d, %d",res1,res2);
+    log("Error listening for mouse: %d, %d, %d",res1,res2,res3);
   }
+  em_pointerlockchange_callback_func callback2 = &handleMousePointerLockChange;
+  res1 = emscripten_set_pointerlockchange_callback(NULL, &_mouseInfo, true, callback2);
+  if(res1>-1){
+    log("Listening for pointer lock");
+  } else {
+    log("Error listening for pointer lock: %d",res1);
+  }
+}
+
+mI REMMouse::getMouseInfo(){
+  return _mouseInfo;
 }
 
 void REMMouse::log(char* chString,...){
