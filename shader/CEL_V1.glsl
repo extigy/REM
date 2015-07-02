@@ -23,7 +23,7 @@ varying float isEdge;
 void main(){
 
   float dist = dot((WVMat*aPosition),(WVMat*aPosition));
-  float curv = 1.0/20.0;
+  float curv = 0.0/20.0;
   mat4 curv_mat = mat4(
   1.0,0.0,0.0,0.0,
   0.0,cos(atan(-curv)),sin(atan(-curv)),0.0,
@@ -44,7 +44,7 @@ void main(){
   vDirLight = normalize(vec3(VMat*dirLightDir));
   isEdge = float(dot(normalize(vec3(newNormal)),normalize(vec3(-vEye)))>0.0);
 
-  vec4 newPosition = WVPMat*(isEdge*aPosition+(1.0-isEdge)*(aPosition-shift));
+  vec4 newPosition = WVPMat*(isEdge*(aPosition+shift/2.0)+(1.0-isEdge)*(aPosition-shift));
   newPosition.y += dist*curv;
   gl_Position = newPosition;
 

@@ -40,6 +40,12 @@ void main(){
   for(int i=0;i<4;i++){
     float plt = 1.0-min(max(dot(pointLightMTP[i],pointLightMTP[i]),-1.0),1.0);
   }
+
+
   float outline = float(isEdge<0.1);
-  gl_FragColor = vec4(vec3(outline),1.0)*((ambientLight+diffuseLight+pointLight) + spec);
+  vec4 lightSum = ambientLight+diffuseLight+pointLight;
+  if(outline < 1.0){
+    lightSum[3] = 1.0;
+  }
+  gl_FragColor = vec4(vec3(outline),1.0)*((lightSum) + spec);
 }

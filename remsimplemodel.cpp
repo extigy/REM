@@ -253,7 +253,7 @@ void REMSimpleModel::readObjFace(){
         //texture
         ((REMUUVertex*)_pVertices)[_nNumVertices].vcT[0] = 65535*_pObjTexCoord[atoi(slashtoken)-1].p[0];
         ((REMUUVertex*)_pVertices)[_nNumVertices].vcT[1] = 65535*_pObjTexCoord[atoi(slashtoken)-1].p[1];
-        
+
         slashtoken = strtok(NULL,"/");
         //Normals
         memcpy(((REMUUVertex*)_pVertices)[_nNumVertices].vcN,_pObjNormal[atoi(slashtoken)-1].p, 3*sizeof(float));

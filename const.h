@@ -10,8 +10,8 @@
 
 #define MAX_ID 65535
 #define NUM_CACHES 50
-#define REMWIDTH 640
-#define REMHEIGHT 360
+#define REMWIDTH 800
+#define REMHEIGHT 600
 
 #define REMOK 0
 #define REMFAIL -1

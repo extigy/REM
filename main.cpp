@@ -13,14 +13,15 @@
 #include <emscripten.h>
 #endif
 REMRenderDevice* rd;
-REMSimpleModel* sm;
+REMSimpleModel* sm0;
+REMSimpleModel* sm1;
 REMInputManager* id;
 REMFreeMC* freeCamera;
 float xx = 0;
 
 void web_frame(){
   //draw calls
-  xx=xx+0.01f;
+  xx=xx+0.1f;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   freeCamera->update(0.1f);
   POINT tempP;
@@ -52,14 +53,17 @@ void web_frame(){
   freeCamera->setAsView(rd);
   REMMatrix* world = new REMMatrix();
   int i=0,k=0;
-  rd->getShaderManager()->activateProgram(3);
   for(i=-20;i<20;i++){
     //for(k=-20;k<20;k++){
       world->identity();
       world->scale(1.0f,1.0f,1.0f);
       world->translate(0.0f,0.0f,i);
       rd->setWorldTransform(world);
-      rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+      if((int)(i+xx)%3 == 0){
+        rd->getVertexManager()->render(CEL_VERTEX, sm0->_nSkin, sm0->_nNumVertices, sm0->_nNumIndices, sm0->_pVertices, sm0->_pIndices);
+      } else {
+        rd->getVertexManager()->render(CEL_VERTEX, sm1->_nSkin, sm1->_nNumVertices, sm1->_nNumIndices, sm1->_pVertices, sm1->_pIndices);
+      }
     //}
   }
   for(i=-20;i<20;i++){
@@ -68,7 +72,11 @@ void web_frame(){
     world->scale(1.0f,1.0f,1.0f);
     world->translate(i,0.0f,0.0f);
     rd->setWorldTransform(world);
-    rd->getVertexManager()->render(CEL_VERTEX, sm->_nSkin, sm->_nNumVertices, sm->_nNumIndices, sm->_pVertices, sm->_pIndices);
+    if((int)(i+xx)%3 == 0){
+      rd->getVertexManager()->render(CEL_VERTEX, sm0->_nSkin, sm0->_nNumVertices, sm0->_nNumIndices, sm0->_pVertices, sm0->_pIndices);
+    } else {
+      rd->getVertexManager()->render(CEL_VERTEX, sm1->_nSkin, sm1->_nNumVertices, sm1->_nNumIndices, sm1->_pVertices, sm1->_pIndices);
+    }
   }
   rd->getVertexManager()->forcedFlushAll();
   delete world;
@@ -110,8 +118,11 @@ int main(int argc, char **argv){
     freeCamera = new REMFreeMC();
     glfwSwapBuffers();
 
-    sm = new REMSimpleModel(rd,CEL_VERTEX);
-    sm->readFile("models/box0.obj");
+    sm0 = new REMSimpleModel(rd,CEL_VERTEX);
+    sm0->readFile("models/box0.obj");
+    sm1 = new REMSimpleModel(rd,CEL_VERTEX);
+    sm1->readFile("models/box1.obj");
+
 
     REMVector dMat;
     REMColour cMat;
@@ -119,12 +130,12 @@ int main(int argc, char **argv){
     dMat.y = -0.577f;
     dMat.z = 0.577f;
     dMat.w = 0.0f;
-    cMat.fR = 0.8f;
-    cMat.fG = 0.8f;
-    cMat.fB = 0.8f;
+    cMat.fR = 0.9f;
+    cMat.fG = 0.9f;
+    cMat.fB = 0.9f;
     cMat.fA = 1.0f;
     rd->getLightManager()->setDirLight(cMat, dMat);
-
+    rd->getLightManager()->setAmbientLight(cMat);
     cMat.fR = 0.0f;
     cMat.fG = 0.0f;
     cMat.fB = 0.8f;
@@ -132,6 +143,7 @@ int main(int argc, char **argv){
     //rd->getLightManager()->addPointLight(cMat, 1.0f, 1.0f, 0.0f,1.5f);
     //rd->getLightManager()->enableLightBank(0);
 
+    rd->getShaderManager()->activateProgram(3);
     //delete rd;
     emscripten_set_main_loop (web_frame, 0, true);
   }
